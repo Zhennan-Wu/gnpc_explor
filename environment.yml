@@ -1,0 +1,23 @@
+name: gnpc
+channels:
+  - defaults
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.10
+  - numpy
+  - pandas
+  - scipy
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - ipykernel
+  - umap-learn
+
+  - pip
+  - pip:
+      # Any pip-only packages can be listed here
+      # Example: openpyxl for Excel support
+
+post-build:
+  - python -m ipykernel install --user --name gnpc --display-name "Python (gnpc)"

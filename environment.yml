@@ -18,6 +18,3 @@ dependencies:
   - pip:
       # Any pip-only packages can be listed here
       # Example: openpyxl for Excel support
-
-post-build:
-  - python -m ipykernel install --user --name gnpc --display-name "Python (gnpc)"

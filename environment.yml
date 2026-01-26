@@ -13,6 +13,7 @@ dependencies:
   - scikit-learn
   - ipykernel
   - umap-learn
+  - ipywidgets
 
   - pip
   - pip:

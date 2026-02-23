@@ -3,18 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 import scipy.linalg
-
-
-def linear_ode_transition(A, b, dt):
-    """Exact discrete transition for linear ODE: ds/dt = A s + b"""
-    K = A.shape[0]
-    I = torch.eye(K, device=A.device)
-    # Using matrix exponential for the exact solution
-    Fmat = torch.matrix_exp(A * dt)
-    # Pseudoinverse handles potential singularities in A
-    A_inv = torch.linalg.pinv(A)
-    u = A_inv @ (Fmat - I) @ b
-    return Fmat, u
+from comp_utils import linear_ode_transition
 
 
 class NMF_LinearODE_Model(nn.Module):

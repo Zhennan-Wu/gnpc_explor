@@ -3,36 +3,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 import scipy.linalg
+from comp_utils import compute_sigma_diagonal
 
-def safe_exprel_minus(x, eps=1e-8):
-    """ Numerically stable (1 - exp(-x)) / x """
-    return torch.where(
-        x.abs() < eps,
-        1.0 - x/2.0 + (x**2)/6.0,
-        (1.0 - torch.exp(-x)) / x
-    )
-
-# def compute_sigma_diagonal(rho, gamma, delta_t):
-#     """
-#     Computes the OU covariance Sigma_ij = integral exp(-Theta r) Gamma Gamma^T exp(-Theta r) dr
-#     where Theta = diag(rho).
-#     """
-#     Q = torch.matmul(gamma, gamma.T)
-#     # Pairwise sum of rho: (rho_i + rho_j)
-#     rho_sum = rho[:, None] + rho[None, :]
-#     x = rho_sum * delta_t
-    
-#     stability_factor = safe_exprel_minus(x)
-#     sigma = Q * delta_t * stability_factor
-#     return sigma
-
-def compute_sigma_diagonal(rho, gamma, dt):
-    """Computes the OU transition covariance Q."""
-    # Q = (1 - exp(-2*rho*dt))/(2*rho) * (Gamma @ Gamma.T)
-    rho_stable = rho + 1e-9
-    scale = (1 - torch.exp(-2 * rho_stable * dt)) / (2 * rho_stable)
-    # gamma is lower triangular, gamma @ gamma.T is the diffusion matrix
-    return (gamma @ gamma.T) * scale[:, None]
 
 class OUDynamicFactorModel(nn.Module):
     def __init__(self, D, K, M, device='cpu'):
@@ -259,85 +231,3 @@ class OUDynamicFactorModel(nn.Module):
             rss += torch.sum((data[i] - f_s @ L_aligned.T)**2)
             count += data[i].numel()
         return corr, (rss / count).item()
-    
-
-def generate_synthetic_data(N, D, K, M, T_max=10, device='cpu'):
-    """
-    N: Number of subjects
-    D: Number of observed features (e.g., proteins)
-    K: Number of latent factors
-    M: Number of covariates
-    """
-    # 1. Ground Truth Parameters
-    # Sparse Lambda (Factor Loadings)
-    Lambda_true = torch.zeros(D, K, device=device)
-    for k in range(K):
-        # Each factor affects a subset of proteins
-        indices = torch.randperm(D)[:D // K]
-        Lambda_true[indices, k] = torch.randn(len(indices)) * 1.5
-    
-    # Dynamics: rho (reversion rate) and Gamma (diffusion)
-    rho_true = torch.linspace(0.2, 1.0, K, device=device)
-    # Create a valid Cholesky Gamma
-    Gamma_true = torch.tril(torch.randn(K, K, device=device) * 0.1)
-    diag_indices = torch.arange(K)
-    Gamma_true[diag_indices, diag_indices] = torch.abs(Gamma_true[diag_indices, diag_indices]) + 0.05
-    Q_true = Gamma_true @ Gamma_true.T
-    
-    # Drift parameters
-    Phi_true = torch.randn(K, M, device=device) * 0.2
-    alpha_true = torch.randn(K, device=device) * 0.1
-    sigma_obs_true = torch.tensor(0.5, device=device)
-
-    data, times, covs = [], [], []
-    latent_f = []
-
-    for i in range(N):
-        # Random number of timepoints and intervals
-        Ji = torch.randint(5, 12, (1,)).item()
-        t_i = torch.sort(torch.rand(Ji) * T_max)[0].to(device)
-        s_i = torch.randn(M, device=device) # Subject covariates
-        
-        f_i = torch.zeros(Ji, K, device=device)
-        x_i = torch.zeros(Ji, D, device=device)
-        
-        # Initial state
-        f_i[0] = torch.randn(K, device=device)
-        
-        for j in range(1, Ji):
-            dt = t_i[j] - t_i[j-1]
-            A = torch.exp(-rho_true * dt)
-            
-            # Mean drift integration
-            mu_t = alpha_true + torch.mv(Phi_true, s_i) * t_i[j-1]
-            mu_next = alpha_true + torch.mv(Phi_true, s_i) * t_i[j]
-            G = (1 - A) / (rho_true + 1e-9)
-            b = mu_next - A * mu_t - G * torch.mv(Phi_true, s_i)
-            
-            # Covariance Sigma
-            rho_sum = rho_true[:, None] + rho_true[None, :]
-            stability = (1.0 - torch.exp(-rho_sum * dt)) / rho_sum
-            Sigma = Q_true * stability
-            
-            # Sample latent state
-            L_Sigma = torch.linalg.cholesky(Sigma + 1e-7 * torch.eye(K, device=device))
-            f_i[j] = A * f_i[j-1] + b + L_Sigma @ torch.randn(K, device=device)
-        
-        # Observations: x = Lambda @ f + noise
-        x_i = f_i @ Lambda_true.T + torch.randn(Ji, D, device=device) * torch.sqrt(sigma_obs_true)
-        
-        data.append(x_i)
-        times.append(t_i)
-        covs.append(s_i)
-        latent_f.append(f_i)
-
-    return data, times, covs, Lambda_true, latent_f
-
-
-if __name__ == "__main__":
-    device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    D, K, M, N = 8000, 30, 2, 30
-
-    data, times, covs, L_true, f_true = generate_synthetic_data(N, D, K, M, device=device)
-    model = OUDynamicFactorModel(D, K, M, device=device)
-    model.fit(data, covs, times, L_true, epochs=31)

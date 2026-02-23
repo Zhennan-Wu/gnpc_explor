@@ -3,14 +3,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 import scipy.linalg
+from comp_utils import compute_sigma_diagonal
 
-def compute_sigma_diagonal(rho, gamma, dt):
-    """Computes transition covariance Q for OU: (1-exp(-2rt))/(2r) * Gamma*Gamma^T"""
-    rho_stable = rho + 1e-9
-    scale = (1 - torch.exp(-2 * rho_stable * dt)) / (2 * rho_stable)
-    return (gamma @ gamma.T) * scale[:, None]
 
-class BestOfBothOUDFM(nn.Module):
+class OUDynamicFactorModel(nn.Module):
     def __init__(self, D, K, M, device='cpu'):
         super().__init__()
         self.D, self.K, self.M = D, K, M
@@ -159,19 +155,3 @@ class BestOfBothOUDFM(nn.Module):
             n += data[i].numel()
         return corr, (rss/n).item()
 
-# --- High Dimensional Testing Script ---
-def run_test():
-    D, K, T, N = 8000, 10, 50, 2
-    print(f"Generating Synthetic High-D Data: D={D}, K={K}")
-    L_gt = torch.randn(D, K) * 0.1
-    # ... (Generate factors via OU process and observations with noise) ...
-    # (Simplified data gen for demo)
-    data = [torch.randn(T, D) for _ in range(N)]
-    times = [torch.linspace(0, 10, T) for _ in range(N)]
-    covs = [torch.randn(2) for _ in range(N)]
-    
-    model = BestOfBothOUDFM(D, K, M=2)
-    model.fit(data, covs, times, L_gt, epochs=30)
-
-if __name__ == "__main__":
-    run_test()

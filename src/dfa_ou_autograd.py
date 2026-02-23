@@ -4,20 +4,8 @@ import torch.nn.functional as F
 import numpy as np
 import scipy.linalg
 import matplotlib.pyplot as plt
+from comp_utils import compute_sigma_diagonal
 
-# --- Numerical Utilities ---
-
-def safe_exprel_minus(x, eps=1e-8):
-    """ Numerically stable (1 - exp(-x)) / x """
-    return torch.where(x.abs() < eps, 1.0 - x/2.0 + (x**2)/6.0, (1.0 - torch.exp(-x)) / x)
-
-def compute_sigma_diagonal(rho, gamma, delta_t):
-    """ Integral of exp(-Theta r) Gamma Gamma^T exp(-Theta r) """
-    Q_mat = torch.matmul(gamma, gamma.T)
-    rho_sum = rho[:, None] + rho[None, :]
-    return Q_mat * delta_t * safe_exprel_minus(rho_sum * delta_t)
-
-# --- Model ---
 
 class OUDynamicFactorModel(nn.Module):
     def __init__(self, D, K, M, device='cpu'):
@@ -203,100 +191,3 @@ class OUDynamicFactorModel(nn.Module):
             n += data[i].numel()
         return corr, (rss/n).item()
 
-# --- Data Generation ---
-
-import torch
-import numpy as np
-import scipy.linalg
-
-class StressTestGenerator:
-    @staticmethod
-    def generate(scenario="default", N=10, Ji=50, D=20, K=3, M=2, device='cpu'):
-        """
-        Scenarios:
-        - 'high_noise': Low Signal-to-Noise ratio (Sigma_obs is large).
-        - 'fast_dynamics': High rho (process reverts to mean quickly).
-        - 'slow_dynamics': rho near zero (process behaves like a Random Walk).
-        - 'sparse_loadings': Only a few observation dims respond to each factor.
-        - 'massive_dims': Very high D relative to N and K.
-        """
-        torch.manual_seed(42)
-        
-        # --- Default Parameter Bounds ---
-        obs_std = 0.1
-        rho_range = (0.1, 0.5)
-        gamma_scale = 0.1
-        sparsity = 1.0 # 1.0 means dense
-        
-        if scenario == "high_noise":
-            obs_std = 0.8  # Very difficult to recover factors
-        elif scenario == "fast_dynamics":
-            rho_range = (2.0, 5.0) # Factors oscillate/revert rapidly
-        elif scenario == "slow_dynamics":
-            rho_range = (0.001, 0.01) # Near Random Walk
-        elif scenario == "sparse_loadings":
-            sparsity = 0.2 # 80% of Lambda is zero
-        elif scenario == "low_variance_dynamics":
-            gamma_scale = 0.01 # Latent factors are almost deterministic
-            
-        # 1. Generate Loadings (Lambda)
-        L_true = torch.randn(D, K, device=device)
-        if sparsity < 1.0:
-            mask = (torch.rand(D, K, device=device) < sparsity).float()
-            L_true = L_true * mask
-            
-        # 2. Generate Dynamics Params
-        Phi = torch.randn(K, M, device=device) * 0.05
-        rho = (torch.rand(K, device=device) * (rho_range[1] - rho_range[0]) + rho_range[0])
-        alpha = torch.randn(K, device=device) * 0.1
-        
-        data, times, covs = [], [], []
-        
-        for _ in range(N):
-            t = torch.cumsum(torch.rand(Ji, device=device) * 0.5, dim=0)
-            s = torch.randn(M, device=device)
-            f = torch.zeros(Ji, K, device=device)
-            
-            # Gamma (Cholesky of state noise)
-            Gamma = torch.eye(K, device=device) * gamma_scale
-            
-            for j in range(1, Ji):
-                dt = t[j] - t[j-1]
-                drift = alpha + Phi @ s * t[j]
-                # OU Stochastic Differential Equation update
-                noise = torch.randn(K, device=device) @ Gamma.T * torch.sqrt(dt)
-                f[j] = f[j-1] + rho * (drift - f[j-1]) * dt + noise
-                
-            y = f @ L_true.T + torch.randn(Ji, D, device=device) * obs_std
-            data.append(y); times.append(t); covs.append(s)
-            
-        return data, times, covs, L_true
-
-# --- Test Execution Suite ---
-
-def run_comprehensive_test():
-    scenarios = ["high_noise", "slow_dynamics", "sparse_loadings", "fast_dynamics"]
-    results = {}
-
-    for sc in scenarios:
-        print(f"\n--- Testing Scenario: {sc.upper()} ---")
-        # Adjust dimensions for complexity
-        D, K, M = (8000, 10, 3) if sc == "sparse_loadings" else (8000, 20, 2)
-        
-        data, times, covs, L_true = StressTestGenerator.generate(scenario=sc, D=D, K=K, M=M)
-        model = OUDynamicFactorModel(D=D, K=K, M=M)
-        
-        # Train for fewer epochs for brevity in testing
-        model.fit(data, covs, times, L_true, epochs=21)
-        
-        final_corr, final_mse = model.evaluate(L_true, data, times, covs)
-        results[sc] = {"corr": final_corr, "mse": final_mse}
-
-    print("\n" + "="*30)
-    print("FINAL STRESS TEST SUMMARY")
-    print("="*30)
-    for sc, res in results.items():
-        print(f"{sc:20}: Corr={res['corr']:.4f}, MSE={res['mse']:.4f}")
-
-if __name__ == "__main__":
-    run_comprehensive_test()

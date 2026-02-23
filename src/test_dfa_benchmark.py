@@ -4,7 +4,8 @@ import time
 import matplotlib.pyplot as plt
 from dfa_ou import OUDynamicFactorModel as DFM_V1
 from dfa_ou_autograd import OUDynamicFactorModel as DFM_V2
-from dfa_ou3 import BestOfBothOUDFM as DFM_V3
+from dfa_ou3 import OUDynamicFactorModel as DFM_V3
+
 
 def generate_data(D, K, T, N_subjects, noise_std=0.5, sparsity=0.5):
     """

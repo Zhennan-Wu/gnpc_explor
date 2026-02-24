@@ -3,8 +3,8 @@ import numpy as np
 import time
 from dfa_ou import OUDynamicFactorModel as DFM_V1
 from dfa_ou_autograd import OUDynamicFactorModel as DFM_V2
-from dfa_ou3 import OUDynamicFactorModel as DFM_V3
-from nmf_ode2 import NMF_LinearODE_Model
+from dfa_ou_damp import OUDynamicFactorModel as DFM_V3
+from nmf_ode_l1reg import NMF_LinearODE_Model
 
 
 def generate_data(D, K, T, N_subjects, process_noise=0.1, obs_noise=0.5, non_negative=False):

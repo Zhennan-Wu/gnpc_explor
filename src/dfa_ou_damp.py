@@ -8,51 +8,51 @@ from comp_utils import compute_sigma_diagonal
 
 class OUDynamicFactorModel(nn.Module):
     """
-    Implements a Dynamic Factor Model where latent factors follow an 
-    Ornstein-Uhlenbeck (OU) process with time-varying drift.
+    Ornstein-Uhlenbeck Dynamic Factor Model (OU-DFM).
     
-    Equations:
-    Transition: dz_t = (alpha + Phi @ s_t - rho * z_t) dt + Gamma dW_t
-    Observation: x_t = Lambda @ z_t + epsilon, epsilon ~ N(0, sigma_obs^2 * I)
+    Attributes:
+        D (int): Number of observed dimensions (features).
+        K (int): Number of latent factors.
+        M (int): Number of covariates for the drift process.
     """
     def __init__(self, D, K, M, device='cpu'):
         super().__init__()
         self.D, self.K, self.M, self.device = D, K, M, device
         
-        # --- Learnable Parameters ---
-        # Factor Loadings (D x K)
-        self.Lambda = nn.Parameter(torch.randn(D, K, device=device) * 0.1)
-        # Observation noise variance (scalar)
-        self.sigma_obs = nn.Parameter(torch.tensor(1.0, device=device)) 
-        # Mean reversion speeds (K) - kept positive via softplus
+        # --- Parameters ---
+        # Lambda: Factor loading matrix (D x K)
+        self.Lambda = nn.Parameter(torch.randn(D, K, device=device) * 0.01)
+        # log_sigma_obs: Log variance of the observation noise
+        self.log_sigma_obs = nn.Parameter(torch.log(torch.tensor(0.5, device=device))) 
+        # raw_rho: Mean reversion speed (constrained to be positive)
         self.raw_rho = nn.Parameter(torch.ones(K, device=device) * 0.5)
-        # Diffusion matrix (Cholesky factor of process noise)
+        # Gamma: Cholesky factor of the diffusion covariance
         self.Gamma_raw = nn.Parameter(torch.eye(K, device=device) * 0.1)
-        # Drift components: constant (alpha) and exogenous influence (Phi)
+        
+        # Alpha/Phi: Parameters governing the drift of the OU process
         self.alpha = nn.Parameter(torch.zeros(K, device=device))
         self.Phi = nn.Parameter(torch.zeros(K, M, device=device))           
         
-        # Priors/Hyperparameters for Lambda regularization (Horsehoe-like)
+        # Regularization constants
         self.tau = torch.tensor(1.0, device=device)
         self.v_dk = torch.ones(D, K, device=device)
         self.c_reg = torch.tensor(1.0, device=device)
-
-        self.history = {'mse': [], 'corr_lambda': [], 'err_rho': [], 
-                        'err_gamma': [], 'err_phi': [], 'err_alpha': [], 
-                        'err_sig': [], 'likelihood': []}
+        self.eta_lambda = 0.4 # Learning rate/momentum for Lambda updates
+        
+        self.history = {k: [] for k in ['mse', 'corr_lambda', 'err_rho', 'err_gamma', 'err_phi', 'err_alpha', 'err_sig', 'likelihood']}
         self.to(device)
 
-    # --- Parameter Accessors (Constraints) ---
+    # --- Helper Getters ---
     def get_rho(self): 
-        """Ensures mean reversion speed is strictly positive."""
+        """Ensures mean-reversion speed is positive."""
         return F.softplus(self.raw_rho) + 1e-4
     
     def get_gamma(self): 
-        """Returns lower-triangular Cholesky factor with positive diagonal."""
+        """Returns the lower-triangular Cholesky factor for factor correlations."""
         return torch.tril(self.Gamma_raw, -1) + torch.diag(F.softplus(torch.diag(self.Gamma_raw)) + 1e-4)
 
     def get_Lambda(self):
-        """Returns factor loadings (no constraints here, but could add if desired)."""
+        """Returns the factor loadings matrix."""
         return self.Lambda
     
     def get_history(self):
@@ -61,65 +61,72 @@ class OUDynamicFactorModel(nn.Module):
 
     def get_transition_params(self, delta_t, s_i, t_p):
         """
-        Calculates discretized OU transition parameters for a time step delta_t.
-        z_{t+dt} ~ N(A*z_t + b, Q)
+        Computes the discretized OU transition matrices for a time step dt.
+        Formula: f_{t+dt} = A*f_t + b + epsilon, where epsilon ~ N(0, Q)
         """
         dt = torch.clamp(delta_t, min=1e-6)
         rho, gamma = self.get_rho(), self.get_gamma()
         
-        # State transition matrix (Diagonal assumption for OU)
+        # A: State transition matrix (Diagonal for OU)
         A = torch.exp(-rho * dt) 
         
-        # Process Noise Covariance (Q) - integrated over dt
-        # Note: compute_sigma_diagonal must handle the specific OU integral
+        # Q: Process noise covariance integrated over dt
+        # compute_sigma_diagonal is an external utility handling the integral of the OU noise
         Q_diag = compute_sigma_diagonal(rho, gamma, dt)
         Q = 0.5 * (Q_diag + Q_diag.T) + 1e-8 * torch.eye(self.K, device=self.device)
         
-        # Drift: includes external covariates s_i
+        # b: Drift term integration
         drift = torch.mv(self.Phi, s_i)
-        # Discretized intercept for the OU process
+        # Accounts for the linear change in drift over the interval [t_p, t_p + dt]
         b = (self.alpha + drift*(t_p+dt)) - A*(self.alpha + drift*t_p) - ((1-A)/rho)*drift
         return A, b, Q
-
+    
     def kalman_filter_smoother(self, x, times, s):
         """
-        E-Step: Estimates latent factor distributions using forward-filtering
-        and backward-smoothing (Rauch-Tung-Striebel).
+        Performs Forward Filtering and Backward Smoothing to estimate latent factors.
+        Returns: smoothed means (f_s), smoothed covariances (P_s), and lag-1 covariances (P_l).
         """
         T = x.size(0)
-        # Storage for means and covariances
-        f_f, P_f = torch.zeros(T, self.K, device=self.device), torch.zeros(T, self.K, self.K, device=self.device) # Filtered
-        f_s, P_s = torch.zeros(T, self.K, device=self.device), torch.zeros(T, self.K, self.K, device=self.device) # Smoothed
-        P_l = torch.zeros(T, self.K, self.K, device=self.device) # Lag-one covariance
-        
-        # Initial State
+        # Pre-allocate tensors for storage
+        f_f = torch.zeros(T, self.K, device=self.device)      # Filtered means
+        P_f = torch.zeros(T, self.K, self.K, device=self.device) # Filtered covs
+        f_s = torch.zeros(T, self.K, device=self.device)      # Smoothed means
+        P_s = torch.zeros(T, self.K, self.K, device=self.device) # Smoothed covs
+        P_l = torch.zeros(T, self.K, self.K, device=self.device) # Lag-one covs (for EM)
+
         f_c, P_c = torch.zeros(self.K, device=self.device), torch.eye(self.K, device=self.device) 
         f_f[0], P_f[0] = f_c, P_c
-        
-        sig_sq = self.sigma_obs.clamp(min=1e-6)
+        sig_sq = torch.exp(self.log_sigma_obs).clamp(min=1e-6)
         inv_sig_sq = 1.0 / (sig_sq + 1e-9)
-        LTL = self.Lambda.T @ self.Lambda  # Precision contribution from observation
         
-        # --- Forward Pass (Kalman Filter) ---
+        # Precompute part of the Kalman Gain for efficiency
+        LTL = self.Lambda.T @ self.Lambda 
+
+        # --- Forward Pass (Filtering) ---
         for j in range(1, T):
-            A, b, Q = self.get_transition_params(times[j]-times[j-1], s, times[j-1])
+            dt = times[j] - times[j-1]
+            A, b, Q = self.get_transition_params(dt, s, times[j-1])
             
             # Predict
             f_p = A * f_c + b
-            P_p = A[:, None] * P_c * A[None, :] + Q # Diagonal A optimization
+            P_p = A[:, None] * P_c * A[None, :] + Q
             
-            # Update (Woodbury-style or Direct Inverse)
-            M = torch.eye(self.K, device=self.device) + P_p @ LTL * inv_sig_sq + 1e-7*torch.eye(self.K, device=self.device)
-            K_g = torch.linalg.solve(M, P_p @ self.Lambda.T * inv_sig_sq)
-            
+            # Update (Innovation)
+            # Solving (I + P_p * L^T L / sig) * K = P_p * L^T / sig
+            M_inv = torch.eye(self.K, device=self.device) + P_p @ LTL * inv_sig_sq
+            K_g = torch.linalg.solve(
+                M_inv + 1e-7*torch.eye(self.K, device=self.device), 
+                P_p @ self.Lambda.T * inv_sig_sq
+            )
             f_c = f_p + K_g @ (x[j] - self.Lambda @ f_p)
+            
+            # Joseph Form update for numerical stability of covariance
             IKL = torch.eye(self.K, device=self.device) - K_g @ self.Lambda
-            # Joseph Form for numerical stability of covariance update
             P_c = 0.5 * (IKL @ P_p @ IKL.T + K_g @ K_g.T * sig_sq + (IKL @ P_p @ IKL.T + K_g @ K_g.T * sig_sq).T)
             
             f_f[j], P_f[j] = f_c, P_c
 
-        # --- Backward Pass (RTS Smoother) ---
+        # --- Backward Pass (RTS Smoothing) ---
         f_s[-1], P_s[-1] = f_f[-1], P_f[-1]
         for j in range(T-2, -1, -1):
             A, b, Q = self.get_transition_params(times[j+1]-times[j], s, times[j])
@@ -131,16 +138,15 @@ class OUDynamicFactorModel(nn.Module):
             
             f_s[j] = f_f[j] + J @ (f_s[j+1] - (A * f_f[j] + b))
             P_s[j] = 0.5 * (P_f[j] + J @ (P_s[j+1] - P_pn) @ J.T + (P_f[j] + J @ (P_s[j+1] - P_pn) @ J.T).T)
-            P_l[j+1] = J @ P_s[j+1] # Lag-one covariance for M-step transition updates
+            P_l[j+1] = J @ P_s[j+1] # Required for M-step transition updates
             
         return f_s, P_s, P_l
 
     def m_step(self, data, times, covs, all_f, all_P, all_P1):
         """
-        M-Step: Updates parameters to maximize the Expected Log-Likelihood.
-        Lambda and Sigma are solved analytically; OU params use Adam.
+        M-step: Updates Lambda via Ridge Regression and Dynamics via Gradient Descent.
         """
-        # 1. Update Lambda (Factor Loadings) with Ridge-like regularization
+        # 1. Update Factor Loadings (Lambda) using analytical solution
         with torch.no_grad():
             sum_ffT = torch.zeros(self.K, self.K, device=self.device)
             sum_xf = torch.zeros(self.D, self.K, device=self.device)
@@ -155,18 +161,12 @@ class OUDynamicFactorModel(nn.Module):
             
             # Damped Update
             new_L = torch.linalg.solve(lhs, sum_xf.unsqueeze(-1)).squeeze(-1)
-            self.Lambda.copy_(new_L)
+            self.Lambda.copy_((1 - self.eta_lambda) * self.Lambda + self.eta_lambda * new_L)
 
-            # Update Horseshoe Hyperpriors
-            eta = 1.0 / (1.0 + self.v_dk**2 + 1e-9) 
-            self.v_dk.copy_(torch.sqrt((1.0 + (self.Lambda**2/(self.tau**2 + 1e-9))) / (1.0 + eta)))
-            xi = 1.0 / (1.0 + self.tau**2 + 1e-9) 
-            self.tau.copy_(torch.sqrt((1.0 + (self.Lambda**2/(self.v_dk**2 + 1e-9)).sum()) / (self.D*self.K + 1.1 + xi)))
-
-        # 2. Update OU Parameters (rho, Gamma, Phi, alpha) via Gradient Descent
+        # 2. Update Dynamics (rho, Gamma, Phi, alpha) using Autograd
         opt = torch.optim.Adam([self.raw_rho, self.Gamma_raw, self.Phi, self.alpha], lr=5e-3)
         total_q = 0
-        for _ in range(2): # Minor inner loops to stabilize M-step
+        for _ in range(2): # Inner loops for parameter convergence
             opt.zero_grad()
             loss = 0
             for i in range(len(all_f)):
@@ -203,24 +203,24 @@ class OUDynamicFactorModel(nn.Module):
             opt.step()
             total_q = -loss.item()
 
-        # 3. Update Observation Noise (sigma_obs)
+        # 3. Update Observation Noise (Sigma)
         with torch.no_grad():
             rss, n_tot = 0, 0
             LTL = self.Lambda.T @ self.Lambda
             for i in range(len(data)): 
                 n_tot += data[i].numel()
-                # Residual Sum of Squares: Data error + factor uncertainty contribution
+                # Residual Sum of Squares includes uncertainty from the smoother
                 rss += (data[i] - all_f[i] @ self.Lambda.T).pow(2).sum() + \
                        torch.diagonal(all_P[i] @ LTL, dim1=-2, dim2=-1).sum()
-            self.sigma_obs.copy_((rss/n_tot).clamp(min=1e-6))
+            self.log_sigma_obs.copy_(torch.log((rss/n_tot).clamp(min=1e-6)))
             
         return total_q
 
-    def fit(self, data, covs, times, gt_params, epochs=50):
-        """Standard EM Loop."""
+    def fit(self, data, covs, times, gt, epochs=30):
+        """Training loop."""
         for epoch in range(epochs):
-            # E-Step
             all_f, all_P, all_P1 = [], [], []
+            # E-Step
             for i in range(len(data)): 
                 f, P, P1 = self.kalman_filter_smoother(data[i], times[i], covs[i])
                 all_f.append(f); all_P.append(P); all_P1.append(P1)
@@ -228,13 +228,13 @@ class OUDynamicFactorModel(nn.Module):
             # M-Step
             q = self.m_step(data, times, covs, all_f, all_P, all_P1)
             
-            # Evaluation against ground truth (GT)
-            metrics = self.evaluate(gt_params, data, times, covs)
+            # Metrics
+            metrics = self.evaluate(gt, data, times, covs)
             metrics['likelihood'] = q
-            for key in metrics: self.history[key].append(metrics[key])
+            for k in metrics: self.history[k].append(metrics[k])
             
             if epoch % 5 == 0: 
-                sig = self.sigma_obs.item()
+                sig = torch.exp(self.log_sigma_obs).item()
                 print(f"Epoch {epoch:02d} | Q: {q/1000:.2f}k | MSE: {metrics['mse']:.4f} | Corr: {metrics['corr_lambda']:.4f} | Sig: {sig:.4f}")
 
     def evaluate(self, gt, data, times, covs):
@@ -262,5 +262,5 @@ class OUDynamicFactorModel(nn.Module):
             'err_gamma': torch.norm(self.get_gamma()-gt['Gamma']).item(),
             'err_phi': torch.norm(R.T @ self.Phi.detach() - gt['Phi']).item(), 
             'err_alpha': torch.norm(R.T @ self.alpha.detach() - gt['alpha']).item(),
-            'err_sig': torch.abs(self.sigma_obs.sqrt()-gt['sigma_obs']).item()
+            'err_sig': torch.abs(torch.exp(self.log_sigma_obs).sqrt()-gt['sigma_obs']).item()
         }

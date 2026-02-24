@@ -18,3 +18,4 @@ secret_config.json
 
 # Ignore data folder
 data/
+viz_results/

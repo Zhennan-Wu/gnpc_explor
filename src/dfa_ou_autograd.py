@@ -40,7 +40,7 @@ class OUDynamicFactorModel(nn.Module):
         self.log_v_dk = nn.Parameter(torch.zeros(D, K, device=device))      
         
         self.history = {
-            'mse': [], 'corr_lambda': [], 'err_rho': [], 'err_gamma': [], 
+            'mse': [], 'corr_lambda': [], 'err_theta': [], 'err_gamma': [], 
             'err_phi': [], 'err_alpha': [], 'err_sig': [], 'likelihood': []
         }     
         self.to(device)
@@ -199,7 +199,7 @@ class OUDynamicFactorModel(nn.Module):
                     rss += err.pow(2).sum() + tr
                 self.log_sigma_obs.copy_(torch.log(rss/n_tot + 1e-6))
                 
-            return -total_q
+            return total_q
 
     def fit(self, data, covs, times, gt_params, epochs=30):
         """Optimizes model parameters using the Expected Log-Likelihood."""
@@ -246,7 +246,7 @@ class OUDynamicFactorModel(nn.Module):
         return {
             'mse': (rss/count).item(), 
             'corr_lambda': np.corrcoef(Lt.cpu().numpy().flatten(), La.cpu().numpy().flatten())[0,1],
-            'err_rho': torch.norm(self.get_rho()-gt['rho']).item(), 
+            'err_theta': torch.norm(self.get_rho()-gt['rho']).item(), 
             'err_gamma': torch.norm(self.get_gamma()-gt['Gamma']).item(),
             'err_phi': torch.norm(R.T @ self.Phi.detach() - gt['Phi']).item(), 
             'err_alpha': torch.norm(R.T @ self.alpha.detach() - gt['alpha']).item(),

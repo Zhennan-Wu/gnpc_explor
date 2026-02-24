@@ -37,7 +37,7 @@ class OUDynamicFactorModel(nn.Module):
         self.v_dk = torch.ones(D, K, device=device)
         self.c_reg = torch.tensor(1.0, device=device)
 
-        self.history = {'mse': [], 'corr_lambda': [], 'err_rho': [], 
+        self.history = {'mse': [], 'corr_lambda': [], 'err_theta': [], 
                         'err_gamma': [], 'err_phi': [], 'err_alpha': [], 
                         'err_sig': [], 'likelihood': []}
         self.to(device)
@@ -258,7 +258,7 @@ class OUDynamicFactorModel(nn.Module):
         return {
             'mse': (rss/count).item(), 
             'corr_lambda': np.corrcoef(Lt.cpu().numpy().flatten(), La.cpu().numpy().flatten())[0,1],
-            'err_rho': torch.norm(self.get_rho()-gt['rho']).item(), 
+            'err_theta': torch.norm(self.get_rho()-gt['rho']).item(), 
             'err_gamma': torch.norm(self.get_gamma()-gt['Gamma']).item(),
             'err_phi': torch.norm(R.T @ self.Phi.detach() - gt['Phi']).item(), 
             'err_alpha': torch.norm(R.T @ self.alpha.detach() - gt['alpha']).item(),

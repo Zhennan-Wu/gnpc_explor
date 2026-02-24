@@ -1,213 +1,3 @@
-# import os
-# from pyexpat import model
-# import torch
-# import numpy as np
-# import scipy.linalg
-# import matplotlib.pyplot as plt
-# import seaborn as sns
-# import math
-
-
-# class ModelVisualizer:
-#     def __init__(self, gt_params, gt_data, save_dir="../viz_results"):
-#         self.save_dir = save_dir
-#         self.gt = gt_params
-#         self.gt_data = gt_data
-#         os.makedirs(self.save_dir, exist_ok=True)
-#         # Use a distinct color palette for different models
-#         self.palette = sns.color_palette("husl", 8) 
-
-#     def _compute_alignment(self, model):
-#         """Calculates the Orthogonal Procrustes rotation matrix R."""
-#         Le = model.get_Lambda().detach().cpu().numpy()
-#         Lt = self.gt['Lambda'].cpu().numpy()
-#         U, _, Vt = scipy.linalg.svd(Lt.T @ Le)
-#         return torch.tensor(Vt.T @ U.T, device=model.device, dtype=torch.float32)
-    
-#     def _latent_trajectory_estimation(self, model, data, times, covs):
-#         model.eval()
-#         with torch.no_grad():
-#             R = self._compute_alignment(model)
-#             f_s, _, _ = model.kalman_filter_smoother(data, times, covs)
-#             traj_aligned = (f_s @ R).cpu().numpy()
-#         return traj_aligned
-
-#     def plot_multi_model_metrics(self, models):
-#         """
-#         Compares multiple models. 
-#         models_results: {'Model_A': [run1_hist, run2_hist], 'Model_B': [...]}
-#         """
-#         # Identify all available metrics from the first run of the first model
-#         models_results = {name: [run.get_history() for run in runs] for name, runs in models.items()}
-#         first_model = list(models_results.keys())[0]
-#         metrics = [k for k in models_results[first_model][0].keys() if models_results[first_model][0][k]]
-        
-#         n_metrics = len(metrics)
-#         cols = 3
-#         rows = (n_metrics + cols - 1) // cols
-        
-#         fig, axes = plt.subplots(rows, cols, figsize=(18, 5 * rows))
-#         fig.suptitle('Multi-Model Parameter Convergence Comparison', fontsize=16)
-#         axes = axes.flatten()
-
-#         for i, metric in enumerate(metrics):
-#             for m_idx, (model_name, runs) in enumerate(models_results.items()):
-#                 # Extract metric across all runs for this specific model
-#                 data = np.array([run[metric] for run in runs])
-#                 mean = np.mean(data, axis=0)
-#                 std = np.std(data, axis=0)
-#                 epochs = np.arange(len(mean))
-
-#                 color = self.palette[m_idx % len(self.palette)]
-#                 axes[i].plot(epochs, mean, label=model_name, color=color, lw=2)
-#                 axes[i].fill_between(epochs, mean - std, mean + std, color=color, alpha=0.15)
-
-#             axes[i].set_title(f"Metric: {metric.replace('err_', 'Error ')}")
-#             if any(m in metric for m in ['mse', 'err', 'likelihood']):
-#                 axes[i].set_yscale('log')
-#             axes[i].legend()
-
-#         # Clean up empty subplots
-#         for j in range(i + 1, len(axes)):
-#             fig.delaxes(axes[j])
-
-#         plt.tight_layout(rect=[0, 0.03, 1, 0.95])
-#         plt.savefig(os.path.join(self.save_dir, "multi_model_metrics.png"), dpi=300)
-#         plt.close()
-
-#     def plot_multi_model_trajectories(self, models):
-#         """
-#         Compares trajectory reconstruction across models.
-#         models: dict of model names to list of model runs
-#         traj_true: [T, K] ground truth
-#         """
-#         traj_collect = self.gt_data['traj']
-#         times_collect = self.gt_data['times']
-#         data_collect = self.gt_data['data']
-#         cov_collect = self.gt_data['covs']
-
-#         for idx, sub in enumerate(zip(data_collect, cov_collect, times_collect, traj_collect)):
-#             data, cov, times, traj_true = sub
-#             K = traj_true.shape[1]
-#             t_np = times.cpu().numpy() if torch.is_tensor(times) else times
-#             s_gt_np = traj_true.cpu().numpy() if torch.is_tensor(traj_true) else traj_true
-#             models_trajs = {}
-
-#             for model_name, runs in models.items():
-#                 trajs = []
-#                 for run in runs:
-#                     traj_aligned = self._latent_trajectory_estimation(run, data, times, cov)
-#                     trajs.append(traj_aligned)
-#                 models_trajs[model_name] = trajs # Replace runs with aligned trajectories for plotting
-
-#             # 1. Determine Grid Dimensions
-#             cols = 3  # You can adjust this based on your preference
-#             rows = math.ceil(K / cols)
-            
-#             fig, axes = plt.subplots(rows, cols, figsize=(cols * 4, rows * 3), sharex=True)
-#             axes_flat = axes.flatten() if K > 1 else [axes]
-
-#             for k in range(K):
-#                 ax = axes_flat[k]
-#                 # Plot Ground Truth
-#                 ax.plot(t_np, s_gt_np[:, k], 'k--', lw=2, label='GT', alpha=0.7)
-                
-#                 for m_idx, (model_name, runs) in enumerate(models_trajs.items()):
-#                     trajs = np.array(runs) # [Runs, T, K]
-#                     mean = np.mean(trajs, axis=0)[:, k]
-#                     std = np.std(trajs, axis=0)[:, k]
-                    
-#                     color = self.palette[m_idx % len(self.palette)]
-#                     ax.plot(t_np, mean, label=model_name, color=color)
-#                     ax.fill_between(t_np, mean - std, mean + std, color=color, alpha=0.1)
-
-#                 ax.set_title(f"Factor {k+1}", fontsize='medium')
-#                 if k % cols == 0:
-#                     ax.set_ylabel("Amplitude")
-#                 if k >= (rows - 1) * cols or K <= cols:
-#                     ax.set_xlabel("Time")
-                
-#                 # Only show legend on the first plot to save space
-#                 if k == 0:
-#                     ax.legend(loc='upper right', fontsize='x-small')
-
-#             # 2. Hide unused subplots if K is not a perfect multiple of cols
-#             for j in range(k + 1, len(axes_flat)):
-#                 axes_flat[j].axis('off')
-
-#             plt.suptitle(f"Latent State Recovery: Subject {idx}", fontsize='large')
-#             save_dir = os.path.join(self.save_dir, "latent_trajectories")
-#             os.makedirs(save_dir, exist_ok=True)
-#             plt.savefig(os.path.join(save_dir, f"multi_model_trajectories_subject_{idx}.png"), dpi=300, bbox_inches='tight')
-#             plt.close()
-
-    # def plot_lambda_comparison(self, models):
-    #     """
-    #     Visualizes the true loading matrix vs the aligned estimated matrix.
-    #     """
-    #     L_true = self.gt['Lambda']
-    #     L_true_np = L_true.cpu().numpy()
-    #     for model_name, runs in models.items():
-    #         for idx, run in enumerate(runs):
-    #             R = self._compute_alignment(run)
-    #             L_est = run.get_Lambda().detach()
-    #             L_aligned = (L_est @ R).cpu().numpy()
-
-    #             fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
-                
-    #             im1 = ax1.imshow(L_true_np, aspect='auto', cmap='viridis')
-    #             ax1.set_title(r"Ground Truth $\Lambda$ for " + model_name + f" Run {idx}")
-    #             plt.colorbar(im1, ax=ax1)
-
-    #             im2 = ax2.imshow(L_aligned, aspect='auto', cmap='viridis')
-    #             ax2.set_title(r"Aligned Estimated $\Lambda$" + model_name + f" Run {idx}")
-    #             plt.colorbar(im2, ax=ax2)
-    #             plt.savefig(os.path.join(self.save_dir, f"lambda_comparison_{model_name}_run_{idx}.png"), dpi=300)
-    #             plt.close()
-
-#     def plot_loading_recovery(self, models):
-#         L_true = self.gt['Lambda']
-#         L_true_np = L_true.cpu().numpy()
-#         save_dir = os.path.join(self.save_dir, "loading_recovery")
-#         os.makedirs(save_dir, exist_ok=True)
-
-#         for model_name, runs in models.items():
-#             num_runs = len(runs)
-#             # Create a grid: Rows = Runs, Cols = 3 (True, Aligned, Residual)
-#             fig, axes = plt.subplots(num_runs, 3, figsize=(18, 5 * num_runs), squeeze=False)
-            
-#             for idx, run in enumerate(runs):
-#                 # Alignment Logic
-#                 R = self._compute_alignment(run)
-#                 L_est = run.get_Lambda().detach()
-#                 L_aligned = (L_est @ R).cpu().numpy()
-
-#                 # Subplot Selection
-#                 ax_true = axes[idx, 0]
-#                 ax_est  = axes[idx, 1]
-#                 ax_res  = axes[idx, 2]
-
-#                 # 1. True Loadings (Usually the same across runs, but kept for row-wise context)
-#                 sns.heatmap(L_true_np, ax=ax_true, cmap='viridis', cbar=True)
-#                 ax_true.set_title(f"True $\Lambda$ (Run {idx})")
-                
-#                 # 2. Aligned Estimated Loadings
-#                 sns.heatmap(L_aligned, ax=ax_est, cmap='viridis', cbar=True)
-#                 ax_est.set_title(f"{model_name} Aligned $\Lambda$ (Run {idx})")
-                
-#                 # 3. Residual Plot
-#                 residual = L_true_np - L_aligned
-#                 sns.heatmap(residual, ax=ax_res, cmap='RdBu_r', center=0)
-#                 ax_res.set_title(f"Residual (Error) Run {idx}")
-
-#             plt.suptitle(f"Loading Recovery Consistency: {model_name}", fontsize=16, y=1.02)
-#             plt.tight_layout()
-            
-#             save_path = os.path.join(save_dir, f"loading_recovery_grid_{model_name}.png")
-#             plt.savefig(save_path, dpi=300, bbox_inches='tight')
-#             plt.close()
-
-
 import os
 import torch
 import numpy as np
@@ -276,6 +66,8 @@ class ModelVisualizer:
         for i, metric in enumerate(metrics):
             ax = axes[i]
             for m_idx, (model_name, runs) in enumerate(models_results.items()):
+                if metric not in runs[0]:
+                    continue
                 data = np.array([run[metric] for run in runs])
                 mean = np.mean(data, axis=0)
                 std = np.std(data, axis=0)
@@ -340,6 +132,7 @@ class ModelVisualizer:
                     
                     color = self.palette[m_idx % len(self.palette)]
                     ax.plot(t_np, mean, label=model_name, color=color)
+                    # print(f"Subject {subject_idx}, Factor {k}: mean shape {mean.shape}, std shape {std.shape}")
                     ax.fill_between(t_np, mean - std, mean + std, color=color, alpha=0.15)
 
                 ax.set_title(f"Latent Factor {k+1}", fontsize=10)
@@ -418,7 +211,7 @@ class ModelVisualizer:
 
                     # Plot Aligned Estimate
                     im2 = ax2.imshow(L_aligned, aspect='auto', cmap='viridis', vmin=v_min, vmax=v_max)
-                    ax2.set_title(f"Aligned Estimated $\Lambda$\n({model_name}, Run {idx})", fontweight='bold')
+                    ax2.set_title(r"Aligned Estimated $\Lambda$\n" + f"({model_name}, Run {idx})", fontweight='bold')
                     ax2.set_xlabel("Latent Factors (K)")
 
                     # Single colorbar to indicate shared scale

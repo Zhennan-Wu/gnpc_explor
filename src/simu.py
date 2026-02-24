@@ -1,9 +1,13 @@
 import torch
+import jax
+import jax.numpy as jnp
 import numpy as np
 from dfa_ou import OUDynamicFactorModel as DFM_V1
 from dfa_ou_autograd import OUDynamicFactorModel as DFM_V2
 from dfa_ou_damp import OUDynamicFactorModel as DFM_V3
 from nmf_ode_l1reg import NMF_LinearODE_Model as DFM_ODE
+from lou_test import OULatentModel
+from comp_utils import NumPyroModelWrapper, bridge_to_jax
 from visual import ModelVisualizer
 
 
@@ -124,18 +128,39 @@ def generate_disease_proteomics_data(D, K, T, N_subjects, noise_std=0.3, sparsit
     return all_data, all_times, all_covs, Lambda, drift_base
 
 
-def run_benchmark(D=10, K=3, T=5, subjects=10, n_runs=3, epochs=10):
+def run_benchmark(D=10, K=2, T=5, subjects=10, n_runs=2, epochs=20):
     data, times, covs, gt_params, factors = generate_data(D, K, T, subjects)
     gt_data = {'traj': factors, 'times': times, 'data': data, 'covs': covs}
     viz = ModelVisualizer(gt_params, gt_data)
-    trained_models = {name: [] for name in ["V1_EM", "V2_Autograd", "V3_Robust"]}
+    # trained_models = {name: [] for name in ["V1_EM", "V2_Autograd", "V3_Robust"]}
+    # trained_models = {name: [] for name in ["NMF_ODE", "LOU", "V3_Robust"]}
+    trained_models = {name: [] for name in ["NMF_ODE"]}
     for r in range(n_runs):
         print(f"--- Run {r+1}/{n_runs} ---")
-        models = [("V1_EM", DFM_V1(D, K, 3)), ("V2_Autograd", DFM_V2(D, K, 3)), ("V3_Robust", DFM_V3(D, K, 3))]
+        # models = [("V1_EM", DFM_V1(D, K, 3)), ("V2_Autograd", DFM_V2(D, K, 3)), ("V3_Robust", DFM_V3(D, K, 3))]
+        # models = [("NMF_ODE", DFM_ODE(D, K, 3)), ("LOU", OULatentModel(K, D)), ("V3_Robust", DFM_V3(D, K, 3))]
+        models = [("NMF_ODE", DFM_ODE(D, K, 3))]
         for name, model in models:
             print(f"Training {name}...")
-            model.fit(data, covs, times, gt_params, epochs=epochs)
-            trained_models[name].append(model)
+            if name == "LOU":
+                # 1. Prepare JAX data
+                lou_input, subj_lengths = bridge_to_jax(data, times)
+                
+                # 2. Run MCMC
+                samples = model.fit(jax.random.PRNGKey(r), lou_input)
+                
+                # 3. Wrap with context for history calculations
+                y_true_flattened = torch.cat(data, dim=0)
+                wrapped_model = NumPyroModelWrapper(
+                    samples, 
+                    subj_lengths, 
+                    gt_params=gt_params, 
+                    y_true=y_true_flattened
+                )
+                trained_models["LOU"].append(wrapped_model)
+            else:
+                model.fit(data, covs, times, gt_params, epochs=epochs)
+                trained_models[name].append(model)
     viz.plot_multi_model_metrics(trained_models)
     viz.plot_multi_model_trajectories(trained_models)
     viz.plot_loading_recovery(trained_models)

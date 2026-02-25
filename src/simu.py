@@ -5,8 +5,10 @@ import numpy as np
 import json
 from dfa_ou import OUDynamicFactorModel as DFM_V1
 from dfa_ou_autograd import OUDynamicFactorModel as DFM_V2
-from dfa_ou_damp_2 import OUDynamicFactorModel as DFM_V3
-from nmf_ode_l1reg import NMF_LinearODE_Model as DFM_ODE
+from dfa_ou_damp import OUDynamicFactorModel as DFM_V3
+from nmf_ode_l1reg import NMF_LinearODE_Model as NMF_ODE_V1
+from nmf_ode_cov_l1reg import NMF_LinearODE_Model as NMF_ODE_V2
+
 from lou_test import OULatentModel
 from comp_utils import NumPyroModelWrapper, bridge_to_jax
 from visual import ModelVisualizer
@@ -101,8 +103,8 @@ def generate_dynamic_factor_data(D, K, M, T_range, N_subjects, time_gap_range, g
         S_list.append(torch.from_numpy(s_i).float().to(device))
         
         # Generate Irregular Time Visits
-        gaps = np.random.uniform(time_gap_range[0], time_gap_range[1], T_i - 1)
-        # gaps = np.random.randint(time_gap_range[0], time_gap_range[1] + 1, size=T_i - 1)
+        # gaps = np.random.uniform(time_gap_range[0], time_gap_range[1], T_i - 1)
+        gaps = np.random.randint(time_gap_range[0], time_gap_range[1] + 1, size=T_i - 1)
         t_steps = np.concatenate(([0], np.cumsum(gaps)))
         Times_list.append(torch.from_numpy(t_steps).float().to(device))
         
@@ -205,12 +207,12 @@ def generate_simulation_data_manually():
     T_range = (2, 10)
     N_subjects = 10
     time_gaps = (1, 5)
-    Lambda = np.array([[-0.5, 0.1], [0.1, -0.5], [0.3, -0.3], [0.1, 0.2], [0.1, 0.1]])
+    Lambda = np.array([[0.5, 0.1], [0.1, 0.5], [0.3, 0.3], [0.1, 0.2], [0.1, 0.1]])
     Theta_diag = np.array([2, 4])
-    Gamma = np.array([[0.5, 0.], [0., 0.5]])
-    Phi = np.array([[0.1, 0.2, 0.1], [0.5, 0.2, 0.5]])
+    Gamma = np.array([[0., 0.], [0., 0.]])
+    Phi = np.array([[0.1, 0.8, -0.2], [-0.1, -0.5, 0.6]])
     alpha = np.array([0.1, 0.2])
-    Psi = np.eye(D) * 0.1
+    Psi = np.eye(D) * 0.01
     f0_mean = np.zeros(K)
     f0_cov = np.eye(K) * 0.1
 
@@ -320,12 +322,12 @@ def generate_disease_proteomics_data(D, K, T, N_subjects, noise_std=0.3, sparsit
     return all_data, all_times, all_covs, gt_params, all_factors
 
 
-def run_benchmark(D=5, K=3, T_range=(2, 10), subjects=10, n_runs=1, epochs=100, save_dir="../viz_results"):
+def run_benchmark(D=5, K=2, T_range=(2, 10), subjects=10, n_runs=3, epochs=500, save_dir="../viz_results"):
     # data, times, covs, gt_params, factors = generate_data(D, K, T, subjects)
     T = 5
     # data, times, covs, gt_params, factors = generate_disease_proteomics_data(D, K, T, subjects)
-    data, times, covs, gt_params, factors = generate_simulation_data_automated(D=D, K=K, T_range=T_range, N_subjects=subjects)
-    # data, times, covs, gt_params, factors = generate_simulation_data_manually()
+    # data, times, covs, gt_params, factors = generate_simulation_data_automated(D=D, K=K, T_range=T_range, N_subjects=subjects)
+    data, times, covs, gt_params, factors = generate_simulation_data_manually()
     simu_data = {"D": D, "K": K, "T_range": T_range, "N_subjects": subjects, "observations": data, "timestamps": times, "covariates": covs, "gt_params": gt_params, "latent_factors": factors}
     os.makedirs(save_dir, exist_ok=True)
     with open(f"{save_dir}/simu_data.json", "w") as f:
@@ -334,13 +336,13 @@ def run_benchmark(D=5, K=3, T_range=(2, 10), subjects=10, n_runs=1, epochs=100, 
     gt_data = {'traj': factors, 'times': times, 'data': data, 'covs': covs}
     viz = ModelVisualizer(gt_params, gt_data, save_dir=save_dir)
     # trained_models = {name: [] for name in ["V1_EM", "V2_Autograd", "V3_Robust"]}
-    trained_models = {name: [] for name in ["V3_Robust", "V2_Autograd"]}
-    # trained_models = {name: [] for name in ["NMF_ODE"]}
+    # trained_models = {name: [] for name in ["V3_Robust", "V2_Autograd"]}
+    trained_models = {name: [] for name in ["NMF_ODE_Sub", "NMF_ODE_Cov"]}
     for r in range(n_runs):
         print(f"--- Run {r+1}/{n_runs} ---")
         # models = [("V1_EM", DFM_V1(D, K, 3)), ("V2_Autograd", DFM_V2(D, K, 3)), ("V3_Robust", DFM_V3(D, K, 3)), ("LOU", OULatentModel(K, D))]
-        models = [("V3_Robust", DFM_V3(D, K, 3)), ("V2_Autograd", DFM_V2(D, K, 3))]
-        # models = [("NMF_ODE", DFM_ODE(D, K, 3))]
+        # models = [("V3_Robust", DFM_V3(D, K, 3)), ("V2_Autograd", DFM_V2(D, K, 3))]
+        models = [("NMF_ODE_Sub", NMF_ODE_V1(D, K, 3)), ("NMF_ODE_Cov", NMF_ODE_V2(D, K, 3))]
         for name, model in models:
             print(f"Training {name}...")
             if name == "LOU":

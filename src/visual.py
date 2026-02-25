@@ -47,6 +47,7 @@ class ModelVisualizer:
         with torch.no_grad():
             R = self._compute_alignment(model)
             f_s, _, _ = model.kalman_filter_smoother(data, times, covs)
+            assert f_s.shape[0] == len(times), f"Time points {len(times)} and trajectory length {f_s.shape[0]} mismatch"
             traj_aligned = (f_s @ R).cpu().numpy()
         return traj_aligned
 
@@ -80,8 +81,8 @@ class ModelVisualizer:
             ax.set_title(metric.replace('_', ' ').title(), fontweight='bold')
             ax.set_xlabel("Epoch")
             ax.set_ylabel("Value")
-            if any(m in metric.lower() for m in ['mse', 'err', 'loss', 'likelihood']):
-                ax.set_yscale('log')
+            # if any(m in metric.lower() for m in ['mse', 'err', 'loss', 'likelihood']):
+            #     ax.set_yscale('log')
             
             sns.despine(ax=ax)
             if i == 0:
@@ -106,6 +107,7 @@ class ModelVisualizer:
         for subject_idx, sub in enumerate(zip(data_collect, cov_collect, times_collect, traj_collect)):
             data, cov, times, traj_true = sub
             t_np = self._to_numpy(times)
+            assert traj_true.shape[0] == len(t_np), f"Time points and trajectory length mismatch for subject {subject_idx}"
             K = traj_true.shape[1]
 
             save_dir = os.path.join(self.save_dir, "latent_trajectories")
@@ -124,7 +126,10 @@ class ModelVisualizer:
                 for m_idx, (model_name, runs) in enumerate(models.items()):
                     trajs = []
                     for run in runs:
-                        trajs.append(self._latent_trajectory_estimation(run, data, times, cov))
+                        if model_name == "LOU":
+                            trajs.append(self._latent_trajectory_estimation(run, data, times, subject_idx))
+                        else:
+                            trajs.append(self._latent_trajectory_estimation(run, data, times, cov))
                     
                     trajs = np.array(trajs) # [Runs, T, K]
                     mean = np.mean(trajs, axis=0)[:, k]

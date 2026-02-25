@@ -90,67 +90,67 @@ class LOU:
         return self.mcmc.get_samples()
     
     def get_latent_trajectories(self, summary=True):
-            """
-            Extracts and reconstructs the latent states (x) for all subjects.
+        """
+        Extracts and reconstructs the latent states (x) for all subjects.
+        
+        Args:
+            summary (bool): If True, returns the posterior mean (N_total, K).
+                            If False, returns all samples (num_samples, N_total, K).
+        """
+        if self.mcmc is None:
+            raise ValueError("Model must be fitted first.")
             
-            Args:
-                summary (bool): If True, returns the posterior mean (N_total, K).
-                                If False, returns all samples (num_samples, N_total, K).
-            """
-            if self.mcmc is None:
-                raise ValueError("Model must be fitted first.")
-                
-            samples = self.mcmc.get_samples()
-            num_samples = samples['theta'].shape[0]
+        samples = self.mcmc.get_samples()
+        num_samples = samples['theta'].shape[0]
+        
+        # 1. Identify how many subjects we have by looking for 'x_init_i' keys
+        subject_init_keys = sorted([k for k in samples.keys() if k.startswith("x_init_")])
+        Nsub = len(subject_init_keys)
+        
+        # 2. Extract 'xt' which contains the scanned transitions. 
+        # In NumPyro scan, 'xt' will have shape (num_samples, N_steps_per_subject, K)
+        # However, because we scanned per subject in a loop, NumPyro might have 
+        # individual sites if not handled carefully. 
+        # Assuming the model used the `scan` logic provided previously:
+        
+        all_latent_samples = []
+        
+        for i in range(Nsub):
+            # Get initial state for this subject: (num_samples, K)
+            x0 = samples[f"x_init_{i}"][:, jnp.newaxis, :] 
             
-            # 1. Identify how many subjects we have by looking for 'x_init_i' keys
-            subject_init_keys = sorted([k for k in samples.keys() if k.startswith("x_init_")])
-            Nsub = len(subject_init_keys)
+            # Get the rest of the path for this subject. 
+            # If using the 'scan' inside a loop, we need to ensure we grab the 
+            # correct 'xt' or equivalent site.
+            # Note: In the previous 'scan' implementation, the site was named "xt"
+            # But in a loop, NumPyro typically suffixes them (e.g., "xt", "xt_1", etc.)
             
-            # 2. Extract 'xt' which contains the scanned transitions. 
-            # In NumPyro scan, 'xt' will have shape (num_samples, N_steps_per_subject, K)
-            # However, because we scanned per subject in a loop, NumPyro might have 
-            # individual sites if not handled carefully. 
-            # Assuming the model used the `scan` logic provided previously:
-            
-            all_latent_samples = []
-            
-            for i in range(Nsub):
-                # Get initial state for this subject: (num_samples, K)
-                x0 = samples[f"x_init_{i}"][:, jnp.newaxis, :] 
-                
-                # Get the rest of the path for this subject. 
-                # If using the 'scan' inside a loop, we need to ensure we grab the 
-                # correct 'xt' or equivalent site.
-                # Note: In the previous 'scan' implementation, the site was named "xt"
-                # But in a loop, NumPyro typically suffixes them (e.g., "xt", "xt_1", etc.)
-                
-                # For simplicity, we assume the user wants the flattened x_flat 
-                # that we calculated in the model. Since we didn't explicitly 
-                # 'deterministic' that, let's add it to the model or reconstruct it.
-                pass
+            # For simplicity, we assume the user wants the flattened x_flat 
+            # that we calculated in the model. Since we didn't explicitly 
+            # 'deterministic' that, let's add it to the model or reconstruct it.
+            pass
 
-            # REVISED APPROACH: Re-run the model with Predictive or 
-            # rely on the fact that we can reconstruct it from the samples.
-            
-            # A cleaner way is to use numpyro.infer.Predictive to get 'x' directly
-            
-            # We need a dummy run of the model to capture the 'x_flat' 
-            # if we wrap it in numpyro.deterministic
-            predictive = Predictive(self.model, samples)
-            # We pass the same data used for fitting
-            # Note: we need to ensure 'x_flat' was marked as deterministic in the model
-            
-            # Let's assume we modify the model to include: 
-            # numpyro.deterministic("x_trace", x_flat)
-            
-            full_samples = predictive(
-                jax.random.PRNGKey(1), 
-                **self.last_input_data # You should store inputs in .fit()
-            )
-            
-            x_trace = full_samples["x_trace"] # Shape: (num_samples, N_total, K)
-            
-            if summary:
-                return jnp.mean(x_trace, axis=0)
-            return x_trace
+        # REVISED APPROACH: Re-run the model with Predictive or 
+        # rely on the fact that we can reconstruct it from the samples.
+        
+        # A cleaner way is to use numpyro.infer.Predictive to get 'x' directly
+        
+        # We need a dummy run of the model to capture the 'x_flat' 
+        # if we wrap it in numpyro.deterministic
+        predictive = Predictive(self.model, samples)
+        # We pass the same data used for fitting
+        # Note: we need to ensure 'x_flat' was marked as deterministic in the model
+        
+        # Let's assume we modify the model to include: 
+        # numpyro.deterministic("x_trace", x_flat)
+        
+        full_samples = predictive(
+            jax.random.PRNGKey(1), 
+            **self.last_input_data # You should store inputs in .fit()
+        )
+        
+        x_trace = full_samples["x_trace"] # Shape: (num_samples, N_total, K)
+        
+        if summary:
+            return jnp.mean(x_trace, axis=0)
+        return x_trace

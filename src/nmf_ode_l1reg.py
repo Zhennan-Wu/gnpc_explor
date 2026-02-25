@@ -111,12 +111,11 @@ class NMF_LinearODE_Model(nn.Module):
             
             # Evaluation and Logging
             metrics = self.evaluate(gt_params, data, times, covs)
-            metrics['likelihood'] = total_loss.item()
+            metrics['likelihood'] = -total_loss.item()
             for k in metrics: self.history[k].append(metrics[k])
             
-            if epoch % 20 == 0:
-                print(f"Ep {epoch:03d} | MSE: {metrics['mse']:.4f} | "
-                      f"Loss: {total_loss.item():.2f} | L_Corr: {metrics['corr_lambda']:.4f}")
+            if epoch % 5 == 0:
+                print(f"Epoch {epoch:02d} | Loss: {total_loss.item():.2f} | MSE: {metrics['mse']:.4f} | Corr: {metrics['corr_lambda']:.4f} | Sig: {metrics['err_sig']:.4f}")
 
     def evaluate(self, gt, data, times, covs):
         Le, Lt = self.get_Lambda().detach(), gt['Lambda']

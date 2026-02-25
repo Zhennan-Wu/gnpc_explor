@@ -38,6 +38,7 @@ def linear_ode_transition(A, b, dt):
     u = A_inv @ (Fmat - I) @ b
     return Fmat, u
 
+
 def bridge_to_jax(all_data, all_times):
     lengths = [d.shape[0] for d in all_data]
     N_total = sum(lengths)
@@ -50,13 +51,13 @@ def bridge_to_jax(all_data, all_times):
         curr += l
     return {'N_total': int(N_total), 't': t_jax, 'y': y_jax, 'is_start': jnp.array(is_start)}, lengths
 
+
 class NumPyroModelWrapper:
     def __init__(self, samples, lengths, gt_params=None, y_true=None):
         self.samples = samples
         self.lengths = lengths
         self.gt = gt_params
         self.y_true = y_true 
-        self._subj_ptr = 0
         self.device = "cpu"
         
         # Collapse sample dimension immediately to prevent shape errors
@@ -88,12 +89,13 @@ class NumPyroModelWrapper:
             'likelihood': [0.0]
         }
 
-    def kalman_filter_smoother(self, data, times, covs):
+    def kalman_filter_smoother(self, data, times, subject_idx):
         # Returns (T, K) posterior mean. visual.py slices this into (T,) for plotting.
-        start = sum(self.lengths[:self._subj_ptr])
-        end = start + self.lengths[self._subj_ptr]
+        start = sum(self.lengths[:subject_idx])
+        end = start + self.lengths[subject_idx]
+        assert end - start == data.shape[0], f"Data length {data.shape[0]} does not match expected length {end - start} for current subject {subject_idx}"
+        assert end - start == len(times), f"Time points length {len(times)} does not match expected length {end - start} for current subject {subject_idx}"
         x_slice = self.x_mean_all[start:end]
-        self._subj_ptr = (self._subj_ptr + 1) % len(self.lengths)
         return torch.from_numpy(x_slice).float(), None, None
 
     def eval(self): pass

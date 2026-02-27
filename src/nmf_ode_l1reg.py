@@ -24,6 +24,8 @@ class NMF_LinearODE_Model(nn.Module):
         self._A_unconstrained = nn.Parameter(torch.randn(K, K, device=device) * 0.1)
         self.b = nn.Parameter(torch.zeros(K, device=device))
         self.log_sigma_obs = nn.Parameter(torch.tensor(-2.0, device=device))
+        self.s0_mean = nn.Parameter(torch.randn(K, device=device) * 0.1)
+        self.log_var_init = nn.Parameter(torch.tensor([-2.0] * K, device=device))
         
         # History tracker
         self.history = {'mse': [], 'corr_lambda': [], 'err_theta': [], 'err_sig': [], 'likelihood': []}
@@ -39,6 +41,16 @@ class NMF_LinearODE_Model(nn.Module):
 
     def get_history(self):
         return self.history
+
+    def sample_s0(self, sample_size):
+        """
+        Computes mean from linear model and samples s0 using 
+        the reparameterization trick.
+        """
+        mu = self.s0_mean
+        std = torch.exp(0.5 * self.log_var_init)
+        eps = torch.randn(sample_size, self.K, device=self.device)
+        return mu.unsqueeze(0) + eps * std.unsqueeze(0)
     
     def propagate(self, s0, t_points):
         """
@@ -66,7 +78,7 @@ class NMF_LinearODE_Model(nn.Module):
         # Stacked: (T, 1, K) -> Squeeze to (T, K)
         return torch.stack(s_list).squeeze(1)
 
-    def kalman_filter_smoother(self, obs, times, covs):
+    def kalman_filter_smoother(self, obs, times, idx):
         """
         Modified to support visualizer which expects (T, K) output.
         Note: In this implementation, we use the first subject's initial state 
@@ -75,7 +87,7 @@ class NMF_LinearODE_Model(nn.Module):
         # For visualization purposes, we use the learned initial state s0.
         # If this is called within the fit loop, self.s0[i] is passed directly.
         # If called by visualizer, we default to the first subject for the plot.
-        s0_val = self.s0[0] if hasattr(self, 's0') else torch.zeros(self.K, device=self.device)
+        s0_val = self.s0[idx] if hasattr(self, 's0') else torch.zeros(self.K, device=self.device)
         
         traj = self.propagate(s0_val, times)
         placeholder1 = None
@@ -84,14 +96,13 @@ class NMF_LinearODE_Model(nn.Module):
     
     def fit(self, data, covs, times, gt_params, epochs=100, lambda_reg=1e-4):
         num_subjects = len(data)
-        self.s0 = nn.Parameter(torch.randn(num_subjects, self.K, device=self.device) * 0.5)
         
         opt = torch.optim.Adam(self.parameters(), lr=1e-2)
         
         for epoch in range(epochs):
             opt.zero_grad()
             total_loss = 0
-            
+            self.s0 = self.sample_s0(num_subjects) # Sample initial states for all subjects at once
             for i in range(num_subjects):
                 # 1. Propagate: returns (T, K)
                 s_traj = self.propagate(self.s0[i], times[i])

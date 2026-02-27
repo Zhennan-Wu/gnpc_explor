@@ -128,6 +128,8 @@ class ModelVisualizer:
                     for run in runs:
                         if model_name == "LOU":
                             trajs.append(self._latent_trajectory_estimation(run, data, times, subject_idx))
+                        elif "ODE" in model_name:
+                            trajs.append(self._latent_trajectory_estimation(run, cov, times, subject_idx))
                         else:
                             trajs.append(self._latent_trajectory_estimation(run, data, times, cov))
                     

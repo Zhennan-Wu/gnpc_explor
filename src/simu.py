@@ -3,16 +3,326 @@ import jax
 import jax.numpy as jnp
 import numpy as np
 import json
+import os
+from scipy.linalg import expm
+
 from dfa_ou import OUDynamicFactorModel as DFM_V1
 from dfa_ou_autograd import OUDynamicFactorModel as DFM_V2
 from dfa_ou_damp import OUDynamicFactorModel as DFM_V3
 from nmf_ode_l1reg import NMF_LinearODE_Model as NMF_ODE_V1
 from nmf_ode_cov_l1reg import NMF_LinearODE_Model as NMF_ODE_V2
+from nmf_ode import NMF_LinearODE_Model as NMF_ODE_V3
+from nmf_code import Conditional_NMF_ODE_Model as NMF_ODE_V4
 
 from lou_test import OULatentModel
 from comp_utils import NumPyroModelWrapper, bridge_to_jax
 from visual import ModelVisualizer
-import os
+
+
+def generate_proteomics_data_no_covariates(N_subjects=50, T_range=(2, 8), obs_noise=0.02):
+    """
+    Generates data where latent factors are independent of patient covariates.
+    Initial state f(t0) comes from a fixed distribution.
+    """
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    D, K, M = 5, 2, 3
+    rng = np.random.default_rng(seed=42)
+    
+    # Use the same meaningful params (Lambda, A, alpha, etc.)
+    # Note: Phi will be present in gt_params but effectively ignored in generation
+    params = generate_meaningful_parameters(D, K, M, obs_noise=obs_noise)
+    
+    X_list, F_list, S_list, Times_list = [], [], [], []
+
+    # Fixed distribution parameters for f(0)
+    # This replaces the Phi * s * t logic
+    f0_mean = np.array([0.5, 0.5])
+    f0_std = 0.2
+
+    for i in range(N_subjects):
+        # 1. Generate Covariates (Still generated so API doesn't break, but unused for f0)
+        cdr = rng.gamma(shape=2, scale=1)
+        gene = rng.choice([0, 1], p=[0.7, 0.3])
+        sex = rng.choice([0, 1])
+        s_i = np.array([cdr, gene, sex])
+        
+        # 2. Visits and Time
+        n_obs = rng.integers(T_range[0], T_range[1] + 1)
+        t_steps = np.sort(rng.integers(1, 5, n_obs))
+        t_init = rng.integers(30, 50)
+        visit_ages = t_init + np.cumsum(t_steps)
+        t_steps = visit_ages
+        
+        f_subject = np.zeros((n_obs, K))
+        x_subject = np.zeros((n_obs, D))
+        
+        # 3. Initial State: Fixed Distribution (Ignoring Phi and s_i)
+        # f_i(t0) ~ Normal(f0_mean, f0_std) truncated at 0
+        f_current = rng.normal(f0_mean, f0_std)
+        f_current = np.maximum(f_current, 0.01) # Ensure strictly positive for NMF
+        f_subject[0] = f_current
+        
+        # Initial Observation
+        x_subject[0] = params['Lambda'] @ f_current + rng.normal(0, params['sigma_obs'], D)
+
+        for j in range(1, n_obs):
+            dt = t_steps[j] - t_steps[j-1]
+            
+            # 4. Latent Evolution (Same ODE dynamics)
+            f_current = expm(params['A'] * dt) @ f_current
+            f_current = np.maximum(f_current, 0)
+            f_subject[j] = f_current
+            
+            # 5. Observation (Same Loading)
+            x_subject[j] = params['Lambda'] @ f_current + rng.normal(0, params['sigma_obs'], D)
+
+        # Cast to Tensors
+        X_list.append(torch.tensor(x_subject).float().to(device))
+        F_list.append(torch.tensor(f_subject).float().to(device))
+        S_list.append(torch.tensor(s_i).float().to(device))
+        Times_list.append(torch.tensor(t_steps).float().to(device))
+
+    # Wrap parameters
+    gt_bundle = {k: torch.tensor(v).float().to(device) for k, v in params.items()}
+    gt_bundle['Phi'] = torch.zeros_like(gt_bundle['Phi']) # Explicitly set Phi to zero since covariates don't affect f0
+    gt_bundle['alpha'] = torch.zeros_like(gt_bundle['alpha']) # No baseline shift since f0 is fixed
+    gt_bundle['Gamma'] = torch.zeros_like(gt_bundle['Gamma']) # No diffusion since f0 is fixed
+    
+    return X_list, Times_list, S_list, gt_bundle, F_list
+
+
+def generate_meaningful_parameters(D=5, K=2, M=3, obs_noise=0.02):
+    # 1. Loading Matrix (Proteins 1-2 track Neuro, 3-4 track Inflam, 5 is mixed)
+    Lambda = np.array([
+        [0.9, 0.1], # Protein 1: Pure Neuro
+        [0.8, 0.2], # Protein 2: Mostly Neuro
+        [0.1, 0.9], # Protein 3: Pure Inflam
+        [0.1, 0.7], # Protein 4: Mostly Inflam
+        [0.4, 0.4]  # Protein 5: General stress marker
+    ])
+    
+    # 2. Phi: Mapping CDR, Gene, Sex to Latent Factors
+    # f = (Phi @ s) * t + alpha
+    # Phi = np.array([
+    #     [0.85, 0.30, 0.05, 0.01], # Pathway 1 (Neuro) influenced by CDR, then Gene
+    #     [0.20, 0.75, 0.40, 0.01]  # Pathway 2 (Inflam) influenced by Gene, then Sex
+    # ])
+    
+    # # 3. Alpha: Baseline latent levels
+    # alpha = np.array([0.15, 0.10])
+
+    Phi = np.zeros((M, K)) # No covariate effects since this is the no-covariate version
+    
+    # 3. Alpha: Baseline latent levels
+    alpha = np.zeros((M, K))
+
+    # 4. A: ODE Dynamics (Negative diagonal = stability/homeostasis)
+    # We'll allow a small cross-talk: Neurodegeneration triggers some inflammation
+    A = np.array([[-0.05,  0.00],
+                  [ 0.02, -0.08]])
+    
+    Psi = obs_noise # Observation noise
+
+    gamma = np.array([0.1, 0.1]) # Prior variance for initial state
+
+    b = np.zeros(K) # No drift since f0 is fixed
+    
+    return {
+        'Lambda': Lambda, 'A': A, 'Phi': Phi, 
+        'alpha': alpha, 'sigma_obs': Psi, 'Gamma': gamma, 'b': b
+    }
+
+def generate_proteomics_data_v2(N_subjects=50, T_range=(2, 8), obs_noise=0.02):
+    rng = np.random.default_rng(seed=42)
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    D, K, M = 5, 2, 3
+    params = generate_meaningful_parameters(D, K, M, obs_noise=obs_noise)
+    
+    X_list, F_list, S_list, Times_list = [], [], [], []
+
+    for i in range(N_subjects):
+        # Realistic Covariates
+        cdr = rng.gamma(shape=2, scale=1) # Concentrated at low, tail at high
+        gene = rng.choice([0, 1], p=[0.7, 0.3]) # 30% APOE4 carriers
+        sex = rng.choice([0, 1]) # 50/50 split
+        s_i = np.array([cdr, gene, sex])
+        
+        # Visits
+        n_obs = rng.integers(T_range[0], T_range[1] + 1)
+        t_steps = np.sort(rng.integers(1, 5, n_obs)) # Observations over 10 years
+        t_init = rng.integers(30, 50) # Age at first visit
+        visits_ages = t_init + np.cumsum(t_steps)
+        t_steps = visits_ages
+        
+        f_subject = np.zeros((n_obs, K))
+        x_subject = np.zeros((n_obs, D))
+        
+        # Initial State: f = Phi*s*t_0 + alpha
+        # Note: If t_0 > 0, the baseline is already shifted by disease duration
+        f_current = params['Phi'] @ np.append(s_i, t_steps[0]) + params['alpha']
+        f_current = np.maximum(f_current, 0)
+        f_subject[0] = f_current
+        
+        # Initial Obs
+        x_subject[0] = params['Lambda'] @ f_current + rng.normal(0, params['sigma_obs'], D)
+
+        for j in range(1, n_obs):
+            dt = t_steps[j] - t_steps[j-1]
+            # Evolve latent state
+            f_current = expm(params['A'] * dt) @ f_current
+            f_current = np.maximum(f_current, 0)
+            f_subject[j] = f_current
+            # Observation
+            x_subject[j] = params['Lambda'] @ f_current + rng.normal(0, params['sigma_obs'], D)
+
+        # Append to lists as Tensors
+        X_list.append(torch.tensor(x_subject).float().to(device))
+        F_list.append(torch.tensor(f_subject).float().to(device))
+        S_list.append(torch.tensor(s_i).float().to(device))
+        Times_list.append(torch.tensor(t_steps).float().to(device))
+
+    # Wrap parameters for your bundle
+    gt_bundle = {k: torch.tensor(v).float().to(device) for k, v in params.items()}
+    
+    return X_list, Times_list, S_list, gt_bundle, F_list
+
+
+def generate_meaningful_nmf_ode_params(D, K, M, obs_noise=0.02):
+    """
+    Generates ground truth parameters for the Conditional NMF-ODE model.
+    """
+    rng = np.random.default_rng(seed=42)
+    
+    # # 1. Spatial Basis (Lambda): Sparse and non-negative
+    # Lambda = np.abs(rng.standard_normal((D, K)))
+    # # Normalize columns for stability
+    # Lambda /= np.linalg.norm(Lambda, axis=0, keepdims=True)
+
+    Lambda = np.array([
+        [0.9, 0.1], # Protein 1: Pure Neuro
+        [0.8, 0.2], # Protein 2: Mostly Neuro
+        [0.1, 0.9], # Protein 3: Pure Inflam
+        [0.1, 0.7], # Protein 4: Mostly Inflam
+        [0.4, 0.4]  # Protein 5: General stress marker
+    ])
+
+    # # 2. Base Dynamics (A_base): Decaying system (negative diagonal)
+    # A_base = rng.standard_normal((K, K)) * 0.1
+    # np.fill_diagonal(A_base, -np.abs(np.diagonal(A_base)) - 0.5)
+
+    # 4. A: ODE Dynamics (Negative diagonal = stability/homeostasis)
+    # We'll allow a small cross-talk: Neurodegeneration triggers some inflammation
+    A_base = np.array([[-0.05,  0.00],
+                  [ 0.02, -0.08]])
+    
+    # 3. Covariate Impacts (U and V): Low-rank perturbations
+    # Each covariate j has a rank-1 impact matrix U[j]V[j]^T
+    # U = rng.standard_normal((M, K)) * 0.2
+    # V = rng.standard_normal((M, K)) * 0.2
+
+    Phi = np.array([
+        [0.85, 0.30], # Pathway 1 (Neuro) influenced by CDR, then Gene
+        [0.20, 0.75],
+        [0.40, 0.01]  # Pathway 2 (Inflam) influenced by Gene, then Sex
+    ])*0.2
+    
+    # 3. Alpha: Baseline latent levels
+    alpha  = np.array([
+        [0.8, 0.20], # Pathway 1 (Neuro) influenced by CDR, then Gene
+        [0.40, 0.75],
+        [0.40, 0.1]  # Pathway 2 (Inflam) influenced by Gene, then Sex
+    ])*0.2
+
+    Psi = obs_noise # Observation noise
+
+    gamma = np.array([0.1, 0.1]) # Prior variance for initial state
+
+    return {
+        'Lambda': Lambda,
+        'A': A_base,
+        'Phi': Phi,
+        'alpha': alpha,
+        'sigma_obs': Psi,
+        'Gamma': gamma, 
+        'b': rng.standard_normal(K) * 0.05
+    }
+
+def generate_nmf_ode_data(N_subjects=10, T_range=(2, 8), obs_noise=0.02):
+    """
+    Generates synthetic longitudinal data using the Conditional NMF-ODE mechanism.
+    """
+    rng = np.random.default_rng(seed=42)
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    
+    # Dimensions: D=voxels, K=factors, M=covariates
+    D, K, M = 5, 2, 3
+    f0_mean = np.array([0.5, 0.3]) # Baseline factor levels
+    params = generate_meaningful_nmf_ode_params(D, K, M, obs_noise=obs_noise)
+    
+    X_list, S_list, Times_list, F_list = [], [], [], []
+
+    for i in range(N_subjects):
+        # 1. Sample Realistic Covariates (e.g., Age, Genetic risk)
+        cdr = rng.gamma(shape=2, scale=1) # Concentrated at low, tail at high
+        gene = rng.choice([0, 1], p=[0.7, 0.3]) # 30% APOE4 carriers
+        sex = rng.choice([0, 1]) # 50/50 split
+        c_i = np.array([cdr, gene, sex])
+        
+        # 2. Construct Subject-Specific Transition Matrix A(c)
+        # A = A_base + sum( c_j * outer(U_j, V_j) )
+        A_subject = params['A'].copy()
+        for j in range(M):
+            A_subject += c_i[j] * np.outer(params['Phi'][j], params['alpha'][j])
+        
+        # 3. Define Longitudinal Visits
+        n_obs = rng.integers(T_range[0], T_range[1] + 1)
+        t_steps = np.sort(rng.integers(1, 5, n_obs)) # Observations over 5 years
+        t_init = rng.integers(30, 50) # Age at first visit
+        visit_ages = t_init + np.cumsum(t_steps)
+        t_steps = visit_ages
+        
+        f_subject = np.zeros((n_obs, K))
+        x_subject = np.zeros((n_obs, D))
+        
+        # 4. Initial State (s0)
+        # In this model, s0 represents the baseline GM factor weights
+        f_current = np.abs(rng.normal(f0_mean, params['Gamma'])) # Ensure non-negativity
+        f_subject[0] = f_current
+        x_subject[0] = params['Lambda'] @ f_current + rng.normal(0, params['sigma_obs'], D)
+
+        # 5. Evolve via ODE
+        # ds/dt = A_subject * s + b
+        # Solution: s(t) = exp(A*dt)s(0) + (exp(A*dt) - I)A^-1 * b
+        for j in range(1, n_obs):
+            dt = t_steps[j] - t_steps[j-1]
+            
+            # Matrix Exponential for exact linear ODE solution
+            Phi = expm(A_subject * dt)
+            
+            # State update
+            term_drift = Phi @ f_current
+            # Particular solution for bias b
+            try:
+                term_bias = np.linalg.solve(A_subject, (Phi - np.eye(K)) @ params['b'])
+            except np.linalg.LinAlgError:
+                term_bias = 0 # Fallback if A is singular
+                
+            f_current = term_drift + term_bias
+            f_current = np.maximum(f_current, 0) # NMF constraint
+            
+            f_subject[j] = f_current
+            x_subject[j] = params['Lambda'] @ f_current + rng.normal(0, params['sigma_obs'], D)
+
+        # Append to lists as Tensors
+        X_list.append(torch.tensor(x_subject).float().to(device))
+        F_list.append(torch.tensor(f_subject).float().to(device))
+        S_list.append(torch.tensor(c_i).float().to(device))
+        Times_list.append(torch.tensor(t_steps).float().to(device))
+
+    # Wrap Ground Truth for Evaluation
+    gt_bundle = {k: torch.tensor(v).float().to(device) for k, v in params.items()}
+    
+    return X_list, Times_list, S_list, gt_bundle, F_list
 
 
 def generate_parameters(D, K, M, L=None, scenario='default'):
@@ -322,51 +632,56 @@ def generate_disease_proteomics_data(D, K, T, N_subjects, noise_std=0.3, sparsit
     return all_data, all_times, all_covs, gt_params, all_factors
 
 
-def run_benchmark(D=5, K=2, T_range=(2, 10), subjects=10, n_runs=3, epochs=500, save_dir="../viz_results"):
-    # data, times, covs, gt_params, factors = generate_data(D, K, T, subjects)
-    T = 5
-    # data, times, covs, gt_params, factors = generate_disease_proteomics_data(D, K, T, subjects)
-    # data, times, covs, gt_params, factors = generate_simulation_data_automated(D=D, K=K, T_range=T_range, N_subjects=subjects)
-    data, times, covs, gt_params, factors = generate_simulation_data_manually()
-    simu_data = {"D": D, "K": K, "T_range": T_range, "N_subjects": subjects, "observations": data, "timestamps": times, "covariates": covs, "gt_params": gt_params, "latent_factors": factors}
-    os.makedirs(save_dir, exist_ok=True)
-    with open(f"{save_dir}/simu_data.json", "w") as f:
-        json.dump(simu_data, f, default=lambda x: x.cpu().numpy().tolist() if isinstance(x, torch.Tensor) else x, indent=4, sort_keys=True)
+def run_benchmark(D=5, K=2, T_range=(2, 10), subjects=10, n_runs=10, epochs=300, save_dir="../viz_results"):
+    for obs_noise in np.arange(0., 0.55, 0.05):
+        save_dir = f"../viz_results_no_cov/noise_{obs_noise}"
+        # data, times, covs, gt_params, factors = generate_data(D, K, T, subjects)
+        T = 5
+        # data, times, covs, gt_params, factors = generate_disease_proteomics_data(D, K, T, subjects)
+        # data, times, covs, gt_params, factors = generate_simulation_data_automated(D=D, K=K, T_range=T_range, N_subjects=subjects)
+        # data, times, covs, gt_params, factors = generate_simulation_data_manually()
+        # data, times, covs, gt_params, factors = generate_proteomics_data_v2(N_subjects=subjects, T_range=T_range, obs_noise=obs_noise)
+        data, times, covs, gt_params, factors = generate_proteomics_data_no_covariates(N_subjects=subjects, T_range=T_range, obs_noise=obs_noise)
+        # data, times, covs, gt_params, factors = generate_nmf_ode_data(N_subjects=subjects, T_range=T_range, obs_noise=obs_noise)
+        simu_data = {"D": D, "K": K, "T_range": T_range, "N_subjects": subjects, "observations": data, "timestamps": times, "covariates": covs, "gt_params": gt_params, "latent_factors": factors}
+        os.makedirs(save_dir, exist_ok=True)
+        with open(f"{save_dir}/simu_data.json", "w") as f:
+            json.dump(simu_data, f, default=lambda x: x.cpu().numpy().tolist() if isinstance(x, torch.Tensor) else x, indent=4, sort_keys=True)
 
-    gt_data = {'traj': factors, 'times': times, 'data': data, 'covs': covs}
-    viz = ModelVisualizer(gt_params, gt_data, save_dir=save_dir)
-    # trained_models = {name: [] for name in ["V1_EM", "V2_Autograd", "V3_Robust"]}
-    # trained_models = {name: [] for name in ["V3_Robust", "V2_Autograd"]}
-    trained_models = {name: [] for name in ["NMF_ODE_Sub", "NMF_ODE_Cov"]}
-    for r in range(n_runs):
-        print(f"--- Run {r+1}/{n_runs} ---")
-        # models = [("V1_EM", DFM_V1(D, K, 3)), ("V2_Autograd", DFM_V2(D, K, 3)), ("V3_Robust", DFM_V3(D, K, 3)), ("LOU", OULatentModel(K, D))]
-        # models = [("V3_Robust", DFM_V3(D, K, 3)), ("V2_Autograd", DFM_V2(D, K, 3))]
-        models = [("NMF_ODE_Sub", NMF_ODE_V1(D, K, 3)), ("NMF_ODE_Cov", NMF_ODE_V2(D, K, 3))]
-        for name, model in models:
-            print(f"Training {name}...")
-            if name == "LOU":
-                # 1. Prepare JAX data
-                lou_input, subj_lengths = bridge_to_jax(data, times)
-                
-                # 2. Run MCMC
-                samples = model.fit(jax.random.PRNGKey(r), lou_input)
-                
-                # 3. Wrap with context for history calculations
-                y_true_flattened = torch.cat(data, dim=0)
-                wrapped_model = NumPyroModelWrapper(
-                    samples, 
-                    subj_lengths, 
-                    gt_params=gt_params, 
-                    y_true=y_true_flattened
-                )
-                trained_models["LOU"].append(wrapped_model)
-            else:
-                model.fit(data, covs, times, gt_params, epochs=epochs)
-                trained_models[name].append(model)
-    viz.plot_multi_model_metrics(trained_models)
-    viz.plot_multi_model_trajectories(trained_models)
-    viz.plot_loading_recovery(trained_models)
+        gt_data = {'traj': factors, 'times': times, 'data': data, 'covs': covs}
+        viz = ModelVisualizer(gt_params, gt_data, save_dir=save_dir)
+        # trained_models = {name: [] for name in ["V1_EM", "V2_Autograd", "V3_Robust"]}
+        # trained_models = {name: [] for name in ["V3_Robust", "V2_Autograd"]}
+        trained_models = {name: [] for name in ["NMF_ODE_Conditional", "NMF_ODE_Shared", "NMF_ODE_Sub"]}
+        for r in range(n_runs):
+            print(f"--- Run {r+1}/{n_runs} ---")
+            # models = [("V1_EM", DFM_V1(D, K, 3)), ("V2_Autograd", DFM_V2(D, K, 3)), ("V3_Robust", DFM_V3(D, K, 3)), ("LOU", OULatentModel(K, D))]
+            # models = [("V3_Robust", DFM_V3(D, K, 3)), ("V2_Autograd", DFM_V2(D, K, 3))]
+            models = [("NMF_ODE_Conditional", NMF_ODE_V4(D, K, 3)), ("NMF_ODE_Shared", NMF_ODE_V3(D, K, 3)), ("NMF_ODE_Sub", NMF_ODE_V1(D, K, 3))]
+            for name, model in models:
+                print(f"Training {name}...")
+                if name == "LOU":
+                    # 1. Prepare JAX data
+                    lou_input, subj_lengths = bridge_to_jax(data, times)
+                    
+                    # 2. Run MCMC
+                    samples = model.fit(jax.random.PRNGKey(r), lou_input)
+                    
+                    # 3. Wrap with context for history calculations
+                    y_true_flattened = torch.cat(data, dim=0)
+                    wrapped_model = NumPyroModelWrapper(
+                        samples, 
+                        subj_lengths, 
+                        gt_params=gt_params, 
+                        y_true=y_true_flattened
+                    )
+                    trained_models["LOU"].append(wrapped_model)
+                else:
+                    model.fit(data, covs, times, gt_params, epochs=epochs)
+                    trained_models[name].append(model)
+        viz.plot_multi_model_metrics(trained_models)
+        viz.plot_multi_model_trajectories(trained_models)
+        viz.plot_loading_recovery(trained_models)
 
 
 if __name__ == "__main__":

@@ -15,21 +15,19 @@ class NMF_LinearODE_Model(nn.Module):
         K (int): Latent space dimensionality (number of components).
         M (int): Number of subjects/samples.
     """
-    def __init__(self, D, K, P, device='cpu'):
-        """
-        P: Number of baseline covariates (e.g., age, genetic risk)
-        """
+    def __init__(self, D, K, M, device='cpu'):
         super().__init__()
-        self.D, self.K, self.P, self.device = D, K, P, device
+        self.D, self.K, self.M, self.device = D, K, M, device
         
-        # Shared Initial State Encoder
-        self.init_encoder = nn.Linear(P, K, device=device)
-        
-        # ODE Parameters
+        # --- Trainable Parameters ---
         self._Lambda_unconstrained = nn.Parameter(torch.randn(D, K, device=device) * 0.1)
         self._A_unconstrained = nn.Parameter(torch.randn(K, K, device=device) * 0.1)
         self.b = nn.Parameter(torch.zeros(K, device=device))
         self.log_sigma_obs = nn.Parameter(torch.tensor(-2.0, device=device))
+        
+        # History tracker
+        self.history = {'mse': [], 'corr_lambda': [], 'err_theta': [], 'err_sig': [], 'likelihood': []}
+        self.to(device)
 
     def get_Lambda(self): 
         L = F.softplus(self._Lambda_unconstrained)
@@ -84,20 +82,21 @@ class NMF_LinearODE_Model(nn.Module):
         placeholder2 = None
         return traj, placeholder1, placeholder2 
     
-    def fit(self, data, baseline_covs, times, gt_params, epochs=100, lambda_reg=1e-4):
-        """
-        baseline_covs: Tensor of shape (M, P)
-        """
+    def fit(self, data, covs, times, gt_params, epochs=100, lambda_reg=1e-4):
+        num_subjects = len(data)
+        self.s0 = nn.Parameter(torch.randn(num_subjects, self.K, device=self.device) * 0.5)
+        
         opt = torch.optim.Adam(self.parameters(), lr=1e-2)
         
         for epoch in range(epochs):
             opt.zero_grad()
-            # Generate all s0 via the shared encoder
-            s0_all = self.init_encoder(baseline_covs)
-            
             total_loss = 0
-            for i in range(len(data)):
-                s_traj = self.propagate(s0_all[i], times[i])
+            
+            for i in range(num_subjects):
+                # 1. Propagate: returns (T, K)
+                s_traj = self.propagate(self.s0[i], times[i])
+                
+                # 2. Project: (T, K) @ (K, D) -> (T, D)
                 x_hat = s_traj @ self.get_Lambda().T
                 
                 # 3. Calculate Loss: data[i] is (T, D)
@@ -111,7 +110,7 @@ class NMF_LinearODE_Model(nn.Module):
             opt.step()
             
             # Evaluation and Logging
-            metrics = self.evaluate(gt_params, data, times, baseline_covs)
+            metrics = self.evaluate(gt_params, data, times, covs)
             metrics['likelihood'] = -total_loss.item()
             for k in metrics: self.history[k].append(metrics[k])
             

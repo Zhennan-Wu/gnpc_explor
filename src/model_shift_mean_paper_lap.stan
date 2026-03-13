@@ -125,7 +125,6 @@ model {
         int start_idx = cumu[i] - repme[i] + 1;
         
         // Time = 1
-        vector[q] z0 = Z[start_idx]';
         vector[R] mu_start = c_latent * time[start_idx];
 
         xi[start_idx] ~ multi_normal(mu_start, Omega);
@@ -142,8 +141,6 @@ model {
             matrix[R, R] Q_stable = 0.5 * (Q + Q'); // Ensure symmetry
             
             // xi[k] ~ N(Phi * xi[k-1], Q)
-            vector[q] zk = Z[k]';
-            vector[q] zk_prev = Z[k-1]';
 
             vector[R] target_k =
                 c_latent * time[k];

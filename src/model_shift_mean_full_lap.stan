@@ -8,6 +8,8 @@ data {
     int<lower=1> R;
     int<lower=1> p;
 
+    int<lower=1> q;                   // Number of latent-level covariates (including time)
+
     array[N] int<lower=1, upper=Nsub> ID;
 
     array[Nsub] int cumu;
@@ -18,7 +20,11 @@ data {
 
     vector[N] deltat;
 
-    matrix[N, p] X;
+    vector[N] time;                   // Absolute time for mean function
+
+    matrix[N, p] X;                   // Item covariates
+
+    matrix[N, q] Z;                   // Latent mean covariates (e.g., age, gender, etc.)
 
     int<lower=2> ncate4;
     int<lower=2> ncate5;
@@ -45,28 +51,42 @@ parameters {
 
     matrix[K, p] beta;
 
+    matrix[R, q] A_latent;     // slope on covariates * time
+    matrix[R, q] B_latent;     // covariate intercept
+    vector[R] c_latent;        // global intercept
+
     matrix[Nsub, K] b_raw;
     vector<lower=1e-6>[K] sigma_bk;
 
     array[N] vector[R] xi;
 
-    matrix[R, R] Gamma;
+    cholesky_factor_cov[R] L_S;   // SPD component
+    real gamma_skew;              // skew symmetric strength
 
     real<lower=-1, upper=1> rho; 
 }
 
 transformed parameters {
 
-	matrix[Nsub, K] b;
+    matrix[R,R] S;
+    matrix[R,R] A;
+    matrix[R,R] Gamma;
 
-	real<lower=0.000001> constraint1;
-	real<lower=0.000001> constraint2;
+	matrix[Nsub, K] b;
 
 	corr_matrix[R] Omega;
 	cov_matrix[R] Sigma;
 
-	constraint1 = Gamma[1, 1] + Gamma[2, 2];
-	constraint2 = Gamma[1, 1] * Gamma[2, 2] - Gamma[1, 2] * Gamma[2, 1];
+    // SPD component
+    S = L_S * L_S';
+
+    // skew symmetric component
+    A = rep_matrix(0, R, R);
+    A[1,2] = gamma_skew;
+    A[2,1] = -gamma_skew;
+
+    // final drift matrix
+    Gamma = S + A;
 
 	Omega = [[1, rho], [rho, 1]];
 	Sigma = Gamma * Omega + Omega * Gamma';
@@ -98,23 +118,27 @@ model {
 
     to_vector(beta) ~ cauchy(0, 5);
 
+    to_vector(A_latent) ~ normal(0, 2);
+    to_vector(B_latent) ~ normal(0, 2);
+    c_latent ~ normal(0, 5);
+
     sigma_bk ~ cauchy(0, 5);
     to_vector(b_raw) ~ normal(0, 1);
 
-    to_vector(Gamma) ~ normal(0, 10);
+    to_vector(L_S) ~ normal(0,2);
+    gamma_skew ~ normal(0,2);
 
     // Latent Factor Dynamics
-
     for (i in 1:Nsub) {
-
         int start_idx = cumu[i] - repme[i] + 1;
         
         // Time = 1
+        vector[q] z0 = Z[start_idx]';
+        vector[R] mu_start = (A_latent * z0) * time[start_idx] + (B_latent * z0) + c_latent;
 
-        xi[start_idx] ~ multi_normal(rep_vector(0, R), Omega);
+        xi[start_idx] ~ multi_normal(mu_start, Omega);
 
         // Time = 2 to end
-
         for (j in 2:repme[i]) {
 
             int k = start_idx + j - 1;
@@ -126,12 +150,26 @@ model {
             matrix[R, R] Q_stable = 0.5 * (Q + Q'); // Ensure symmetry
             
             // xi[k] ~ N(Phi * xi[k-1], Q)
-            xi[k] ~ multi_normal(Phi * xi[k-1], add_diag(Q_stable, 1e-6));
+            vector[q] zk = Z[k]';
+            vector[q] zk_prev = Z[k-1]';
+
+            vector[R] target_k =
+                (A_latent * zk) * time[k]
+                + (B_latent * zk)
+                + c_latent;
+
+            vector[R] target_prev =
+                (A_latent * zk_prev) * time[k-1]
+                + (B_latent * zk_prev)
+                + c_latent;
+                
+            vector[R] cond_mean = target_k + Phi * (xi[k-1] - target_prev);
+            
+            xi[k] ~ multi_normal(cond_mean, add_diag(Q_stable, 1e-6));
         }
     }
 
     // Likelihood
-
     for (i in 1:N) {
         int sub = ID[i];
         row_vector[p] Xi_row = X[i, ];

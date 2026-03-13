@@ -50,23 +50,33 @@ parameters {
 
     array[N] vector[R] xi;
 
-    matrix[R, R] Gamma;
+    cholesky_factor_cov[R] L_S;   // SPD component
+    real gamma_skew;              // skew symmetric strength
 
     real<lower=-1, upper=1> rho; 
 }
 
 transformed parameters {
 
-	matrix[Nsub, K] b;
+    matrix[R,R] S;
+    matrix[R,R] A;
+    matrix[R,R] Gamma;
 
-	real<lower=0.000001> constraint1;
-	real<lower=0.000001> constraint2;
+	matrix[Nsub, K] b;
 
 	corr_matrix[R] Omega;
 	cov_matrix[R] Sigma;
 
-	constraint1 = Gamma[1, 1] + Gamma[2, 2];
-	constraint2 = Gamma[1, 1] * Gamma[2, 2] - Gamma[1, 2] * Gamma[2, 1];
+    // SPD component
+    S = L_S * L_S';
+
+    // skew symmetric component
+    A = rep_matrix(0, R, R);
+    A[1,2] = gamma_skew;
+    A[2,1] = -gamma_skew;
+
+    // final drift matrix
+    Gamma = S + A;
 
 	Omega = [[1, rho], [rho, 1]];
 	Sigma = Gamma * Omega + Omega * Gamma';
@@ -101,7 +111,8 @@ model {
     sigma_bk ~ cauchy(0, 5);
     to_vector(b_raw) ~ normal(0, 1);
 
-    to_vector(Gamma) ~ normal(0, 10);
+    to_vector(L_S) ~ normal(0,2);
+    gamma_skew ~ normal(0,2);
 
     // Latent Factor Dynamics
 

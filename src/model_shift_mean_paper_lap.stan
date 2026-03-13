@@ -1,13 +1,15 @@
 // Model 2a: Longitudinal IRT with SDE Latent Process
+
 data {
     int<lower=1> N;
     int<lower=1> Nsub;
+
     int<lower=1> K;
     int<lower=1> R;
     int<lower=1> p;
-    int<lower=1> q;                   // Number of latent-level covariates (including time)
 
     array[N] int<lower=1, upper=Nsub> ID;
+
     array[Nsub] int cumu;
     array[Nsub] int repme;
 
@@ -15,9 +17,10 @@ data {
     array[N, K] int missing_ID;
 
     vector[N] deltat;
+
     vector[N] time;                   // Absolute time for mean function
+
     matrix[N, p] X;                   // Item covariates
-    matrix[N, q] Z;                   // Latent mean covariates (e.g., age, gender, etc.)
 
     int<lower=2> ncate4;
     int<lower=2> ncate5;
@@ -26,7 +29,10 @@ data {
 }
 
 parameters {
-    real theta1; real theta2; real theta3;
+
+    real theta1; 
+    real theta2; 
+    real theta3;
 
     ordered[ncate4 - 1] theta4;
     ordered[ncate5 - 1] theta5;
@@ -40,28 +46,41 @@ parameters {
     real<lower=1e-6> sigma_lambda;
 
     matrix[K, p] beta;
-    matrix[R, q] gamma_latent;        // Latent mean regression (Effect of Z on Xi)
+
+    vector[R] c_latent;        // global intercept
 
     matrix[Nsub, K] b_raw;
     vector<lower=1e-6>[K] sigma_bk;
 
     array[N] vector[R] xi;
-    matrix[R, R] Gamma;
+
+    cholesky_factor_cov[R] L_S;   // SPD component
+    real gamma_skew;              // skew symmetric strength
+
     real<lower=-1, upper=1> rho; 
 }
 
 transformed parameters {
 
-	matrix[Nsub, K] b;
+    matrix[R,R] S;
+    matrix[R,R] A;
+    matrix[R,R] Gamma;
 
-	real<lower=0.000001> constraint1;
-	real<lower=0.000001> constraint2;
+	matrix[Nsub, K] b;
 
 	corr_matrix[R] Omega;
 	cov_matrix[R] Sigma;
 
-	constraint1 = Gamma[1, 1] + Gamma[2, 2];
-	constraint2 = Gamma[1, 1] * Gamma[2, 2] - Gamma[1, 2] * Gamma[2, 1];
+    // SPD component
+    S = L_S * L_S';
+
+    // skew symmetric component
+    A = rep_matrix(0, R, R);
+    A[1,2] = gamma_skew;
+    A[2,1] = -gamma_skew;
+
+    // final drift matrix
+    Gamma = S + A;
 
 	Omega = [[1, rho], [rho, 1]];
 	Sigma = Gamma * Omega + Omega * Gamma';
@@ -75,9 +94,11 @@ transformed parameters {
 
 model {
     // Priors
+
     theta1 ~ normal(mu_theta, sigma_theta);
     theta2 ~ normal(mu_theta, sigma_theta);
     theta3 ~ normal(mu_theta, sigma_theta);
+
     theta4 ~ normal(mu_theta, sigma_theta);
     theta5 ~ normal(mu_theta, sigma_theta);
     theta6 ~ normal(mu_theta, sigma_theta);
@@ -85,25 +106,35 @@ model {
 
     mu_theta ~ normal(0, 10);
     sigma_theta ~ cauchy(0, 5);
+
     lambda ~ normal(1, sigma_lambda);
     sigma_lambda ~ cauchy(0, 5);
+
     to_vector(beta) ~ cauchy(0, 5);
-    to_vector(gamma_latent) ~ normal(0, 2); // Priors for latent mean coefficients
+
+    c_latent ~ normal(0, 5);
+
     sigma_bk ~ cauchy(0, 5);
     to_vector(b_raw) ~ normal(0, 1);
-    to_vector(Gamma) ~ normal(0, 10);
+
+    to_vector(L_S) ~ normal(0,2);
+    gamma_skew ~ normal(0,2);
 
     // Latent Factor Dynamics
     for (i in 1:Nsub) {
         int start_idx = cumu[i] - repme[i] + 1;
         
         // Time = 1
-        vector[R] mu_start = gamma_latent * Z[start_idx]' * time[start_idx];
+        vector[q] z0 = Z[start_idx]';
+        vector[R] mu_start = c_latent * time[start_idx];
+
         xi[start_idx] ~ multi_normal(mu_start, Omega);
 
         // Time = 2 to end
         for (j in 2:repme[i]) {
+
             int k = start_idx + j - 1;
+
             matrix[R, R] Phi = matrix_exp(-deltat[k] * Gamma);
             
             // Stable Covariance Matrix Calculation
@@ -111,8 +142,15 @@ model {
             matrix[R, R] Q_stable = 0.5 * (Q + Q'); // Ensure symmetry
             
             // xi[k] ~ N(Phi * xi[k-1], Q)
-            vector[R] target_k = gamma_latent * Z[k]'*time[k];
-            vector[R] target_prev = (gamma_latent * Z[k-1]') * time[k-1];
+            vector[q] zk = Z[k]';
+            vector[q] zk_prev = Z[k-1]';
+
+            vector[R] target_k =
+                c_latent * time[k];
+
+            vector[R] target_prev =
+                c_latent * time[k-1];
+                
             vector[R] cond_mean = target_k + Phi * (xi[k-1] - target_prev);
             
             xi[k] ~ multi_normal(cond_mean, add_diag(Q_stable, 1e-6));

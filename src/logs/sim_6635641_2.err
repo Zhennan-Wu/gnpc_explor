@@ -1,0 +1,38 @@
+conda version 25.3.0 python 3.12.7 unloaded.
+conda version 25.3.0 python 3.12.7 loaded.
+
+Lmod is automatically replacing "gcc-native/14.2" with "gcc/12.2.0".
+
+
+The following have been reloaded with a version change:
+  1) cray-libsci/25.03.0 => cray-libsci/22.12.1.1
+  2) cray-mpich-ucx/8.1.32 => cray-mpich-ucx/8.1.23
+
+09:35:02 - cmdstanpy - WARNING - CmdStan installation failed.
+Command "make build" failed
+Command ['make', 'build', '-j1']
+	exited with code '2' No such file or directory
+09:35:03 - cmdstanpy - INFO - No CmdStan installation found.
+09:35:03 - cmdstanpy - INFO - Cannot determine whether version is before 2.27.
+09:35:03 - cmdstanpy - INFO - No CmdStan installation found.
+09:35:03 - cmdstanpy - INFO - Cannot determine whether version is before 2.36.
+Traceback (most recent call last):
+  File "/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/lou_simulation.py", line 335, in <module>
+    metrics_df, agg_summary, fit_object = evaluate_model_performance(
+  File "/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/lou_simulation.py", line 238, in evaluate_model_performance
+    model = cmdstanpy.CmdStanModel(stan_file=stan_file_path)
+  File "/N/u/zwu1/BigRed200/.conda/envs/ou/lib/python3.10/site-packages/cmdstanpy/model.py", line 255, in __init__
+    self.compile(force=str(compile).lower() == 'force', _internal=True)
+  File "/N/u/zwu1/BigRed200/.conda/envs/ou/lib/python3.10/site-packages/cmdstanpy/model.py", line 463, in compile
+    self._exe_file = compilation.compile_stan_file(
+  File "/N/u/zwu1/BigRed200/.conda/envs/ou/lib/python3.10/site-packages/cmdstanpy/compilation.py", line 415, in compile_stan_file
+    src_info(str(src), compiler_options).get('included_files', [])
+  File "/N/u/zwu1/BigRed200/.conda/envs/ou/lib/python3.10/site-packages/cmdstanpy/compilation.py", line 355, in src_info
+    [stanc_path()]
+  File "/N/u/zwu1/BigRed200/.conda/envs/ou/lib/python3.10/site-packages/cmdstanpy/utils/cmdstan.py", line 150, in stanc_path
+    cmdstan = cmdstan_path()
+  File "/N/u/zwu1/BigRed200/.conda/envs/ou/lib/python3.10/site-packages/cmdstanpy/utils/cmdstan.py", line 197, in cmdstan_path
+    validate_cmdstan_path(cmdstan)
+  File "/N/u/zwu1/BigRed200/.conda/envs/ou/lib/python3.10/site-packages/cmdstanpy/utils/cmdstan.py", line 138, in validate_cmdstan_path
+    raise ValueError(
+ValueError: CmdStan installataion missing makefile, path /N/u/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0 is invalid. You may wish to re-install cmdstan by running command "install_cmdstan --overwrite", or Python code "import cmdstanpy; cmdstanpy.install_cmdstan(overwrite=True)"

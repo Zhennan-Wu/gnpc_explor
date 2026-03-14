@@ -1,0 +1,13 @@
+Task ID: 6
+Running Scenario: S4 with Model: model_fix_mean.stan using 10 CPUs/Chains
+CmdStan install directory: /N/u/zwu1/BigRed200/.cmdstan
+Installing CmdStan version: 2.38.0
+Downloading CmdStan version 2.38.0
+Download successful, file: /tmp/tmpzxn_w58b
+Extracting distribution
+Unpacked download as cmdstan-2.38.0
+Building version cmdstan-2.38.0, may take several minutes, depending on your system.
+makefile:149: make/command: No such file or directory
+make: *** No rule to make target 'make/command'.  Stop.
+Starting run: Scenario = S4, Model = model_fix_mean.stan, Chains = 10
+Compiling and running model_fix_mean.stan against Scenario S4 data...

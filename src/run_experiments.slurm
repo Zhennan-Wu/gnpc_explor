@@ -5,7 +5,7 @@
 #SBATCH --error=logs/sim_%A_%a.err
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=zwu1@iu.edu
-#SBATCH --time=04:00:00:00               
+#SBATCH --time=1-00:00:00               
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=10             

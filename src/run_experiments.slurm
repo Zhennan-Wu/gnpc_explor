@@ -10,7 +10,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=10             
 #SBATCH --mem=128G                      
-#SBATCH --array=1-32       
+#SBATCH --array=1-8       
 #SBATCH -A r00939           
 
 # --- CONDA ACTIVATION ---

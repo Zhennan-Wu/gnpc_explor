@@ -6,4 +6,3 @@ S4 model_shift_mean_cov.stan
 S4 model_fix_mean.stan
 S5 model_shift_mean_cov.stan
 S5 model_fix_mean.stan
-

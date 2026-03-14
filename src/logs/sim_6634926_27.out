@@ -1,0 +1,9 @@
+Task ID: 27
+Running Scenario: S5 with Model: model_shift_mean_cov.stan using 10 CPUs/Chains
+CmdStan install directory: /N/u/zwu1/BigRed200/.cmdstan
+CmdStan version 2.38.0 already installed
+Test model compilation
+makefile:149: make/command: No such file or directory
+make: *** No rule to make target 'make/command'.  Stop.
+Starting run: Scenario = S5, Model = model_shift_mean_cov.stan, Chains = 10
+Compiling and running model_shift_mean_cov.stan against Scenario S5 data...

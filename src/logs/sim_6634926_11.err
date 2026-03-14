@@ -1,0 +1,42 @@
+conda version 25.3.0 python 3.12.7 unloaded.
+conda version 25.3.0 python 3.12.7 loaded.
+
+Lmod is automatically replacing "gcc-native/14.2" with "gcc/12.2.0".
+
+
+The following have been reloaded with a version change:
+  1) cray-libsci/25.03.0 => cray-libsci/22.12.1.1
+  2) cray-mpich-ucx/8.1.32 => cray-mpich-ucx/8.1.23
+
+00:58:46 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov
+Traceback (most recent call last):
+  File "/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/lou_simulation.py", line 335, in <module>
+    metrics_df, agg_summary, fit_object = evaluate_model_performance(
+  File "/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/lou_simulation.py", line 238, in evaluate_model_performance
+    model = cmdstanpy.CmdStanModel(stan_file=stan_file_path)
+  File "/N/u/zwu1/BigRed200/.conda/envs/ou/lib/python3.10/site-packages/cmdstanpy/model.py", line 255, in __init__
+    self.compile(force=str(compile).lower() == 'force', _internal=True)
+  File "/N/u/zwu1/BigRed200/.conda/envs/ou/lib/python3.10/site-packages/cmdstanpy/model.py", line 463, in compile
+    self._exe_file = compilation.compile_stan_file(
+  File "/N/u/zwu1/BigRed200/.conda/envs/ou/lib/python3.10/site-packages/cmdstanpy/compilation.py", line 482, in compile_stan_file
+    raise ValueError(
+ValueError: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov.stan
+Semantic error in 'model_shift_mean_cov.stan', line 110, column 4 to column 12:
+   -------------------------------------------------
+   108:  
+   109:      to_vector(A_latent) ~ normal(0, 2);
+   110:      c_latent ~ normal(0, 5);
+             ^
+   111:  
+   112:      sigma_bk ~ cauchy(0, 5);
+   -------------------------------------------------
+
+Identifier "c_latent" not in scope. Did you mean "A_latent"?
+make: *** [make/program:66: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov.hpp] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov']
+	exited with code '2' No such file or directory
+

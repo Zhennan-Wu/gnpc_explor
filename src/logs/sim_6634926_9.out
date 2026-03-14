@@ -1,0 +1,40 @@
+Task ID: 9
+Running Scenario: S3 with Model: model_shift_mean_paper.stan using 10 CPUs/Chains
+CmdStan install directory: /N/u/zwu1/BigRed200/.cmdstan
+Installing CmdStan version: 2.38.0
+Downloading CmdStan version 2.38.0
+Download successful, file: /tmp/tmp0uj0si0e
+Extracting distribution
+Unpacked download as cmdstan-2.38.0
+Building version cmdstan-2.38.0, may take several minutes, depending on your system.
+/usr/bin/g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -fvisibility=hidden src/cmdstan/stansummary.cpp -o bin/cmdstan/stansummary.o
+/usr/bin/g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      bin/cmdstan/stansummary.o stan/lib/stan_math/lib/tbb/libtbb.so.2       -ltbb   -o bin/stansummary
+/usr/bin/g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -fvisibility=hidden src/cmdstan/print.cpp -o bin/cmdstan/print.o
+In file included from stan/lib/stan_math/stan/math/prim/prob.hpp:137:0,
+                 from stan/lib/stan_math/stan/math/prim.hpp:18,
+                 from stan/src/stan/io/stan_csv_reader.hpp:5,
+                 from stan/src/stan/mcmc/chainset.hpp:4,
+                 from src/cmdstan/stansummary_helper.hpp:4,
+                 from src/cmdstan/print.cpp:2:
+stan/lib/stan_math/stan/math/prim/prob/inv_gamma_cdf_log.hpp: In function ‘stan::return_type_t<T_x, T_sigma, T_l> stan::math::inv_gamma_cdf_log(const T_y&, const T_shape&, const T_scale&)’:
+stan/lib/stan_math/stan/math/prim/prob/inv_gamma_cdf_log.hpp:16:10: error: ‘inv_gamma_lcdf’ was not declared in this scope
+   return inv_gamma_lcdf<T_y, T_shape, T_scale>(y, alpha, beta);
+          ^~~~~~~~~~~~~~
+stan/lib/stan_math/stan/math/prim/prob/inv_gamma_cdf_log.hpp:16:10: note: suggested alternative: ‘inv_gamma_cdf’
+   return inv_gamma_lcdf<T_y, T_shape, T_scale>(y, alpha, beta);
+          ^~~~~~~~~~~~~~
+          inv_gamma_cdf
+stan/lib/stan_math/stan/math/prim/prob/inv_gamma_cdf_log.hpp:16:28: error: expected primary-expression before ‘,’ token
+   return inv_gamma_lcdf<T_y, T_shape, T_scale>(y, alpha, beta);
+                            ^
+stan/lib/stan_math/stan/math/prim/prob/inv_gamma_cdf_log.hpp:16:37: error: expected primary-expression before ‘,’ token
+   return inv_gamma_lcdf<T_y, T_shape, T_scale>(y, alpha, beta);
+                                     ^
+stan/lib/stan_math/stan/math/prim/prob/inv_gamma_cdf_log.hpp:16:46: error: expected primary-expression before ‘>’ token
+   return inv_gamma_lcdf<T_y, T_shape, T_scale>(y, alpha, beta);
+                                              ^
+At global scope:
+cc1plus: warning: unrecognized command line option ‘-Wno-class-memaccess’
+make: *** [make/command:11: bin/cmdstan/print.o] Error 1
+Starting run: Scenario = S3, Model = model_shift_mean_paper.stan, Chains = 10
+Compiling and running model_shift_mean_paper.stan against Scenario S3 data...

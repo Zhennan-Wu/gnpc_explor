@@ -252,7 +252,13 @@ def evaluate_model_performance(stan_file_path, dataset, scenario='S1', iter_samp
             lower_ci = summary_df.loc[param_name, '2.5%']
             upper_ci = summary_df.loc[param_name, '97.5%']
             rhat = summary_df.loc[param_name, 'R_hat']
-            ess = summary_df.loc[param_name, 'N_Eff']
+            # Safely grab ESS depending on the CmdStan version
+            if 'ESS_bulk' in summary_df.columns:
+                ess = summary_df.loc[param_name, 'ESS_bulk']
+            elif 'N_Eff' in summary_df.columns:
+                ess = summary_df.loc[param_name, 'N_Eff']
+            else:
+                ess = np.nan
             
             rbias = ((est_mean - true_val) / true_val) if true_val != 0 else np.nan
             mse = (est_mean - true_val) ** 2
@@ -316,9 +322,14 @@ def evaluate_model_performance(stan_file_path, dataset, scenario='S1', iter_samp
 # ==========================================
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run LOU Simulation")
-    parser.add_argument("--scenario", type=str, required=True, help="Data generation scenario (e.g., S1, S2)")
+    parser.add_argument("--scenario", type=str, required=True, help="Data generation scenario")
     parser.add_argument("--model", type=str, required=True, help="Path to the Stan model file")
-    parser.add_argument("--chains", type=int, required=True, help="Number of chains for the Stan model")
+    parser.add_argument("--chains", type=int, default=3, help="Number of MCMC chains")
+    
+    # --- ADD THESE TWO LINES ---
+    parser.add_argument("--warmup", type=int, default=1000, help="Warmup iterations")
+    parser.add_argument("--sampling", type=int, default=1000, help="Sampling iterations")
+    # ---------------------------
     
     args = parser.parse_args()
     
@@ -328,16 +339,14 @@ if __name__ == "__main__":
     
     print(f"Starting run: Scenario = {scenario_to_run}, Model = {stan_file}, Chains = {num_chains}")
     
-    # Generate data based on the passed scenario
     dataset = generate_lou_simulation_data(N=600, scenario=scenario_to_run)
     
-    # Run the model
     metrics_df, agg_summary, fit_object = evaluate_model_performance(
         stan_file_path=stan_file, 
         dataset=dataset, 
         scenario=scenario_to_run,
-        iter_sampling=500, 
-        iter_warmup=500, 
+        iter_warmup=args.warmup,       # <-- Pass the argument here
+        iter_sampling=args.sampling,   # <-- Pass the argument here
         chains=num_chains
     )
     

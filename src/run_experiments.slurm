@@ -25,6 +25,9 @@ conda activate ou
 export CXX=g++
 export CC=gcc
 
+# 3. Force a clean reinstall of CmdStan
+install_cmdstan --overwrite
+
 # Slurm automatically populates $SLURM_CPUS_PER_TASK based on the header above.
 # We include a fallback of 10 just in case you ever run this script locally outside of Slurm.
 CHAINS=${SLURM_CPUS_PER_TASK:-10}

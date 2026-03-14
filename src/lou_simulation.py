@@ -8,10 +8,10 @@ from scipy.special import expit
 import os
 import argparse
 
-os.environ["CC"] = "/usr/bin/gcc"
-os.environ["CXX"] = "/usr/bin/g++"
+# os.environ["CC"] = "/usr/bin/gcc"
+# os.environ["CXX"] = "/usr/bin/g++"
 
-cmdstanpy.install_cmdstan(verbose=True)
+# cmdstanpy.install_cmdstan(verbose=True)
 
 # ==========================================
 # 1. Data Generation

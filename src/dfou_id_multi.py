@@ -143,9 +143,12 @@ class Universal_DFOULS(nn.Module):
             self.Z.data[mask] = torch.log(torch.abs(Lambda_tril[mask]) + 1e-4)
             self.B.data.fill_(0.0); self.C_int.data.fill_(0.0); self.d_bias.data.fill_(0.0)
 
-    def fit_em_multistart(self, subjects_data, num_em_epochs=40, m_step_iters=20, lr=0.01, n_starts=3, burn_in_epochs=10):
+    def fit_em_multistart(self, subjects_data, num_em_epochs=40, m_step_iters=20, lr=0.01, n_starts=3, burn_in_epochs=10, verbose=False):
         best_loss = float('inf')
         best_state_dict = None
+        
+        if verbose:
+            print(f"\n  --- Starting EM Optimization ({n_starts} multi-starts) ---")
         
         for start in range(n_starts):
             with torch.no_grad():
@@ -182,15 +185,27 @@ class Universal_DFOULS(nn.Module):
                     epoch_loss += loss.item()
                 start_loss = epoch_loss / m_step_iters
                 
+                # Progress output for burn-in
+                if verbose and (epoch + 1) % max(1, burn_in_epochs // 2) == 0:
+                    print(f"    [Start {start+1}/{n_starts}] Burn-in Epoch {epoch+1}/{burn_in_epochs} | Loss: {start_loss:.4f}")
+                
             if start_loss < best_loss:
                 best_loss = start_loss
                 best_state_dict = {k: v.clone() for k, v in self.state_dict().items()}
+                if verbose:
+                    print(f"    --> New best start found! Loss: {best_loss:.4f}")
                 
         self.load_state_dict(best_state_dict)
         optimizer = optim.Adam(self.parameters(), lr=lr)
         
+        if verbose:
+            print(f"  --- Proceeding with Best Start (Main EM Phase) ---")
+            
         final_loss = best_loss
-        for epoch in range(num_em_epochs - burn_in_epochs):
+        loss_history = [final_loss]
+        main_epochs = num_em_epochs - burn_in_epochs
+        
+        for epoch in range(main_epochs):
             Theta, Lambda = self.get_theta(), self.tril_mask * torch.exp(self.Z)
             smoothed_stats = []
             with torch.no_grad():
@@ -207,9 +222,17 @@ class Universal_DFOULS(nn.Module):
                 optimizer.step()
                 epoch_loss += loss.item()
             final_loss = epoch_loss / m_step_iters
+            loss_history.append(final_loss)
+            
+            # Progress output for main EM phase
+            if verbose and (epoch + 1) % max(1, main_epochs // 5) == 0:
+                print(f"    [Main EM] Epoch {epoch+1}/{main_epochs} | Loss: {final_loss:.4f}")
                 
-        # Return both the smoothed stats and the exact final Negative Log-Posterior value
-        return smoothed_stats, final_loss
+        if verbose:
+            print(f"  --- EM Complete. Final Loss: {final_loss:.4f} ---\n")
+                
+        # Return smoothed stats, final loss, AND the loss history for plotting
+        return smoothed_stats, final_loss, loss_history
 
 # ---------------------------------------------------------
 # 2. Disease Progression Data Simulation
@@ -274,7 +297,8 @@ def run_misspecification_test(n_runs=3):
         {"name": "3. Ultra High-Dim",      "N": 100, "D": 1000, "K": 5, "C": 2},
         # Restored Scenarios:
         {"name": "4. Complex Pathways",    "N": 100, "D": 50,   "K": 10,"C": 3},
-        {"name": "5. Large Cohort",        "N": 500, "D": 50,   "K": 5, "C": 2}
+        {"name": "5. Large Cohort",        "N": 500, "D": 50,   "K": 5, "C": 2},
+        {"name": "6. Ultimate High-Dim",   "N": 500, "D": 10000,   "K": 20, "C": 2}
     ]
     
     data_modes = ["diagonal", "dense"]
@@ -305,7 +329,7 @@ def run_misspecification_test(n_runs=3):
                 # Metric Accumulators
                 l_corrs, l_mses = [], []
                 f_corrs, f_mses = [], []
-                th_corrs, th_mses, th_off_mses = [], [], []
+                th_corrs, th_mses, th_off_mses = [], []
                 b_corrs, b_mses = [], []
                 c_corrs, c_mses = [], []
                 final_losses, run_times = [], []
@@ -314,8 +338,16 @@ def run_misspecification_test(n_runs=3):
                     start_time = time.time()
                     
                     model = Universal_DFOULS(obs_dim=s["D"], latent_dim=s["K"], covar_dim=s["C"], theta_mode=m_mode).to(device)
-                    smoothed_stats, final_loss = model.fit_em_multistart(
-                        subjects_data, num_em_epochs=40, m_step_iters=20, lr=0.01, n_starts=3, burn_in_epochs=10
+                    
+                    # Pass verbose=(run_idx == 0) to only print progress on the first run of the batch
+                    smoothed_stats, final_loss, loss_history = model.fit_em_multistart(
+                        subjects_data, 
+                        num_em_epochs=100, 
+                        m_step_iters=20, 
+                        lr=0.01, 
+                        n_starts=3, 
+                        burn_in_epochs=10,
+                        verbose=(run_idx == 0) 
                     )
                     
                     with torch.no_grad():
@@ -375,7 +407,7 @@ def run_misspecification_test(n_runs=3):
                     final_losses.append(final_loss)
                     run_times.append(elapsed)
                     
-                    # Archive exact state dictionaries
+                    # Archive exact state dictionaries AND loss history
                     run_id = f"{s['name']}_Data-{d_mode}_Model-{m_mode}_Run-{run_idx}"
                     parameter_archive[run_id] = {
                         'true_params': {
@@ -390,7 +422,8 @@ def run_misspecification_test(n_runs=3):
                             'B': model.B.detach().cpu().numpy(),
                             'C': model.C_int.detach().cpu().numpy()
                         },
-                        'metrics': {'Final_Loss': final_loss, 'L_mse': l_mse, 'F_mse': f_mse, 'Theta_mse': th_mse}
+                        'metrics': {'Final_Loss': final_loss, 'L_mse': l_mse, 'F_mse': f_mse, 'Theta_mse': th_mse},
+                        'loss_history': loss_history
                     }
                 
                 # Consolidate Console Print (Keeping it clean for terminal)

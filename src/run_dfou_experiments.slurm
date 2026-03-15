@@ -16,13 +16,16 @@
 # --- CONDA ACTIVATION ---
 module load conda 
 module load gcc
+module load cuda
 
 # This hooks Conda into the non-interactive Slurm shell
 eval "$(conda shell.bash hook)"
 conda activate dfou
 # ------------------------
 
-## 2. Define Experiment Files
+# Move to submission directory
+cd $SLURM_SUBMIT_DIR
+
 FILES=(
     "dfou_id_multi.py"
     "dfou_id_fit.py"
@@ -30,12 +33,11 @@ FILES=(
     "dfou_het_fit.py"
 )
 
-# Get the specific file for this array task
-CURRENT_FILE=${FILES[$SLURM_ARRAY_TASK_ID]}
+CURRENT_FILE=${FILES[$SLURM_ARRAY_TASK_ID-1]}
 
-## 3. Execute
 echo "Starting Experiment: $CURRENT_FILE"
 echo "Running on Host: $HOSTNAME"
+echo "Working directory: $(pwd)"
 
 python "$CURRENT_FILE"
 

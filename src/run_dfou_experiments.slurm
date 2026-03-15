@@ -2,16 +2,17 @@
 #SBATCH --job-name=DFOULS_Exp
 #SBATCH --output=logs/dfou_%a.out
 #SBATCH --error=logs/dfou_%a.err
-#SBATCH -p general
+#SBATCH -p gpu                          # Switched to GPU partition (verify exact name for IU)
+#SBATCH --gres=gpu:1                    # Request 1 GPU
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=zwu1@iu.edu
-#SBATCH --time=4-00:00:00               
+#SBATCH --time=2-00:00:00               # Dropped to 2 days (GPU will make this fast)
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=10             
-#SBATCH --mem=128G                      
+#SBATCH --cpus-per-task=6               # Dropped to 4 cores
+#SBATCH --mem=64G                       # Dropped to 32GB RAM for faster queue times
 #SBATCH --array=1-4       
-#SBATCH -A r00939   
+#SBATCH -A r00939
 
 # --- CONDA ACTIVATION ---
 module load conda 

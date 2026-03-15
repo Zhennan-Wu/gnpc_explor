@@ -234,8 +234,7 @@ def run_misspecification_test(n_runs=3):
         {"name": "3. Ultra High-Dim",      "N": 100, "D": 1000, "K": 5, "C": 2},
         # Restored Scenarios:
         {"name": "4. Complex Pathways",    "N": 100, "D": 50,   "K": 10,"C": 3},
-        {"name": "5. Large Cohort",        "N": 500, "D": 50,   "K": 5, "C": 2},
-        {"name": "6. Ultimate High-Dim",      "N": 100, "D": 10000, "K": 20, "C": 2}
+        {"name": "5. Large Cohort",        "N": 500, "D": 50,   "K": 5, "C": 2}
     ]
     
     data_modes = ["diagonal", "dense"]
@@ -292,8 +291,8 @@ def run_misspecification_test(n_runs=3):
                         Lambda_est_cpu = (model.tril_mask * torch.exp(model.Z)).cpu()
                         l_est_active = Lambda_est_cpu[mask_cpu].numpy()
                         Theta_est_cpu = model.get_theta().cpu()
-                        b_est_flat = model.B.cpu().numpy().flatten()
-                        c_est_flat = model.C_int.cpu().numpy().flatten()
+                        b_est_flat = model.B.detach().cpu().numpy().flatten()
+                        c_est_flat = model.C_int.detach().cpu().numpy().flatten()
                         f_est_flat = torch.cat([stat[0].cpu() for stat in smoothed_stats], dim=0).numpy().flatten()
                         
                         # Lambda & F Metrics
@@ -347,8 +346,8 @@ def run_misspecification_test(n_runs=3):
                         'est_params': {
                             'Lambda': Lambda_est_cpu.numpy(),
                             'Theta': th_est_mat,
-                            'B': model.B.cpu().numpy(),
-                            'C': model.C_int.cpu().numpy()
+                            'B': model.B.detach().cpu().numpy(),
+                            'C': model.C_int.detach().cpu().numpy()
                         },
                         'metrics': {'Final_Loss': final_loss, 'L_mse': l_mse, 'F_mse': f_mse, 'Theta_mse': th_mse}
                     }

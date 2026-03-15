@@ -107,7 +107,6 @@ model {
     to_vector(beta) ~ cauchy(0, 5);
 
     to_vector(A_latent) ~ normal(0, 2);
-    c_latent ~ normal(0, 5);
 
     sigma_bk ~ cauchy(0, 5);
     to_vector(b_raw) ~ normal(0, 1);

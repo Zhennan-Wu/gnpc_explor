@@ -1,0 +1,13 @@
+CmdStan install directory: /N/u/zwu1/BigRed200/.cmdstan
+Installing CmdStan version: 2.38.0
+Downloading CmdStan version 2.38.0
+Download successful, file: /tmp/tmpn6_q2rxq
+Extracting distribution
+Unpacked download as cmdstan-2.38.0
+Building version cmdstan-2.38.0, may take several minutes, depending on your system.
+Installed cmdstan-2.38.0
+Test model compilation
+Task ID: 5
+Running Scenario: S4 with Model: model_shift_mean_cov.stan using 10 CPUs/Chains
+Starting run: Scenario = S4, Model = model_shift_mean_cov.stan, Chains = 10
+Compiling and running model_shift_mean_cov.stan against Scenario S4 data...

@@ -1,0 +1,4 @@
+Task ID: 1
+Running Scenario: S2 with Model: model_shift_mean_cov.stan using 10 CPUs/Chains
+Starting run: Scenario = S2, Model = model_shift_mean_cov.stan, Chains = 10
+Compiling and running model_shift_mean_cov.stan against Scenario S2 data...

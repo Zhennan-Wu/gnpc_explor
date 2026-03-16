@@ -1,0 +1,10 @@
+Task ID: 3
+Running Scenario: S3 with Model: model_fix_mean.stan using 10 CPUs/Chains
+Starting run: Scenario = S3, Model = model_fix_mean.stan, Chains = 10
+Compiling and running model_fix_mean.stan against Scenario S3 data...
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+Calculating performance metrics for overlapping parameters...
+Saving detailed metrics to: results_S3_model_fix_mean.csv
+Saving aggregated summary to: summary_S3_model_fix_mean.json
+
+Run Complete for model_fix_mean.stan on S3 Data.

@@ -1,0 +1,4 @@
+Task ID: 6
+Running Scenario: S4 with Model: model_shift_mean_full_lap.stan using 10 CPUs/Chains
+Starting run: Scenario = S4, Model = model_shift_mean_full_lap.stan, Chains = 10
+Compiling and running model_shift_mean_full_lap.stan against Scenario S4 data...

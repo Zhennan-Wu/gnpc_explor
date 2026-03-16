@@ -1,0 +1,10 @@
+Task ID: 4
+Running Scenario: S3 with Model: model_fix_mean_lap.stan using 10 CPUs/Chains
+Starting run: Scenario = S3, Model = model_fix_mean_lap.stan, Chains = 10
+Compiling and running model_fix_mean_lap.stan against Scenario S3 data...
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+Calculating performance metrics for overlapping parameters...
+Saving detailed metrics to: results_S3_model_fix_mean_lap.csv
+Saving aggregated summary to: summary_S3_model_fix_mean_lap.json
+
+Run Complete for model_fix_mean_lap.stan on S3 Data.

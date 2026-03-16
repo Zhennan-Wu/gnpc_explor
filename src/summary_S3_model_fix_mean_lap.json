@@ -1,0 +1,16 @@
+{
+    "Average_MSE": 4.636412965297192,
+    "Average_Absolute_Rbias": 1.424659070934528,
+    "Global_Coverage_Prob": 0.2916666666666667,
+    "Max_Rhat": 1.01556,
+    "Min_ESS": 614.439,
+    "Corr_Gamma": 0.9942702995613092,
+    "Corr_Beta": -0.6257320600229339,
+    "Corr_Lambda": 0.7203235558445259,
+    "Corr_Theta": 0.7198553062030195,
+    "Corr_Sigma_bk": 0.8119679721160316,
+    "Corr_A_latent": null,
+    "Corr_B_latent": null,
+    "Corr_c_latent": null,
+    "Corr_Global": 0.7824070574730512
+}

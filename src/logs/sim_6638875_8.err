@@ -1,0 +1,1364 @@
+conda version 25.3.0 python 3.12.7 unloaded.
+conda version 25.3.0 python 3.12.7 loaded.
+15:53:25 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_paper_lap.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_paper_lap
+15:54:33 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_paper_lap
+15:54:33 - cmdstanpy - INFO - CmdStan start processing
+chain 1:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)]
+chain 2:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A
+
+chain 3:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A
+
+
+chain 4:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A
+
+
+
+chain 5:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A[A
+
+
+
+
+chain 6:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A[A[A
+
+
+
+
+
+chain 7:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A[A[A[A[A[A[A
+
+chain 3:   0%|[33m          [0m| 1/2000 [00:00<10:21,  3.22it/s, (Warmup)][A[Achain 1:   0%|[33m          [0m| 1/2000 [00:00<10:48,  3.08it/s, (Warmup)]
+
+
+
+
+chain 6:   0%|[33m          [0m| 1/2000 [00:00<10:59,  3.03it/s, (Warmup)][A[A[A[A[A
+
+
+
+chain 5:   0%|[33m          [0m| 1/2000 [00:00<11:13,  2.97it/s, (Warmup)][A[A[A[A
+
+
+
+
+
+
+
+chain 9:   0%|[33m          [0m| 1/2000 [00:00<12:23,  2.69it/s, (Warmup)][A[A[A[A[A[A[A[A
+chain 2:   0%|[33m          [0m| 1/2000 [00:00<12:30,  2.66it/s, (Warmup)][A
+
+
+chain 4:   0%|[33m          [0m| 1/2000 [00:00<12:35,  2.65it/s, (Warmup)][A[A[A
+
+
+
+
+
+
+
+
+chain 10:   0%|[33m          [0m| 1/2000 [00:00<15:38,  2.13it/s, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:   0%|[33m          [0m| 1/2000 [00:00<19:00,  1.75it/s, (Warmup)][A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:   0%|[33m          [0m| 1/2000 [00:00<20:01,  1.66it/s, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:   5%|[33m▌         [0m| 100/2000 [08:16<2:37:40,  4.98s/it, (Warmup)][A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:   5%|[33m▌         [0m| 100/2000 [26:02<8:16:10, 15.67s/it, (Warmup)][A[A[A[A[A[A[A[Achain 1:   5%|[33m▌         [0m| 100/2000 [33:05<10:30:30, 19.91s/it, (Warmup)]
+chain 2:   5%|[33m▌         [0m| 100/2000 [33:34<10:39:57, 20.21s/it, (Warmup)][A
+
+
+
+chain 5:   5%|[33m▌         [0m| 100/2000 [33:51<10:45:19, 20.38s/it, (Warmup)][A[A[A[A
+
+
+
+
+chain 6:   5%|[33m▌         [0m| 100/2000 [35:14<11:11:32, 21.21s/it, (Warmup)][A[A[A[A[A
+
+chain 3:   5%|[33m▌         [0m| 100/2000 [38:03<12:05:15, 22.90s/it, (Warmup)][A[A
+
+
+
+
+
+
+
+chain 9:  10%|[33m█         [0m| 200/2000 [42:37<6:09:08, 12.30s/it, (Warmup)][A[A[A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:   5%|[33m▌         [0m| 100/2000 [45:34<14:28:26, 27.42s/it, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:   5%|[33m▌         [0m| 100/2000 [48:43<15:28:32, 29.32s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+chain 2:  10%|[33m█         [0m| 200/2000 [49:34<6:58:40, 13.96s/it, (Warmup)] [A
+
+
+chain 4:   5%|[33m▌         [0m| 100/2000 [51:24<16:19:42, 30.94s/it, (Warmup)][A[A[Achain 1:  10%|[33m█         [0m| 200/2000 [51:56<7:25:24, 14.85s/it, (Warmup)] 
+
+
+
+
+chain 6:  10%|[33m█         [0m| 200/2000 [54:03<7:40:56, 15.36s/it, (Warmup)] [A[A[A[A[A
+
+
+
+chain 5:  10%|[33m█         [0m| 200/2000 [56:00<8:06:01, 16.20s/it, (Warmup)] [A[A[A[A
+chain 2:  15%|[33m█▌        [0m| 300/2000 [1:07:03<5:50:34, 12.37s/it, (Warmup)][A
+
+
+
+
+
+
+
+chain 9:  15%|[33m█▌        [0m| 300/2000 [1:07:13<6:20:19, 13.42s/it, (Warmup)][A[A[A[A[A[A[A[Achain 1:  15%|[33m█▌        [0m| 300/2000 [1:08:44<5:58:57, 12.67s/it, (Warmup)]
+
+
+
+
+
+
+chain 8:  10%|[33m█         [0m| 200/2000 [1:09:29<9:51:40, 19.72s/it, (Warmup)][A[A[A[A[A[A[A
+
+chain 3:  10%|[33m█         [0m| 200/2000 [1:11:12<10:33:54, 21.13s/it, (Warmup)][A[A
+
+
+
+chain 5:  15%|[33m█▌        [0m| 300/2000 [1:11:45<6:11:39, 13.12s/it, (Warmup)][A[A[A[A
+
+
+
+
+chain 6:  15%|[33m█▌        [0m| 300/2000 [1:15:03<6:39:35, 14.10s/it, (Warmup)][A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  10%|[33m█         [0m| 200/2000 [1:15:18<10:43:19, 21.44s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  20%|[33m██        [0m| 400/2000 [1:18:37<4:48:37, 10.82s/it, (Warmup)][A[A[A[A[A[A[A[A
+chain 2:  20%|[33m██        [0m| 400/2000 [1:22:45<4:58:54, 11.21s/it, (Warmup)][A
+
+
+chain 4:  10%|[33m█         [0m| 200/2000 [1:25:28<12:22:40, 24.76s/it, (Warmup)][A[A[A
+
+
+
+chain 5:  20%|[33m██        [0m| 400/2000 [1:28:21<5:16:32, 11.87s/it, (Warmup)][A[A[A[A
+
+
+
+
+chain 6:  20%|[33m██        [0m| 400/2000 [1:28:54<5:15:03, 11.81s/it, (Warmup)][A[A[A[A[Achain 1:  20%|[33m██        [0m| 400/2000 [1:30:43<5:43:21, 12.88s/it, (Warmup)]
+
+
+
+
+
+
+
+chain 9:  25%|[33m██▌       [0m| 500/2000 [1:31:19<4:01:40,  9.67s/it, (Warmup)][A[A[A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  15%|[33m█▌        [0m| 300/2000 [1:36:59<8:37:06, 18.25s/it, (Warmup)][A[A[A[A[A[A[A
+
+chain 3:  15%|[33m█▌        [0m| 300/2000 [1:38:12<8:54:49, 18.88s/it, (Warmup)] [A[A
+
+
+
+
+
+
+
+
+chain 10:  15%|[33m█▌        [0m| 300/2000 [1:40:20<8:44:29, 18.51s/it, (Warmup)] [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:  10%|[33m█         [0m| 200/2000 [1:45:08<18:08:17, 36.28s/it, (Warmup)][A[A[A[A[A[A
+chain 2:  25%|[33m██▌       [0m| 500/2000 [1:45:42<5:03:17, 12.13s/it, (Warmup)][A
+
+
+
+
+
+
+
+chain 9:  30%|[33m███       [0m| 600/2000 [1:47:15<3:44:47,  9.63s/it, (Warmup)][A[A[A[A[A[A[A[A
+
+
+
+chain 5:  25%|[33m██▌       [0m| 500/2000 [1:47:39<4:54:06, 11.76s/it, (Warmup)][A[A[A[Achain 1:  25%|[33m██▌       [0m| 500/2000 [1:49:02<5:04:50, 12.19s/it, (Warmup)]
+
+chain 3:  20%|[33m██        [0m| 400/2000 [1:51:35<6:29:07, 14.59s/it, (Warmup)][A[A
+
+
+
+
+chain 6:  25%|[33m██▌       [0m| 500/2000 [1:51:45<5:12:30, 12.50s/it, (Warmup)][A[A[A[A[A
+
+
+chain 4:  15%|[33m█▌        [0m| 300/2000 [1:57:37<10:30:40, 22.26s/it, (Warmup)][A[A[A
+
+
+
+
+
+
+
+chain 9:  35%|[33m███▌      [0m| 700/2000 [2:00:38<3:17:19,  9.11s/it, (Warmup)][A[A[A[A[A[A[A[A
+chain 2:  30%|[33m███       [0m| 600/2000 [2:02:42<4:27:42, 11.47s/it, (Warmup)][A
+
+
+
+
+
+
+chain 8:  20%|[33m██        [0m| 400/2000 [2:04:27<7:48:05, 17.55s/it, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  20%|[33m██        [0m| 400/2000 [2:05:53<7:40:07, 17.25s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+
+chain 5:  30%|[33m███       [0m| 600/2000 [2:07:03<4:33:33, 11.72s/it, (Warmup)][A[A[A[A
+
+chain 3:  25%|[33m██▌       [0m| 500/2000 [2:08:22<5:24:04, 12.96s/it, (Warmup)][A[Achain 1:  30%|[33m███       [0m| 600/2000 [2:09:33<4:45:28, 12.23s/it, (Warmup)]
+
+
+
+
+chain 6:  30%|[33m███       [0m| 600/2000 [2:13:40<4:56:46, 12.72s/it, (Warmup)][A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  40%|[33m████      [0m| 800/2000 [2:16:12<3:03:39,  9.18s/it, (Warmup)][A[A[A[A[A[A[A[A
+
+
+chain 4:  20%|[33m██        [0m| 400/2000 [2:19:36<8:18:02, 18.68s/it, (Warmup)] [A[A[A
+chain 2:  35%|[33m███▌      [0m| 700/2000 [2:20:07<4:01:21, 11.14s/it, (Warmup)][A
+
+
+
+chain 5:  35%|[33m███▌      [0m| 700/2000 [2:24:22<4:04:34, 11.29s/it, (Warmup)][A[A[A[A
+
+chain 3:  30%|[33m███       [0m| 600/2000 [2:25:20<4:40:22, 12.02s/it, (Warmup)][A[A
+
+
+
+
+
+
+
+chain 9:  45%|[33m████▌     [0m| 900/2000 [2:29:53<2:42:45,  8.88s/it, (Warmup)][A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  25%|[33m██▌       [0m| 500/2000 [2:31:34<6:54:42, 16.59s/it, (Warmup)][A[A[A[A[A[A[A[A[Achain 1:  35%|[33m███▌      [0m| 700/2000 [2:32:21<4:35:19, 12.71s/it, (Warmup)]
+
+
+
+
+chain 6:  35%|[33m███▌      [0m| 700/2000 [2:36:53<4:44:08, 13.11s/it, (Warmup)][A[A[A[A[A
+chain 2:  40%|[33m████      [0m| 800/2000 [2:38:07<3:40:36, 11.03s/it, (Warmup)][A
+
+
+
+chain 5:  40%|[33m████      [0m| 800/2000 [2:38:13<3:26:47, 10.34s/it, (Warmup)][A[A[A[A
+
+chain 3:  35%|[33m███▌      [0m| 700/2000 [2:40:07<3:58:01, 10.99s/it, (Warmup)][A[A
+
+
+chain 4:  25%|[33m██▌       [0m| 500/2000 [2:46:14<7:22:33, 17.70s/it, (Warmup)][A[A[A
+
+
+
+
+
+
+chain 8:  25%|[33m██▌       [0m| 500/2000 [2:48:19<8:37:49, 20.71s/it, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  50%|[33m█████     [0m| 1000/2000 [2:49:10<2:41:48,  9.71s/it, (Warmup)][A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  50%|[34m█████     [0m| 1000/2000 [2:49:15<2:41:48,  9.71s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  50%|[34m█████     [0m| 1001/2000 [2:49:15<2:41:19,  9.69s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+chain 3:  40%|[33m████      [0m| 800/2000 [2:49:36<3:05:59,  9.30s/it, (Warmup)][A[A
+chain 2:  45%|[33m████▌     [0m| 900/2000 [2:49:53<2:59:28,  9.79s/it, (Warmup)][Achain 1:  40%|[33m████      [0m| 800/2000 [2:53:40<4:14:41, 12.73s/it, (Warmup)]
+
+
+
+
+
+
+
+
+chain 10:  30%|[33m███       [0m| 600/2000 [2:54:19<6:03:45, 15.59s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+
+
+chain 6:  40%|[33m████      [0m| 800/2000 [2:55:54<4:11:26, 12.57s/it, (Warmup)][A[A[A[A[A
+
+
+
+chain 5:  45%|[33m████▌     [0m| 900/2000 [2:57:32<3:16:44, 10.73s/it, (Warmup)][A[A[A[A
+
+
+
+
+
+
+
+chain 9:  55%|[34m█████▌    [0m| 1100/2000 [2:58:05<2:00:23,  8.03s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+chain 3:  45%|[33m████▌     [0m| 900/2000 [2:58:43<2:28:32,  8.10s/it, (Warmup)][A[A
+
+
+
+
+
+chain 7:  15%|[33m█▌        [0m| 300/2000 [2:59:18<18:54:17, 40.03s/it, (Warmup)][A[A[A[A[A[Achain 1:  45%|[33m████▌     [0m| 900/2000 [3:02:47<3:11:49, 10.46s/it, (Warmup)]
+chain 2:  50%|[33m█████     [0m| 1000/2000 [3:05:28<2:40:54,  9.65s/it, (Warmup)][A
+chain 2:  50%|[34m█████     [0m| 1000/2000 [3:05:34<2:40:54,  9.65s/it, (Sampling)][A
+chain 2:  50%|[34m█████     [0m| 1001/2000 [3:05:34<2:40:28,  9.64s/it, (Sampling)][A
+
+
+
+
+
+
+
+chain 9:  60%|[34m██████    [0m| 1200/2000 [3:07:07<1:34:41,  7.10s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+
+chain 4:  30%|[33m███       [0m| 600/2000 [3:11:03<6:30:43, 16.75s/it, (Warmup)][A[A[A
+
+
+
+
+
+
+
+
+chain 10:  35%|[33m███▌      [0m| 700/2000 [3:12:34<5:04:53, 14.07s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+
+chain 5:  50%|[33m█████     [0m| 1000/2000 [3:12:59<2:51:18, 10.28s/it, (Warmup)][A[A[A[A
+
+
+
+chain 5:  50%|[34m█████     [0m| 1000/2000 [3:13:04<2:51:18, 10.28s/it, (Sampling)][A[A[A[A
+
+
+
+chain 5:  50%|[34m█████     [0m| 1001/2000 [3:13:04<2:50:46, 10.26s/it, (Sampling)][A[A[A[A
+chain 2:  55%|[34m█████▌    [0m| 1100/2000 [3:14:33<2:00:28,  8.03s/it, (Sampling)][A
+
+
+
+
+chain 6:  45%|[33m████▌     [0m| 900/2000 [3:15:11<3:44:46, 12.26s/it, (Warmup)][A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  65%|[34m██████▌   [0m| 1300/2000 [3:16:11<1:16:17,  6.54s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+chain 3:  50%|[33m█████     [0m| 1000/2000 [3:16:53<2:29:26,  8.97s/it, (Warmup)][A[A
+
+chain 3:  50%|[34m█████     [0m| 1000/2000 [3:16:58<2:29:26,  8.97s/it, (Sampling)][A[A
+
+chain 3:  50%|[34m█████     [0m| 1001/2000 [3:16:58<2:29:01,  8.95s/it, (Sampling)][A[A
+
+
+
+
+
+
+chain 8:  30%|[33m███       [0m| 600/2000 [3:17:17<7:36:51, 19.58s/it, (Warmup)][A[A[A[A[A[A[Achain 1:  50%|[33m█████     [0m| 1000/2000 [3:18:21<2:48:35, 10.12s/it, (Warmup)]chain 1:  50%|[34m█████     [0m| 1000/2000 [3:18:42<2:48:35, 10.12s/it, (Sampling)]chain 1:  50%|[34m█████     [0m| 1001/2000 [3:18:42<2:49:13, 10.16s/it, (Sampling)]
+
+
+
+
+
+chain 7:  20%|[33m██        [0m| 400/2000 [3:19:50<12:55:41, 29.09s/it, (Warmup)][A[A[A[A[A[A
+
+
+
+chain 5:  55%|[34m█████▌    [0m| 1100/2000 [3:22:00<2:06:01,  8.40s/it, (Sampling)][A[A[A[A
+chain 2:  60%|[34m██████    [0m| 1200/2000 [3:23:39<1:34:53,  7.12s/it, (Sampling)][A
+
+
+
+
+
+
+
+chain 9:  70%|[34m███████   [0m| 1400/2000 [3:25:04<1:01:27,  6.15s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+chain 3:  55%|[34m█████▌    [0m| 1100/2000 [3:26:06<1:54:36,  7.64s/it, (Sampling)][A[Achain 1:  55%|[34m█████▌    [0m| 1100/2000 [3:27:31<2:04:45,  8.32s/it, (Sampling)]
+
+
+
+
+chain 6:  50%|[33m█████     [0m| 1000/2000 [3:29:45<3:06:12, 11.17s/it, (Warmup)][A[A[A[A[A
+
+
+
+
+chain 6:  50%|[34m█████     [0m| 1000/2000 [3:29:50<3:06:12, 11.17s/it, (Sampling)][A[A[A[A[A
+
+
+
+
+chain 6:  50%|[34m█████     [0m| 1001/2000 [3:29:50<3:05:35, 11.15s/it, (Sampling)][A[A[A[A[A
+
+
+
+chain 5:  60%|[34m██████    [0m| 1200/2000 [3:30:56<1:37:33,  7.32s/it, (Sampling)][A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  40%|[33m████      [0m| 800/2000 [3:31:00<4:22:15, 13.11s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+chain 2:  65%|[34m██████▌   [0m| 1300/2000 [3:32:34<1:16:03,  6.52s/it, (Sampling)][A
+
+
+
+
+
+
+
+chain 9:  75%|[34m███████▌  [0m| 1500/2000 [3:33:56<49:02,  5.88s/it, (Sampling)]  [A[A[A[A[A[A[A[A
+
+chain 3:  60%|[34m██████    [0m| 1200/2000 [3:35:41<1:32:54,  6.97s/it, (Sampling)][A[Achain 1:  60%|[34m██████    [0m| 1200/2000 [3:36:30<1:37:00,  7.28s/it, (Sampling)]
+
+
+
+
+chain 6:  55%|[34m█████▌    [0m| 1100/2000 [3:38:43<2:14:05,  8.94s/it, (Sampling)][A[A[A[A[A
+
+
+
+chain 5:  65%|[34m██████▌   [0m| 1300/2000 [3:40:01<1:18:00,  6.69s/it, (Sampling)][A[A[A[A
+
+
+chain 4:  35%|[33m███▌      [0m| 700/2000 [3:40:23<6:08:53, 17.03s/it, (Warmup)][A[A[A
+chain 2:  70%|[34m███████   [0m| 1400/2000 [3:41:37<1:01:39,  6.17s/it, (Sampling)][A
+
+
+
+
+
+
+
+chain 9:  80%|[34m████████  [0m| 1600/2000 [3:43:02<38:21,  5.75s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:  25%|[33m██▌       [0m| 500/2000 [3:43:20<9:52:04, 23.68s/it, (Warmup)] [A[A[A[A[A[A
+
+chain 3:  65%|[34m██████▌   [0m| 1300/2000 [3:44:42<1:15:09,  6.44s/it, (Sampling)][A[Achain 1:  65%|[34m██████▌   [0m| 1300/2000 [3:45:31<1:17:32,  6.65s/it, (Sampling)]
+
+
+
+
+
+
+
+
+chain 10:  45%|[33m████▌     [0m| 900/2000 [3:47:34<3:42:13, 12.12s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+
+
+chain 6:  60%|[34m██████    [0m| 1200/2000 [3:47:50<1:42:42,  7.70s/it, (Sampling)][A[A[A[A[A
+
+
+
+chain 5:  70%|[34m███████   [0m| 1400/2000 [3:49:10<1:02:58,  6.30s/it, (Sampling)][A[A[A[A
+chain 2:  75%|[34m███████▌  [0m| 1500/2000 [3:50:35<49:19,  5.92s/it, (Sampling)]  [A
+
+
+
+
+
+
+
+chain 9:  85%|[34m████████▌ [0m| 1700/2000 [3:52:14<28:23,  5.68s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+chain 3:  70%|[34m███████   [0m| 1400/2000 [3:53:52<1:01:21,  6.14s/it, (Sampling)][A[Achain 1:  70%|[34m███████   [0m| 1400/2000 [3:54:29<1:02:19,  6.23s/it, (Sampling)]
+
+
+
+
+
+
+chain 8:  35%|[33m███▌      [0m| 700/2000 [3:55:07<7:26:19, 20.60s/it, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+chain 6:  65%|[34m██████▌   [0m| 1300/2000 [3:56:56<1:21:02,  6.95s/it, (Sampling)][A[A[A[A[A
+
+
+
+chain 5:  75%|[34m███████▌  [0m| 1500/2000 [3:58:12<50:10,  6.02s/it, (Sampling)]  [A[A[A[A
+chain 2:  80%|[34m████████  [0m| 1600/2000 [3:59:46<38:36,  5.79s/it, (Sampling)][A
+
+
+
+
+
+
+
+chain 9:  90%|[34m█████████ [0m| 1800/2000 [4:01:20<18:42,  5.61s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:  30%|[33m███       [0m| 600/2000 [4:01:35<7:31:31, 19.35s/it, (Warmup)][A[A[A[A[A[A
+
+chain 3:  75%|[34m███████▌  [0m| 1500/2000 [4:03:22<49:59,  6.00s/it, (Sampling)]  [A[Achain 1:  75%|[34m███████▌  [0m| 1500/2000 [4:03:43<50:06,  6.01s/it, (Sampling)]  
+
+
+
+
+chain 6:  70%|[34m███████   [0m| 1400/2000 [4:06:05<1:04:44,  6.47s/it, (Sampling)][A[A[A[A[A
+
+
+
+chain 5:  80%|[34m████████  [0m| 1600/2000 [4:07:24<39:05,  5.86s/it, (Sampling)][A[A[A[A
+
+
+chain 4:  40%|[33m████      [0m| 800/2000 [4:07:28<5:35:36, 16.78s/it, (Warmup)][A[A[A
+
+
+
+
+
+
+
+
+chain 10:  50%|[33m█████     [0m| 1000/2000 [4:08:55<3:25:34, 12.33s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+chain 2:  85%|[34m████████▌ [0m| 1700/2000 [4:08:56<28:30,  5.70s/it, (Sampling)][A
+
+
+
+
+
+
+
+
+chain 10:  50%|[34m█████     [0m| 1000/2000 [4:09:03<3:25:34, 12.33s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  50%|[34m█████     [0m| 1001/2000 [4:09:03<3:25:04, 12.32s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  95%|[34m█████████▌[0m| 1900/2000 [4:10:28<09:17,  5.57s/it, (Sampling)][A[A[A[A[A[A[A[Achain 1:  80%|[34m████████  [0m| 1600/2000 [4:12:43<38:49,  5.82s/it, (Sampling)]
+
+chain 3:  80%|[34m████████  [0m| 1600/2000 [4:12:45<39:12,  5.88s/it, (Sampling)][A[A
+
+
+
+
+chain 6:  75%|[34m███████▌  [0m| 1500/2000 [4:15:16<51:23,  6.17s/it, (Sampling)]  [A[A[A[A[A
+
+
+
+chain 5:  85%|[34m████████▌ [0m| 1700/2000 [4:16:36<28:47,  5.76s/it, (Sampling)][A[A[A[A
+chain 2:  90%|[34m█████████ [0m| 1800/2000 [4:18:06<18:47,  5.64s/it, (Sampling)][A
+
+
+
+
+
+
+
+chain 9: 100%|[34m██████████[0m| 2000/2000 [4:19:32<00:00,  5.53s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:  35%|[33m███▌      [0m| 700/2000 [4:20:11<6:01:14, 16.67s/it, (Warmup)][A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  55%|[34m█████▌    [0m| 1100/2000 [4:21:19<2:36:40, 10.44s/it, (Sampling)][A[A[A[A[A[A[A[A[Achain 1:  85%|[34m████████▌ [0m| 1700/2000 [4:21:43<28:27,  5.69s/it, (Sampling)]
+
+chain 3:  85%|[34m████████▌ [0m| 1700/2000 [4:21:47<28:41,  5.74s/it, (Sampling)][A[A
+
+
+
+
+chain 6:  80%|[34m████████  [0m| 1600/2000 [4:24:09<39:22,  5.91s/it, (Sampling)][A[A[A[A[A
+
+
+
+chain 5:  90%|[34m█████████ [0m| 1800/2000 [4:25:44<18:54,  5.67s/it, (Sampling)][A[A[A[A
+
+
+
+
+
+
+chain 8:  40%|[33m████      [0m| 800/2000 [4:26:46<6:41:47, 20.09s/it, (Warmup)][A[A[A[A[A[A[A
+chain 2:  95%|[34m█████████▌[0m| 1900/2000 [4:26:59<09:14,  5.55s/it, (Sampling)][A
+
+
+
+
+
+
+
+
+chain 10:  60%|[34m██████    [0m| 1200/2000 [4:30:03<1:54:33,  8.59s/it, (Sampling)][A[A[A[A[A[A[A[A[Achain 1:  90%|[34m█████████ [0m| 1800/2000 [4:30:45<18:41,  5.61s/it, (Sampling)]
+
+chain 3:  90%|[34m█████████ [0m| 1800/2000 [4:30:55<18:52,  5.66s/it, (Sampling)][A[A
+
+
+
+
+chain 6:  85%|[34m████████▌ [0m| 1700/2000 [4:33:12<28:47,  5.76s/it, (Sampling)][A[A[A[A[A
+
+
+
+chain 5:  95%|[34m█████████▌[0m| 1900/2000 [4:34:38<09:17,  5.57s/it, (Sampling)][A[A[A[A
+chain 2: 100%|[34m██████████[0m| 2000/2000 [4:35:57<00:00,  5.50s/it, (Sampling)][A
+
+
+
+
+
+
+
+
+chain 10:  65%|[34m██████▌   [0m| 1300/2000 [4:38:39<1:26:43,  7.43s/it, (Sampling)][A[A[A[A[A[A[A[A[Achain 1:  95%|[34m█████████▌[0m| 1900/2000 [4:39:33<09:10,  5.51s/it, (Sampling)]
+
+chain 3:  95%|[34m█████████▌[0m| 1900/2000 [4:39:55<09:18,  5.58s/it, (Sampling)][A[A
+
+
+
+
+
+
+chain 8:  45%|[33m████▌     [0m| 900/2000 [4:40:58<5:01:57, 16.47s/it, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+chain 6:  90%|[34m█████████ [0m| 1800/2000 [4:41:44<18:32,  5.56s/it, (Sampling)][A[A[A[A[A
+
+
+
+chain 5: 100%|[34m██████████[0m| 2000/2000 [4:43:04<00:00,  5.42s/it, (Sampling)][A[A[A[A
+
+
+chain 4:  45%|[33m████▌     [0m| 900/2000 [4:43:31<5:35:23, 18.29s/it, (Warmup)][A[A[A
+
+
+
+
+
+chain 7:  40%|[33m████      [0m| 800/2000 [4:45:47<5:25:06, 16.26s/it, (Warmup)][A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  70%|[34m███████   [0m| 1400/2000 [4:46:55<1:06:18,  6.63s/it, (Sampling)][A[A[A[A[A[A[A[A[Achain 1: 100%|[34m██████████[0m| 2000/2000 [4:47:59<00:00,  5.37s/it, (Sampling)]
+
+chain 3: 100%|[34m██████████[0m| 2000/2000 [4:48:34<00:00,  5.46s/it, (Sampling)][A[A
+
+
+
+
+chain 6:  95%|[34m█████████▌[0m| 1900/2000 [4:49:53<08:55,  5.36s/it, (Sampling)][A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  75%|[34m███████▌  [0m| 1500/2000 [4:54:44<50:07,  6.02s/it, (Sampling)]  [A[A[A[A[A[A[A[A[A
+
+
+
+
+chain 6: 100%|[34m██████████[0m| 2000/2000 [4:57:45<00:00,  5.17s/it, (Sampling)][A[A[A[A[A
+
+
+
+
+
+
+chain 8:  50%|[33m█████     [0m| 1000/2000 [4:59:32<4:07:04, 14.82s/it, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  50%|[34m█████     [0m| 1000/2000 [4:59:36<4:07:04, 14.82s/it, (Sampling)][A[A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  50%|[34m█████     [0m| 1001/2000 [4:59:36<4:06:03, 14.78s/it, (Sampling)][A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:  45%|[33m████▌     [0m| 900/2000 [4:59:58<4:13:38, 13.84s/it, (Warmup)][A[A[A[A[A[A
+
+
+chain 4:  50%|[33m█████     [0m| 1000/2000 [5:00:56<4:24:32, 15.87s/it, (Warmup)][A[A[A
+
+
+chain 4:  50%|[34m█████     [0m| 1000/2000 [5:01:05<4:24:32, 15.87s/it, (Sampling)][A[A[A
+
+
+chain 4:  50%|[34m█████     [0m| 1001/2000 [5:01:05<4:23:48, 15.84s/it, (Sampling)][A[A[A
+
+
+
+
+
+
+
+
+chain 10:  80%|[34m████████  [0m| 1600/2000 [5:02:11<36:52,  5.53s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  55%|[34m█████▌    [0m| 1100/2000 [5:07:10<2:43:07, 10.88s/it, (Sampling)][A[A[A[A[A[A[A
+
+
+chain 4:  55%|[34m█████▌    [0m| 1100/2000 [5:08:33<2:52:36, 11.51s/it, (Sampling)][A[A[A
+
+
+
+
+
+
+
+
+chain 10:  85%|[34m████████▌ [0m| 1700/2000 [5:09:27<25:51,  5.17s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  60%|[34m██████    [0m| 1200/2000 [5:14:37<1:54:34,  8.59s/it, (Sampling)][A[A[A[A[A[A[A
+
+
+chain 4:  60%|[34m██████    [0m| 1200/2000 [5:16:06<2:00:20,  9.03s/it, (Sampling)][A[A[A
+
+
+
+
+
+
+
+
+chain 10:  90%|[34m█████████ [0m| 1800/2000 [5:16:42<16:24,  4.92s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:  50%|[33m█████     [0m| 1000/2000 [5:16:42<3:31:02, 12.66s/it, (Warmup)][A[A[A[A[A[A
+
+
+
+
+
+chain 7:  50%|[34m█████     [0m| 1000/2000 [5:16:46<3:31:02, 12.66s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+chain 7:  50%|[34m█████     [0m| 1001/2000 [5:16:46<3:30:14, 12.63s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  65%|[34m██████▌   [0m| 1300/2000 [5:22:03<1:24:01,  7.20s/it, (Sampling)][A[A[A[A[A[A[A
+
+
+chain 4:  65%|[34m██████▌   [0m| 1300/2000 [5:23:45<1:27:49,  7.53s/it, (Sampling)][A[A[A
+
+
+
+
+
+
+
+
+chain 10:  95%|[34m█████████▌[0m| 1900/2000 [5:24:00<07:55,  4.76s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:  55%|[34m█████▌    [0m| 1100/2000 [5:24:20<2:23:11,  9.55s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  70%|[34m███████   [0m| 1400/2000 [5:29:26<1:03:00,  6.30s/it, (Sampling)][A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10: 100%|[34m██████████[0m| 2000/2000 [5:31:10<00:00,  4.62s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+
+chain 4:  70%|[34m███████   [0m| 1400/2000 [5:31:16<1:05:27,  6.55s/it, (Sampling)][A[A[A
+
+
+
+
+
+chain 7:  60%|[34m██████    [0m| 1200/2000 [5:31:54<1:43:30,  7.76s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  75%|[34m███████▌  [0m| 1500/2000 [5:36:41<47:20,  5.68s/it, (Sampling)]  [A[A[A[A[A[A[A
+
+
+chain 4:  75%|[34m███████▌  [0m| 1500/2000 [5:38:21<48:30,  5.82s/it, (Sampling)]  [A[A[A
+
+
+
+
+
+chain 7:  65%|[34m██████▌   [0m| 1300/2000 [5:38:58<1:16:42,  6.57s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  80%|[34m████████  [0m| 1600/2000 [5:43:49<34:57,  5.24s/it, (Sampling)][A[A[A[A[A[A[A
+
+
+chain 4:  80%|[34m████████  [0m| 1600/2000 [5:45:28<35:34,  5.34s/it, (Sampling)][A[A[A
+
+
+
+
+
+chain 7:  70%|[34m███████   [0m| 1400/2000 [5:46:03<58:10,  5.82s/it, (Sampling)]  [A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  85%|[34m████████▌ [0m| 1700/2000 [5:50:56<24:43,  4.95s/it, (Sampling)][A[A[A[A[A[A[A
+
+
+chain 4:  85%|[34m████████▌ [0m| 1700/2000 [5:52:41<25:07,  5.03s/it, (Sampling)][A[A[A
+
+
+
+
+
+chain 7:  75%|[34m███████▌  [0m| 1500/2000 [5:53:05<44:15,  5.31s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  90%|[34m█████████ [0m| 1800/2000 [5:58:03<15:47,  4.74s/it, (Sampling)][A[A[A[A[A[A[A
+
+
+chain 4:  90%|[34m█████████ [0m| 1800/2000 [5:59:52<16:01,  4.81s/it, (Sampling)][A[A[A
+
+
+
+
+
+chain 7:  80%|[34m████████  [0m| 1600/2000 [6:00:10<33:12,  4.98s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  95%|[34m█████████▌[0m| 1900/2000 [6:05:13<07:40,  4.61s/it, (Sampling)][A[A[A[A[A[A[A
+
+
+chain 4:  95%|[34m█████████▌[0m| 1900/2000 [6:07:01<07:44,  4.65s/it, (Sampling)][A[A[A
+
+
+
+
+
+chain 7:  85%|[34m████████▌ [0m| 1700/2000 [6:07:13<23:45,  4.75s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+
+chain 8: 100%|[34m██████████[0m| 2000/2000 [6:12:23<00:00,  4.51s/it, (Sampling)][A[A[A[A[A[A[A
+
+
+chain 4: 100%|[34m██████████[0m| 2000/2000 [6:14:10<00:00,  4.54s/it, (Sampling)][A[A[A
+
+
+
+
+
+chain 7:  90%|[34m█████████ [0m| 1800/2000 [6:14:20<15:20,  4.60s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+chain 7:  95%|[34m█████████▌[0m| 1900/2000 [6:21:23<07:28,  4.49s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+chain 7: 100%|[34m██████████[0m| 2000/2000 [6:28:19<00:00,  4.39s/it, (Sampling)][A[A[A[A[A[Achain 1: 100%|[34m██████████[0m| 2000/2000 [6:28:23<00:00,  5.37s/it, (Sampling completed)]chain 1: 100%|[34m██████████[0m| 2000/2000 [6:28:23<00:00, 11.65s/it, (Sampling completed)]
+
+chain 2: 100%|[34m██████████[0m| 2000/2000 [6:28:23<00:00,  5.50s/it, (Sampling completed)][Achain 2: 100%|[34m██████████[0m| 2000/2000 [6:28:23<00:00, 11.65s/it, (Sampling completed)]
+
+
+chain 3: 100%|[34m██████████[0m| 2000/2000 [6:28:23<00:00,  5.46s/it, (Sampling completed)][A[Achain 3: 100%|[34m██████████[0m| 2000/2000 [6:28:23<00:00, 11.65s/it, (Sampling completed)]
+
+
+
+chain 4: 100%|[34m██████████[0m| 2000/2000 [6:28:23<00:00,  4.54s/it, (Sampling completed)][A[A[Achain 4: 100%|[34m██████████[0m| 2000/2000 [6:28:23<00:00, 11.65s/it, (Sampling completed)]
+
+
+
+
+chain 5: 100%|[34m██████████[0m| 2000/2000 [6:28:23<00:00,  5.42s/it, (Sampling completed)][A[A[A[Achain 5: 100%|[34m██████████[0m| 2000/2000 [6:28:23<00:00, 11.65s/it, (Sampling completed)]
+
+
+
+
+
+chain 6: 100%|[34m██████████[0m| 2000/2000 [6:28:23<00:00,  5.17s/it, (Sampling completed)][A[A[A[A[Achain 6: 100%|[34m██████████[0m| 2000/2000 [6:28:23<00:00, 11.65s/it, (Sampling completed)]
+
+
+
+
+
+
+chain 7: 100%|[34m██████████[0m| 2000/2000 [6:28:23<00:00,  4.39s/it, (Sampling completed)][A[A[A[A[A[Achain 7: 100%|[34m██████████[0m| 2000/2000 [6:28:23<00:00, 11.65s/it, (Sampling completed)]
+
+
+
+
+
+
+
+chain 8: 100%|[34m██████████[0m| 2000/2000 [6:28:23<00:00,  4.51s/it, (Sampling completed)][A[A[A[A[A[A[Achain 8: 100%|[34m██████████[0m| 2000/2000 [6:28:23<00:00, 11.65s/it, (Sampling completed)]
+
+
+
+
+
+
+
+
+chain 9: 100%|[34m██████████[0m| 2000/2000 [6:28:23<00:00,  5.53s/it, (Sampling completed)][A[A[A[A[A[A[A[Achain 9: 100%|[34m██████████[0m| 2000/2000 [6:28:23<00:00, 11.65s/it, (Sampling completed)]
+
+
+
+
+
+
+
+
+
+chain 10: 100%|[34m██████████[0m| 2000/2000 [6:28:23<00:00,  4.62s/it, (Sampling completed)][A[A[A[A[A[A[A[A[Achain 10: 100%|[34m██████████[0m| 2000/2000 [6:28:23<00:00, 11.65s/it, (Sampling completed)]
+22:22:57 - cmdstanpy - INFO - CmdStan done processing.
+22:22:57 - cmdstanpy - WARNING - Non-fatal error during sampling:
+Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not symmetric. Sigma[1,2] = -nan, but Sigma[2,1] = -nan (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not symmetric. Sigma[1,2] = -inf, but Sigma[2,1] = -inf (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 71, column 1 to column 22)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+	Exception: model_shift_mean_paper_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_shift_mean_paper_lap.stan', line 72, column 1 to column 21)
+Consider re-running with show_console=True if the above output is unclear!

@@ -1,0 +1,1336 @@
+conda version 25.3.0 python 3.12.7 unloaded.
+conda version 25.3.0 python 3.12.7 loaded.
+15:16:07 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_fix_mean.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_fix_mean
+15:17:13 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_fix_mean
+15:17:13 - cmdstanpy - INFO - CmdStan start processing
+chain 1:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)]
+chain 2:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A
+
+chain 3:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A
+
+
+chain 4:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A
+
+
+
+chain 5:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A[A
+
+
+
+
+chain 6:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A[A[A
+
+
+
+
+
+chain 7:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+chain 4:   0%|[33m          [0m| 1/2000 [00:00<08:29,  3.93it/s, (Warmup)][A[A[A
+
+
+
+
+
+
+
+chain 9:   0%|[33m          [0m| 1/2000 [00:00<10:20,  3.22it/s, (Warmup)][A[A[A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:   0%|[33m          [0m| 1/2000 [00:00<10:45,  3.10it/s, (Warmup)][A[A[A[A[A[A[Achain 1:   0%|[33m          [0m| 1/2000 [00:00<10:49,  3.08it/s, (Warmup)]
+
+chain 3:   0%|[33m          [0m| 1/2000 [00:00<11:30,  2.89it/s, (Warmup)][A[A
+chain 2:   0%|[33m          [0m| 1/2000 [00:00<13:04,  2.55it/s, (Warmup)][A
+
+
+
+
+
+
+
+
+chain 10:   0%|[33m          [0m| 1/2000 [00:00<15:48,  2.11it/s, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+
+
+chain 6:   0%|[33m          [0m| 1/2000 [00:00<18:14,  1.83it/s, (Warmup)][A[A[A[A[A
+
+
+
+chain 5:   0%|[33m          [0m| 1/2000 [00:00<18:28,  1.80it/s, (Warmup)][A[A[A[A
+
+
+
+
+
+chain 7:   0%|[33m          [0m| 1/2000 [00:00<19:49,  1.68it/s, (Warmup)][A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:   5%|[33m▌         [0m| 100/2000 [19:34<6:13:08, 11.78s/it, (Warmup)][A[A[A[A[A[A[A
+
+chain 3:   5%|[33m▌         [0m| 100/2000 [21:55<6:57:43, 13.19s/it, (Warmup)][A[A
+
+
+
+
+chain 6:   5%|[33m▌         [0m| 100/2000 [22:05<7:01:05, 13.30s/it, (Warmup)][A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:   5%|[33m▌         [0m| 100/2000 [29:19<9:18:56, 17.65s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+chain 2:   5%|[33m▌         [0m| 100/2000 [32:48<10:25:20, 19.75s/it, (Warmup)][A
+
+
+
+
+
+
+
+chain 9:   5%|[33m▌         [0m| 100/2000 [41:54<13:18:37, 25.22s/it, (Warmup)][A[A[A[A[A[A[A[A
+
+
+
+chain 5:   5%|[33m▌         [0m| 100/2000 [41:55<13:18:45, 25.22s/it, (Warmup)][A[A[A[A
+
+
+chain 4:   5%|[33m▌         [0m| 100/2000 [43:48<13:54:56, 26.37s/it, (Warmup)][A[A[Achain 1:   5%|[33m▌         [0m| 100/2000 [50:13<15:57:08, 30.23s/it, (Warmup)]
+
+
+chain 4:  10%|[33m█         [0m| 200/2000 [1:03:58<8:58:49, 17.96s/it, (Warmup)][A[A[A
+
+
+
+
+
+
+
+
+chain 10:  10%|[33m█         [0m| 200/2000 [1:04:54<9:54:45, 19.83s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:   5%|[33m▌         [0m| 100/2000 [1:05:14<20:43:16, 39.26s/it, (Warmup)][A[A[A[A[A[A
+
+
+
+chain 5:  10%|[33m█         [0m| 200/2000 [1:18:01<11:33:49, 23.13s/it, (Warmup)][A[A[A[Achain 1:  10%|[33m█         [0m| 200/2000 [1:20:14<11:30:57, 23.03s/it, (Warmup)]
+
+
+
+
+
+
+
+chain 9:  10%|[33m█         [0m| 200/2000 [1:20:19<11:58:16, 23.94s/it, (Warmup)][A[A[A[A[A[A[A[A
+
+
+chain 4:  15%|[33m█▌        [0m| 300/2000 [1:26:59<7:35:14, 16.07s/it, (Warmup)][A[A[A
+
+
+
+
+
+
+
+
+chain 10:  15%|[33m█▌        [0m| 300/2000 [1:36:04<9:07:10, 19.31s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:  10%|[33m█         [0m| 200/2000 [1:41:55<14:33:06, 29.10s/it, (Warmup)][A[A[A[A[A[A
+
+
+chain 4:  20%|[33m██        [0m| 400/2000 [1:49:13<6:39:43, 14.99s/it, (Warmup)][A[A[A
+
+
+
+
+
+
+
+chain 9:  15%|[33m█▌        [0m| 300/2000 [1:52:20<10:17:09, 21.78s/it, (Warmup)][A[A[A[A[A[A[A[A
+
+
+
+chain 5:  15%|[33m█▌        [0m| 300/2000 [1:55:15<10:45:01, 22.77s/it, (Warmup)][A[A[A[Achain 1:  15%|[33m█▌        [0m| 300/2000 [1:57:20<10:42:29, 22.68s/it, (Warmup)]
+
+
+
+
+
+
+
+
+chain 10:  20%|[33m██        [0m| 400/2000 [2:17:04<9:30:43, 21.40s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  20%|[33m██        [0m| 400/2000 [2:19:40<8:44:05, 19.65s/it, (Warmup)] [A[A[A[A[A[A[A[A
+
+
+chain 4:  25%|[33m██▌       [0m| 500/2000 [2:20:51<6:50:40, 16.43s/it, (Warmup)][A[A[A
+
+
+
+
+
+chain 7:  15%|[33m█▌        [0m| 300/2000 [2:21:37<12:36:07, 26.69s/it, (Warmup)][A[A[A[A[A[Achain 1:  20%|[33m██        [0m| 400/2000 [2:25:45<9:05:27, 20.45s/it, (Warmup)] 
+
+
+
+chain 5:  20%|[33m██        [0m| 400/2000 [2:29:31<9:43:52, 21.90s/it, (Warmup)] [A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  25%|[33m██▌       [0m| 500/2000 [2:52:49<8:55:26, 21.42s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+chain 4:  30%|[33m███       [0m| 600/2000 [2:53:22<6:47:47, 17.48s/it, (Warmup)][A[A[A
+
+
+
+
+
+chain 7:  20%|[33m██        [0m| 400/2000 [3:00:36<11:16:54, 25.38s/it, (Warmup)][A[A[A[A[A[Achain 1:  25%|[33m██▌       [0m| 500/2000 [3:03:19<8:50:11, 21.21s/it, (Warmup)]
+
+
+
+
+
+
+
+chain 9:  25%|[33m██▌       [0m| 500/2000 [3:06:13<9:25:58, 22.64s/it, (Warmup)][A[A[A[A[A[A[A[A
+
+
+
+chain 5:  25%|[33m██▌       [0m| 500/2000 [3:13:04<9:45:33, 23.42s/it, (Warmup)][A[A[A[A
+
+chain 3:  10%|[33m█         [0m| 200/2000 [3:21:03<34:21:43, 68.72s/it, (Warmup)][A[A
+
+
+chain 4:  35%|[33m███▌      [0m| 700/2000 [3:23:55<6:24:40, 17.75s/it, (Warmup)][A[A[A
+
+
+
+
+
+
+
+
+chain 10:  30%|[33m███       [0m| 600/2000 [3:28:00<8:17:16, 21.31s/it, (Warmup)][A[A[A[A[A[A[A[A[Achain 1:  30%|[33m███       [0m| 600/2000 [3:31:22<7:40:06, 19.72s/it, (Warmup)]
+
+
+
+
+chain 6:  10%|[33m█         [0m| 200/2000 [3:39:45<37:39:29, 75.32s/it, (Warmup)][A[A[A[A[A
+
+
+
+
+
+chain 7:  25%|[33m██▌       [0m| 500/2000 [3:42:18<10:31:20, 25.25s/it, (Warmup)][A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  10%|[33m█         [0m| 200/2000 [3:42:36<38:17:35, 76.59s/it, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  30%|[33m███       [0m| 600/2000 [3:45:17<8:54:35, 22.91s/it, (Warmup)][A[A[A[A[A[A[A[Achain 1:  35%|[33m███▌      [0m| 700/2000 [3:53:39<6:22:16, 17.64s/it, (Warmup)]
+
+
+
+chain 5:  30%|[33m███       [0m| 600/2000 [4:00:15<9:45:21, 25.09s/it, (Warmup)][A[A[A[A
+
+
+chain 4:  40%|[33m████      [0m| 800/2000 [4:00:26<6:21:32, 19.08s/it, (Warmup)][A[A[A
+
+
+
+
+
+
+
+
+chain 10:  35%|[33m███▌      [0m| 700/2000 [4:18:19<8:44:42, 24.22s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:  30%|[33m███       [0m| 600/2000 [4:21:15<9:34:19, 24.61s/it, (Warmup)] [A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  35%|[33m███▌      [0m| 700/2000 [4:22:03<8:10:25, 22.64s/it, (Warmup)][A[A[A[A[A[A[A[A
+chain 2:  10%|[33m█         [0m| 200/2000 [4:22:27<44:37:58, 89.27s/it, (Warmup)][Achain 1:  40%|[33m████      [0m| 800/2000 [4:31:16<6:24:14, 19.21s/it, (Warmup)]
+
+
+chain 4:  45%|[33m████▌     [0m| 900/2000 [4:31:50<5:48:23, 19.00s/it, (Warmup)][A[A[A
+
+
+
+chain 5:  35%|[33m███▌      [0m| 700/2000 [4:35:32<8:35:44, 23.80s/it, (Warmup)][A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  40%|[33m████      [0m| 800/2000 [4:45:31<7:14:00, 21.70s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  40%|[33m████      [0m| 800/2000 [4:50:51<6:58:34, 20.93s/it, (Warmup)][A[A[A[A[A[A[A[A
+
+
+chain 4:  50%|[33m█████     [0m| 1000/2000 [5:05:31<5:22:55, 19.38s/it, (Warmup)][A[A[A
+
+
+chain 4:  50%|[34m█████     [0m| 1000/2000 [5:05:58<5:22:55, 19.38s/it, (Sampling)][A[A[A
+
+
+chain 4:  50%|[34m█████     [0m| 1001/2000 [5:05:58<5:23:10, 19.41s/it, (Sampling)][A[A[A
+
+
+
+chain 5:  40%|[33m████      [0m| 800/2000 [5:12:13<7:44:39, 23.23s/it, (Warmup)][A[A[A[A
+
+
+
+
+
+chain 7:  35%|[33m███▌      [0m| 700/2000 [5:18:10<10:00:51, 27.73s/it, (Warmup)][A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  45%|[33m████▌     [0m| 900/2000 [5:19:56<6:31:51, 21.37s/it, (Warmup)][A[A[A[A[A[A[A[A[Achain 1:  45%|[33m████▌     [0m| 900/2000 [5:26:35<7:12:21, 23.58s/it, (Warmup)]
+
+chain 3:  15%|[33m█▌        [0m| 300/2000 [5:26:59<33:55:43, 71.85s/it, (Warmup)][A[A
+
+
+
+
+
+
+
+chain 9:  45%|[33m████▌     [0m| 900/2000 [5:32:27<6:46:47, 22.19s/it, (Warmup)][A[A[A[A[A[A[A[A
+
+
+chain 4:  55%|[34m█████▌    [0m| 1100/2000 [5:44:53<5:15:10, 21.01s/it, (Sampling)][A[A[A
+
+
+
+
+
+
+chain 8:  15%|[33m█▌        [0m| 300/2000 [5:49:21<36:03:02, 76.34s/it, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+chain 6:  15%|[33m█▌        [0m| 300/2000 [5:49:42<36:08:14, 76.53s/it, (Warmup)][A[A[A[A[A
+
+
+
+chain 5:  45%|[33m████▌     [0m| 900/2000 [5:57:07<7:27:13, 24.39s/it, (Warmup)][A[A[A[A
+
+chain 3:  20%|[33m██        [0m| 400/2000 [6:01:16<22:55:51, 51.59s/it, (Warmup)][A[A
+
+
+
+
+
+
+
+
+chain 10:  50%|[33m█████     [0m| 1000/2000 [6:06:08<6:28:51, 23.33s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  50%|[34m█████     [0m| 1000/2000 [6:06:16<6:28:51, 23.33s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  50%|[34m█████     [0m| 1001/2000 [6:06:16<6:27:23, 23.27s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:  40%|[33m████      [0m| 800/2000 [6:10:11<9:36:46, 28.84s/it, (Warmup)] [A[A[A[A[A[Achain 1:  50%|[33m█████     [0m| 1000/2000 [6:15:47<7:03:34, 25.41s/it, (Warmup)]chain 1:  50%|[34m█████     [0m| 1000/2000 [6:16:04<7:03:34, 25.41s/it, (Sampling)]chain 1:  50%|[34m█████     [0m| 1001/2000 [6:16:04<7:02:32, 25.38s/it, (Sampling)]
+
+
+
+
+
+
+chain 8:  20%|[33m██        [0m| 400/2000 [6:20:48<23:50:33, 53.65s/it, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  55%|[34m█████▌    [0m| 1100/2000 [6:20:54<4:26:13, 17.75s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+
+chain 4:  60%|[34m██████    [0m| 1200/2000 [6:25:13<4:55:17, 22.15s/it, (Sampling)][A[A[A
+
+
+
+
+
+
+
+chain 9:  50%|[33m█████     [0m| 1000/2000 [6:26:17<7:01:51, 25.31s/it, (Warmup)][A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  50%|[34m█████     [0m| 1000/2000 [6:28:01<7:01:51, 25.31s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  50%|[34m█████     [0m| 1001/2000 [6:28:01<7:07:08, 25.65s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+
+
+
+chain 6:  20%|[33m██        [0m| 400/2000 [6:34:09<25:15:39, 56.84s/it, (Warmup)][A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  60%|[34m██████    [0m| 1200/2000 [6:35:15<3:13:16, 14.50s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+chain 3:  25%|[33m██▌       [0m| 500/2000 [6:36:54<16:57:23, 40.70s/it, (Warmup)][A[Achain 1:  55%|[34m█████▌    [0m| 1100/2000 [6:44:23<5:33:26, 22.23s/it, (Sampling)]
+
+
+
+
+
+
+
+
+chain 10:  65%|[34m██████▌   [0m| 1300/2000 [6:49:35<2:25:55, 12.51s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+
+
+chain 5:  50%|[33m█████     [0m| 1000/2000 [6:51:06<7:27:41, 26.86s/it, (Warmup)][A[A[A[A
+
+
+
+chain 5:  50%|[34m█████     [0m| 1000/2000 [6:51:38<7:27:41, 26.86s/it, (Sampling)][A[A[A[A
+
+
+
+chain 5:  50%|[34m█████     [0m| 1001/2000 [6:51:38<7:27:36, 26.88s/it, (Sampling)][A[A[A[A
+chain 2:  15%|[33m█▌        [0m| 300/2000 [6:55:10<42:39:52, 90.35s/it, (Warmup)][A
+
+
+
+
+
+
+chain 8:  25%|[33m██▌       [0m| 500/2000 [7:02:06<18:00:48, 43.23s/it, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+chain 6:  25%|[33m██▌       [0m| 500/2000 [7:04:47<17:54:07, 42.97s/it, (Warmup)][A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  70%|[34m███████   [0m| 1400/2000 [7:08:29<2:01:17, 12.13s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+
+chain 4:  65%|[34m██████▌   [0m| 1300/2000 [7:09:00<4:34:34, 23.53s/it, (Sampling)][A[A[Achain 1:  60%|[34m██████    [0m| 1200/2000 [7:12:59<4:32:20, 20.43s/it, (Sampling)]
+
+chain 3:  30%|[33m███       [0m| 600/2000 [7:14:37<13:26:17, 34.56s/it, (Warmup)][A[A
+
+
+
+
+
+chain 7:  45%|[33m████▌     [0m| 900/2000 [7:17:28<9:54:48, 32.44s/it, (Warmup)][A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  75%|[34m███████▌  [0m| 1500/2000 [7:22:58<1:31:59, 11.04s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  30%|[33m███       [0m| 600/2000 [7:35:39<13:45:27, 35.38s/it, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  80%|[34m████████  [0m| 1600/2000 [7:37:19<1:08:32, 10.28s/it, (Sampling)][A[A[A[A[A[A[A[A[Achain 1:  65%|[34m██████▌   [0m| 1300/2000 [7:41:34<3:45:25, 19.32s/it, (Sampling)]
+
+
+
+
+chain 6:  30%|[33m███       [0m| 600/2000 [7:43:49<14:07:24, 36.32s/it, (Warmup)][A[A[A[A[A
+
+
+
+chain 5:  55%|[34m█████▌    [0m| 1100/2000 [7:48:15<7:25:57, 29.73s/it, (Sampling)][A[A[A[A
+chain 2:  20%|[33m██        [0m| 400/2000 [7:51:19<30:12:35, 67.97s/it, (Warmup)][A
+
+
+
+
+
+
+
+
+chain 10:  85%|[34m████████▌ [0m| 1700/2000 [7:51:48<48:56,  9.79s/it, (Sampling)]  [A[A[A[A[A[A[A[A[A
+
+
+chain 4:  70%|[34m███████   [0m| 1400/2000 [7:54:35<4:07:46, 24.78s/it, (Sampling)][A[A[A
+
+chain 3:  35%|[33m███▌      [0m| 700/2000 [7:59:02<11:32:41, 31.97s/it, (Warmup)][A[A
+
+
+
+
+
+chain 7:  50%|[33m█████     [0m| 1000/2000 [8:00:25<8:26:22, 30.38s/it, (Warmup)][A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  35%|[33m███▌      [0m| 700/2000 [8:00:48<10:22:44, 28.74s/it, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:  50%|[34m█████     [0m| 1000/2000 [8:01:05<8:26:22, 30.38s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+chain 7:  50%|[34m█████     [0m| 1001/2000 [8:01:05<8:26:35, 30.43s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  90%|[34m█████████ [0m| 1800/2000 [8:06:16<31:30,  9.45s/it, (Sampling)][A[A[A[A[A[A[A[A[Achain 1:  70%|[34m███████   [0m| 1400/2000 [8:10:10<3:06:11, 18.62s/it, (Sampling)]
+
+
+
+
+chain 6:  35%|[33m███▌      [0m| 700/2000 [8:22:06<11:32:22, 31.96s/it, (Warmup)][A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  55%|[34m█████▌    [0m| 1100/2000 [8:25:18<10:45:51, 43.06s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+chain 3:  40%|[33m████      [0m| 800/2000 [8:36:25<9:38:37, 28.93s/it, (Warmup)] [A[A
+
+
+
+
+
+
+
+
+chain 10:  95%|[34m█████████▌[0m| 1900/2000 [8:37:13<20:22, 12.22s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+
+chain 4:  75%|[34m███████▌  [0m| 1500/2000 [8:37:30<3:29:01, 25.08s/it, (Sampling)][A[A[Achain 1:  75%|[34m███████▌  [0m| 1500/2000 [8:38:45<2:31:16, 18.15s/it, (Sampling)]
+
+
+
+chain 5:  60%|[34m██████    [0m| 1200/2000 [8:40:55<6:45:16, 30.40s/it, (Sampling)][A[A[A[A
+chain 2:  25%|[33m██▌       [0m| 500/2000 [8:42:28<22:43:01, 54.52s/it, (Warmup)][A
+
+
+
+
+
+
+chain 8:  40%|[33m████      [0m| 800/2000 [8:42:31<9:11:15, 27.56s/it, (Warmup)] [A[A[A[A[A[A[A
+
+
+
+
+chain 6:  40%|[33m████      [0m| 800/2000 [8:59:18<9:37:44, 28.89s/it, (Warmup)] [A[A[A[A[A
+
+chain 3:  45%|[33m████▌     [0m| 900/2000 [9:05:08<7:43:21, 25.27s/it, (Warmup)][A[Achain 1:  80%|[34m████████  [0m| 1600/2000 [9:07:20<1:58:56, 17.84s/it, (Sampling)]
+
+
+
+
+
+
+
+
+chain 10: 100%|[34m██████████[0m| 2000/2000 [9:07:21<00:00, 14.00s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:  55%|[34m█████▌    [0m| 1100/2000 [9:18:41<9:11:49, 36.79s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  45%|[33m████▌     [0m| 900/2000 [9:21:32<8:01:29, 26.26s/it, (Warmup)][A[A[A[A[A[A[A
+
+
+chain 4:  80%|[34m████████  [0m| 1600/2000 [9:21:51<2:50:23, 25.56s/it, (Sampling)][A[A[A
+chain 2:  30%|[33m███       [0m| 600/2000 [9:28:44<17:39:49, 45.42s/it, (Warmup)][Achain 1:  85%|[34m████████▌ [0m| 1700/2000 [9:31:47<1:24:18, 16.86s/it, (Sampling)]
+
+
+
+chain 5:  65%|[34m██████▌   [0m| 1300/2000 [9:33:07<5:58:14, 30.71s/it, (Sampling)][A[A[A[A
+
+
+
+
+chain 6:  45%|[33m████▌     [0m| 900/2000 [9:33:37<8:02:01, 26.29s/it, (Warmup)][A[A[A[A[A
+
+chain 3:  50%|[33m█████     [0m| 1000/2000 [9:40:17<6:39:41, 23.98s/it, (Warmup)][A[A
+
+chain 3:  50%|[34m█████     [0m| 1000/2000 [9:40:24<6:39:41, 23.98s/it, (Sampling)][A[A
+
+chain 3:  50%|[34m█████     [0m| 1001/2000 [9:40:24<6:38:04, 23.91s/it, (Sampling)][A[A
+
+chain 3:  55%|[34m█████▌    [0m| 1100/2000 [9:52:30<4:23:22, 17.56s/it, (Sampling)][A[A
+
+
+
+
+
+
+chain 8:  50%|[33m█████     [0m| 1000/2000 [9:53:43<6:41:56, 24.12s/it, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  50%|[34m█████     [0m| 1000/2000 [9:53:51<6:41:56, 24.12s/it, (Sampling)][A[A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  50%|[34m█████     [0m| 1001/2000 [9:53:51<6:40:20, 24.04s/it, (Sampling)][A[A[A[A[A[A[A
+
+
+
+
+chain 6:  50%|[33m█████     [0m| 1000/2000 [9:54:57<6:08:45, 22.13s/it, (Warmup)][A[A[A[A[A
+
+
+
+
+chain 6:  50%|[34m█████     [0m| 1000/2000 [9:55:04<6:08:45, 22.13s/it, (Sampling)][A[A[A[A[A
+
+
+
+
+chain 6:  50%|[34m█████     [0m| 1001/2000 [9:55:04<6:07:18, 22.06s/it, (Sampling)][A[A[A[A[Achain 1:  90%|[34m█████████ [0m| 1800/2000 [9:56:12<53:57, 16.19s/it, (Sampling)]  
+
+
+
+
+
+
+
+chain 9:  60%|[34m██████    [0m| 1200/2000 [10:02:25<10:46:19, 48.47s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+
+chain 4:  85%|[34m████████▌ [0m| 1700/2000 [10:04:29<2:07:50, 25.57s/it, (Sampling)][A[A[A
+
+chain 3:  60%|[34m██████    [0m| 1200/2000 [10:04:43<3:05:32, 13.92s/it, (Sampling)][A[A
+
+
+
+
+chain 6:  55%|[34m█████▌    [0m| 1100/2000 [10:07:10<4:06:16, 16.42s/it, (Sampling)][A[A[A[A[A
+
+
+
+
+
+
+chain 8:  55%|[34m█████▌    [0m| 1100/2000 [10:08:06<4:32:09, 18.14s/it, (Sampling)][A[A[A[A[A[A[A
+
+chain 3:  65%|[34m██████▌   [0m| 1300/2000 [10:16:55<2:16:24, 11.69s/it, (Sampling)][A[A
+
+
+
+
+chain 6:  60%|[34m██████    [0m| 1200/2000 [10:19:11<2:55:13, 13.14s/it, (Sampling)][A[A[A[A[Achain 1:  95%|[34m█████████▌[0m| 1900/2000 [10:20:40<26:12, 15.73s/it, (Sampling)]
+
+
+
+
+
+
+chain 8:  60%|[34m██████    [0m| 1200/2000 [10:21:02<3:12:36, 14.45s/it, (Sampling)][A[A[A[A[A[A[A
+
+
+
+chain 5:  70%|[34m███████   [0m| 1400/2000 [10:23:35<5:05:41, 30.57s/it, (Sampling)][A[A[A[A
+
+chain 3:  70%|[34m███████   [0m| 1400/2000 [10:29:08<1:42:45, 10.28s/it, (Sampling)][A[A
+
+
+
+
+
+chain 7:  60%|[34m██████    [0m| 1200/2000 [10:31:18<8:42:39, 39.20s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+chain 6:  65%|[34m██████▌   [0m| 1300/2000 [10:31:24<2:10:26, 11.18s/it, (Sampling)][A[A[A[A[A
+
+
+
+
+
+
+chain 8:  65%|[34m██████▌   [0m| 1300/2000 [10:33:55<2:22:06, 12.18s/it, (Sampling)][A[A[A[A[A[A[A
+chain 2:  35%|[33m███▌      [0m| 700/2000 [10:39:22<16:02:36, 44.43s/it, (Warmup)][A
+
+chain 3:  75%|[34m███████▌  [0m| 1500/2000 [10:41:21<1:17:49,  9.34s/it, (Sampling)][A[A
+
+
+chain 4:  90%|[34m█████████ [0m| 1800/2000 [10:42:56<1:22:40, 24.80s/it, (Sampling)][A[A[A
+
+
+
+
+chain 6:  70%|[34m███████   [0m| 1400/2000 [10:43:37<1:39:17,  9.93s/it, (Sampling)][A[A[A[A[Achain 1: 100%|[34m██████████[0m| 2000/2000 [10:45:06<00:00, 15.41s/it, (Sampling)]
+
+
+
+
+
+
+chain 8:  70%|[34m███████   [0m| 1400/2000 [10:46:44<1:47:13, 10.72s/it, (Sampling)][A[A[A[A[A[A[A
+
+chain 3:  80%|[34m████████  [0m| 1600/2000 [10:52:50<57:10,  8.58s/it, (Sampling)]  [A[A
+
+
+
+
+chain 6:  75%|[34m███████▌  [0m| 1500/2000 [10:54:34<1:13:51,  8.86s/it, (Sampling)][A[A[A[A[A
+
+
+
+
+
+
+chain 8:  75%|[34m███████▌  [0m| 1500/2000 [10:58:31<1:19:41,  9.56s/it, (Sampling)][A[A[A[A[A[A[A
+
+chain 3:  85%|[34m████████▌ [0m| 1700/2000 [11:03:56<39:55,  7.99s/it, (Sampling)][A[A
+
+
+
+
+chain 6:  80%|[34m████████  [0m| 1600/2000 [11:05:20<54:06,  8.12s/it, (Sampling)]  [A[A[A[A[A
+
+
+
+
+
+
+chain 8:  80%|[34m████████  [0m| 1600/2000 [11:10:17<58:33,  8.78s/it, (Sampling)]  [A[A[A[A[A[A[A
+
+
+
+chain 5:  75%|[34m███████▌  [0m| 1500/2000 [11:10:21<4:08:06, 29.77s/it, (Sampling)][A[A[A[A
+
+chain 3:  90%|[34m█████████ [0m| 1800/2000 [11:15:03<25:16,  7.58s/it, (Sampling)][A[A
+
+
+
+
+chain 6:  85%|[34m████████▌ [0m| 1700/2000 [11:16:07<38:02,  7.61s/it, (Sampling)][A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  65%|[34m██████▌   [0m| 1300/2000 [11:20:32<9:19:14, 47.93s/it, (Sampling)] [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  85%|[34m████████▌ [0m| 1700/2000 [11:21:59<41:11,  8.24s/it, (Sampling)][A[A[A[A[A[A[A
+
+
+chain 4:  95%|[34m█████████▌[0m| 1900/2000 [11:23:57<41:14, 24.74s/it, (Sampling)]  [A[A[A
+
+chain 3:  95%|[34m█████████▌[0m| 1900/2000 [11:26:08<12:10,  7.30s/it, (Sampling)][A[A
+
+
+
+
+chain 6:  90%|[34m█████████ [0m| 1800/2000 [11:26:53<24:11,  7.26s/it, (Sampling)][A[A[A[A[A
+
+
+
+
+
+
+chain 8:  90%|[34m█████████ [0m| 1800/2000 [11:33:45<26:16,  7.88s/it, (Sampling)][A[A[A[A[A[A[A
+
+chain 3: 100%|[34m██████████[0m| 2000/2000 [11:37:34<00:00,  7.17s/it, (Sampling)][A[A
+
+
+
+
+chain 6:  95%|[34m█████████▌[0m| 1900/2000 [11:37:40<11:41,  7.02s/it, (Sampling)][A[A[A[A[A
+
+
+
+
+
+chain 7:  65%|[34m██████▌   [0m| 1300/2000 [11:38:44<7:42:19, 39.63s/it, (Sampling)][A[A[A[A[A[A
+chain 2:  40%|[33m████      [0m| 800/2000 [11:42:23<14:06:23, 42.32s/it, (Warmup)][A
+
+
+
+
+
+
+chain 8:  95%|[34m█████████▌[0m| 1900/2000 [11:44:45<12:28,  7.49s/it, (Sampling)][A[A[A[A[A[A[A
+
+
+
+
+chain 6: 100%|[34m██████████[0m| 2000/2000 [11:48:21<00:00,  6.83s/it, (Sampling)][A[A[A[A[A
+
+
+
+chain 5:  80%|[34m████████  [0m| 1600/2000 [11:53:16<3:10:08, 28.52s/it, (Sampling)][A[A[A[A
+
+
+
+
+
+
+chain 8: 100%|[34m██████████[0m| 2000/2000 [11:55:11<00:00,  7.12s/it, (Sampling)][A[A[A[A[A[A[A
+
+
+chain 4: 100%|[34m██████████[0m| 2000/2000 [12:04:38<00:00, 24.64s/it, (Sampling)][A[A[A
+chain 2:  45%|[33m████▌     [0m| 900/2000 [12:20:40<11:04:57, 36.27s/it, (Warmup)][A
+
+
+
+
+
+
+
+chain 9:  70%|[34m███████   [0m| 1400/2000 [12:24:46<7:28:48, 44.88s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:  70%|[34m███████   [0m| 1400/2000 [12:24:47<5:57:16, 35.73s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+chain 5:  85%|[34m████████▌ [0m| 1700/2000 [12:26:45<2:09:36, 25.92s/it, (Sampling)][A[A[A[A
+chain 2:  50%|[33m█████     [0m| 1000/2000 [12:44:35<8:11:43, 29.50s/it, (Warmup)][A
+chain 2:  50%|[34m█████     [0m| 1000/2000 [12:44:40<8:11:43, 29.50s/it, (Sampling)][A
+chain 2:  50%|[34m█████     [0m| 1001/2000 [12:44:40<8:09:26, 29.40s/it, (Sampling)][A
+chain 2:  55%|[34m█████▌    [0m| 1100/2000 [12:53:09<5:01:34, 20.11s/it, (Sampling)][A
+
+
+
+chain 5:  90%|[34m█████████ [0m| 1800/2000 [13:01:08<1:21:00, 24.30s/it, (Sampling)][A[A[A[A
+chain 2:  60%|[34m██████    [0m| 1200/2000 [13:01:39<3:16:51, 14.76s/it, (Sampling)][A
+
+
+
+
+
+chain 7:  75%|[34m███████▌  [0m| 1500/2000 [13:03:02<4:23:57, 31.67s/it, (Sampling)][A[A[A[A[A[A
+chain 2:  65%|[34m██████▌   [0m| 1300/2000 [13:09:40<2:13:04, 11.41s/it, (Sampling)][A
+chain 2:  70%|[34m███████   [0m| 1400/2000 [13:18:12<1:33:37,  9.36s/it, (Sampling)][A
+chain 2:  75%|[34m███████▌  [0m| 1500/2000 [13:26:42<1:06:45,  8.01s/it, (Sampling)][A
+
+
+
+chain 5:  95%|[34m█████████▌[0m| 1900/2000 [13:32:47<37:49, 22.69s/it, (Sampling)]  [A[A[A[A
+
+
+
+
+
+
+
+chain 9:  75%|[34m███████▌  [0m| 1500/2000 [13:33:16<6:04:00, 43.68s/it, (Sampling)][A[A[A[A[A[A[A[A
+chain 2:  80%|[34m████████  [0m| 1600/2000 [13:35:11<47:20,  7.10s/it, (Sampling)]  [A
+chain 2:  85%|[34m████████▌ [0m| 1700/2000 [13:43:35<32:20,  6.47s/it, (Sampling)][A
+
+
+
+
+
+chain 7:  80%|[34m████████  [0m| 1600/2000 [13:44:59<3:17:38, 29.65s/it, (Sampling)][A[A[A[A[A[A
+chain 2:  90%|[34m█████████ [0m| 1800/2000 [13:52:06<20:09,  6.05s/it, (Sampling)][A
+chain 2:  95%|[34m█████████▌[0m| 1900/2000 [14:00:37<09:36,  5.76s/it, (Sampling)][A
+chain 2: 100%|[34m██████████[0m| 2000/2000 [14:09:09<00:00,  5.57s/it, (Sampling)][A
+
+
+
+chain 5: 100%|[34m██████████[0m| 2000/2000 [14:09:27<00:00, 22.48s/it, (Sampling)][A[A[A[A
+
+
+
+
+
+chain 7:  85%|[34m████████▌ [0m| 1700/2000 [14:20:45<2:15:37, 27.12s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  80%|[34m████████  [0m| 1600/2000 [14:42:39<4:46:56, 43.04s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:  90%|[34m█████████ [0m| 1800/2000 [14:57:30<1:25:14, 25.57s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+chain 7:  95%|[34m█████████▌[0m| 1900/2000 [15:36:15<41:26, 24.87s/it, (Sampling)]  [A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  85%|[34m████████▌ [0m| 1700/2000 [15:36:26<3:18:36, 39.72s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+
+
+
+
+chain 7: 100%|[34m██████████[0m| 2000/2000 [16:13:42<00:00, 24.14s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  90%|[34m█████████ [0m| 1800/2000 [16:33:12<2:06:38, 37.99s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  95%|[34m█████████▌[0m| 1900/2000 [17:30:12<1:01:23, 36.84s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9: 100%|[34m██████████[0m| 2000/2000 [18:22:31<00:00, 35.19s/it, (Sampling)]  [A[A[A[A[A[A[A[Achain 1: 100%|[34m██████████[0m| 2000/2000 [18:22:51<00:00, 15.41s/it, (Sampling completed)]chain 1: 100%|[34m██████████[0m| 2000/2000 [18:22:51<00:00, 33.09s/it, (Sampling completed)]
+
+chain 2: 100%|[34m██████████[0m| 2000/2000 [18:22:51<00:00,  5.57s/it, (Sampling completed)][Achain 2: 100%|[34m██████████[0m| 2000/2000 [18:22:51<00:00, 33.09s/it, (Sampling completed)]
+
+
+chain 3: 100%|[34m██████████[0m| 2000/2000 [18:22:51<00:00,  7.17s/it, (Sampling completed)][A[Achain 3: 100%|[34m██████████[0m| 2000/2000 [18:22:51<00:00, 33.09s/it, (Sampling completed)]
+
+
+
+chain 4: 100%|[34m██████████[0m| 2000/2000 [18:22:51<00:00, 24.64s/it, (Sampling completed)][A[A[Achain 4: 100%|[34m██████████[0m| 2000/2000 [18:22:51<00:00, 33.09s/it, (Sampling completed)]
+
+
+
+
+chain 5: 100%|[34m██████████[0m| 2000/2000 [18:22:51<00:00, 22.48s/it, (Sampling completed)][A[A[A[Achain 5: 100%|[34m██████████[0m| 2000/2000 [18:22:51<00:00, 33.09s/it, (Sampling completed)]
+
+
+
+
+
+chain 6: 100%|[34m██████████[0m| 2000/2000 [18:22:51<00:00,  6.83s/it, (Sampling completed)][A[A[A[A[Achain 6: 100%|[34m██████████[0m| 2000/2000 [18:22:51<00:00, 33.09s/it, (Sampling completed)]
+
+
+
+
+
+
+chain 7: 100%|[34m██████████[0m| 2000/2000 [18:22:51<00:00, 24.14s/it, (Sampling completed)][A[A[A[A[A[Achain 7: 100%|[34m██████████[0m| 2000/2000 [18:22:51<00:00, 33.09s/it, (Sampling completed)]
+
+
+
+
+
+
+
+chain 8: 100%|[34m██████████[0m| 2000/2000 [18:22:51<00:00,  7.12s/it, (Sampling completed)][A[A[A[A[A[A[Achain 8: 100%|[34m██████████[0m| 2000/2000 [18:22:51<00:00, 33.09s/it, (Sampling completed)]
+
+
+
+
+
+
+
+
+chain 9: 100%|[34m██████████[0m| 2000/2000 [18:22:51<00:00, 35.19s/it, (Sampling completed)][A[A[A[A[A[A[A[Achain 9: 100%|[34m██████████[0m| 2000/2000 [18:22:51<00:00, 33.09s/it, (Sampling completed)]
+
+
+
+
+
+
+
+
+
+chain 10: 100%|[34m██████████[0m| 2000/2000 [18:22:51<00:00, 14.00s/it, (Sampling completed)][A[A[A[A[A[A[A[A[Achain 10: 100%|[34m██████████[0m| 2000/2000 [18:22:51<00:00, 33.09s/it, (Sampling completed)]
+09:40:04 - cmdstanpy - INFO - CmdStan done processing.
+09:40:04 - cmdstanpy - WARNING - Non-fatal error during sampling:
+Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.71537, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -0.868968, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.728034, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -0.0381738, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.0441777, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.382692, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.979648, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -1.92193, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -5.89623, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.445186, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -1.43406, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -1.21831, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -1.81677, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.184955, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -2.7123, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.820345, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.415782, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -0.294672, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -1.3595, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.280837, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.550515, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -3.03288, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -3.08312, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -4.49346, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -3.17942, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -1.31734, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -2.45066, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -3.29273, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -2.45338, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -1.06528, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -1.39769, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.095246, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.563401, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.628237, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -0.278044, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -18.7881, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -2.02224, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -1.95039, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -1.56757, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -0.465816, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.785417, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -0.970592, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -1.31881, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -0.510476, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.856348, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -2.62135, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -1.38097, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -0.374194, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -0.848144, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.0596957, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.327998, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -33.3405, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -1.61413, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -0.466468, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -3.42133, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.207261, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.504193, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -2.1881, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.638818, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -3.22607, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -2.23852, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -3.58128, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -0.839497, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -3.52392, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -4.88493, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.290383, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -0.412644, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -1.28691, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -1.6138, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.187333, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -2.79873, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.540189, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint1 is -0.592031, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 62, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -0.771656, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+Exception: model_fix_mean_model_namespace::log_prob: constraint2 is -0.430489, but must be greater than or equal to 0.000001 (in 'model_fix_mean.stan', line 63, column 1 to column 34)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean.stan', line 65, column 1 to column 22)
+	Exception: model_fix_mean_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean.stan', line 66, column 1 to column 21)
+Consider re-running with show_console=True if the above output is unclear!
+09:40:14 - cmdstanpy - WARNING - Some chains may have failed to converge.
+	Chain 6 had 2 divergent transitions (0.2%)
+	Chain 7 had 1 iterations at max treedepth (0.1%)
+	Chain 9 had 56 iterations at max treedepth (5.6%)
+	Chain 10 had 1 iterations at max treedepth (0.1%)
+	Use the "diagnose()" method on the CmdStanMCMC object to see further information.

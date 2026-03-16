@@ -1,0 +1,10 @@
+Task ID: 2
+Running Scenario: S2 with Model: model_shift_mean_cov_lap.stan using 10 CPUs/Chains
+Starting run: Scenario = S2, Model = model_shift_mean_cov_lap.stan, Chains = 10
+Compiling and running model_shift_mean_cov_lap.stan against Scenario S2 data...
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+Calculating performance metrics for overlapping parameters...
+Saving detailed metrics to: results_S2_model_shift_mean_cov_lap.csv
+Saving aggregated summary to: summary_S2_model_shift_mean_cov_lap.json
+
+Run Complete for model_shift_mean_cov_lap.stan on S2 Data.

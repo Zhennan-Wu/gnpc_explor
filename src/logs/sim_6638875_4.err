@@ -1,0 +1,1552 @@
+conda version 25.3.0 python 3.12.7 unloaded.
+conda version 25.3.0 python 3.12.7 loaded.
+15:16:54 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_fix_mean_lap.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_fix_mean_lap
+15:18:00 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_fix_mean_lap
+15:18:00 - cmdstanpy - INFO - CmdStan start processing
+chain 1:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)]
+chain 2:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A
+
+chain 3:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A
+
+
+chain 4:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A
+
+
+
+chain 5:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A[A
+
+
+
+
+chain 6:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A[A[A
+
+
+
+
+
+chain 7:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A[A[A[A[A[A[A
+chain 2:   0%|[33m          [0m| 1/2000 [00:00<08:10,  4.07it/s, (Warmup)][Achain 1:   0%|[33m          [0m| 1/2000 [00:00<08:38,  3.85it/s, (Warmup)]
+
+
+
+
+
+
+chain 8:   0%|[33m          [0m| 1/2000 [00:00<09:08,  3.64it/s, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:   0%|[33m          [0m| 1/2000 [00:00<09:24,  3.54it/s, (Warmup)][A[A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:   0%|[33m          [0m| 1/2000 [00:00<09:56,  3.35it/s, (Warmup)][A[A[A[A[A[A
+
+
+
+
+chain 6:   0%|[33m          [0m| 1/2000 [00:00<12:03,  2.76it/s, (Warmup)][A[A[A[A[A
+
+
+
+chain 5:   0%|[33m          [0m| 1/2000 [00:00<12:42,  2.62it/s, (Warmup)][A[A[A[A
+
+chain 3:   0%|[33m          [0m| 1/2000 [00:00<12:58,  2.57it/s, (Warmup)][A[A
+
+
+chain 4:   0%|[33m          [0m| 1/2000 [00:00<13:18,  2.50it/s, (Warmup)][A[A[A
+
+
+
+
+
+
+
+
+chain 10:   0%|[33m          [0m| 1/2000 [00:00<13:17,  2.51it/s, (Warmup)][A[A[A[A[A[A[A[A[A
+
+chain 3:   5%|[33m▌         [0m| 100/2000 [02:42<51:28,  1.63s/it, (Warmup)][A[A
+
+chain 3:  10%|[33m█         [0m| 200/2000 [05:05<45:26,  1.51s/it, (Warmup)][A[A
+
+
+
+chain 5:   5%|[33m▌         [0m| 100/2000 [26:02<8:16:07, 15.67s/it, (Warmup)][A[A[A[A
+
+
+
+
+
+chain 7:   5%|[33m▌         [0m| 100/2000 [30:16<9:36:47, 18.21s/it, (Warmup)][A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:   5%|[33m▌         [0m| 100/2000 [30:57<9:49:58, 18.63s/it, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:   5%|[33m▌         [0m| 100/2000 [35:39<11:19:38, 21.46s/it, (Warmup)][A[A[A[A[A[A[A[Achain 1:   5%|[33m▌         [0m| 100/2000 [36:00<11:26:17, 21.67s/it, (Warmup)]
+
+chain 3:  15%|[33m█▌        [0m| 300/2000 [37:20<4:33:43,  9.66s/it, (Warmup)][A[A
+chain 2:   5%|[33m▌         [0m| 100/2000 [40:25<12:50:30, 24.33s/it, (Warmup)][A
+
+
+
+
+chain 6:   5%|[33m▌         [0m| 100/2000 [45:51<14:33:56, 27.60s/it, (Warmup)][A[A[A[A[A
+
+
+chain 4:   5%|[33m▌         [0m| 100/2000 [48:15<15:19:44, 29.04s/it, (Warmup)][A[A[A
+
+
+
+
+
+chain 7:  10%|[33m█         [0m| 200/2000 [48:22<6:56:31, 13.88s/it, (Warmup)][A[A[A[A[A[A
+
+
+
+chain 5:  10%|[33m█         [0m| 200/2000 [49:30<7:22:04, 14.74s/it, (Warmup)][A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:   5%|[33m▌         [0m| 100/2000 [53:53<17:06:54, 32.43s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  10%|[33m█         [0m| 200/2000 [1:07:18<10:15:00, 20.50s/it, (Warmup)][A[A[A[A[A[A[Achain 1:  10%|[33m█         [0m| 200/2000 [1:10:49<10:36:14, 21.21s/it, (Warmup)]
+
+
+
+
+
+
+
+chain 9:  10%|[33m█         [0m| 200/2000 [1:11:53<10:48:40, 21.62s/it, (Warmup)][A[A[A[A[A[A[A[A
+chain 2:  10%|[33m█         [0m| 200/2000 [1:14:59<11:06:28, 22.22s/it, (Warmup)][A
+
+
+
+
+
+chain 7:  15%|[33m█▌        [0m| 300/2000 [1:17:34<7:20:29, 15.55s/it, (Warmup)][A[A[A[A[A[A
+
+
+
+chain 5:  15%|[33m█▌        [0m| 300/2000 [1:22:02<7:59:25, 16.92s/it, (Warmup)][A[A[A[A
+
+
+
+
+chain 6:  10%|[33m█         [0m| 200/2000 [1:23:29<12:19:13, 24.64s/it, (Warmup)][A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  10%|[33m█         [0m| 200/2000 [1:32:00<13:24:04, 26.80s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+chain 4:  10%|[33m█         [0m| 200/2000 [1:35:52<14:22:55, 28.76s/it, (Warmup)][A[A[A
+
+
+
+
+
+chain 7:  20%|[33m██        [0m| 400/2000 [1:38:09<6:20:56, 14.29s/it, (Warmup)][A[A[A[A[A[Achain 1:  15%|[33m█▌        [0m| 300/2000 [1:38:41<9:02:45, 19.16s/it, (Warmup)] 
+chain 2:  15%|[33m█▌        [0m| 300/2000 [1:41:40<9:09:03, 19.38s/it, (Warmup)] [A
+
+
+
+
+
+
+chain 8:  15%|[33m█▌        [0m| 300/2000 [1:41:44<9:42:56, 20.57s/it, (Warmup)] [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  15%|[33m█▌        [0m| 300/2000 [1:45:27<9:53:29, 20.95s/it, (Warmup)] [A[A[A[A[A[A[A[A
+
+
+
+chain 5:  20%|[33m██        [0m| 400/2000 [1:52:23<7:44:51, 17.43s/it, (Warmup)][A[A[A[Achain 1:  20%|[33m██        [0m| 400/2000 [2:04:45<7:53:49, 17.77s/it, (Warmup)]
+
+
+
+
+
+
+chain 8:  20%|[33m██        [0m| 400/2000 [2:07:10<8:12:43, 18.48s/it, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:  25%|[33m██▌       [0m| 500/2000 [2:08:28<6:32:16, 15.69s/it, (Warmup)][A[A[A[A[A[A
+
+
+
+
+chain 6:  15%|[33m█▌        [0m| 300/2000 [2:10:44<12:26:12, 26.34s/it, (Warmup)][A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  15%|[33m█▌        [0m| 300/2000 [2:11:55<12:02:26, 25.50s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+chain 2:  20%|[33m██        [0m| 400/2000 [2:16:50<8:54:52, 20.06s/it, (Warmup)][A
+
+
+
+
+
+
+
+chain 9:  20%|[33m██        [0m| 400/2000 [2:17:22<8:59:40, 20.24s/it, (Warmup)][A[A[A[A[A[A[A[A
+
+
+chain 4:  15%|[33m█▌        [0m| 300/2000 [2:17:53<12:48:53, 27.14s/it, (Warmup)][A[A[A
+
+
+
+
+chain 6:  20%|[33m██        [0m| 400/2000 [2:31:37<9:16:53, 20.88s/it, (Warmup)] [A[A[A[A[A
+
+
+
+chain 5:  25%|[33m██▌       [0m| 500/2000 [2:31:45<8:11:31, 19.66s/it, (Warmup)][A[A[A[A
+
+
+
+
+
+
+chain 8:  25%|[33m██▌       [0m| 500/2000 [2:39:02<7:47:43, 18.71s/it, (Warmup)][A[A[A[A[A[A[Achain 1:  25%|[33m██▌       [0m| 500/2000 [2:43:17<8:12:27, 19.70s/it, (Warmup)]
+
+
+
+
+
+chain 7:  30%|[33m███       [0m| 600/2000 [2:46:09<7:01:03, 18.05s/it, (Warmup)][A[A[A[A[A[A
+chain 2:  25%|[33m██▌       [0m| 500/2000 [2:56:14<8:53:43, 21.35s/it, (Warmup)][A
+
+
+
+
+
+
+
+
+chain 10:  20%|[33m██        [0m| 400/2000 [2:56:36<11:33:47, 26.02s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+chain 4:  20%|[33m██        [0m| 400/2000 [2:58:04<11:31:50, 25.94s/it, (Warmup)][A[A[A
+
+
+
+
+
+
+
+chain 9:  25%|[33m██▌       [0m| 500/2000 [3:00:19<9:15:49, 22.23s/it, (Warmup)][A[A[A[A[A[A[A[A
+
+chain 3:  20%|[33m██        [0m| 400/2000 [3:02:11<17:51:12, 40.17s/it, (Warmup)][A[A
+
+
+
+
+chain 6:  25%|[33m██▌       [0m| 500/2000 [3:03:13<8:24:42, 20.19s/it, (Warmup)][A[A[A[A[A
+
+
+
+chain 5:  30%|[33m███       [0m| 600/2000 [3:08:58<7:59:56, 20.57s/it, (Warmup)][A[A[A[Achain 1:  30%|[33m███       [0m| 600/2000 [3:10:29<7:12:51, 18.55s/it, (Warmup)]
+
+
+
+
+
+chain 7:  35%|[33m███▌      [0m| 700/2000 [3:16:15<6:31:02, 18.05s/it, (Warmup)][A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  30%|[33m███       [0m| 600/2000 [3:26:46<8:35:18, 22.08s/it, (Warmup)][A[A[A[A[A[A[A
+
+
+chain 4:  25%|[33m██▌       [0m| 500/2000 [3:28:26<9:38:54, 23.16s/it, (Warmup)] [A[A[A
+chain 2:  30%|[33m███       [0m| 600/2000 [3:33:39<8:26:53, 21.72s/it, (Warmup)][A
+
+
+
+
+chain 6:  30%|[33m███       [0m| 600/2000 [3:33:46<7:36:20, 19.56s/it, (Warmup)][A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  25%|[33m██▌       [0m| 500/2000 [3:35:12<10:24:35, 24.98s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  30%|[33m███       [0m| 600/2000 [3:38:36<8:44:37, 22.48s/it, (Warmup)][A[A[A[A[A[A[A[A
+
+
+
+chain 5:  35%|[33m███▌      [0m| 700/2000 [3:39:02<7:07:43, 19.74s/it, (Warmup)][A[A[A[Achain 1:  35%|[33m███▌      [0m| 700/2000 [3:58:52<7:56:08, 21.98s/it, (Warmup)]
+
+
+
+
+
+
+chain 8:  35%|[33m███▌      [0m| 700/2000 [4:03:16<7:57:10, 22.02s/it, (Warmup)][A[A[A[A[A[A[A
+
+
+
+chain 5:  40%|[33m████      [0m| 800/2000 [4:04:16<6:05:34, 18.28s/it, (Warmup)][A[A[A[A
+
+
+
+
+
+chain 7:  40%|[33m████      [0m| 800/2000 [4:05:00<7:12:20, 21.62s/it, (Warmup)][A[A[A[A[A[A
+
+
+chain 4:  30%|[33m███       [0m| 600/2000 [4:06:56<8:59:52, 23.14s/it, (Warmup)][A[A[A
+
+
+
+
+
+
+
+
+chain 10:  30%|[33m███       [0m| 600/2000 [4:10:50<9:14:21, 23.76s/it, (Warmup)] [A[A[A[A[A[A[A[A[A
+
+
+
+
+chain 6:  35%|[33m███▌      [0m| 700/2000 [4:12:09<7:28:20, 20.69s/it, (Warmup)][A[A[A[A[A
+chain 2:  35%|[33m███▌      [0m| 700/2000 [4:14:04<8:08:37, 22.55s/it, (Warmup)][A
+
+
+
+
+
+
+
+chain 9:  35%|[33m███▌      [0m| 700/2000 [4:17:20<8:12:27, 22.73s/it, (Warmup)][A[A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:  45%|[33m████▌     [0m| 900/2000 [4:31:47<6:04:29, 19.88s/it, (Warmup)][A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  35%|[33m███▌      [0m| 700/2000 [4:37:10<7:38:24, 21.16s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+chain 4:  35%|[33m███▌      [0m| 700/2000 [4:40:10<7:58:38, 22.09s/it, (Warmup)][A[A[A
+
+
+
+
+
+
+chain 8:  40%|[33m████      [0m| 800/2000 [4:44:46<7:38:46, 22.94s/it, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  40%|[33m████      [0m| 800/2000 [4:48:38<7:09:28, 21.47s/it, (Warmup)][A[A[A[A[A[A[A[Achain 1:  40%|[33m████      [0m| 800/2000 [4:49:25<8:12:45, 24.64s/it, (Warmup)]
+
+
+
+chain 5:  45%|[33m████▌     [0m| 900/2000 [4:51:12<6:31:43, 21.37s/it, (Warmup)][A[A[A[A
+
+
+
+
+chain 6:  40%|[33m████      [0m| 800/2000 [4:52:41<7:16:57, 21.85s/it, (Warmup)][A[A[A[A[A
+
+chain 3:  25%|[33m██▌       [0m| 500/2000 [5:03:45<21:39:48, 51.99s/it, (Warmup)][A[A
+chain 2:  40%|[33m████      [0m| 800/2000 [5:03:57<8:18:01, 24.90s/it, (Warmup)][A
+
+
+
+
+
+
+
+
+chain 10:  40%|[33m████      [0m| 800/2000 [5:05:42<6:37:28, 19.87s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+chain 4:  40%|[33m████      [0m| 800/2000 [5:08:34<6:49:41, 20.48s/it, (Warmup)][A[A[A
+
+
+
+
+
+chain 7:  50%|[33m█████     [0m| 1000/2000 [5:11:46<5:52:31, 21.15s/it, (Warmup)][A[A[A[A[A[A
+
+
+
+
+
+chain 7:  50%|[34m█████     [0m| 1000/2000 [5:12:04<5:52:31, 21.15s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+chain 7:  50%|[34m█████     [0m| 1001/2000 [5:12:04<5:51:56, 21.14s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  45%|[33m████▌     [0m| 900/2000 [5:18:35<6:13:33, 20.38s/it, (Warmup)][A[A[A[A[A[A[A[A
+
+
+
+
+chain 6:  45%|[33m████▌     [0m| 900/2000 [5:18:40<6:04:39, 19.89s/it, (Warmup)][A[A[A[A[A
+
+
+
+
+
+
+chain 8:  45%|[33m████▌     [0m| 900/2000 [5:21:32<6:55:33, 22.67s/it, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  45%|[33m████▌     [0m| 900/2000 [5:36:09<5:55:08, 19.37s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+chain 4:  45%|[33m████▌     [0m| 900/2000 [5:37:56<5:59:08, 19.59s/it, (Warmup)][A[A[Achain 1:  45%|[33m████▌     [0m| 900/2000 [5:38:13<7:58:17, 26.09s/it, (Warmup)]
+
+
+
+chain 5:  50%|[33m█████     [0m| 1000/2000 [5:38:40<6:32:43, 23.56s/it, (Warmup)][A[A[A[A
+
+
+
+chain 5:  50%|[34m█████     [0m| 1000/2000 [5:38:49<6:32:43, 23.56s/it, (Sampling)][A[A[A[A
+
+
+
+chain 5:  50%|[34m█████     [0m| 1001/2000 [5:38:49<6:31:15, 23.50s/it, (Sampling)][A[A[A[A
+
+
+
+
+chain 6:  50%|[33m█████     [0m| 1000/2000 [5:44:42<5:09:31, 18.57s/it, (Warmup)][A[A[A[A[A
+
+
+
+
+chain 6:  50%|[34m█████     [0m| 1000/2000 [5:44:55<5:09:31, 18.57s/it, (Sampling)][A[A[A[A[A
+
+
+
+
+chain 6:  50%|[34m█████     [0m| 1001/2000 [5:44:55<5:08:50, 18.55s/it, (Sampling)][A[A[A[A[A
+chain 2:  45%|[33m████▌     [0m| 900/2000 [5:46:12<7:39:05, 25.04s/it, (Warmup)][A
+
+
+
+chain 5:  55%|[34m█████▌    [0m| 1100/2000 [5:53:42<4:29:15, 17.95s/it, (Sampling)][A[A[A[A
+
+
+
+
+chain 6:  55%|[34m█████▌    [0m| 1100/2000 [5:54:58<3:26:37, 13.78s/it, (Sampling)][A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  50%|[33m█████     [0m| 1000/2000 [5:57:51<5:56:00, 21.36s/it, (Warmup)][A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  50%|[34m█████     [0m| 1000/2000 [5:58:45<5:56:00, 21.36s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  50%|[34m█████     [0m| 1001/2000 [5:58:45<5:58:01, 21.50s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  50%|[33m█████     [0m| 1000/2000 [6:03:09<5:06:31, 18.39s/it, (Warmup)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  50%|[34m█████     [0m| 1000/2000 [6:03:18<5:06:31, 18.39s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  50%|[34m█████     [0m| 1001/2000 [6:03:18<5:05:31, 18.35s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+
+
+
+chain 6:  60%|[34m██████    [0m| 1200/2000 [6:04:47<2:26:14, 10.97s/it, (Sampling)][A[A[A[A[A
+
+
+
+
+
+
+chain 8:  50%|[33m█████     [0m| 1000/2000 [6:08:03<6:44:43, 24.28s/it, (Warmup)][A[A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  50%|[34m█████     [0m| 1000/2000 [6:08:21<6:44:43, 24.28s/it, (Sampling)][A[A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  50%|[34m█████     [0m| 1001/2000 [6:08:21<6:43:51, 24.26s/it, (Sampling)][A[A[A[A[A[A[A
+
+
+
+chain 5:  60%|[34m██████    [0m| 1200/2000 [6:08:44<3:16:57, 14.77s/it, (Sampling)][A[A[A[A
+
+
+
+
+chain 6:  65%|[34m██████▌   [0m| 1300/2000 [6:16:01<1:51:19,  9.54s/it, (Sampling)][A[A[A[A[A
+
+
+chain 4:  50%|[33m█████     [0m| 1000/2000 [6:19:17<5:53:21, 21.20s/it, (Warmup)][A[A[A
+
+
+chain 4:  50%|[34m█████     [0m| 1000/2000 [6:19:26<5:53:21, 21.20s/it, (Sampling)][A[A[A
+
+
+chain 4:  50%|[34m█████     [0m| 1001/2000 [6:19:26<5:52:06, 21.15s/it, (Sampling)][A[A[A
+
+
+
+chain 5:  65%|[34m██████▌   [0m| 1300/2000 [6:23:45<2:29:41, 12.83s/it, (Sampling)][A[A[A[A
+
+
+
+
+
+chain 7:  55%|[34m█████▌    [0m| 1100/2000 [6:24:47<7:28:51, 29.92s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+chain 6:  70%|[34m███████   [0m| 1400/2000 [6:27:15<1:26:20,  8.63s/it, (Sampling)][A[A[A[A[Achain 1:  50%|[33m█████     [0m| 1000/2000 [6:33:58<7:52:39, 28.36s/it, (Warmup)]chain 1:  50%|[34m█████     [0m| 1000/2000 [6:34:16<7:52:39, 28.36s/it, (Sampling)]chain 1:  50%|[34m█████     [0m| 1001/2000 [6:34:16<7:51:25, 28.31s/it, (Sampling)]
+chain 2:  50%|[33m█████     [0m| 1000/2000 [6:36:42<7:24:24, 26.66s/it, (Warmup)][A
+chain 2:  50%|[34m█████     [0m| 1000/2000 [6:37:01<7:24:24, 26.66s/it, (Sampling)][A
+chain 2:  50%|[34m█████     [0m| 1001/2000 [6:37:01<7:23:24, 26.63s/it, (Sampling)][A
+
+
+
+
+
+
+chain 8:  55%|[34m█████▌    [0m| 1100/2000 [6:37:56<5:27:28, 21.83s/it, (Sampling)][A[A[A[A[A[A[A
+
+
+
+
+chain 6:  75%|[34m███████▌  [0m| 1500/2000 [6:38:29<1:06:56,  8.03s/it, (Sampling)][A[A[A[A[A
+
+
+
+chain 5:  70%|[34m███████   [0m| 1400/2000 [6:43:24<2:04:55, 12.49s/it, (Sampling)][A[A[A[A
+
+
+
+
+
+
+
+chain 9:  55%|[34m█████▌    [0m| 1100/2000 [6:49:30<6:15:45, 25.05s/it, (Sampling)][A[A[A[A[A[A[A[Achain 1:  55%|[34m█████▌    [0m| 1100/2000 [6:49:34<5:15:20, 21.02s/it, (Sampling)]
+
+
+
+
+chain 6:  80%|[34m████████  [0m| 1600/2000 [6:49:45<50:53,  7.63s/it, (Sampling)]  [A[A[A[A[A
+
+
+
+chain 5:  75%|[34m███████▌  [0m| 1500/2000 [6:58:25<1:34:54, 11.39s/it, (Sampling)][A[A[A[A
+
+
+
+
+chain 6:  85%|[34m████████▌ [0m| 1700/2000 [7:00:59<36:47,  7.36s/it, (Sampling)][A[A[A[A[Achain 1:  60%|[34m██████    [0m| 1200/2000 [7:06:33<3:48:51, 17.16s/it, (Sampling)]
+
+
+
+
+
+
+chain 8:  60%|[34m██████    [0m| 1200/2000 [7:07:51<4:32:40, 20.45s/it, (Sampling)][A[A[A[A[A[A[A
+chain 2:  55%|[34m█████▌    [0m| 1100/2000 [7:08:48<5:57:04, 23.81s/it, (Sampling)][A
+
+
+
+
+chain 6:  90%|[34m█████████ [0m| 1800/2000 [7:10:28<22:50,  6.85s/it, (Sampling)][A[A[A[A[A
+
+
+
+chain 5:  80%|[34m████████  [0m| 1600/2000 [7:13:28<1:11:00, 10.65s/it, (Sampling)][A[A[A[A
+
+
+
+
+chain 6:  95%|[34m█████████▌[0m| 1900/2000 [7:21:42<11:21,  6.82s/it, (Sampling)][A[A[A[A[Achain 1:  65%|[34m██████▌   [0m| 1300/2000 [7:23:48<2:53:28, 14.87s/it, (Sampling)]
+
+
+
+
+
+
+
+
+chain 10:  55%|[34m█████▌    [0m| 1100/2000 [7:25:29<7:36:02, 30.40s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+chain 3:  30%|[33m███       [0m| 600/2000 [7:26:07<24:38:20, 63.36s/it, (Warmup)][A[A
+
+
+
+chain 5:  85%|[34m████████▌ [0m| 1700/2000 [7:28:28<50:43, 10.14s/it, (Sampling)]  [A[A[A[A
+
+
+
+
+chain 6: 100%|[34m██████████[0m| 2000/2000 [7:32:57<00:00,  6.79s/it, (Sampling)][A[A[A[A[A
+
+
+
+
+
+
+chain 8:  65%|[34m██████▌   [0m| 1300/2000 [7:37:03<3:47:03, 19.46s/it, (Sampling)][A[A[A[A[A[A[Achain 1:  70%|[34m███████   [0m| 1400/2000 [7:39:05<2:10:09, 13.02s/it, (Sampling)]
+chain 2:  60%|[34m██████    [0m| 1200/2000 [7:39:28<4:51:44, 21.88s/it, (Sampling)][A
+
+
+
+
+
+chain 7:  60%|[34m██████    [0m| 1200/2000 [7:39:35<7:49:57, 35.25s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  60%|[34m██████    [0m| 1200/2000 [7:40:09<5:59:19, 26.95s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+
+
+chain 5:  90%|[34m█████████ [0m| 1800/2000 [7:42:31<32:03,  9.62s/it, (Sampling)][A[A[A[A
+
+
+
+chain 5:  95%|[34m█████████▌[0m| 1900/2000 [7:55:28<15:05,  9.06s/it, (Sampling)][A[A[A[A
+
+
+chain 4:  55%|[34m█████▌    [0m| 1100/2000 [7:56:18<8:53:03, 35.54s/it, (Sampling)][A[A[Achain 1:  75%|[34m███████▌  [0m| 1500/2000 [7:56:42<1:41:59, 12.24s/it, (Sampling)]
+
+
+
+
+
+
+chain 8:  70%|[34m███████   [0m| 1400/2000 [8:02:04<3:00:08, 18.01s/it, (Sampling)][A[A[A[A[A[A[A
+chain 2:  65%|[34m██████▌   [0m| 1300/2000 [8:05:54<3:51:36, 19.85s/it, (Sampling)][A
+
+
+
+chain 5: 100%|[34m██████████[0m| 2000/2000 [8:07:47<00:00,  8.55s/it, (Sampling)][A[A[A[Achain 1:  80%|[34m████████  [0m| 1600/2000 [8:09:39<1:12:17, 10.84s/it, (Sampling)]chain 1:  85%|[34m████████▌ [0m| 1700/2000 [8:21:15<48:14,  9.65s/it, (Sampling)]  
+
+
+
+
+
+
+chain 8:  75%|[34m███████▌  [0m| 1500/2000 [8:25:02<2:18:56, 16.67s/it, (Sampling)][A[A[A[A[A[A[A
+chain 2:  70%|[34m███████   [0m| 1400/2000 [8:29:38<3:00:17, 18.03s/it, (Sampling)][Achain 1:  90%|[34m█████████ [0m| 1800/2000 [8:33:26<29:46,  8.93s/it, (Sampling)]
+
+
+
+
+
+chain 7:  65%|[34m██████▌   [0m| 1300/2000 [8:40:28<6:56:14, 35.68s/it, (Sampling)][A[A[A[A[A[Achain 1:  95%|[34m█████████▌[0m| 1900/2000 [8:44:43<13:47,  8.28s/it, (Sampling)]
+
+
+
+
+
+
+chain 8:  80%|[34m████████  [0m| 1600/2000 [8:47:16<1:44:14, 15.64s/it, (Sampling)][A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  60%|[34m██████    [0m| 1200/2000 [8:52:03<8:27:35, 38.07s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+chain 2:  75%|[34m███████▌  [0m| 1500/2000 [8:53:12<2:19:56, 16.79s/it, (Sampling)][A
+
+
+chain 4:  60%|[34m██████    [0m| 1200/2000 [8:53:27<7:47:54, 35.09s/it, (Sampling)][A[A[A
+
+
+
+
+
+
+
+chain 9:  65%|[34m██████▌   [0m| 1300/2000 [8:55:42<6:26:43, 33.15s/it, (Sampling)][A[A[A[A[A[A[A[Achain 1: 100%|[34m██████████[0m| 2000/2000 [8:56:02<00:00,  7.83s/it, (Sampling)]
+
+
+
+
+
+
+chain 8:  85%|[34m████████▌ [0m| 1700/2000 [9:09:17<1:14:25, 14.89s/it, (Sampling)][A[A[A[A[A[A[A
+chain 2:  80%|[34m████████  [0m| 1600/2000 [9:16:04<1:45:35, 15.84s/it, (Sampling)][A
+
+chain 3:  35%|[33m███▌      [0m| 700/2000 [9:16:40<23:13:52, 64.33s/it, (Warmup)][A[A
+
+
+
+
+
+
+chain 8:  90%|[34m█████████ [0m| 1800/2000 [9:30:59<47:43, 14.32s/it, (Sampling)]  [A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:  70%|[34m███████   [0m| 1400/2000 [9:35:13<5:47:36, 34.76s/it, (Sampling)][A[A[A[A[A[A
+chain 2:  85%|[34m████████▌ [0m| 1700/2000 [9:38:49<1:15:48, 15.16s/it, (Sampling)][A
+
+
+
+
+
+
+
+chain 9:  70%|[34m███████   [0m| 1400/2000 [9:44:42<5:19:17, 31.93s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  65%|[34m██████▌   [0m| 1300/2000 [9:50:46<7:12:58, 37.11s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+chain 8:  95%|[34m█████████▌[0m| 1900/2000 [9:52:45<23:13, 13.93s/it, (Sampling)][A[A[A[A[A[A[A
+chain 2:  90%|[34m█████████ [0m| 1800/2000 [10:02:47<49:44, 14.92s/it, (Sampling)] [A
+
+
+chain 4:  65%|[34m██████▌   [0m| 1300/2000 [10:04:31<7:19:04, 37.64s/it, (Sampling)][A[A[A
+
+
+
+
+
+
+chain 8: 100%|[34m██████████[0m| 2000/2000 [10:17:23<00:00, 14.19s/it, (Sampling)][A[A[A[A[A[A[A
+chain 2:  95%|[34m█████████▌[0m| 1900/2000 [10:26:37<24:33, 14.73s/it, (Sampling)][A
+
+
+
+
+
+chain 7:  75%|[34m███████▌  [0m| 1500/2000 [10:33:10<4:49:41, 34.76s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  75%|[34m███████▌  [0m| 1500/2000 [10:39:02<4:27:50, 32.14s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  70%|[34m███████   [0m| 1400/2000 [10:40:15<5:47:00, 34.70s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+chain 3:  40%|[33m████      [0m| 800/2000 [10:48:55<20:29:25, 61.47s/it, (Warmup)][A[A
+chain 2: 100%|[34m██████████[0m| 2000/2000 [10:50:05<00:00, 14.54s/it, (Sampling)][A
+
+
+
+
+
+chain 7:  80%|[34m████████  [0m| 1600/2000 [11:17:32<3:34:49, 32.22s/it, (Sampling)][A[A[A[A[A[A
+
+
+chain 4:  70%|[34m███████   [0m| 1400/2000 [11:22:09<6:45:25, 40.54s/it, (Sampling)][A[A[A
+
+
+
+
+
+
+
+chain 9:  80%|[34m████████  [0m| 1600/2000 [11:25:34<3:25:30, 30.83s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  75%|[34m███████▌  [0m| 1500/2000 [11:37:42<4:48:34, 34.63s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:  85%|[34m████████▌ [0m| 1700/2000 [12:01:18<2:31:56, 30.39s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  85%|[34m████████▌ [0m| 1700/2000 [12:08:05<2:25:55, 29.19s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+chain 3:  45%|[33m████▌     [0m| 900/2000 [12:21:29<18:12:56, 59.62s/it, (Warmup)][A[A
+
+
+chain 4:  75%|[34m███████▌  [0m| 1500/2000 [12:28:29<5:35:53, 40.31s/it, (Sampling)][A[A[A
+
+
+
+
+
+
+
+
+chain 10:  80%|[34m████████  [0m| 1600/2000 [12:36:29<3:52:10, 34.83s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+
+
+
+
+chain 7:  90%|[34m█████████ [0m| 1800/2000 [12:47:51<1:38:47, 29.64s/it, (Sampling)][A[A[A[A[A[A
+
+
+
+
+
+
+
+chain 9:  90%|[34m█████████ [0m| 1800/2000 [12:48:13<1:32:04, 27.62s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+chain 3:  50%|[33m█████     [0m| 1000/2000 [13:06:35<13:46:04, 49.56s/it, (Warmup)][A[A
+
+chain 3:  50%|[34m█████     [0m| 1000/2000 [13:06:38<13:46:04, 49.56s/it, (Sampling)][A[A
+
+chain 3:  50%|[34m█████     [0m| 1001/2000 [13:06:38<13:41:50, 49.36s/it, (Sampling)][A[A
+
+chain 3:  55%|[34m█████▌    [0m| 1100/2000 [13:15:22<8:07:10, 32.48s/it, (Sampling)] [A[A
+
+chain 3:  60%|[34m██████    [0m| 1200/2000 [13:24:49<5:05:47, 22.93s/it, (Sampling)][A[A
+
+
+
+
+
+
+
+chain 9:  95%|[34m█████████▌[0m| 1900/2000 [13:29:32<44:36, 26.76s/it, (Sampling)]  [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+chain 10:  85%|[34m████████▌ [0m| 1700/2000 [13:32:18<2:52:04, 34.42s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+chain 3:  65%|[34m██████▌   [0m| 1300/2000 [13:34:17<3:19:42, 17.12s/it, (Sampling)][A[A
+
+
+
+
+
+chain 7:  95%|[34m█████████▌[0m| 1900/2000 [13:35:38<48:54, 29.34s/it, (Sampling)]  [A[A[A[A[A[A
+
+
+chain 4:  80%|[34m████████  [0m| 1600/2000 [13:38:27<4:32:11, 40.83s/it, (Sampling)][A[A[A
+
+chain 3:  70%|[34m███████   [0m| 1400/2000 [13:43:45<2:13:59, 13.40s/it, (Sampling)][A[A
+
+chain 3:  75%|[34m███████▌  [0m| 1500/2000 [13:52:57<1:30:51, 10.90s/it, (Sampling)][A[A
+
+chain 3:  80%|[34m████████  [0m| 1600/2000 [14:02:26<1:01:50,  9.28s/it, (Sampling)][A[A
+
+
+
+
+
+
+
+chain 9: 100%|[34m██████████[0m| 2000/2000 [14:10:22<00:00, 26.08s/it, (Sampling)][A[A[A[A[A[A[A[A
+
+chain 3:  85%|[34m████████▌ [0m| 1700/2000 [14:11:51<40:47,  8.16s/it, (Sampling)]  [A[A
+
+
+
+
+
+chain 7: 100%|[34m██████████[0m| 2000/2000 [14:20:07<00:00, 28.54s/it, (Sampling)][A[A[A[A[A[A
+
+chain 3:  90%|[34m█████████ [0m| 1800/2000 [14:20:54<24:25,  7.33s/it, (Sampling)][A[A
+
+
+
+
+
+
+
+
+chain 10:  90%|[34m█████████ [0m| 1800/2000 [14:23:40<1:51:03, 33.32s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+chain 3:  95%|[34m█████████▌[0m| 1900/2000 [14:29:12<11:01,  6.61s/it, (Sampling)][A[A
+
+chain 3: 100%|[34m██████████[0m| 2000/2000 [14:37:35<00:00,  6.13s/it, (Sampling)][A[A
+
+
+chain 4:  85%|[34m████████▌ [0m| 1700/2000 [14:47:20<3:24:55, 40.98s/it, (Sampling)][A[A[A
+
+
+
+
+
+
+
+
+chain 10:  95%|[34m█████████▌[0m| 1900/2000 [15:09:13<52:29, 31.50s/it, (Sampling)]  [A[A[A[A[A[A[A[A[A
+
+
+chain 4:  90%|[34m█████████ [0m| 1800/2000 [15:44:12<2:09:37, 38.89s/it, (Sampling)][A[A[A
+
+
+
+
+
+
+
+
+chain 10: 100%|[34m██████████[0m| 2000/2000 [15:52:33<00:00, 29.83s/it, (Sampling)][A[A[A[A[A[A[A[A[A
+
+
+chain 4:  95%|[34m█████████▌[0m| 1900/2000 [16:50:06<1:05:08, 39.09s/it, (Sampling)][A[A[A
+
+
+chain 4: 100%|[34m██████████[0m| 2000/2000 [17:48:45<00:00, 37.91s/it, (Sampling)]  [A[A[Achain 1: 100%|[34m██████████[0m| 2000/2000 [17:49:26<00:00,  7.83s/it, (Sampling completed)]chain 1: 100%|[34m██████████[0m| 2000/2000 [17:49:26<00:00, 32.08s/it, (Sampling completed)]
+
+chain 2: 100%|[34m██████████[0m| 2000/2000 [17:49:26<00:00, 14.54s/it, (Sampling completed)][Achain 2: 100%|[34m██████████[0m| 2000/2000 [17:49:26<00:00, 32.08s/it, (Sampling completed)]
+
+
+chain 3: 100%|[34m██████████[0m| 2000/2000 [17:49:26<00:00,  6.13s/it, (Sampling completed)][A[Achain 3: 100%|[34m██████████[0m| 2000/2000 [17:49:26<00:00, 32.08s/it, (Sampling completed)]
+
+
+
+chain 4: 100%|[34m██████████[0m| 2000/2000 [17:49:26<00:00, 37.91s/it, (Sampling completed)][A[A[Achain 4: 100%|[34m██████████[0m| 2000/2000 [17:49:26<00:00, 32.08s/it, (Sampling completed)]
+
+
+
+
+chain 5: 100%|[34m██████████[0m| 2000/2000 [17:49:26<00:00,  8.55s/it, (Sampling completed)][A[A[A[Achain 5: 100%|[34m██████████[0m| 2000/2000 [17:49:26<00:00, 32.08s/it, (Sampling completed)]
+
+
+
+
+
+chain 6: 100%|[34m██████████[0m| 2000/2000 [17:49:26<00:00,  6.79s/it, (Sampling completed)][A[A[A[A[Achain 6: 100%|[34m██████████[0m| 2000/2000 [17:49:26<00:00, 32.08s/it, (Sampling completed)]
+
+
+
+
+
+
+chain 7: 100%|[34m██████████[0m| 2000/2000 [17:49:26<00:00, 28.54s/it, (Sampling completed)][A[A[A[A[A[Achain 7: 100%|[34m██████████[0m| 2000/2000 [17:49:26<00:00, 32.08s/it, (Sampling completed)]
+
+
+
+
+
+
+
+chain 8: 100%|[34m██████████[0m| 2000/2000 [17:49:26<00:00, 14.19s/it, (Sampling completed)][A[A[A[A[A[A[Achain 8: 100%|[34m██████████[0m| 2000/2000 [17:49:26<00:00, 32.08s/it, (Sampling completed)]
+
+
+
+
+
+
+
+
+chain 9: 100%|[34m██████████[0m| 2000/2000 [17:49:26<00:00, 26.08s/it, (Sampling completed)][A[A[A[A[A[A[A[Achain 9: 100%|[34m██████████[0m| 2000/2000 [17:49:26<00:00, 32.08s/it, (Sampling completed)]
+
+
+
+
+
+
+
+
+
+chain 10: 100%|[34m██████████[0m| 2000/2000 [17:49:26<00:00, 29.83s/it, (Sampling completed)][A[A[A[A[A[A[A[A[Achain 10: 100%|[34m██████████[0m| 2000/2000 [17:49:26<00:00, 32.08s/it, (Sampling completed)]
+09:07:27 - cmdstanpy - INFO - CmdStan done processing.
+09:07:27 - cmdstanpy - WARNING - Non-fatal error during sampling:
+Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: ordered_logistic: Cut-points is not a valid ordered vector. The element at 2 is -7.10792, but should be greater than the previous element, -7.10792 (in 'model_fix_mean_lap.stan', line 158, column 35 to column 126)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Omega is not positive definite. (in 'model_fix_mean_lap.stan', line 67, column 1 to column 22)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+	Exception: model_fix_mean_lap_model_namespace::log_prob: Sigma is not positive definite. (in 'model_fix_mean_lap.stan', line 68, column 1 to column 21)
+Consider re-running with show_console=True if the above output is unclear!
+09:07:37 - cmdstanpy - WARNING - Some chains may have failed to converge.
+	Chain 4 had 37 iterations at max treedepth (3.7%)
+	Chain 7 had 1 iterations at max treedepth (0.1%)
+	Chain 9 had 3 iterations at max treedepth (0.3%)
+	Chain 10 had 6 iterations at max treedepth (0.6%)
+	Use the "diagnose()" method on the CmdStanMCMC object to see further information.

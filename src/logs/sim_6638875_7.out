@@ -1,0 +1,10 @@
+Task ID: 7
+Running Scenario: S5 with Model: model_shift_mean_paper.stan using 10 CPUs/Chains
+Starting run: Scenario = S5, Model = model_shift_mean_paper.stan, Chains = 10
+Compiling and running model_shift_mean_paper.stan against Scenario S5 data...
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+Calculating performance metrics for overlapping parameters...
+Saving detailed metrics to: results_S5_model_shift_mean_paper.csv
+Saving aggregated summary to: summary_S5_model_shift_mean_paper.json
+
+Run Complete for model_shift_mean_paper.stan on S5 Data.

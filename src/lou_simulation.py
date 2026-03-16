@@ -327,8 +327,8 @@ if __name__ == "__main__":
     parser.add_argument("--chains", type=int, default=3, help="Number of MCMC chains")
     
     # --- ADD THESE TWO LINES ---
-    parser.add_argument("--warmup", type=int, default=1000, help="Warmup iterations")
-    parser.add_argument("--sampling", type=int, default=1000, help="Sampling iterations")
+    parser.add_argument("--warmup", type=int, default=2500, help="Warmup iterations")
+    parser.add_argument("--sampling", type=int, default=2500, help="Sampling iterations")
     # ---------------------------
     
     args = parser.parse_args()

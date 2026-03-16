@@ -26,6 +26,8 @@ def generate_experiment_list(output_file="experiments.txt", stan_dir=".", scenar
         count = 0
         for scenario in scenarios:
             for stan_file in stan_filenames:
+                if "ultra" in stan_file or "alsfrs" in stan_file:
+                    continue  # Skip ultra models for now
                 f.write(f"{scenario} {stan_file}\n")
                 count += 1
                 

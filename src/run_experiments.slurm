@@ -5,12 +5,12 @@
 #SBATCH --error=logs/sim_%A_%a.err
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=zwu1@iu.edu
-#SBATCH --time=1-00:00:00               
+#SBATCH --time=4-00:00:00               
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=10             
-#SBATCH --mem=128G                      
-#SBATCH --array=1-8       
+#SBATCH --cpus-per-task=3             
+#SBATCH --mem=64G                      
+#SBATCH --array=1-32       
 #SBATCH -A r00939           
 
 # --- CONDA ACTIVATION ---
@@ -29,8 +29,8 @@ export CC=gcc
 # install_cmdstan --overwrite
 
 # Slurm automatically populates $SLURM_CPUS_PER_TASK based on the header above.
-# We include a fallback of 10 just in case you ever run this script locally outside of Slurm.
-CHAINS=${SLURM_CPUS_PER_TASK:-10}
+# We include a fallback of 3 just in case you ever run this script locally outside of Slurm.
+CHAINS=${SLURM_CPUS_PER_TASK:-3}
 
 # Extract the specific scenario and model for this task ID from the text file
 CONFIG_LINE=$(sed -n "${SLURM_ARRAY_TASK_ID}p" experiments.txt)

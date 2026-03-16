@@ -329,7 +329,7 @@ def run_misspecification_test(n_runs=3):
                 # Metric Accumulators
                 l_corrs, l_mses = [], []
                 f_corrs, f_mses = [], []
-                th_corrs, th_mses, th_off_mses = [], []
+                th_corrs, th_mses, th_off_mses = [], [], []
                 b_corrs, b_mses = [], []
                 c_corrs, c_mses = [], []
                 final_losses, run_times = [], []

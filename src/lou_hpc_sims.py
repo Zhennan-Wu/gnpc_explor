@@ -229,7 +229,7 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
     stan_data = prepare_stan_data(dataset)
     ground_truths = create_ground_truth_dict(scenario)
     
-    model = cmdstanpy.CmdStanModel(stan_file=stan_file_path, compile=False)
+    model = cmdstanpy.CmdStanModel(stan_file=stan_file_path)
     
     fit = model.sample(
         data=stan_data, iter_warmup=iter_warmup, iter_sampling=iter_sampling,

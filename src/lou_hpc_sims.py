@@ -350,20 +350,23 @@ if __name__ == "__main__":
     stan_file = args.model
     model_name = os.path.splitext(os.path.basename(stan_file))[0]
     
-    # --- HPC Auto-Scaling Logic ---
+    # --- FIXED HPC Auto-Scaling Logic ---
+    # Always detect available cores first
+    try:
+        available_cores = int(os.environ.get('SLURM_CPUS_PER_TASK', os.cpu_count()))
+    except TypeError:
+        available_cores = os.cpu_count()
+        
+    # Only override args.workers if the user didn't specify it
     if args.workers is None:
-        try:
-            available_cores = int(os.environ.get('SLURM_CPUS_PER_TASK', os.cpu_count()))
-        except TypeError:
-            available_cores = os.cpu_count()
-            
         safe_cores = max(1, available_cores - 2)
         optimal_workers = safe_cores // args.chains
         args.workers = max(1, optimal_workers)
+    # ------------------------------------
     
     print(f"Starting HPC Monte Carlo Simulation: Scenario = {scenario_to_run}, Model = {model_name}")
     print(f"Total Runs: {args.sims} | Total Cores Detected: {available_cores}")
-    print(f"Auto-Scaled to {args.workers} Parallel Workers (running {args.chains} chains each)\n")
+    print(f"Running with {args.workers} Parallel Workers ({args.chains} chains each)\n")
     
     print("Compiling Stan Model...")
     _ = cmdstanpy.CmdStanModel(stan_file=stan_file)

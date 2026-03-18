@@ -390,9 +390,9 @@ def run_single_task(task_id, n_runs, out_dir):
     # Call the multistart fit function
     smoothed_stats, final_loss, loss_history = model.fit_em_multistart(
         subjects_data, 
-        num_em_epochs=100, 
+        num_em_epochs=1000, 
         m_step_iters=20, 
-        lr=0.01, 
+        lr=0.005, 
         n_starts=3, 
         burn_in_epochs=10,
         verbose=True

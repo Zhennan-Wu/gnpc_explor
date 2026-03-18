@@ -176,13 +176,13 @@ class Universal_DFOULS(nn.Module):
             self.Z.data[mask] = torch.log(torch.abs(Lambda_tril[mask]) + 1e-4)
             self.B.data.fill_(0.0); self.C_int.data.fill_(0.0); self.d_bias.data.fill_(0.0); self.log_psi.data.fill_(0.0)
 
-    def fit_em_multistart(self, subjects_data, num_em_epochs=40, m_step_iters=20, lr=0.01, n_starts=3, burn_in_epochs=10, verbose=False):
+    def fit_em_multistart(self, subjects_data, num_em_epochs=40, m_step_iters=20, lr=0.005, n_starts=3, burn_in_epochs=10, verbose=False):
         best_loss = float('inf')
         best_state_dict = None
         
         if verbose:
             print(f"\n  --- Starting EM Optimization ({n_starts} multi-starts) ---")
-            
+        
         for start in range(n_starts):
             with torch.no_grad():
                 if self.theta_mode == "dense":
@@ -195,12 +195,14 @@ class Universal_DFOULS(nn.Module):
                 nn.init.normal_(self.B, mean=0.0, std=0.1)
                 nn.init.normal_(self.C_int, mean=0.0, std=0.1)
                 nn.init.normal_(self.d_bias, mean=0.0, std=0.1)
-                nn.init.normal_(self.log_psi, mean=0.0, std=0.1)
+                
+                # Note: If you paste this into the 'het_multi' version, uncomment the line below:
+                # nn.init.normal_(self.log_psi, mean=0.0, std=0.1)
             
             self.pca_warm_start(subjects_data)
-            optimizer = optim.Adam(self.parameters(), lr=lr)
             start_loss = 0.0
             
+            # --- BURN-IN PHASE ---
             for epoch in range(burn_in_epochs):
                 Theta, Lambda = self.get_theta(), self.tril_mask * torch.exp(self.Z)
                 smoothed_stats = []
@@ -209,12 +211,19 @@ class Universal_DFOULS(nn.Module):
                         A_trans, b_shift, dt, _ = self.get_subject_matrices(Theta, subj['u'], subj['t'])
                         smoothed_stats.append(self.kalman_smoother(subj['x'], A_trans, b_shift, dt, Lambda))
                 
+                # FIX 1: Reset Adam optimizer every epoch to clear stale momentum
+                optimizer = optim.Adam(self.parameters(), lr=lr)
+                
                 epoch_loss = 0.0
                 for m in range(m_step_iters):
                     optimizer.zero_grad()
                     Theta_m, Lambda_m = self.get_theta(), self.tril_mask * torch.exp(self.Z)
                     loss = -self.expected_complete_log_posterior_vectorized(subjects_data, smoothed_stats, Theta_m, Lambda_m)
                     loss.backward()
+                    
+                    # FIX 2: Clip gradients to prevent exponential explosion
+                    torch.nn.utils.clip_grad_norm_(self.parameters(), max_norm=2.0)
+                    
                     optimizer.step()
                     epoch_loss += loss.item()
                 start_loss = epoch_loss / m_step_iters
@@ -229,7 +238,6 @@ class Universal_DFOULS(nn.Module):
                     print(f"    --> New best start found! Loss: {best_loss:.4f}")
                 
         self.load_state_dict(best_state_dict)
-        optimizer = optim.Adam(self.parameters(), lr=lr)
         
         if verbose:
             print(f"  --- Proceeding with Best Start (Main EM Phase) ---")
@@ -238,6 +246,7 @@ class Universal_DFOULS(nn.Module):
         loss_history = [final_loss]
         main_epochs = num_em_epochs - burn_in_epochs
         
+        # --- MAIN EM PHASE ---
         for epoch in range(main_epochs):
             Theta, Lambda = self.get_theta(), self.tril_mask * torch.exp(self.Z)
             smoothed_stats = []
@@ -246,12 +255,19 @@ class Universal_DFOULS(nn.Module):
                     A_trans, b_shift, dt, _ = self.get_subject_matrices(Theta, subj['u'], subj['t'])
                     smoothed_stats.append(self.kalman_smoother(subj['x'], A_trans, b_shift, dt, Lambda))
             
+            # FIX 1: Reset Adam optimizer every epoch
+            optimizer = optim.Adam(self.parameters(), lr=lr)
+            
             epoch_loss = 0.0
             for m in range(m_step_iters):
                 optimizer.zero_grad()
                 Theta_m, Lambda_m = self.get_theta(), self.tril_mask * torch.exp(self.Z)
                 loss = -self.expected_complete_log_posterior_vectorized(subjects_data, smoothed_stats, Theta_m, Lambda_m)
                 loss.backward()
+                
+                # FIX 2: Clip gradients
+                torch.nn.utils.clip_grad_norm_(self.parameters(), max_norm=2.0)
+                
                 optimizer.step()
                 epoch_loss += loss.item()
                 
@@ -263,7 +279,7 @@ class Universal_DFOULS(nn.Module):
                 
         if verbose:
             print(f"  --- EM Complete. Final Loss: {final_loss:.4f} ---\n")
-            
+                
         return smoothed_stats, final_loss, loss_history
 
 # ---------------------------------------------------------

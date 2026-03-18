@@ -172,9 +172,7 @@ class Universal_DFOULS(nn.Module):
             self.Z.data[mask] = torch.log(torch.abs(Lambda_tril[mask]) + 1e-4)
             self.B.data.fill_(0.0); self.C_int.data.fill_(0.0); self.d_bias.data.fill_(0.0); self.log_psi.data.fill_(0.0)
 
-    def fit_em(self, subjects_data, num_em_epochs=40, m_step_iters=20, lr=0.01, verbose=False):
-        optimizer = optim.Adam(self.parameters(), lr=lr)
-
+    def fit_em(self, subjects_data, num_em_epochs=40, m_step_iters=20, lr=0.005, verbose=False):
         if verbose:
             print(f"\n  --- Starting EM Optimization ---")
 
@@ -186,9 +184,13 @@ class Universal_DFOULS(nn.Module):
             
             smoothed_stats = []
             with torch.no_grad():
+                # E-Step: Generate new latent state landscape
                 for subj in subjects_data:
                     A_trans, b_shift, dt, _ = self.get_subject_matrices(Theta, subj['u'], subj['t'])
                     smoothed_stats.append(self.kalman_smoother(subj['x'], A_trans, b_shift, dt, Lambda))
+            
+            # FIX 1: Reset Adam optimizer every epoch to clear stale momentum
+            optimizer = optim.Adam(self.parameters(), lr=lr)
             
             epoch_loss = 0.0
             for m in range(m_step_iters):
@@ -196,6 +198,10 @@ class Universal_DFOULS(nn.Module):
                 Theta_m, Lambda_m = self.get_theta(), self.tril_mask * torch.exp(self.Z)
                 loss = -self.expected_complete_log_posterior_vectorized(subjects_data, smoothed_stats, Theta_m, Lambda_m)
                 loss.backward()
+                
+                # FIX 2: Clip gradients to prevent exp(Z) and matrix_exp from exploding
+                torch.nn.utils.clip_grad_norm_(self.parameters(), max_norm=2.0)
+                
                 optimizer.step()
                 epoch_loss += loss.item()
                 

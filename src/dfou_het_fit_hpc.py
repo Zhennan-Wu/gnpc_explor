@@ -5,9 +5,22 @@ import numpy as np
 import pandas as pd
 import time
 import os
+import argparse
+import glob
+
+# --- BIG RED 200 CPU OPTIMIZATION ---
+# Restrict PyTorch to the number of CPUs allocated by SLURM to prevent node thrashing
+try:
+    num_threads = int(os.environ.get('SLURM_CPUS_PER_TASK', 1))
+    torch.set_num_threads(num_threads)
+    if num_threads > 1:
+        print(f"Restricted PyTorch to {num_threads} threads.")
+except Exception as e:
+    print("Could not set thread count automatically.")
+# ------------------------------------
 
 # ---------------------------------------------------------
-# 1. GPU-Accelerated Universal DFOULS Model
+# 1. GPU/CPU-Accelerated Universal DFOULS Model (Heterogeneous Noise, Single-start)
 # ---------------------------------------------------------
 class Universal_DFOULS(nn.Module):
     def __init__(self, obs_dim, latent_dim, covar_dim, delta=1e-4, theta_mode="diagonal"):
@@ -61,8 +74,15 @@ class Universal_DFOULS(nn.Module):
         f_filt, P_filt = torch.zeros(T, self.K, device=device), torch.zeros(T, self.K, self.K, device=device)
         f_filt[0], P_filt[0] = torch.zeros(self.K, device=device), torch.eye(self.K, device=device)
         
-        R_mat = torch.diag(torch.exp(self.log_psi))
         I_k = torch.eye(self.K, device=device)
+        
+        # [MATH OPTIMIZATION 1]: Vectorized R^-1 prevents building a massive DxD diagonal matrix
+        inv_psi = torch.exp(-self.log_psi)
+        
+        # Lambda^T * R^-1 (Shape: [K, D])
+        Lambda_T_inv_R = Lambda.T * inv_psi 
+        # M = Lambda^T * R^-1 * Lambda (Shape: [K, K])
+        M = Lambda_T_inv_R @ Lambda 
         
         for j in range(1, T):
             idx = j - 1
@@ -73,10 +93,14 @@ class Universal_DFOULS(nn.Module):
                 f_filt[j], P_filt[j] = f_pred[j], P_pred[j]
             else:
                 x_pred = Lambda @ f_pred[j]
-                S_t = Lambda @ P_pred[j] @ Lambda.T + R_mat
-                K_gain = P_pred[j] @ Lambda.T @ torch.linalg.inv(S_t)
+                
+                # [MATH OPTIMIZATION 2]: Woodbury Identity & Push-through
+                # We invert KxK matrices (20x20) instead of DxD (10000x10000)
+                P_pred_inv = torch.linalg.inv(P_pred[j])
+                P_filt[j] = torch.linalg.inv(P_pred_inv + M)
+                K_gain = P_filt[j] @ Lambda_T_inv_R  # Shape: [K, D]
+                
                 f_filt[j] = f_pred[j] + K_gain @ (x_obs[j] - x_pred)
-                P_filt[j] = (I_k - K_gain @ Lambda) @ P_pred[j]
             
         f_smooth, P_smooth, P_cross = torch.zeros_like(f_filt), torch.zeros_like(P_filt), torch.zeros_like(P_filt)
         f_smooth[-1], P_smooth[-1] = f_filt[-1], P_filt[-1]
@@ -92,7 +116,9 @@ class Universal_DFOULS(nn.Module):
     def expected_complete_log_posterior_vectorized(self, subjects_data, smoothed_stats, Theta, Lambda):
         ll_obs, ll_lat = 0.0, 0.0
         inv_psi = torch.exp(-self.log_psi)
-        L_Psi_L = Lambda.T @ torch.diag(inv_psi) @ Lambda 
+        
+        # [MATH OPTIMIZATION 3]: Avoids instantiating a DxD diagonal matrix inside the product
+        L_Psi_L = (Lambda.T * inv_psi) @ Lambda 
         
         for i, subj in enumerate(subjects_data):
             x_obs, u, times = subj['x'], subj['u'], subj['t']
@@ -165,7 +191,6 @@ class Universal_DFOULS(nn.Module):
                     smoothed_stats.append(self.kalman_smoother(subj['x'], A_trans, b_shift, dt, Lambda))
             
             epoch_loss = 0.0
-            # Generalized EM Step (Adam handles Z alongside dynamic parameters seamlessly)
             for m in range(m_step_iters):
                 optimizer.zero_grad()
                 Theta_m, Lambda_m = self.get_theta(), self.tril_mask * torch.exp(self.Z)
@@ -177,7 +202,6 @@ class Universal_DFOULS(nn.Module):
             final_loss = epoch_loss / m_step_iters
             loss_history.append(final_loss)
             
-            # Progress output (prints ~5 times during the run)
             if verbose and (epoch + 1) % max(1, num_em_epochs // 5) == 0:
                 print(f"    [EM] Epoch {epoch+1}/{num_em_epochs} | Loss: {final_loss:.4f}")
                 
@@ -187,12 +211,10 @@ class Universal_DFOULS(nn.Module):
         return smoothed_stats, final_loss, loss_history
 
 # ---------------------------------------------------------
-# 2. Disease Progression Data Simulation (SPLIT FOR REGENERATION)
+# 2. Disease Progression Data Simulation
 # ---------------------------------------------------------
 def get_true_parameters(D, K, C_dim, theta_mode="dense", seed=42):
-    """Generates the static ground-truth parameters once per scenario."""
     torch.manual_seed(seed)
-    
     if theta_mode == "diagonal":
         rho_true = torch.linspace(0.02, 0.15, K)
         Theta_true = torch.diag(rho_true)
@@ -205,27 +227,13 @@ def get_true_parameters(D, K, C_dim, theta_mode="dense", seed=42):
     Z_true = torch.randn(D, K) - 1.0 
     Lambda_true = torch.tril(torch.ones(D, K)) * torch.exp(Z_true)
     
-    return {
-        'Lambda': Lambda_true, 
-        'Theta': Theta_true,
-        'B': B_true,
-        'C': C_true,
-        'd': d_true
-    }
+    return {'Lambda': Lambda_true, 'Theta': Theta_true, 'B': B_true, 'C': C_true, 'd': d_true}
 
 def generate_subjects_from_params(N, true_params, seed=None):
-    """Generates new subject trajectories given a set of true parameters."""
-    if seed is not None:
-        torch.manual_seed(seed)
-        
-    Lambda_true = true_params['Lambda']
-    Theta_true = true_params['Theta']
-    B_true = true_params['B']
-    C_true = true_params['C']
-    d_true = true_params['d']
-    
-    D, K = Lambda_true.shape
-    C_dim = B_true.shape[1]
+    if seed is not None: torch.manual_seed(seed)
+    Lambda_true, Theta_true = true_params['Lambda'], true_params['Theta']
+    B_true, C_true, d_true = true_params['B'], true_params['C'], true_params['d']
+    D, K = Lambda_true.shape; C_dim = B_true.shape[1]
     
     subjects_data = []
     for _ in range(N):
@@ -233,13 +241,11 @@ def generate_subjects_from_params(N, true_params, seed=None):
         age_baseline = torch.rand(1) * 20 + 55
         dt = torch.rand(J_i - 1) * 3.5 + 1.5
         times = torch.cat([age_baseline, age_baseline + torch.cumsum(dt, dim=0)])
-        
         t_scaled = (times - 70.0) / 10.0 
         u = torch.randn(J_i, C_dim)
         
         F_true = torch.zeros(J_i, K)
         F_true[0] = torch.randn(K) * 0.1
-        
         for j in range(1, J_i):
             delta_t = times[j] - times[j-1]
             A_ij = torch.linalg.matrix_exp(-Theta_true * delta_t)
@@ -248,186 +254,195 @@ def generate_subjects_from_params(N, true_params, seed=None):
             
         X_obs = F_true @ Lambda_true.T + torch.randn(J_i, D)
         subjects_data.append({'x': X_obs, 'u': u, 't': t_scaled, 't_raw': times, 'F_true': F_true})
-        
     return subjects_data
 
 # ---------------------------------------------------------
-# 3. Robust GPU Benchmarking Execution (Expanded Metrics)
+# 3. HPC Parallelized Execution Logic
 # ---------------------------------------------------------
-def run_misspecification_test(n_runs=3):
+SCENARIOS = [
+    {"name": "1. Baseline Sparse",     "N": 50,  "D": 20,   "K": 3, "C": 2},
+    {"name": "2. High-Dim Proteomics", "N": 100, "D": 200,  "K": 5, "C": 2},
+    {"name": "3. Ultra High-Dim",      "N": 100, "D": 1000, "K": 5, "C": 2},
+    {"name": "4. Complex Pathways",    "N": 100, "D": 50,   "K": 10,"C": 3},
+    {"name": "5. Large Cohort",        "N": 500, "D": 50,   "K": 5, "C": 2},
+    {"name": "6. Ultimate High-Dim",   "N": 500, "D": 10000,"K": 20, "C": 2}
+]
+DATA_MODES = ["diagonal", "dense"]
+MODEL_MODES = ["diagonal", "dense"]
+
+def generate_task_list(n_runs):
+    """Flattens the nested loops into a linear list of tasks."""
+    tasks = []
+    for s_idx, s in enumerate(SCENARIOS):
+        for d_mode in DATA_MODES:
+            for m_mode in MODEL_MODES:
+                for run_idx in range(n_runs):
+                    tasks.append((s_idx, d_mode, m_mode, run_idx))
+    return tasks
+
+def run_single_task(task_id, n_runs, out_dir):
+    """Executes exactly one slice of the grid based on task_id."""
+    os.makedirs(out_dir, exist_ok=True)
+    tasks = generate_task_list(n_runs)
+    
+    if task_id < 0 or task_id >= len(tasks):
+        raise ValueError(f"Task ID {task_id} out of bounds. Valid range: 0 to {len(tasks)-1}")
+        
+    s_idx, d_mode, m_mode, run_idx = tasks[task_id]
+    s = SCENARIOS[s_idx]
+    
     device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
-    print(f"Executing Misspecification Benchmarks on: {device.type.upper()}\n")
+    print(f"--- Task {task_id} ---")
+    print(f"Device: {device.type.upper()} | Scenario: {s['name']} | Data: {d_mode} | Model: {m_mode} | Run: {run_idx}")
+
+    # 1. Generate underlying True Parameters
+    true_params = get_true_parameters(s["D"], s["K"], s["C"], theta_mode=d_mode, seed=42)
     
-    scenarios = [
-        {"name": "1. Baseline Sparse",     "N": 50,  "D": 20,   "K": 3, "C": 2},
-        {"name": "2. High-Dim Proteomics", "N": 100, "D": 200,  "K": 5, "C": 2},
-        {"name": "3. Ultra High-Dim",      "N": 100, "D": 1000, "K": 5, "C": 2},
-        # Restored Scenarios:
-        {"name": "4. Complex Pathways",    "N": 100, "D": 50,   "K": 10,"C": 3},
-        {"name": "5. Large Cohort",        "N": 500, "D": 50,   "K": 5, "C": 2},
-        {"name": "6. Ultimate High-Dim",   "N": 500, "D": 10000,   "K": 20, "C": 2}
-    ]
+    # 2. Generate new subject trajectories
+    run_seed = abs(hash(f"{s['name']}_{d_mode}_{m_mode}_{run_idx}")) % (2**32)
+    subjects_data_cpu = generate_subjects_from_params(s["N"], true_params, seed=run_seed)
     
-    data_modes = ["diagonal", "dense"]
-    model_modes = ["diagonal", "dense"]
+    # Send to device
+    subjects_data = []
+    for subj in subjects_data_cpu:
+        subjects_data.append({
+            'x': subj['x'].to(device), 'u': subj['u'].to(device), 't': subj['t'].to(device),
+            'F_true': subj['F_true']
+        })
+
+    model = Universal_DFOULS(obs_dim=s["D"], latent_dim=s["K"], covar_dim=s["C"], theta_mode=m_mode).to(device)
     
-    print(f"{'Scenario':<22} | {'Data':<8} | {'Model':<8} | {'Λ Corr':<8} | {'F Corr':<8} | {'Θ Corr':<8} | {'Θ MSE':<8} | {'Time (s)'}")
-    print("-" * 92)
+    start_time = time.time()
+    # Call the single-start fit function
+    smoothed_stats, final_loss, loss_history = model.fit_em(
+        subjects_data, 
+        num_em_epochs=100, 
+        m_step_iters=20, 
+        lr=0.01,
+        verbose=True
+    )
+    elapsed = time.time() - start_time
     
+    # Metrics Evaluation
+    with torch.no_grad():
+        mask_cpu = model.tril_mask.cpu() == 1
+        l_true_active = true_params['Lambda'][mask_cpu].numpy()
+        th_true_mat = true_params['Theta'].numpy()
+        th_true_flat = th_true_mat.flatten()
+        b_true_flat = true_params['B'].numpy().flatten()
+        c_true_flat = true_params['C'].numpy().flatten()
+        f_true_flat = torch.cat([subj['F_true'] for subj in subjects_data], dim=0).numpy().flatten()
+        
+        Lambda_est_cpu = (model.tril_mask * torch.exp(model.Z)).cpu()
+        l_est_active = Lambda_est_cpu[mask_cpu].numpy()
+        Theta_est_cpu = model.get_theta().cpu()
+        b_est_flat = model.B.detach().cpu().numpy().flatten()
+        c_est_flat = model.C_int.detach().cpu().numpy().flatten()
+        f_est_flat = torch.cat([stat[0].cpu() for stat in smoothed_stats], dim=0).numpy().flatten()
+        
+        l_corr = np.corrcoef(l_true_active, l_est_active)[0, 1]
+        l_mse = np.mean((l_true_active - l_est_active)**2)
+        f_corr = np.corrcoef(f_true_flat, f_est_flat)[0, 1]
+        f_mse = np.mean((f_true_flat - f_est_flat)**2)
+        
+        th_est_mat = np.diag(np.diag(Theta_est_cpu.numpy())) if m_mode == "diagonal" else Theta_est_cpu.numpy()
+        th_est_flat = th_est_mat.flatten()
+        th_corr = np.corrcoef(th_true_flat, th_est_flat)[0, 1]
+        th_mse = np.mean((th_true_flat - th_est_flat)**2)
+        off_diag_mask = ~np.eye(s["K"], dtype=bool)
+        th_off_mse = np.mean((th_true_mat[off_diag_mask] - th_est_mat[off_diag_mask])**2)
+        
+        b_corr = np.corrcoef(b_true_flat, b_est_flat)[0, 1]
+        b_mse = np.mean((b_true_flat - b_est_flat)**2)
+        c_corr = np.corrcoef(c_true_flat, c_est_flat)[0, 1]
+        c_mse = np.mean((c_true_flat - c_est_flat)**2)
+
+    # Compile result dictionary
+    result = {
+        'metadata': {'Scenario': s['name'], 'Data_Mode': d_mode, 'Model_Mode': m_mode, 'Run_Idx': run_idx, 'Time_s': elapsed},
+        'metrics': {
+            'Final_Loss': final_loss, 'L_Corr': l_corr, 'L_MSE': l_mse, 
+            'F_Corr': f_corr, 'F_MSE': f_mse, 'Theta_Corr': th_corr, 
+            'Theta_MSE': th_mse, 'Theta_OffDiag_MSE': th_off_mse,
+            'B_Corr': b_corr, 'B_MSE': b_mse, 'C_Corr': c_corr, 'C_MSE': c_mse
+        },
+        'parameters': {
+            'true_params': {
+                'Lambda': true_params['Lambda'].numpy(), 'Theta': th_true_mat,
+                'B': true_params['B'].numpy(), 'C': true_params['C'].numpy()
+            },
+            'est_params': {
+                'Lambda': Lambda_est_cpu.numpy(), 'Theta': th_est_mat,
+                'B': model.B.detach().cpu().numpy(), 'C': model.C_int.detach().cpu().numpy(),
+                'Psi': torch.exp(model.log_psi).detach().cpu().numpy() # Extract Psi
+            },
+            'loss_history': loss_history
+        }
+    }
+
+    # Save Partial Result
+    save_path = os.path.join(out_dir, f"result_task_{task_id:04d}.pt")
+    torch.save(result, save_path)
+    print(f"Task {task_id} complete in {elapsed:.1f}s. Saved to {save_path}")
+
+def merge_results(out_dir):
+    """Combines all partial .pt files into the final consolidated CSV and Archive."""
+    print(f"Merging results from {out_dir}...")
+    file_paths = glob.glob(os.path.join(out_dir, "result_task_*.pt"))
+    
+    if not file_paths:
+        print("No result files found to merge.")
+        return
+
     metrics_log = []
     parameter_archive = {}
-    
-    for s in scenarios:
-        for d_mode in data_modes:
-            # 1. Generate underlying True Parameters (Fixed per scenario & data mode)
-            true_params = get_true_parameters(s["D"], s["K"], s["C"], theta_mode=d_mode, seed=42)
-            
-            for m_mode in model_modes:
-                # Metric Accumulators
-                l_corrs, l_mses = [], []
-                f_corrs, f_mses = [], []
-                th_corrs, th_mses, th_off_mses = [], [], []
-                b_corrs, b_mses = [], []
-                c_corrs, c_mses = [], []
-                final_losses, run_times = [], []
-                
-                for run_idx in range(n_runs):
-                    start_time = time.time()
-                    
-                    # 2. Generate new subject trajectories for this specific run
-                    run_seed = abs(hash(f"{s['name']}_{d_mode}_{m_mode}_{run_idx}")) % (2**32)
-                    subjects_data_cpu = generate_subjects_from_params(s["N"], true_params, seed=run_seed)
-                    
-                    # Send generated data to device
-                    subjects_data = []
-                    for subj in subjects_data_cpu:
-                        subjects_data.append({
-                            'x': subj['x'].to(device),
-                            'u': subj['u'].to(device),
-                            't': subj['t'].to(device),
-                            'F_true': subj['F_true']
-                        })
-                    
-                    model = Universal_DFOULS(obs_dim=s["D"], latent_dim=s["K"], covar_dim=s["C"], theta_mode=m_mode).to(device)
-                    
-                    # Passed verbose flag to print progress on the first run of a batch
-                    smoothed_stats, final_loss, loss_history = model.fit_em(
-                        subjects_data, 
-                        num_em_epochs=100, 
-                        m_step_iters=20, 
-                        lr=0.01,
-                        verbose=(run_idx == 0)
-                    )
-                    
-                    with torch.no_grad():
-                        # Extract True Parameters
-                        mask_cpu = model.tril_mask.cpu() == 1
-                        l_true_active = true_params['Lambda'][mask_cpu].numpy()
-                        th_true_mat = true_params['Theta'].numpy()
-                        th_true_flat = th_true_mat.flatten()
-                        b_true_flat = true_params['B'].numpy().flatten()
-                        c_true_flat = true_params['C'].numpy().flatten()
-                        f_true_flat = torch.cat([subj['F_true'] for subj in subjects_data], dim=0).numpy().flatten()
-                        
-                        # Extract Estimated Parameters
-                        Lambda_est_cpu = (model.tril_mask * torch.exp(model.Z)).cpu()
-                        l_est_active = Lambda_est_cpu[mask_cpu].numpy()
-                        Theta_est_cpu = model.get_theta().cpu()
-                        b_est_flat = model.B.detach().cpu().numpy().flatten()
-                        c_est_flat = model.C_int.detach().cpu().numpy().flatten()
-                        f_est_flat = torch.cat([stat[0].cpu() for stat in smoothed_stats], dim=0).numpy().flatten()
-                        
-                        # Lambda & F Metrics
-                        l_corr = np.corrcoef(l_true_active, l_est_active)[0, 1]
-                        l_mse = np.mean((l_true_active - l_est_active)**2)
-                        
-                        f_corr = np.corrcoef(f_true_flat, f_est_flat)[0, 1]
-                        f_mse = np.mean((f_true_flat - f_est_flat)**2)
-                        
-                        # Theta Misspecification Matrices
-                        if m_mode == "diagonal":
-                            th_est_mat = np.diag(np.diag(Theta_est_cpu.numpy()))
-                        else:
-                            th_est_mat = Theta_est_cpu.numpy()
-                        th_est_flat = th_est_mat.flatten()
-                            
-                        # Theta Metrics
-                        th_corr = np.corrcoef(th_true_flat, th_est_flat)[0, 1]
-                        th_mse = np.mean((th_true_flat - th_est_flat)**2)
-                        
-                        # Off-Diagonal specific MSE (Critical for testing interaction hallucination)
-                        off_diag_mask = ~np.eye(s["K"], dtype=bool)
-                        th_off_mse = np.mean((th_true_mat[off_diag_mask] - th_est_mat[off_diag_mask])**2)
-                        
-                        # Covariate Metrics
-                        b_corr = np.corrcoef(b_true_flat, b_est_flat)[0, 1]
-                        b_mse = np.mean((b_true_flat - b_est_flat)**2)
-                        c_corr = np.corrcoef(c_true_flat, c_est_flat)[0, 1]
-                        c_mse = np.mean((c_true_flat - c_est_flat)**2)
-                    
-                    elapsed = time.time() - start_time
-                    
-                    # Accumulate for Averaging
-                    l_corrs.append(l_corr); l_mses.append(l_mse)
-                    f_corrs.append(f_corr); f_mses.append(f_mse)
-                    th_corrs.append(th_corr); th_mses.append(th_mse); th_off_mses.append(th_off_mse)
-                    b_corrs.append(b_corr); b_mses.append(b_mse)
-                    c_corrs.append(c_corr); c_mses.append(c_mse)
-                    final_losses.append(final_loss)
-                    run_times.append(elapsed)
-                    
-                    # Archive exact state dictionaries and loss history
-                    run_id = f"{s['name']}_Data-{d_mode}_Model-{m_mode}_Run-{run_idx}"
-                    parameter_archive[run_id] = {
-                        'true_params': {
-                            'Lambda': true_params['Lambda'].numpy(),
-                            'Theta': th_true_mat,
-                            'B': true_params['B'].numpy(),
-                            'C': true_params['C'].numpy()
-                        },
-                        'est_params': {
-                            'Lambda': Lambda_est_cpu.numpy(),
-                            'Theta': th_est_mat,
-                            'B': model.B.detach().cpu().numpy(),
-                            'C': model.C_int.detach().cpu().numpy(),
-                            'Psi': torch.exp(model.log_psi).detach().cpu().numpy() # Added Psi
-                        },
-                        'metrics': {'Final_Loss': final_loss, 'L_mse': l_mse, 'F_mse': f_mse, 'Theta_mse': th_mse},
-                        'loss_history': loss_history
-                    }
-                
-                # Consolidate Console Print (Keeping it clean for terminal)
-                l_mu = np.mean(l_corrs)
-                f_mu = np.mean(f_corrs)
-                th_c_mu = np.mean(th_corrs)
-                th_m_mu = np.mean(th_mses)
-                time_avg = np.mean(run_times)
-                
-                print(f"{s['name']:<22} | {d_mode.capitalize():<8} | {m_mode.capitalize():<8} | {l_mu:>6.3f}   | {f_mu:>6.3f}   | {th_c_mu:>6.3f}   | {th_m_mu:>6.3f}   | {time_avg:>8.1f}")
-                
-                # Full logging to Pandas DataFrame (Using Means and Standard Deviations)
-                metrics_log.append({
-                    'Scenario': s['name'], 'Data_Mode': d_mode, 'Model_Mode': m_mode,
-                    'Final_Loss_Mean': np.mean(final_losses), 'Final_Loss_Std': np.std(final_losses),
-                    'L_Corr_Mean': l_mu, 'L_Corr_Std': np.std(l_corrs),
-                    'L_MSE_Mean': np.mean(l_mses), 'L_MSE_Std': np.std(l_mses),
-                    'F_Corr_Mean': f_mu, 'F_Corr_Std': np.std(f_corrs),
-                    'F_MSE_Mean': np.mean(f_mses), 'F_MSE_Std': np.std(f_mses),
-                    'Theta_Corr_Mean': th_c_mu, 'Theta_Corr_Std': np.std(th_corrs),
-                    'Theta_MSE_Mean': th_m_mu, 'Theta_MSE_Std': np.std(th_mses),
-                    'Theta_OffDiag_MSE_Mean': np.mean(th_off_mses), 'Theta_OffDiag_MSE_Std': np.std(th_off_mses),
-                    'B_Corr_Mean': np.mean(b_corrs), 'B_Corr_Std': np.std(b_corrs),
-                    'B_MSE_Mean': np.mean(b_mses), 'B_MSE_Std': np.std(b_mses),
-                    'C_Corr_Mean': np.mean(c_corrs), 'C_Corr_Std': np.std(c_corrs),
-                    'C_MSE_Mean': np.mean(c_mses), 'C_MSE_Std': np.std(c_mses),
-                    'Avg_Time_s': time_avg
-                })
-        print("-" * 92)
 
-    df_metrics = pd.DataFrame(metrics_log)
-    df_metrics.to_csv("metrics_summary_het_fit.csv", index=False)
+    for path in file_paths:
+        res = torch.load(path)
+        m = res['metadata']
+        run_id = f"{m['Scenario']}_Data-{m['Data_Mode']}_Model-{m['Model_Mode']}_Run-{m['Run_Idx']}"
+        
+        parameter_archive[run_id] = {
+            'true_params': res['parameters']['true_params'],
+            'est_params': res['parameters']['est_params'],
+            'metrics': res['metrics'],
+            'loss_history': res['parameters']['loss_history']
+        }
+        
+        flat_metric = {**m, **res['metrics']}
+        metrics_log.append(flat_metric)
+        
+    df_raw = pd.DataFrame(metrics_log)
+    
+    # Compute Means and Stds automatically by grouping
+    group_cols = ['Scenario', 'Data_Mode', 'Model_Mode']
+    df_summary = df_raw.groupby(group_cols).agg(['mean', 'std']).reset_index()
+    
+    # Flatten multi-index columns
+    df_summary.columns = ['_'.join(col).strip() if col[1] else col[0] for col in df_summary.columns.values]
+    
+    # Updated output filenames for the het_fit variant
+    df_summary.to_csv("metrics_summary_het_fit.csv", index=False)
     torch.save(parameter_archive, "parameter_archive_het_fit.pt")
-    print("\n[+] Saved extensive metrics to 'metrics_summary_het_fit.csv' and matrices to 'parameter_archive_het_fit.pt'")
+    
+    print(f"[+] Merged {len(file_paths)} tasks.")
+    print("[+] Saved 'metrics_summary_het_fit.csv' and 'parameter_archive_het_fit.pt'")
 
 if __name__ == "__main__":
-    run_misspecification_test(n_runs=10)
+    parser = argparse.ArgumentParser(description="HPC Parallel DFOULS Benchmarking")
+    parser.add_argument("--task_id", type=int, default=-1, help="SLURM Array Task ID (e.g., $SLURM_ARRAY_TASK_ID). If -1, runs sequentially locally.")
+    parser.add_argument("--n_runs", type=int, default=3, help="Number of runs per scenario combination.")
+    parser.add_argument("--out_dir", type=str, default="hpc_results", help="Directory for partial results.")
+    parser.add_argument("--merge", action="store_true", help="Merge all partial results in out_dir.")
+    args = parser.parse_args()
+
+    if args.merge:
+        merge_results(args.out_dir)
+    elif args.task_id != -1:
+        run_single_task(args.task_id, args.n_runs, args.out_dir)
+    else:
+        print("No task_id specified. Running all tasks sequentially...")
+        total_tasks = len(generate_task_list(args.n_runs))
+        for t_id in range(total_tasks):
+            run_single_task(t_id, args.n_runs, args.out_dir)
+        merge_results(args.out_dir)

@@ -185,7 +185,6 @@ class Universal_DFOULS(nn.Module):
                     epoch_loss += loss.item()
                 start_loss = epoch_loss / m_step_iters
                 
-                # Progress output for burn-in
                 if verbose and (epoch + 1) % max(1, burn_in_epochs // 2) == 0:
                     print(f"    [Start {start+1}/{n_starts}] Burn-in Epoch {epoch+1}/{burn_in_epochs} | Loss: {start_loss:.4f}")
                 
@@ -224,20 +223,19 @@ class Universal_DFOULS(nn.Module):
             final_loss = epoch_loss / m_step_iters
             loss_history.append(final_loss)
             
-            # Progress output for main EM phase
             if verbose and (epoch + 1) % max(1, main_epochs // 5) == 0:
                 print(f"    [Main EM] Epoch {epoch+1}/{main_epochs} | Loss: {final_loss:.4f}")
                 
         if verbose:
             print(f"  --- EM Complete. Final Loss: {final_loss:.4f} ---\n")
                 
-        # Return smoothed stats, final loss, AND the loss history for plotting
         return smoothed_stats, final_loss, loss_history
 
 # ---------------------------------------------------------
-# 2. Disease Progression Data Simulation
+# 2. Disease Progression Data Simulation (SPLIT FOR REGENERATION)
 # ---------------------------------------------------------
-def simulate_ad_cohort_stress(N, D, K, C_dim, theta_mode="dense", seed=42):
+def get_true_parameters(D, K, C_dim, theta_mode="dense", seed=42):
+    """Generates the static ground-truth parameters once per scenario."""
     torch.manual_seed(seed)
     
     if theta_mode == "diagonal":
@@ -251,6 +249,28 @@ def simulate_ad_cohort_stress(N, D, K, C_dim, theta_mode="dense", seed=42):
     B_true, C_true, d_true = torch.randn(K, C_dim)*0.5, torch.randn(K, C_dim)*0.5, torch.randn(K)*0.5
     Z_true = torch.randn(D, K) - 1.0 
     Lambda_true = torch.tril(torch.ones(D, K)) * torch.exp(Z_true)
+    
+    return {
+        'Lambda': Lambda_true, 
+        'Theta': Theta_true,
+        'B': B_true,
+        'C': C_true,
+        'd': d_true
+    }
+
+def generate_subjects_from_params(N, true_params, seed=None):
+    """Generates new subject trajectories given a set of true parameters."""
+    if seed is not None:
+        torch.manual_seed(seed)
+        
+    Lambda_true = true_params['Lambda']
+    Theta_true = true_params['Theta']
+    B_true = true_params['B']
+    C_true = true_params['C']
+    d_true = true_params['d']
+    
+    D, K = Lambda_true.shape
+    C_dim = B_true.shape[1]
     
     subjects_data = []
     for _ in range(N):
@@ -274,15 +294,8 @@ def simulate_ad_cohort_stress(N, D, K, C_dim, theta_mode="dense", seed=42):
         X_obs = F_true @ Lambda_true.T + torch.randn(J_i, D)
         subjects_data.append({'x': X_obs, 'u': u, 't': t_scaled, 't_raw': times, 'F_true': F_true})
         
-    true_params = {
-        'Lambda': Lambda_true, 
-        'Theta': Theta_true,
-        'B': B_true,
-        'C': C_true,
-        'd': d_true,
-        'F': F_true
-    }
-    return subjects_data, true_params
+    return subjects_data
+
 
 # ---------------------------------------------------------
 # 3. Robust GPU Benchmarking Execution (Expanded Metrics)
@@ -295,7 +308,6 @@ def run_misspecification_test(n_runs=3):
         {"name": "1. Baseline Sparse",     "N": 50,  "D": 20,   "K": 3, "C": 2},
         {"name": "2. High-Dim Proteomics", "N": 100, "D": 200,  "K": 5, "C": 2},
         {"name": "3. Ultra High-Dim",      "N": 100, "D": 1000, "K": 5, "C": 2},
-        # Restored Scenarios:
         {"name": "4. Complex Pathways",    "N": 100, "D": 50,   "K": 10,"C": 3},
         {"name": "5. Large Cohort",        "N": 500, "D": 50,   "K": 5, "C": 2},
         {"name": "6. Ultimate High-Dim",   "N": 500, "D": 10000,   "K": 20, "C": 2}
@@ -312,19 +324,9 @@ def run_misspecification_test(n_runs=3):
     
     for s in scenarios:
         for d_mode in data_modes:
-            subjects_data_cpu, true_params = simulate_ad_cohort_stress(
-                s["N"], s["D"], s["K"], s["C"], theta_mode=d_mode, seed=42
-            )
+            # 1. Generate underlying True Parameters (Fixed per scenario & data mode)
+            true_params = get_true_parameters(s["D"], s["K"], s["C"], theta_mode=d_mode, seed=42)
             
-            subjects_data = []
-            for subj in subjects_data_cpu:
-                subjects_data.append({
-                    'x': subj['x'].to(device),
-                    'u': subj['u'].to(device),
-                    't': subj['t'].to(device),
-                    'F_true': subj['F_true']
-                })
-                
             for m_mode in model_modes:
                 # Metric Accumulators
                 l_corrs, l_mses = [], []
@@ -337,9 +339,22 @@ def run_misspecification_test(n_runs=3):
                 for run_idx in range(n_runs):
                     start_time = time.time()
                     
+                    # 2. Generate new subject trajectories for this specific run
+                    run_seed = abs(hash(f"{s['name']}_{d_mode}_{m_mode}_{run_idx}")) % (2**32)
+                    subjects_data_cpu = generate_subjects_from_params(s["N"], true_params, seed=run_seed)
+                    
+                    # Send generated data to device
+                    subjects_data = []
+                    for subj in subjects_data_cpu:
+                        subjects_data.append({
+                            'x': subj['x'].to(device),
+                            'u': subj['u'].to(device),
+                            't': subj['t'].to(device),
+                            'F_true': subj['F_true']
+                        })
+                    
                     model = Universal_DFOULS(obs_dim=s["D"], latent_dim=s["K"], covar_dim=s["C"], theta_mode=m_mode).to(device)
                     
-                    # Pass verbose=(run_idx == 0) to only print progress on the first run of the batch
                     smoothed_stats, final_loss, loss_history = model.fit_em_multistart(
                         subjects_data, 
                         num_em_epochs=100, 
@@ -358,6 +373,8 @@ def run_misspecification_test(n_runs=3):
                         th_true_flat = th_true_mat.flatten()
                         b_true_flat = true_params['B'].numpy().flatten()
                         c_true_flat = true_params['C'].numpy().flatten()
+                        
+                        # F_true evaluated specifically for the generated data of THIS run
                         f_true_flat = torch.cat([subj['F_true'] for subj in subjects_data], dim=0).numpy().flatten()
                         
                         # Extract Estimated Parameters
@@ -386,7 +403,7 @@ def run_misspecification_test(n_runs=3):
                         th_corr = np.corrcoef(th_true_flat, th_est_flat)[0, 1]
                         th_mse = np.mean((th_true_flat - th_est_flat)**2)
                         
-                        # Off-Diagonal specific MSE (Critical for testing interaction hallucination)
+                        # Off-Diagonal specific MSE
                         off_diag_mask = ~np.eye(s["K"], dtype=bool)
                         th_off_mse = np.mean((th_true_mat[off_diag_mask] - th_est_mat[off_diag_mask])**2)
                         
@@ -426,7 +443,7 @@ def run_misspecification_test(n_runs=3):
                         'loss_history': loss_history
                     }
                 
-                # Consolidate Console Print (Keeping it clean for terminal)
+                # Consolidate Console Print
                 l_mu = np.mean(l_corrs)
                 f_mu = np.mean(f_corrs)
                 th_c_mu = np.mean(th_corrs)
@@ -435,7 +452,7 @@ def run_misspecification_test(n_runs=3):
                 
                 print(f"{s['name']:<22} | {d_mode.capitalize():<8} | {m_mode.capitalize():<8} | {l_mu:>6.3f}   | {f_mu:>6.3f}   | {th_c_mu:>6.3f}   | {th_m_mu:>6.3f}   | {time_avg:>8.1f}")
                 
-                # Full logging to Pandas DataFrame
+                # Full logging to Pandas DataFrame (Using Means and Standard Deviations)
                 metrics_log.append({
                     'Scenario': s['name'], 'Data_Mode': d_mode, 'Model_Mode': m_mode,
                     'Final_Loss_Mean': np.mean(final_losses), 'Final_Loss_Std': np.std(final_losses),
@@ -446,8 +463,10 @@ def run_misspecification_test(n_runs=3):
                     'Theta_Corr_Mean': th_c_mu, 'Theta_Corr_Std': np.std(th_corrs),
                     'Theta_MSE_Mean': th_m_mu, 'Theta_MSE_Std': np.std(th_mses),
                     'Theta_OffDiag_MSE_Mean': np.mean(th_off_mses), 'Theta_OffDiag_MSE_Std': np.std(th_off_mses),
-                    'B_Corr_Mean': np.mean(b_corrs), 'B_MSE_Mean': np.mean(b_mses),
-                    'C_Corr_Mean': np.mean(c_corrs), 'C_MSE_Mean': np.mean(c_mses),
+                    'B_Corr_Mean': np.mean(b_corrs), 'B_Corr_Std': np.std(b_corrs),
+                    'B_MSE_Mean': np.mean(b_mses), 'B_MSE_Std': np.std(b_mses),
+                    'C_Corr_Mean': np.mean(c_corrs), 'C_Corr_Std': np.std(c_corrs),
+                    'C_MSE_Mean': np.mean(c_mses), 'C_MSE_Std': np.std(c_mses),
                     'Avg_Time_s': time_avg
                 })
         print("-" * 92)

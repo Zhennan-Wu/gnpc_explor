@@ -77,4 +77,4 @@ def aggregate_simulation_results(results_dir="."):
         print("No CSV result files found.")
 
 if __name__ == "__main__":
-    aggregate_results()
+    aggregate_simulation_results()

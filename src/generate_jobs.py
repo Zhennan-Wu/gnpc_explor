@@ -12,7 +12,7 @@ def generate_experiment_list(output_file="experiments.txt", stan_dir=".", scenar
         scenarios = ['S2', 'S3', 'S4', 'S5']
         
     # Find all .stan files in the specified directory
-    stan_files = glob.glob(os.path.join(stan_dir, "*jls.stan"))
+    stan_files = glob.glob(os.path.join(stan_dir, "model*.stan"))
     
     # Extract just the filenames so the text file is clean
     stan_filenames = [os.path.basename(f) for f in stan_files]

@@ -10,7 +10,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=128             
 #SBATCH --mem=0                      
-#SBATCH --array=1-20       
+#SBATCH --array=1-64       
 #SBATCH -A r00939           
 
 # --- CONDA ACTIVATION ---
@@ -30,7 +30,7 @@ export CC=gcc
 
 # Slurm automatically populates $SLURM_CPUS_PER_TASK based on the header above.
 # We include a fallback of 3 just in case you ever run this script locally outside of Slurm.
-CHAINS=${SLURM_CPUS_PER_TASK:-3}
+CHAINS=3
 
 # Extract the specific scenario and model for this task ID from the text file
 CONFIG_LINE=$(sed -n "${SLURM_ARRAY_TASK_ID}p" experiments.txt)
@@ -43,4 +43,4 @@ echo "Job started on $(date)"
 echo "Allocated cores: $SLURM_CPUS_PER_TASK"
 
 # Execute the Python script with the extracted arguments
-python lou_hpc_sims.py --scenario "$SCENARIO" --model "$MODEL" --sims 200 --chains "$CHAINS"
+python lou_simulation_hpc.py --scenario "$SCENARIO" --model "$MODEL" --sims 200 --chains "$CHAINS"

@@ -10,7 +10,7 @@
 #SBATCH --ntasks=4                      # NEW: 4 tasks total (1 per node)
 #SBATCH --cpus-per-task=128             # KEEP: 128 cores per task/node
 #SBATCH --mem=0                      
-#SBATCH --array=1-64       
+#SBATCH --array=1-64%8                # 64 total tasks (configurations), but only 8 running at once to manage load       
 #SBATCH -A r00939           
 
 # --- CONDA ACTIVATION ---

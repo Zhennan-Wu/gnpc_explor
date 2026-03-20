@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=lou_simulations
+#SBATCH --job-name=lou_jls_simulations
 #SBATCH -p general
 #SBATCH --output=logs/sim_%A_%a.out
 #SBATCH --error=logs/sim_%A_%a.err
@@ -10,7 +10,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=128             
 #SBATCH --mem=0                      
-#SBATCH --array=1-32       
+#SBATCH --array=1-20       
 #SBATCH -A r00939           
 
 # --- CONDA ACTIVATION ---

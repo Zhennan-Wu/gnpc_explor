@@ -1,0 +1,23 @@
+Restricted PyTorch to 8 threads.
+--- Task 42 ---
+Device: CPU | Scenario: 3. Ultra High-Dim | Data: diagonal | Model: diagonal | Run: 2
+
+  --- Starting EM Optimization (3 multi-starts) ---
+    [Start 1/3] Burn-in Epoch 5/10 | Loss: 1224498.2937
+    [Start 1/3] Burn-in Epoch 10/10 | Loss: 1149657.1062
+    --> New best start found! Loss: 1149657.1062
+    [Start 2/3] Burn-in Epoch 5/10 | Loss: 1224267.2437
+    [Start 2/3] Burn-in Epoch 10/10 | Loss: 1149525.1125
+    --> New best start found! Loss: 1149525.1125
+    [Start 3/3] Burn-in Epoch 5/10 | Loss: 1222236.8625
+    [Start 3/3] Burn-in Epoch 10/10 | Loss: 1148474.0312
+    --> New best start found! Loss: 1148474.0312
+  --- Proceeding with Best Start (Main EM Phase) ---
+    [Main EM] Epoch 198/990 | Loss: 1096586.5688
+    [Main EM] Epoch 396/990 | Loss: 1095312.1125
+    [Main EM] Epoch 594/990 | Loss: 1094995.9688
+    [Main EM] Epoch 792/990 | Loss: 1094952.5063
+    [Main EM] Epoch 990/990 | Loss: 1094923.9937
+  --- EM Complete. Final Loss: 1094923.9937 ---
+
+Task 42 complete in 4305.8s. Saved to dfouls_id_multi_results/result_task_0042.pt

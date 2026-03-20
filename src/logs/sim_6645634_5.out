@@ -1,0 +1,11 @@
+Task ID: 5
+Running Scenario: S2 with Model: model_fix_mean_lap.stan using 128 CPUs/Chains
+Job started on Mon Mar 16 11:11:56 PM EDT 2026
+Allocated cores: 128
+Starting HPC Monte Carlo Simulation: Scenario = S2, Model = model_fix_mean_lap
+Total Runs: 200 | Total Cores Detected: 128
+Running with 1 Parallel Workers (128 chains each)
+
+Compiling Stan Model...
+Compilation successful. Starting worker pool...
+

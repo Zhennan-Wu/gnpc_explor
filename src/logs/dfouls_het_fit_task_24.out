@@ -1,0 +1,13 @@
+Restricted PyTorch to 8 threads.
+--- Task 24 ---
+Device: CPU | Scenario: 2. High-Dim Proteomics | Data: diagonal | Model: diagonal | Run: 4
+
+  --- Starting EM Optimization ---
+    [EM] Epoch 200/1000 | Loss: 93987.7980
+    [EM] Epoch 400/1000 | Loss: 93987.9879
+    [EM] Epoch 600/1000 | Loss: 93986.8285
+    [EM] Epoch 800/1000 | Loss: 93987.9766
+    [EM] Epoch 1000/1000 | Loss: 93986.9574
+  --- EM Complete. Final Loss: 93986.9574 ---
+
+Task 24 complete in 3781.0s. Saved to dfouls_het_fit_results/result_task_0024.pt

@@ -1,0 +1,23 @@
+Restricted PyTorch to 8 threads.
+--- Task 74 ---
+Device: CPU | Scenario: 4. Complex Pathways | Data: dense | Model: diagonal | Run: 4
+
+  --- Starting EM Optimization (3 multi-starts) ---
+    [Start 1/3] Burn-in Epoch 5/10 | Loss: 182112.6461
+    [Start 1/3] Burn-in Epoch 10/10 | Loss: 107399.0285
+    --> New best start found! Loss: 107399.0285
+    [Start 2/3] Burn-in Epoch 5/10 | Loss: 182088.7531
+    [Start 2/3] Burn-in Epoch 10/10 | Loss: 107337.1469
+    --> New best start found! Loss: 107337.1469
+    [Start 3/3] Burn-in Epoch 5/10 | Loss: 182076.2906
+    [Start 3/3] Burn-in Epoch 10/10 | Loss: 107298.9285
+    --> New best start found! Loss: 107298.9285
+  --- Proceeding with Best Start (Main EM Phase) ---
+    [Main EM] Epoch 198/990 | Loss: 30782.2165
+    [Main EM] Epoch 396/990 | Loss: 30807.5886
+    [Main EM] Epoch 594/990 | Loss: 30817.9451
+    [Main EM] Epoch 792/990 | Loss: 30819.2156
+    [Main EM] Epoch 990/990 | Loss: 30822.9286
+  --- EM Complete. Final Loss: 30822.9286 ---
+
+Task 74 complete in 3689.9s. Saved to dfouls_het_multi_results/result_task_0074.pt

@@ -1,0 +1,4 @@
+Task ID: 28
+Running Scenario: S5 with Model: model_fix_mean.stan using 3 CPUs/Chains
+Starting run: Scenario = S5, Model = model_fix_mean.stan, Chains = 3
+Compiling and running model_fix_mean.stan against Scenario S5 data...

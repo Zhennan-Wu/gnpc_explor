@@ -1,0 +1,21 @@
+Restricted PyTorch to 8 threads.
+--- Task 119 ---
+Device: CPU | Scenario: 6. Ultimate High-Dim | Data: dense | Model: dense | Run: 4
+
+  --- Starting EM Optimization (3 multi-starts) ---
+    [Start 1/3] Burn-in Epoch 5/10 | Loss: 223367728.8000
+    [Start 1/3] Burn-in Epoch 10/10 | Loss: 186718257.6000
+    --> New best start found! Loss: 186718257.6000
+    [Start 2/3] Burn-in Epoch 5/10 | Loss: 222331260.8000
+    [Start 2/3] Burn-in Epoch 10/10 | Loss: 191728728.0000
+    [Start 3/3] Burn-in Epoch 5/10 | Loss: 223085140.0000
+    [Start 3/3] Burn-in Epoch 10/10 | Loss: 191305676.0000
+  --- Proceeding with Best Start (Main EM Phase) ---
+    [Main EM] Epoch 198/990 | Loss: 130373728.4000
+    [Main EM] Epoch 396/990 | Loss: 132365392.8000
+    [Main EM] Epoch 594/990 | Loss: 132955932.0000
+    [Main EM] Epoch 792/990 | Loss: 133006362.8000
+    [Main EM] Epoch 990/990 | Loss: 133008856.0000
+  --- EM Complete. Final Loss: 133008856.0000 ---
+
+Task 119 complete in 27815.5s. Saved to dfouls_id_multi_results/result_task_0119.pt

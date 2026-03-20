@@ -1,0 +1,22 @@
+Restricted PyTorch to 8 threads.
+--- Task 21 ---
+Device: CPU | Scenario: 2. High-Dim Proteomics | Data: diagonal | Model: diagonal | Run: 1
+
+  --- Starting EM Optimization (3 multi-starts) ---
+    [Start 1/3] Burn-in Epoch 5/10 | Loss: 196715.9375
+    [Start 1/3] Burn-in Epoch 10/10 | Loss: 142241.4070
+    --> New best start found! Loss: 142241.4070
+    [Start 2/3] Burn-in Epoch 5/10 | Loss: 196486.3633
+    [Start 2/3] Burn-in Epoch 10/10 | Loss: 142201.5602
+    --> New best start found! Loss: 142201.5602
+    [Start 3/3] Burn-in Epoch 5/10 | Loss: 196500.3508
+    [Start 3/3] Burn-in Epoch 10/10 | Loss: 142206.6727
+  --- Proceeding with Best Start (Main EM Phase) ---
+    [Main EM] Epoch 198/990 | Loss: 95255.3168
+    [Main EM] Epoch 396/990 | Loss: 95259.3094
+    [Main EM] Epoch 594/990 | Loss: 95253.7078
+    [Main EM] Epoch 792/990 | Loss: 95255.4730
+    [Main EM] Epoch 990/990 | Loss: 95257.5355
+  --- EM Complete. Final Loss: 95257.5355 ---
+
+Task 21 complete in 3726.9s. Saved to dfouls_het_multi_results/result_task_0021.pt

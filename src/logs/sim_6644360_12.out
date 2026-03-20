@@ -1,0 +1,4 @@
+Task ID: 12
+Running Scenario: S3 with Model: model_fix_mean.stan using 3 CPUs/Chains
+Starting run: Scenario = S3, Model = model_fix_mean.stan, Chains = 3
+Compiling and running model_fix_mean.stan against Scenario S3 data...

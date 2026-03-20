@@ -1,0 +1,4 @@
+Task ID: 32
+Running Scenario: S5 with Model: model_shift_mean_paper_lap.stan using 3 CPUs/Chains
+Starting run: Scenario = S5, Model = model_shift_mean_paper_lap.stan, Chains = 3
+Compiling and running model_shift_mean_paper_lap.stan against Scenario S5 data...

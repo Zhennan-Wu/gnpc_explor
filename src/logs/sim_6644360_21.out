@@ -1,0 +1,4 @@
+Task ID: 21
+Running Scenario: S4 with Model: model_fix_mean_lap.stan using 3 CPUs/Chains
+Starting run: Scenario = S4, Model = model_fix_mean_lap.stan, Chains = 3
+Compiling and running model_fix_mean_lap.stan against Scenario S4 data...

@@ -1,0 +1,11 @@
+Task ID: 2
+Running Scenario: S2 with Model: model_shift_mean_full.stan using 128 CPUs/Chains
+Job started on Mon Mar 16 11:11:54 PM EDT 2026
+Allocated cores: 128
+Starting HPC Monte Carlo Simulation: Scenario = S2, Model = model_shift_mean_full
+Total Runs: 200 | Total Cores Detected: 128
+Running with 1 Parallel Workers (128 chains each)
+
+Compiling Stan Model...
+Compilation successful. Starting worker pool...
+

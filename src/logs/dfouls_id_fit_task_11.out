@@ -1,0 +1,13 @@
+Restricted PyTorch to 8 threads.
+--- Task 11 ---
+Device: CPU | Scenario: 1. Baseline Sparse | Data: dense | Model: diagonal | Run: 1
+
+  --- Starting EM Optimization ---
+    [EM] Epoch 200/1000 | Loss: 4434.4121
+    [EM] Epoch 400/1000 | Loss: 4434.1924
+    [EM] Epoch 600/1000 | Loss: 4434.6475
+    [EM] Epoch 800/1000 | Loss: 4434.4886
+    [EM] Epoch 1000/1000 | Loss: 4434.5208
+  --- EM Complete. Final Loss: 4434.5208 ---
+
+Task 11 complete in 1685.7s. Saved to dfouls_id_fit_results/result_task_0011.pt

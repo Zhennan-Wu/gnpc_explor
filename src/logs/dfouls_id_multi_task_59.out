@@ -1,0 +1,22 @@
+Restricted PyTorch to 8 threads.
+--- Task 59 ---
+Device: CPU | Scenario: 3. Ultra High-Dim | Data: dense | Model: dense | Run: 4
+
+  --- Starting EM Optimization (3 multi-starts) ---
+    [Start 1/3] Burn-in Epoch 5/10 | Loss: 1490247.8750
+    [Start 1/3] Burn-in Epoch 10/10 | Loss: 1066079.3625
+    --> New best start found! Loss: 1066079.3625
+    [Start 2/3] Burn-in Epoch 5/10 | Loss: 1530802.1375
+    [Start 2/3] Burn-in Epoch 10/10 | Loss: 1073438.6938
+    [Start 3/3] Burn-in Epoch 5/10 | Loss: 1468735.3375
+    [Start 3/3] Burn-in Epoch 10/10 | Loss: 1060441.9500
+    --> New best start found! Loss: 1060441.9500
+  --- Proceeding with Best Start (Main EM Phase) ---
+    [Main EM] Epoch 198/990 | Loss: 869139.0375
+    [Main EM] Epoch 396/990 | Loss: 879169.7781
+    [Main EM] Epoch 594/990 | Loss: 834454.2031
+    [Main EM] Epoch 792/990 | Loss: 806962.2406
+    [Main EM] Epoch 990/990 | Loss: 838772.8281
+  --- EM Complete. Final Loss: 838772.8281 ---
+
+Task 59 complete in 3906.9s. Saved to dfouls_id_multi_results/result_task_0059.pt

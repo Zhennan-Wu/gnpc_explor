@@ -1,0 +1,13 @@
+Restricted PyTorch to 8 threads.
+--- Task 96 ---
+Device: CPU | Scenario: 5. Large Cohort | Data: dense | Model: dense | Run: 1
+
+  --- Starting EM Optimization ---
+    [EM] Epoch 200/1000 | Loss: 108822.9187
+    [EM] Epoch 400/1000 | Loss: 108845.7988
+    [EM] Epoch 600/1000 | Loss: 108861.8723
+    [EM] Epoch 800/1000 | Loss: 108851.3090
+    [EM] Epoch 1000/1000 | Loss: 108837.0395
+  --- EM Complete. Final Loss: 108837.0395 ---
+
+Task 96 complete in 18061.2s. Saved to dfouls_id_fit_results/result_task_0096.pt

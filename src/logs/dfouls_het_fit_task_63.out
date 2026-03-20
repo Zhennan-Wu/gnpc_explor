@@ -1,0 +1,13 @@
+Restricted PyTorch to 8 threads.
+--- Task 63 ---
+Device: CPU | Scenario: 4. Complex Pathways | Data: diagonal | Model: diagonal | Run: 3
+
+  --- Starting EM Optimization ---
+    [EM] Epoch 200/1000 | Loss: 27885.1229
+    [EM] Epoch 400/1000 | Loss: 27880.3039
+    [EM] Epoch 600/1000 | Loss: 27880.9933
+    [EM] Epoch 800/1000 | Loss: 27883.2632
+    [EM] Epoch 1000/1000 | Loss: 27882.0040
+  --- EM Complete. Final Loss: 27882.0040 ---
+
+Task 63 complete in 3574.3s. Saved to dfouls_het_fit_results/result_task_0063.pt

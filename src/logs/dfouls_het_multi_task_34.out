@@ -1,0 +1,21 @@
+Restricted PyTorch to 8 threads.
+--- Task 34 ---
+Device: CPU | Scenario: 2. High-Dim Proteomics | Data: dense | Model: diagonal | Run: 4
+
+  --- Starting EM Optimization (3 multi-starts) ---
+    [Start 1/3] Burn-in Epoch 5/10 | Loss: 260265.1070
+    [Start 1/3] Burn-in Epoch 10/10 | Loss: 171922.9117
+    --> New best start found! Loss: 171922.9117
+    [Start 2/3] Burn-in Epoch 5/10 | Loss: 260223.8820
+    [Start 2/3] Burn-in Epoch 10/10 | Loss: 171933.0430
+    [Start 3/3] Burn-in Epoch 5/10 | Loss: 260276.4859
+    [Start 3/3] Burn-in Epoch 10/10 | Loss: 171942.6273
+  --- Proceeding with Best Start (Main EM Phase) ---
+    [Main EM] Epoch 198/990 | Loss: 82081.2152
+    [Main EM] Epoch 396/990 | Loss: 82083.7223
+    [Main EM] Epoch 594/990 | Loss: 82090.4328
+    [Main EM] Epoch 792/990 | Loss: 82091.8184
+    [Main EM] Epoch 990/990 | Loss: 82076.3250
+  --- EM Complete. Final Loss: 82076.3250 ---
+
+Task 34 complete in 3850.2s. Saved to dfouls_het_multi_results/result_task_0034.pt

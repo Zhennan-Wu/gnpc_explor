@@ -1,0 +1,21 @@
+Restricted PyTorch to 8 threads.
+--- Task 82 ---
+Device: CPU | Scenario: 5. Large Cohort | Data: diagonal | Model: diagonal | Run: 2
+
+  --- Starting EM Optimization (3 multi-starts) ---
+    [Start 1/3] Burn-in Epoch 5/10 | Loss: 244140.1992
+    [Start 1/3] Burn-in Epoch 10/10 | Loss: 165859.9266
+    --> New best start found! Loss: 165859.9266
+    [Start 2/3] Burn-in Epoch 5/10 | Loss: 244292.4883
+    [Start 2/3] Burn-in Epoch 10/10 | Loss: 165893.3266
+    [Start 3/3] Burn-in Epoch 5/10 | Loss: 244201.1680
+    [Start 3/3] Burn-in Epoch 10/10 | Loss: 165872.5414
+  --- Proceeding with Best Start (Main EM Phase) ---
+    [Main EM] Epoch 198/990 | Loss: 110916.4133
+    [Main EM] Epoch 396/990 | Loss: 110918.9438
+    [Main EM] Epoch 594/990 | Loss: 110920.9125
+    [Main EM] Epoch 792/990 | Loss: 110916.5645
+    [Main EM] Epoch 990/990 | Loss: 110919.5496
+  --- EM Complete. Final Loss: 110919.5496 ---
+
+Task 82 complete in 18270.2s. Saved to dfouls_het_multi_results/result_task_0082.pt

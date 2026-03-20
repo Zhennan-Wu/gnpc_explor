@@ -1,0 +1,4 @@
+Task ID: 25
+Running Scenario: S5 with Model: model_shift_mean_paper.stan using 3 CPUs/Chains
+Starting run: Scenario = S5, Model = model_shift_mean_paper.stan, Chains = 3
+Compiling and running model_shift_mean_paper.stan against Scenario S5 data...

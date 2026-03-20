@@ -1,0 +1,13 @@
+Restricted PyTorch to 8 threads.
+--- Task 80 ---
+Device: CPU | Scenario: 5. Large Cohort | Data: diagonal | Model: diagonal | Run: 0
+
+  --- Starting EM Optimization ---
+    [EM] Epoch 200/1000 | Loss: 110114.2855
+    [EM] Epoch 400/1000 | Loss: 110107.6395
+    [EM] Epoch 600/1000 | Loss: 110105.3840
+    [EM] Epoch 800/1000 | Loss: 110109.3648
+    [EM] Epoch 1000/1000 | Loss: 110106.9988
+  --- EM Complete. Final Loss: 110106.9988 ---
+
+Task 80 complete in 19536.6s. Saved to dfouls_het_fit_results/result_task_0080.pt

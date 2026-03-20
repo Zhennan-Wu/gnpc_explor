@@ -1,0 +1,23 @@
+conda version 25.3.0 python 3.12.7 unloaded.
+conda version 25.3.0 python 3.12.7 loaded.
+21:39:29 - cmdstanpy - INFO - CmdStan start processing
+chain 1:   0%|[33m          [0m| 0/5000 [00:00<?, ?it/s, (Warmup)]
+chain 2:   0%|[33m          [0m| 0/5000 [00:00<?, ?it/s, (Warmup)][A
+
+chain 3:   0%|[33m          [0m| 0/5000 [00:00<?, ?it/s, (Warmup)][A[A
+chain 2:   0%|[33m          [0m| 1/5000 [00:00<15:40,  5.32it/s, (Warmup)][Achain 1:   0%|[33m          [0m| 1/5000 [00:00<23:27,  3.55it/s, (Warmup)]
+
+chain 3:   0%|[33m          [0m| 1/5000 [00:00<33:56,  2.45it/s, (Warmup)][A[A
+
+chain 3:   2%|[33m▏         [0m| 100/5000 [01:31<1:14:37,  1.09it/s, (Warmup)][A[A
+
+chain 3:   4%|[33m▍         [0m| 200/5000 [03:37<1:29:34,  1.12s/it, (Warmup)][A[A
+
+chain 3:   6%|[33m▌         [0m| 300/5000 [06:52<1:57:27,  1.50s/it, (Warmup)][A[A
+chain 2:   2%|[33m▏         [0m| 100/5000 [19:35<16:02:37, 11.79s/it, (Warmup)][Achain 1:   2%|[33m▏         [0m| 100/5000 [26:14<21:29:53, 15.79s/it, (Warmup)]
+chain 2:   4%|[33m▍         [0m| 200/5000 [32:34<12:34:47,  9.43s/it, (Warmup)][Achain 1:   4%|[33m▍         [0m| 200/5000 [38:59<14:39:28, 10.99s/it, (Warmup)]
+chain 2:   6%|[33m▌         [0m| 300/5000 [44:20<10:53:52,  8.35s/it, (Warmup)][Achain 1:   6%|[33m▌         [0m| 300/5000 [49:30<11:33:38,  8.86s/it, (Warmup)]chain 1:   8%|[33m▊         [0m| 400/5000 [58:22<9:31:51,  7.46s/it, (Warmup)] 
+chain 2:   8%|[33m▊         [0m| 400/5000 [1:03:54<12:22:49,  9.69s/it, (Warmup)][Achain 1:  10%|[33m█         [0m| 500/5000 [1:14:53<10:25:46,  8.34s/it, (Warmup)]
+chain 2:  10%|[33m█         [0m| 500/5000 [1:16:18<11:05:42,  8.88s/it, (Warmup)][A
+
+chain 3:   8%|[33m▊         [0m| 400/5000 [1:16:43<22:18:28, 17.46s/it, (Warmup)][A[Aslurmstepd: error: *** JOB 6644965 ON nid0235 CANCELLED AT 2026-03-16T23:07:08 ***

@@ -1,0 +1,22 @@
+Restricted PyTorch to 8 threads.
+--- Task 5 ---
+Device: CPU | Scenario: 1. Baseline Sparse | Data: diagonal | Model: dense | Run: 0
+
+  --- Starting EM Optimization (3 multi-starts) ---
+    [Start 1/3] Burn-in Epoch 5/10 | Loss: 9457.2410
+    [Start 1/3] Burn-in Epoch 10/10 | Loss: 7443.3538
+    --> New best start found! Loss: 7443.3538
+    [Start 2/3] Burn-in Epoch 5/10 | Loss: 9470.0692
+    [Start 2/3] Burn-in Epoch 10/10 | Loss: 7401.5049
+    --> New best start found! Loss: 7401.5049
+    [Start 3/3] Burn-in Epoch 5/10 | Loss: 9486.3234
+    [Start 3/3] Burn-in Epoch 10/10 | Loss: 7451.3063
+  --- Proceeding with Best Start (Main EM Phase) ---
+    [Main EM] Epoch 198/990 | Loss: 6835.4794
+    [Main EM] Epoch 396/990 | Loss: 6835.9449
+    [Main EM] Epoch 594/990 | Loss: 6836.8762
+    [Main EM] Epoch 792/990 | Loss: 6835.5552
+    [Main EM] Epoch 990/990 | Loss: 6836.5025
+  --- EM Complete. Final Loss: 6836.5025 ---
+
+Task 5 complete in 1627.8s. Saved to dfouls_id_multi_results/result_task_0005.pt

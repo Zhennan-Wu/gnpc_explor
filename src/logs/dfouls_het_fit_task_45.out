@@ -1,0 +1,13 @@
+Restricted PyTorch to 8 threads.
+--- Task 45 ---
+Device: CPU | Scenario: 3. Ultra High-Dim | Data: diagonal | Model: dense | Run: 0
+
+  --- Starting EM Optimization ---
+    [EM] Epoch 200/1000 | Loss: 463011.5938
+    [EM] Epoch 400/1000 | Loss: 463383.1234
+    [EM] Epoch 600/1000 | Loss: 463415.2469
+    [EM] Epoch 800/1000 | Loss: 463396.6547
+    [EM] Epoch 1000/1000 | Loss: 463433.4234
+  --- EM Complete. Final Loss: 463433.4234 ---
+
+Task 45 complete in 3540.9s. Saved to dfouls_het_fit_results/result_task_0045.pt

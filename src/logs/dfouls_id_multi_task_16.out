@@ -1,0 +1,21 @@
+Restricted PyTorch to 8 threads.
+--- Task 16 ---
+Device: CPU | Scenario: 1. Baseline Sparse | Data: dense | Model: dense | Run: 1
+
+  --- Starting EM Optimization (3 multi-starts) ---
+    [Start 1/3] Burn-in Epoch 5/10 | Loss: 12674.8135
+    [Start 1/3] Burn-in Epoch 10/10 | Loss: 8813.7139
+    --> New best start found! Loss: 8813.7139
+    [Start 2/3] Burn-in Epoch 5/10 | Loss: 12883.4667
+    [Start 2/3] Burn-in Epoch 10/10 | Loss: 8952.4615
+    [Start 3/3] Burn-in Epoch 5/10 | Loss: 12769.4162
+    [Start 3/3] Burn-in Epoch 10/10 | Loss: 8873.0483
+  --- Proceeding with Best Start (Main EM Phase) ---
+    [Main EM] Epoch 198/990 | Loss: 6203.2169
+    [Main EM] Epoch 396/990 | Loss: 6204.8664
+    [Main EM] Epoch 594/990 | Loss: 6206.7277
+    [Main EM] Epoch 792/990 | Loss: 6204.3384
+    [Main EM] Epoch 990/990 | Loss: 6205.2281
+  --- EM Complete. Final Loss: 6205.2281 ---
+
+Task 16 complete in 1500.1s. Saved to dfouls_id_multi_results/result_task_0016.pt

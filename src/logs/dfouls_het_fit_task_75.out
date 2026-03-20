@@ -1,0 +1,13 @@
+Restricted PyTorch to 8 threads.
+--- Task 75 ---
+Device: CPU | Scenario: 4. Complex Pathways | Data: dense | Model: dense | Run: 0
+
+  --- Starting EM Optimization ---
+    [EM] Epoch 200/1000 | Loss: 30059.3990
+    [EM] Epoch 400/1000 | Loss: 29989.7890
+    [EM] Epoch 600/1000 | Loss: 29865.6933
+    [EM] Epoch 800/1000 | Loss: 29769.2521
+    [EM] Epoch 1000/1000 | Loss: 29752.8334
+  --- EM Complete. Final Loss: 29752.8334 ---
+
+Task 75 complete in 3600.4s. Saved to dfouls_het_fit_results/result_task_0075.pt

@@ -1,0 +1,21 @@
+Restricted PyTorch to 8 threads.
+--- Task 62 ---
+Device: CPU | Scenario: 4. Complex Pathways | Data: diagonal | Model: diagonal | Run: 2
+
+  --- Starting EM Optimization (3 multi-starts) ---
+    [Start 1/3] Burn-in Epoch 5/10 | Loss: 109241.6840
+    [Start 1/3] Burn-in Epoch 10/10 | Loss: 90977.2121
+    --> New best start found! Loss: 90977.2121
+    [Start 2/3] Burn-in Epoch 5/10 | Loss: 109353.9090
+    [Start 2/3] Burn-in Epoch 10/10 | Loss: 91007.5934
+    [Start 3/3] Burn-in Epoch 5/10 | Loss: 109371.9734
+    [Start 3/3] Burn-in Epoch 10/10 | Loss: 91012.3422
+  --- Proceeding with Best Start (Main EM Phase) ---
+    [Main EM] Epoch 198/990 | Loss: 77251.9902
+    [Main EM] Epoch 396/990 | Loss: 77082.7809
+    [Main EM] Epoch 594/990 | Loss: 77323.9660
+    [Main EM] Epoch 792/990 | Loss: 77227.5906
+    [Main EM] Epoch 990/990 | Loss: 77192.2539
+  --- EM Complete. Final Loss: 77192.2539 ---
+
+Task 62 complete in 3471.4s. Saved to dfouls_id_multi_results/result_task_0062.pt

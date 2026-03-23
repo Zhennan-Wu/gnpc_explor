@@ -1,0 +1,31 @@
+Variable,Overall Cohort (N=5711)
+Total Patients,5711
+,
+--- CONTINUOUS VARIABLES ---,
+"Age at Baseline (Years), Mean ± SD",56.9 ± 11.3
+"Diagnostic Delay (Months), Mean ± SD",11.2 ± 8.5
+"Diagnostic Delay (Months), Median [IQR]",9.1 [5.9 - 14.0]
+,
+--- CATEGORICAL VARIABLES ---,
+"Gender, n (%)",
+  Male,3605 (63.1%)
+  Female,2106 (36.9%)
+"Site of Onset, n (%)",
+  Missing / Unknown,4983 (87.3%)
+  1.0,398 (7.0%)
+  0.0,330 (5.8%)
+"Treatment Arm, n (%)",
+  Active,2372 (41.5%)
+  Placebo,2182 (38.2%)
+  Missing / Unknown,1157 (20.3%)
+"Riluzole Use at Baseline, n (%)",
+  Yes,3827 (67.0%)
+  Missing / Unknown,1351 (23.7%)
+  No,533 (9.3%)
+"Familial ALS, n (%)",
+  No/Unknown,4876 (85.4%)
+  Yes,835 (14.6%)
+,
+--- CROSSING TERM STATISTICS (MEANS) ---,
+Age: Male,55.9 ± 11.4
+Age: Female,58.6 ± 10.8

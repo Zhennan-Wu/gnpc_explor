@@ -1,0 +1,30 @@
+Task ID: 10
+Running Scenario: S2 with Model: model_shift_mean_cov_lap_jls.stan using 4 Nodes
+Starting HPC Monte Carlo Simulation: Scenario = S2, Model = model_shift_mean_cov_lap_jls
+Running Sims 51 to 100 | Total Cores Detected: 128
+Running with 42 Parallel Workers (3 chains each)
+
+Compiling Stan Model...
+Compilation successful. Starting worker pool...
+
+Starting HPC Monte Carlo Simulation: Scenario = S2, Model = model_shift_mean_cov_lap_jls
+Running Sims 151 to 200 | Total Cores Detected: 128
+Running with 42 Parallel Workers (3 chains each)
+
+Compiling Stan Model...
+Compilation successful. Starting worker pool...
+
+Starting HPC Monte Carlo Simulation: Scenario = S2, Model = model_shift_mean_cov_lap_jls
+Running Sims 101 to 150 | Total Cores Detected: 128
+Running with 42 Parallel Workers (3 chains each)
+
+Compiling Stan Model...
+Compilation successful. Starting worker pool...
+
+Starting HPC Monte Carlo Simulation: Scenario = S2, Model = model_shift_mean_cov_lap_jls
+Running Sims 1 to 50 | Total Cores Detected: 128
+Running with 42 Parallel Workers (3 chains each)
+
+Compiling Stan Model...
+Compilation successful. Starting worker pool...
+

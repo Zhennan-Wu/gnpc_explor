@@ -1,0 +1,868 @@
+Task ID: 14
+Running Scenario: S2 with Model: model_shift_mean_cov_jls.stan using 4 Nodes
+Starting HPC Monte Carlo Simulation: Scenario = S2, Model = model_shift_mean_cov_jls
+Running Sims 151 to 200 | Total Cores Detected: 128
+Running with 42 Parallel Workers (3 chains each)
+
+Compiling Stan Model...
+Compilation successful. Starting worker pool...
+
+Starting HPC Monte Carlo Simulation: Scenario = S2, Model = model_shift_mean_cov_jls
+Running Sims 1 to 50 | Total Cores Detected: 128
+Running with 42 Parallel Workers (3 chains each)
+
+Compiling Stan Model...
+  -> Starting Run 183...
+  ❌ Failed Run 183: Error during sampling:
+
+Command and output files:
+RunSet: chains=3, chain_ids=[1, 2, 3], num_processes=3
+ cmd (chain 1):
+	['/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls', 'id=1', 'random', 'seed=71447', 'data', 'file=/tmp/tmpgkm3u01i/63reb3np.json', 'output', 'file=/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsh7fk22m9/model_shift_mean_cov_jls-20260324100845_1.csv', 'method=sample', 'num_samples=2500', 'num_warmup=2500', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[-1, -1, -1]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsh7fk22m9/model_shift_mean_cov_jls-20260324100845_1.csv
+ console_msgs (if any):
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsh7fk22m9/model_shift_mean_cov_jls-20260324100845_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!
+  -> Starting Run 194...
+  ❌ Failed Run 194: Error during sampling:
+
+Command and output files:
+RunSet: chains=3, chain_ids=[1, 2, 3], num_processes=3
+ cmd (chain 1):
+	['/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls', 'id=1', 'random', 'seed=72979', 'data', 'file=/tmp/tmpgkm3u01i/e43v5vjk.json', 'output', 'file=/tmp/tmpgkm3u01i/model_shift_mean_cov_jlskv_h4mei/model_shift_mean_cov_jls-20260324100846_1.csv', 'method=sample', 'num_samples=2500', 'num_warmup=2500', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[-1, -1, -1]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlskv_h4mei/model_shift_mean_cov_jls-20260324100846_1.csv
+ console_msgs (if any):
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlskv_h4mei/model_shift_mean_cov_jls-20260324100846_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!
+  -> Starting Run 158...
+  ❌ Failed Run 158: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+rm /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 195...
+  ❌ Failed Run 195: Error during sampling:
+
+Command and output files:
+RunSet: chains=3, chain_ids=[1, 2, 3], num_processes=3
+ cmd (chain 1):
+	['/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls', 'id=1', 'random', 'seed=60161', 'data', 'file=/tmp/tmpgkm3u01i/dx3ysr1u.json', 'output', 'file=/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsruic4ndq/model_shift_mean_cov_jls-20260324100847_1.csv', 'method=sample', 'num_samples=2500', 'num_warmup=2500', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[-1, -1, -1]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsruic4ndq/model_shift_mean_cov_jls-20260324100847_1.csv
+ console_msgs (if any):
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsruic4ndq/model_shift_mean_cov_jls-20260324100847_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!
+  -> Starting Run 164...
+  ❌ Failed Run 164: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+rm /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 196...
+  ❌ Failed Run 196: Error during sampling:
+
+Command and output files:
+RunSet: chains=3, chain_ids=[1, 2, 3], num_processes=3
+ cmd (chain 1):
+	['/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls', 'id=1', 'random', 'seed=75665', 'data', 'file=/tmp/tmpgkm3u01i/jrnx_jjv.json', 'output', 'file=/tmp/tmpgkm3u01i/model_shift_mean_cov_jls5cl7doeq/model_shift_mean_cov_jls-20260324100847_1.csv', 'method=sample', 'num_samples=2500', 'num_warmup=2500', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[-1, -1, -1]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jls5cl7doeq/model_shift_mean_cov_jls-20260324100847_1.csv
+ console_msgs (if any):
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jls5cl7doeq/model_shift_mean_cov_jls-20260324100847_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!
+  -> Starting Run 177...
+  ❌ Failed Run 177: Error during sampling:
+
+Command and output files:
+RunSet: chains=3, chain_ids=[1, 2, 3], num_processes=3
+ cmd (chain 1):
+	['/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls', 'id=1', 'random', 'seed=20902', 'data', 'file=/tmp/tmpgkm3u01i/3a0e3p2b.json', 'output', 'file=/tmp/tmpgkm3u01i/model_shift_mean_cov_jlse8r_j4gn/model_shift_mean_cov_jls-20260324100846_1.csv', 'method=sample', 'num_samples=2500', 'num_warmup=2500', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[-1, -1, -1]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlse8r_j4gn/model_shift_mean_cov_jls-20260324100846_1.csv
+ console_msgs (if any):
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlse8r_j4gn/model_shift_mean_cov_jls-20260324100846_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!
+  -> Starting Run 198...
+  ❌ Failed Run 198: Error during sampling:
+
+Command and output files:
+RunSet: chains=3, chain_ids=[1, 2, 3], num_processes=3
+ cmd (chain 1):
+	['/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls', 'id=1', 'random', 'seed=79323', 'data', 'file=/tmp/tmpgkm3u01i/doe81mtj.json', 'output', 'file=/tmp/tmpgkm3u01i/model_shift_mean_cov_jls_tmuklmn/model_shift_mean_cov_jls-20260324100847_1.csv', 'method=sample', 'num_samples=2500', 'num_warmup=2500', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[-1, -1, -1]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jls_tmuklmn/model_shift_mean_cov_jls-20260324100847_1.csv
+ console_msgs (if any):
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jls_tmuklmn/model_shift_mean_cov_jls-20260324100847_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!
+  -> Starting Run 157...
+  ❌ Failed Run 157: Error during sampling:
+
+Command and output files:
+RunSet: chains=3, chain_ids=[1, 2, 3], num_processes=3
+ cmd (chain 1):
+	['/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls', 'id=1', 'random', 'seed=24699', 'data', 'file=/tmp/tmpgkm3u01i/p_5dq1y3.json', 'output', 'file=/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsyfgdoi5p/model_shift_mean_cov_jls-20260324100846_1.csv', 'method=sample', 'num_samples=2500', 'num_warmup=2500', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[-1, -1, -1]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsyfgdoi5p/model_shift_mean_cov_jls-20260324100846_1.csv
+ console_msgs (if any):
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsyfgdoi5p/model_shift_mean_cov_jls-20260324100846_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!
+  -> Starting Run 199...
+  ❌ Failed Run 199: Error during sampling:
+
+Command and output files:
+RunSet: chains=3, chain_ids=[1, 2, 3], num_processes=3
+ cmd (chain 1):
+	['/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls', 'id=1', 'random', 'seed=12993', 'data', 'file=/tmp/tmpgkm3u01i/ovt6urcs.json', 'output', 'file=/tmp/tmpgkm3u01i/model_shift_mean_cov_jls2cv04xn0/model_shift_mean_cov_jls-20260324100847_1.csv', 'method=sample', 'num_samples=2500', 'num_warmup=2500', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[-1, -1, -1]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jls2cv04xn0/model_shift_mean_cov_jls-20260324100847_1.csv
+ console_msgs (if any):
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jls2cv04xn0/model_shift_mean_cov_jls-20260324100847_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!
+  -> Starting Run 192...
+  ❌ Failed Run 192: Error during sampling:
+
+Command and output files:
+RunSet: chains=3, chain_ids=[1, 2, 3], num_processes=3
+ cmd (chain 1):
+	['/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls', 'id=1', 'random', 'seed=13879', 'data', 'file=/tmp/tmpgkm3u01i/jpot_pe8.json', 'output', 'file=/tmp/tmpgkm3u01i/model_shift_mean_cov_jls5s5yqh15/model_shift_mean_cov_jls-20260324100845_1.csv', 'method=sample', 'num_samples=2500', 'num_warmup=2500', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[-1, -1, -1]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jls5s5yqh15/model_shift_mean_cov_jls-20260324100845_1.csv
+ console_msgs (if any):
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jls5s5yqh15/model_shift_mean_cov_jls-20260324100845_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!
+  -> Starting Run 193...
+  ❌ Failed Run 193: Error during sampling:
+
+Command and output files:
+RunSet: chains=3, chain_ids=[1, 2, 3], num_processes=3
+ cmd (chain 1):
+	['/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls', 'id=1', 'random', 'seed=4723', 'data', 'file=/tmp/tmpgkm3u01i/i4xb2o08.json', 'output', 'file=/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsnarvjr9i/model_shift_mean_cov_jls-20260324100846_1.csv', 'method=sample', 'num_samples=2500', 'num_warmup=2500', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[-1, -1, -1]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsnarvjr9i/model_shift_mean_cov_jls-20260324100846_1.csv
+ console_msgs (if any):
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsnarvjr9i/model_shift_mean_cov_jls-20260324100846_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!
+  -> Starting Run 200...
+  ❌ Failed Run 200: Error during sampling:
+
+Command and output files:
+RunSet: chains=3, chain_ids=[1, 2, 3], num_processes=3
+ cmd (chain 1):
+	['/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls', 'id=1', 'random', 'seed=26869', 'data', 'file=/tmp/tmpgkm3u01i/ox9e21ec.json', 'output', 'file=/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsonk6dihq/model_shift_mean_cov_jls-20260324100847_1.csv', 'method=sample', 'num_samples=2500', 'num_warmup=2500', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[-1, -1, -1]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsonk6dihq/model_shift_mean_cov_jls-20260324100847_1.csv
+ console_msgs (if any):
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsonk6dihq/model_shift_mean_cov_jls-20260324100847_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!
+  -> Starting Run 191...
+  ❌ Failed Run 191: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 171...
+  ❌ Failed Run 171: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 165...
+  ❌ Failed Run 165: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 189...
+  ❌ Failed Run 189: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 168...
+  ❌ Failed Run 168: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 180...
+  ❌ Failed Run 180: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+rm /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 152...
+  ❌ Failed Run 152: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 173...
+  ❌ Failed Run 173: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 166...
+  ❌ Failed Run 166: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 172...
+  ❌ Failed Run 172: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: src/cmdstan/main.o: in function `cmdstan::command(int, char const**)':
+main.cpp:(.text+0x35ff4): undefined reference to `new_model(stan::io::var_context&, unsigned int, std::ostream*)'
+/usr/bin/ld: main.cpp:(.text+0x36f92): undefined reference to `get_stan_profile_data[abi:cxx11]()'
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 162...
+  ❌ Failed Run 162: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 182...
+  ❌ Failed Run 182: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: src/cmdstan/main.o: in function `cmdstan::command(int, char const**)':
+main.cpp:(.text+0x35ff4): undefined reference to `new_model(stan::io::var_context&, unsigned int, std::ostream*)'
+/usr/bin/ld: main.cpp:(.text+0x36f92): undefined reference to `get_stan_profile_data[abi:cxx11]()'
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 179...
+  ❌ Failed Run 179: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 155...
+  ❌ Failed Run 155: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 178...
+  ❌ Failed Run 178: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: src/cmdstan/main.o: in function `cmdstan::command(int, char const**)':
+main.cpp:(.text+0x35ff4): undefined reference to `new_model(stan::io::var_context&, unsigned int, std::ostream*)'
+/usr/bin/ld: main.cpp:(.text+0x36f92): undefined reference to `get_stan_profile_data[abi:cxx11]()'
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+rm /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 174...
+  ❌ Failed Run 174: Error during sampling:
+
+Command and output files:
+RunSet: chains=3, chain_ids=[1, 2, 3], num_processes=3
+ cmd (chain 1):
+	['/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls', 'id=1', 'random', 'seed=20518', 'data', 'file=/tmp/tmpgkm3u01i/7fqi0kr4.json', 'output', 'file=/tmp/tmpgkm3u01i/model_shift_mean_cov_jls9uemyskk/model_shift_mean_cov_jls-20260324100848_1.csv', 'method=sample', 'num_samples=2500', 'num_warmup=2500', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[-1, -1, -1]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jls9uemyskk/model_shift_mean_cov_jls-20260324100848_1.csv
+ console_msgs (if any):
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jls9uemyskk/model_shift_mean_cov_jls-20260324100848_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!
+  -> Starting Run 169...
+  ❌ Failed Run 169: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: src/cmdstan/main.o: in function `cmdstan::command(int, char const**)':
+main.cpp:(.text+0x35ff4): undefined reference to `new_model(stan::io::var_context&, unsigned int, std::ostream*)'
+/usr/bin/ld: main.cpp:(.text+0x36f92): undefined reference to `get_stan_profile_data[abi:cxx11]()'
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+rm /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 181...
+  ❌ Failed Run 181: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+rm /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 184...
+  ❌ Failed Run 184: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: src/cmdstan/main.o: in function `cmdstan::command(int, char const**)':
+main.cpp:(.text+0x35ff4): undefined reference to `new_model(stan::io::var_context&, unsigned int, std::ostream*)'
+/usr/bin/ld: main.cpp:(.text+0x36f92): undefined reference to `get_stan_profile_data[abi:cxx11]()'
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 151...
+  ❌ Failed Run 151: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 175...
+  ❌ Failed Run 175: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 185...
+  ❌ Failed Run 185: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 170...
+  ❌ Failed Run 170: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 167...
+  ❌ Failed Run 167: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 188...
+  ❌ Failed Run 188: Error during sampling:
+
+Command and output files:
+RunSet: chains=3, chain_ids=[1, 2, 3], num_processes=3
+ cmd (chain 1):
+	['/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls', 'id=1', 'random', 'seed=38841', 'data', 'file=/tmp/tmpgkm3u01i/h0nuysko.json', 'output', 'file=/tmp/tmpgkm3u01i/model_shift_mean_cov_jls2ec1mq55/model_shift_mean_cov_jls-20260324100852_1.csv', 'method=sample', 'num_samples=2500', 'num_warmup=2500', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[-1, -1, -1]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jls2ec1mq55/model_shift_mean_cov_jls-20260324100852_1.csv
+ console_msgs (if any):
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jls2ec1mq55/model_shift_mean_cov_jls-20260324100852_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!
+  -> Starting Run 163...
+  ❌ Failed Run 163: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 186...
+  ❌ Failed Run 186: Error during sampling:
+
+Command and output files:
+RunSet: chains=3, chain_ids=[1, 2, 3], num_processes=3
+ cmd (chain 1):
+	['/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls', 'id=1', 'random', 'seed=91485', 'data', 'file=/tmp/tmpgkm3u01i/6emccnn6.json', 'output', 'file=/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsq64qj9_7/model_shift_mean_cov_jls-20260324100853_1.csv', 'method=sample', 'num_samples=2500', 'num_warmup=2500', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[-1, -1, -1]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsq64qj9_7/model_shift_mean_cov_jls-20260324100853_1.csv
+ console_msgs (if any):
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsq64qj9_7/model_shift_mean_cov_jls-20260324100853_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!
+  -> Starting Run 187...
+  ❌ Failed Run 187: Error during sampling:
+
+Command and output files:
+RunSet: chains=3, chain_ids=[1, 2, 3], num_processes=3
+ cmd (chain 1):
+	['/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls', 'id=1', 'random', 'seed=23789', 'data', 'file=/tmp/tmpgkm3u01i/dcaltx3k.json', 'output', 'file=/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsgxj4os_c/model_shift_mean_cov_jls-20260324100853_1.csv', 'method=sample', 'num_samples=2500', 'num_warmup=2500', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[-1, -1, -1]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsgxj4os_c/model_shift_mean_cov_jls-20260324100853_1.csv
+ console_msgs (if any):
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsgxj4os_c/model_shift_mean_cov_jls-20260324100853_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!
+  -> Starting Run 190...
+  ❌ Failed Run 190: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 160...
+  ❌ Failed Run 160: Error during sampling:
+
+Command and output files:
+RunSet: chains=3, chain_ids=[1, 2, 3], num_processes=3
+ cmd (chain 1):
+	['/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls', 'id=1', 'random', 'seed=9510', 'data', 'file=/tmp/tmpgkm3u01i/9_fog8wg.json', 'output', 'file=/tmp/tmpgkm3u01i/model_shift_mean_cov_jls9d8jf2zf/model_shift_mean_cov_jls-20260324100853_1.csv', 'method=sample', 'num_samples=2500', 'num_warmup=2500', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[-1, -1, -1]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jls9d8jf2zf/model_shift_mean_cov_jls-20260324100853_1.csv
+ console_msgs (if any):
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jls9d8jf2zf/model_shift_mean_cov_jls-20260324100853_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!
+  -> Starting Run 153...
+  ❌ Failed Run 153: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 159...
+  ❌ Failed Run 159: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 156...
+  ❌ Failed Run 156: Error during sampling:
+
+Command and output files:
+RunSet: chains=3, chain_ids=[1, 2, 3], num_processes=3
+ cmd (chain 1):
+	['/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls', 'id=1', 'random', 'seed=93153', 'data', 'file=/tmp/tmpgkm3u01i/qstq59l7.json', 'output', 'file=/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsvjvdnbqt/model_shift_mean_cov_jls-20260324100854_1.csv', 'method=sample', 'num_samples=2500', 'num_warmup=2500', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[-1, -1, -1]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsvjvdnbqt/model_shift_mean_cov_jls-20260324100854_1.csv
+ console_msgs (if any):
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsvjvdnbqt/model_shift_mean_cov_jls-20260324100854_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!
+  -> Starting Run 176...
+  ❌ Failed Run 176: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 154...
+  ❌ Failed Run 154: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+  -> Starting Run 197...
+  ❌ Failed Run 197: Error during sampling:
+
+Command and output files:
+RunSet: chains=3, chain_ids=[1, 2, 3], num_processes=3
+ cmd (chain 1):
+	['/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls', 'id=1', 'random', 'seed=79563', 'data', 'file=/tmp/tmpgkm3u01i/m2bh_pn1.json', 'output', 'file=/tmp/tmpgkm3u01i/model_shift_mean_cov_jlszvg6k5e7/model_shift_mean_cov_jls-20260324100856_1.csv', 'method=sample', 'num_samples=2500', 'num_warmup=2500', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[-1, -1, -1]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlszvg6k5e7/model_shift_mean_cov_jls-20260324100856_1.csv
+ console_msgs (if any):
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlszvg6k5e7/model_shift_mean_cov_jls-20260324100856_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!
+  -> Starting Run 161...
+  ❌ Failed Run 161: Error during sampling:
+
+Command and output files:
+RunSet: chains=3, chain_ids=[1, 2, 3], num_processes=3
+ cmd (chain 1):
+	['/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls', 'id=1', 'random', 'seed=10229', 'data', 'file=/tmp/tmpgkm3u01i/akzq9_6i.json', 'output', 'file=/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsk9kqe124/model_shift_mean_cov_jls-20260324100854_1.csv', 'method=sample', 'num_samples=2500', 'num_warmup=2500', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[-1, -1, -1]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsk9kqe124/model_shift_mean_cov_jls-20260324100854_1.csv
+ console_msgs (if any):
+	/tmp/tmpgkm3u01i/model_shift_mean_cov_jlsk9kqe124/model_shift_mean_cov_jls-20260324100854_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!
+
+Node finished its chunk. (0/50 successful)
+Starting HPC Monte Carlo Simulation: Scenario = S2, Model = model_shift_mean_cov_jls
+Running Sims 101 to 150 | Total Cores Detected: 128
+Running with 42 Parallel Workers (3 chains each)
+
+Compiling Stan Model...
+Compilation successful. Starting worker pool...
+
+Starting HPC Monte Carlo Simulation: Scenario = S2, Model = model_shift_mean_cov_jls
+Running Sims 51 to 100 | Total Cores Detected: 128
+Running with 42 Parallel Workers (3 chains each)
+
+Compiling Stan Model...
+Compilation successful. Starting worker pool...
+

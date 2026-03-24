@@ -1,0 +1,392 @@
+conda version 25.3.0 python 3.12.7 unloaded.
+conda version 25.3.0 python 3.12.7 loaded.
+
+Lmod is automatically replacing "gcc-native/14.2" with "gcc/12.2.0".
+
+
+The following have been reloaded with a version change:
+  1) cray-libsci/25.03.0 => cray-libsci/22.12.1.1
+  2) cray-mpich-ucx/8.1.32 => cray-mpich-ucx/8.1.23
+
+10:05:37 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:05:37 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:05:37 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:05:37 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:31 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+Traceback (most recent call last):
+  File "/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/lou_simulation_hpc_mp.py", line 379, in <module>
+    _ = cmdstanpy.CmdStanModel(stan_file=stan_file)
+  File "/N/u/zwu1/BigRed200/.conda/envs/ou/lib/python3.10/site-packages/cmdstanpy/model.py", line 255, in __init__
+    self.compile(force=str(compile).lower() == 'force', _internal=True)
+  File "/N/u/zwu1/BigRed200/.conda/envs/ou/lib/python3.10/site-packages/cmdstanpy/model.py", line 463, in compile
+    self._exe_file = compilation.compile_stan_file(
+  File "/N/u/zwu1/BigRed200/.conda/envs/ou/lib/python3.10/site-packages/cmdstanpy/compilation.py", line 482, in compile_stan_file
+    raise ValueError(
+ValueError: Failed to compile Stan model '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan'. Console:
+
+--- Translating Stan model to C++ code ---
+bin/stanc --filename-in-msg=model_shift_mean_cov_jls.stan --o=/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan
+
+--- Compiling C++ code ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS          -c -Wno-ignored-attributes   -x c++ -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.hpp
+
+--- Linking model ---
+g++ -std=c++17 -pthread -D_REENTRANT -Wno-sign-compare -Wno-ignored-attributes -Wno-class-memaccess      -I stan/lib/stan_math/lib/tbb_2020.3/include    -O3 -I src -I stan/src -I stan/lib/rapidjson_1.1.0/ -I lib/CLI11-1.9.1/ -I stan/lib/stan_math/ -I stan/lib/stan_math/lib/eigen_3.4.0 -I stan/lib/stan_math/lib/boost_1.87.0 -I stan/lib/stan_math/lib/sundials_6.1.1/include -I stan/lib/stan_math/lib/sundials_6.1.1/src/sundials    -DBOOST_DISABLE_ASSERTS               -Wl,-L,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"   -Wl,-rpath,"/geode2/home/u110/zwu1/BigRed200/.cmdstan/cmdstan-2.38.0/stan/lib/stan_math/lib/tbb"      /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o src/cmdstan/main.o       -ltbb   stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_nvecserial.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_cvodes.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_idas.a stan/lib/stan_math/lib/sundials_6.1.1/lib/libsundials_kinsol.a  stan/lib/stan_math/lib/tbb/libtbb.so.2 -o /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+/usr/bin/ld: cannot find /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [make/program:82: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls] Error 1
+
+Command ['make', 'STANCFLAGS+=--filename-in-msg=model_shift_mean_cov_jls.stan', '/geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls']
+	exited with code '2' No such file or directory
+
+srun: error: nid0536: task 0: Exited with exit code 1
+srun: Terminating StepId=6665624.1
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:07:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:08:45 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:08:45 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:08:45 - cmdstanpy - INFO - CmdStan start processing
+10:08:45 - cmdstanpy - INFO - Chain [1] start processing
+10:08:45 - cmdstanpy - INFO - Chain [2] start processing
+10:08:45 - cmdstanpy - INFO - Chain [3] start processing
+10:08:45 - cmdstanpy - INFO - CmdStan start processing
+10:08:45 - cmdstanpy - INFO - Chain [1] start processing
+10:08:45 - cmdstanpy - INFO - Chain [2] start processing
+10:08:45 - cmdstanpy - INFO - Chain [3] start processing
+10:08:46 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:08:46 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:08:46 - cmdstanpy - INFO - CmdStan start processing
+10:08:46 - cmdstanpy - INFO - Chain [1] start processing
+10:08:46 - cmdstanpy - INFO - Chain [2] start processing
+10:08:46 - cmdstanpy - INFO - Chain [3] start processing
+10:08:46 - cmdstanpy - INFO - CmdStan start processing
+10:08:46 - cmdstanpy - INFO - Chain [1] start processing
+10:08:46 - cmdstanpy - INFO - Chain [2] start processing
+10:08:46 - cmdstanpy - INFO - Chain [3] start processing
+10:08:46 - cmdstanpy - INFO - CmdStan start processing
+10:08:46 - cmdstanpy - INFO - CmdStan start processing
+10:08:46 - cmdstanpy - INFO - Chain [1] start processing
+10:08:46 - cmdstanpy - INFO - Chain [1] start processing
+10:08:46 - cmdstanpy - INFO - Chain [2] start processing
+10:08:46 - cmdstanpy - INFO - Chain [3] start processing
+10:08:46 - cmdstanpy - INFO - Chain [2] start processing
+10:08:46 - cmdstanpy - INFO - Chain [3] start processing
+10:08:47 - cmdstanpy - INFO - CmdStan start processing
+10:08:47 - cmdstanpy - INFO - Chain [1] start processing
+10:08:47 - cmdstanpy - INFO - Chain [2] start processing
+10:08:47 - cmdstanpy - INFO - Chain [3] start processing
+10:08:47 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:08:47 - cmdstanpy - INFO - CmdStan start processing
+10:08:47 - cmdstanpy - INFO - Chain [1] start processing
+10:08:47 - cmdstanpy - INFO - Chain [2] start processing
+10:08:47 - cmdstanpy - INFO - Chain [3] start processing
+10:08:47 - cmdstanpy - INFO - CmdStan start processing
+10:08:47 - cmdstanpy - INFO - Chain [1] start processing
+10:08:47 - cmdstanpy - INFO - Chain [2] start processing
+10:08:47 - cmdstanpy - INFO - Chain [3] start processing
+10:08:47 - cmdstanpy - INFO - CmdStan start processing
+10:08:47 - cmdstanpy - INFO - Chain [1] start processing
+10:08:47 - cmdstanpy - INFO - Chain [2] start processing
+10:08:47 - cmdstanpy - INFO - Chain [3] start processing
+10:08:47 - cmdstanpy - INFO - CmdStan start processing
+10:08:47 - cmdstanpy - INFO - Chain [1] start processing
+10:08:47 - cmdstanpy - INFO - Chain [2] start processing
+10:08:47 - cmdstanpy - INFO - Chain [3] start processing
+10:08:48 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:08:48 - cmdstanpy - INFO - CmdStan start processing
+10:08:48 - cmdstanpy - INFO - Chain [1] start processing
+10:08:48 - cmdstanpy - INFO - Chain [2] start processing
+10:08:48 - cmdstanpy - INFO - Chain [3] start processing
+10:08:52 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:08:52 - cmdstanpy - INFO - CmdStan start processing
+10:08:52 - cmdstanpy - INFO - Chain [1] start processing
+10:08:52 - cmdstanpy - INFO - Chain [2] start processing
+10:08:52 - cmdstanpy - INFO - Chain [3] start processing
+10:08:53 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:08:53 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:08:53 - cmdstanpy - INFO - CmdStan start processing
+10:08:53 - cmdstanpy - INFO - Chain [1] start processing
+10:08:53 - cmdstanpy - INFO - Chain [2] start processing
+10:08:53 - cmdstanpy - INFO - Chain [3] start processing
+10:08:53 - cmdstanpy - INFO - CmdStan start processing
+10:08:53 - cmdstanpy - INFO - Chain [1] start processing
+10:08:53 - cmdstanpy - INFO - Chain [2] start processing
+10:08:53 - cmdstanpy - INFO - Chain [3] start processing
+10:08:53 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:08:53 - cmdstanpy - INFO - CmdStan start processing
+10:08:53 - cmdstanpy - INFO - Chain [1] start processing
+10:08:53 - cmdstanpy - INFO - Chain [2] start processing
+10:08:53 - cmdstanpy - INFO - Chain [3] start processing
+10:08:53 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:08:53 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:08:54 - cmdstanpy - INFO - CmdStan start processing
+10:08:54 - cmdstanpy - INFO - Chain [1] start processing
+10:08:54 - cmdstanpy - INFO - Chain [2] start processing
+10:08:54 - cmdstanpy - INFO - Chain [3] start processing
+10:08:54 - cmdstanpy - INFO - CmdStan start processing
+10:08:54 - cmdstanpy - INFO - Chain [1] start processing
+10:08:54 - cmdstanpy - INFO - Chain [2] start processing
+10:08:54 - cmdstanpy - INFO - Chain [3] start processing
+10:08:56 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:08:56 - cmdstanpy - INFO - CmdStan start processing
+10:08:56 - cmdstanpy - INFO - Chain [1] start processing
+10:08:56 - cmdstanpy - INFO - Chain [2] start processing
+10:08:56 - cmdstanpy - INFO - Chain [3] start processing
+10:09:09 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:09 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:09:11 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:10:29 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:10:29 - cmdstanpy - INFO - CmdStan start processing
+10:10:29 - cmdstanpy - INFO - Chain [1] start processing
+10:10:29 - cmdstanpy - INFO - Chain [2] start processing
+10:10:29 - cmdstanpy - INFO - Chain [3] start processing
+10:10:30 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:10:30 - cmdstanpy - INFO - CmdStan start processing
+10:10:30 - cmdstanpy - INFO - Chain [1] start processing
+10:10:30 - cmdstanpy - INFO - Chain [2] start processing
+10:10:30 - cmdstanpy - INFO - Chain [3] start processing
+10:10:30 - cmdstanpy - INFO - CmdStan start processing
+10:10:30 - cmdstanpy - INFO - Chain [1] start processing
+10:10:30 - cmdstanpy - INFO - Chain [2] start processing
+10:10:30 - cmdstanpy - INFO - Chain [3] start processing
+10:10:31 - cmdstanpy - INFO - CmdStan start processing
+10:10:31 - cmdstanpy - INFO - Chain [1] start processing
+10:10:31 - cmdstanpy - INFO - Chain [2] start processing
+10:10:31 - cmdstanpy - INFO - CmdStan start processing
+10:10:31 - cmdstanpy - INFO - Chain [1] start processing
+10:10:31 - cmdstanpy - INFO - Chain [2] start processing
+10:10:31 - cmdstanpy - INFO - Chain [3] start processing
+10:10:31 - cmdstanpy - INFO - Chain [3] start processing
+10:10:31 - cmdstanpy - INFO - CmdStan start processing
+10:10:31 - cmdstanpy - INFO - Chain [1] start processing
+10:10:31 - cmdstanpy - INFO - Chain [2] start processing
+10:10:31 - cmdstanpy - INFO - Chain [3] start processing
+10:10:31 - cmdstanpy - INFO - CmdStan start processing
+10:10:31 - cmdstanpy - INFO - Chain [1] start processing
+10:10:31 - cmdstanpy - INFO - Chain [2] start processing
+10:10:31 - cmdstanpy - INFO - Chain [3] start processing
+10:10:31 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:10:32 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:10:32 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:10:32 - cmdstanpy - INFO - CmdStan start processing
+10:10:32 - cmdstanpy - INFO - Chain [1] start processing
+10:10:32 - cmdstanpy - INFO - Chain [2] start processing
+10:10:32 - cmdstanpy - INFO - Chain [3] start processing
+10:10:32 - cmdstanpy - INFO - CmdStan start processing
+10:10:32 - cmdstanpy - INFO - Chain [1] start processing
+10:10:32 - cmdstanpy - INFO - Chain [2] start processing
+10:10:32 - cmdstanpy - INFO - Chain [3] start processing
+10:10:32 - cmdstanpy - INFO - CmdStan start processing
+10:10:32 - cmdstanpy - INFO - Chain [1] start processing
+10:10:32 - cmdstanpy - INFO - Chain [2] start processing
+10:10:32 - cmdstanpy - INFO - Chain [3] start processing
+10:10:32 - cmdstanpy - INFO - CmdStan start processing
+10:10:32 - cmdstanpy - INFO - Chain [1] start processing
+10:10:32 - cmdstanpy - INFO - Chain [2] start processing
+10:10:32 - cmdstanpy - INFO - Chain [3] start processing
+10:10:33 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:10:33 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:10:33 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:10:33 - cmdstanpy - INFO - CmdStan start processing
+10:10:33 - cmdstanpy - INFO - Chain [1] start processing
+10:10:33 - cmdstanpy - INFO - CmdStan start processing
+10:10:33 - cmdstanpy - INFO - Chain [2] start processing
+10:10:33 - cmdstanpy - INFO - Chain [3] start processing
+10:10:33 - cmdstanpy - INFO - Chain [1] start processing
+10:10:33 - cmdstanpy - INFO - Chain [2] start processing
+10:10:33 - cmdstanpy - INFO - Chain [3] start processing
+10:10:33 - cmdstanpy - INFO - CmdStan start processing
+10:10:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:10:33 - cmdstanpy - INFO - Chain [1] start processing
+10:10:33 - cmdstanpy - INFO - Chain [2] start processing
+10:10:33 - cmdstanpy - INFO - Chain [3] start processing
+10:10:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:10:33 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:10:33 - cmdstanpy - INFO - CmdStan start processing
+10:10:33 - cmdstanpy - INFO - Chain [1] start processing
+10:10:33 - cmdstanpy - INFO - Chain [2] start processing
+10:10:33 - cmdstanpy - INFO - Chain [3] start processing
+10:10:33 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:10:34 - cmdstanpy - INFO - compiling stan file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls.stan to exe file /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:10:36 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:10:37 - cmdstanpy - INFO - CmdStan start processing
+10:10:37 - cmdstanpy - INFO - Chain [1] start processing
+10:10:37 - cmdstanpy - INFO - Chain [2] start processing
+10:10:37 - cmdstanpy - INFO - Chain [3] start processing
+10:10:37 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:10:37 - cmdstanpy - INFO - CmdStan start processing
+10:10:37 - cmdstanpy - INFO - Chain [1] start processing
+10:10:37 - cmdstanpy - INFO - Chain [2] start processing
+10:10:37 - cmdstanpy - INFO - Chain [3] start processing
+10:10:37 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:10:37 - cmdstanpy - INFO - CmdStan start processing
+10:10:37 - cmdstanpy - INFO - Chain [1] start processing
+10:10:37 - cmdstanpy - INFO - Chain [2] start processing
+10:10:37 - cmdstanpy - INFO - Chain [3] start processing
+10:10:37 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:10:37 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:10:37 - cmdstanpy - INFO - CmdStan start processing
+10:10:37 - cmdstanpy - INFO - Chain [1] start processing
+10:10:37 - cmdstanpy - INFO - Chain [2] start processing
+10:10:37 - cmdstanpy - INFO - Chain [3] start processing
+10:10:37 - cmdstanpy - INFO - CmdStan start processing
+10:10:37 - cmdstanpy - INFO - Chain [1] start processing
+10:10:37 - cmdstanpy - INFO - Chain [2] start processing
+10:10:37 - cmdstanpy - INFO - Chain [3] start processing
+10:11:34 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:11:34 - cmdstanpy - INFO - CmdStan start processing
+10:11:34 - cmdstanpy - INFO - Chain [1] start processing
+10:11:34 - cmdstanpy - INFO - Chain [2] start processing
+10:11:34 - cmdstanpy - INFO - Chain [3] start processing
+10:11:34 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:11:34 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:11:34 - cmdstanpy - INFO - CmdStan start processing
+10:11:34 - cmdstanpy - INFO - Chain [1] start processing
+10:11:34 - cmdstanpy - INFO - Chain [2] start processing
+10:11:34 - cmdstanpy - INFO - Chain [3] start processing
+10:11:34 - cmdstanpy - INFO - CmdStan start processing
+10:11:34 - cmdstanpy - INFO - Chain [1] start processing
+10:11:34 - cmdstanpy - INFO - Chain [2] start processing
+10:11:34 - cmdstanpy - INFO - Chain [3] start processing
+10:11:34 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:11:34 - cmdstanpy - INFO - CmdStan start processing
+10:11:34 - cmdstanpy - INFO - Chain [1] start processing
+10:11:34 - cmdstanpy - INFO - Chain [2] start processing
+10:11:34 - cmdstanpy - INFO - Chain [3] start processing
+10:11:40 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:11:40 - cmdstanpy - INFO - compiled model executable: /geode2/home/u110/zwu1/BigRed200/gnpc_explor/src/model_shift_mean_cov_jls
+10:11:40 - cmdstanpy - INFO - CmdStan start processing
+10:11:40 - cmdstanpy - INFO - Chain [1] start processing
+10:11:40 - cmdstanpy - INFO - Chain [2] start processing
+10:11:40 - cmdstanpy - INFO - Chain [3] start processing
+10:11:40 - cmdstanpy - INFO - CmdStan start processing
+10:11:40 - cmdstanpy - INFO - Chain [1] start processing
+10:11:40 - cmdstanpy - INFO - Chain [2] start processing
+10:11:40 - cmdstanpy - INFO - Chain [3] start processing
+11:20:20 - cmdstanpy - INFO - Chain [1] done processing
+slurmstepd: error: *** STEP 6665624.0 ON nid0360 CANCELLED AT 2026-03-24T12:55:50 ***
+slurmstepd: error: *** STEP 6665624.3 ON nid0595 CANCELLED AT 2026-03-24T12:55:50 ***
+slurmstepd: error: *** JOB 6665624 ON nid0360 CANCELLED AT 2026-03-24T12:55:50 ***

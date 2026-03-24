@@ -1,6 +1,7 @@
 import os
 import json
 import glob
+import time
 import numpy as np
 import pandas as pd
 import cmdstanpy
@@ -9,9 +10,6 @@ from scipy.special import expit
 import argparse
 import concurrent.futures
 import multiprocessing
-
-# os.environ["CC"] = "/usr/bin/gcc"
-# os.environ["CXX"] = "/usr/bin/g++"
 
 # ==========================================
 # 1. Data Generation
@@ -229,49 +227,88 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
     stan_data = prepare_stan_data(dataset)
     ground_truths = create_ground_truth_dict(scenario)
     
-    model = cmdstanpy.CmdStanModel(stan_file=stan_file_path)
+    # HPC BULLETPROOFING: Explicitly point to the pre-compiled executable
+    exe_path = stan_file_path.replace('.stan', '')
+    if os.path.exists(exe_path):
+        # If it's already compiled, explicitly load the exe to prevent HPC race conditions
+        model = cmdstanpy.CmdStanModel(exe_file=exe_path)
+    else:
+        # Fallback (should not happen if compile_only ran first)
+        model = cmdstanpy.CmdStanModel(stan_file=stan_file_path)
     
+    start_time = time.time()
     fit = model.sample(
         data=stan_data, iter_warmup=iter_warmup, iter_sampling=iter_sampling,
         chains=chains, parallel_chains=chains, adapt_delta=0.95, max_treedepth=12,
         show_progress=False 
     )
+    run_time = time.time() - start_time
     
-    summary_df = fit.summary(percentiles=[2.5, 97.5]) 
+    # --- DEFENSIVE DIAGNOSTICS EXTRACTION ---
+    try:
+        divergences = int(fit.divergences.sum())
+    except AttributeError:
+        divergences = 0 # Fallback if cmdstanpy version lacks this attribute
+        
+    try:
+        treedepths = int(np.sum(fit.method_variables()['treedepth__'] >= 12))
+        energies = fit.method_variables()['energy__'] 
+        ebfmis = []
+        for c in range(energies.shape[1]):
+            chain_energy = energies[:, c]
+            numer = np.sum(np.diff(chain_energy)**2)
+            denom = np.sum((chain_energy - np.mean(chain_energy))**2)
+            ebfmis.append(numer / denom)
+        mean_ebfmi = np.mean(ebfmis)
+    except (KeyError, AttributeError):
+        treedepths = 0
+        mean_ebfmi = np.nan
+
+    # Try to force percentiles, but gracefully accept whatever CmdStan returns
+    try:
+        summary_df = fit.summary(percentiles=[2.5, 97.5])
+    except TypeError:
+        summary_df = fit.summary() 
+        
+    cols = summary_df.columns.tolist()
+    
+    # Define dynamic column names to prevent KeyErrors
+    lower_col = '2.5%' if '2.5%' in cols else ('5%' if '5%' in cols else None)
+    upper_col = '97.5%' if '97.5%' in cols else ('95%' if '95%' in cols else None)
+    rhat_col = 'R_hat' if 'R_hat' in cols else ('Rhat' if 'Rhat' in cols else None)
+    mcse_col = 'MCSE' if 'MCSE' in cols else None
+
     results = []
-    
     for param_name, true_val in ground_truths.items():
         if param_name in summary_df.index:
             est_mean = summary_df.loc[param_name, 'Mean']
-            lower_ci = summary_df.loc[param_name, '2.5%']
-            upper_ci = summary_df.loc[param_name, '97.5%']
-            rhat = summary_df.loc[param_name, 'R_hat']
             
-            if 'ESS_bulk' in summary_df.columns:
-                ess = summary_df.loc[param_name, 'ESS_bulk']
-            elif 'N_Eff' in summary_df.columns:
-                ess = summary_df.loc[param_name, 'N_Eff']
-            else:
-                ess = np.nan
+            lower_ci = summary_df.loc[param_name, lower_col] if lower_col else np.nan
+            upper_ci = summary_df.loc[param_name, upper_col] if upper_col else np.nan
+            rhat = summary_df.loc[param_name, rhat_col] if rhat_col else np.nan
+            mcse = summary_df.loc[param_name, mcse_col] if mcse_col else np.nan
             
+            if 'ESS_bulk' in cols: ess = summary_df.loc[param_name, 'ESS_bulk']
+            elif 'N_Eff' in cols: ess = summary_df.loc[param_name, 'N_Eff']
+            else: ess = np.nan
+                
+            ess_sec = ess / run_time if run_time > 0 and not np.isnan(ess) else np.nan
             rbias = ((est_mean - true_val) / true_val) if true_val != 0 else np.nan
             mse = (est_mean - true_val) ** 2
             coverage = 1 if (lower_ci <= true_val <= upper_ci) else 0
             
             results.append({
-                'Run_ID': run_id,
-                'Parameter': param_name, 'True_Value': true_val, 'Estimate': est_mean,
+                'Run_ID': run_id, 'Parameter': param_name, 'True_Value': true_val, 'Estimate': est_mean,
                 '2.5%': lower_ci, '97.5%': upper_ci, 'R_hat': rhat, 'ESS': ess,
-                'Rbias': rbias, 'MSE': mse, 'Coverage': coverage
+                'MCSE': mcse, 'ESS_sec': ess_sec, 'Rbias': rbias, 'MSE': mse, 'Coverage': coverage,
+                'Time_s': run_time, 'Divergences': divergences, 'Max_Treedepths': treedepths, 'E_BFMI': mean_ebfmi
             })
             
     metrics_df = pd.DataFrame(results)
     model_name = os.path.splitext(os.path.basename(stan_file_path))[0]
+    metrics_df.to_csv(f"results_{scenario}_{model_name}_run{run_id}.csv", index=False)
     
-    output_filename_csv = f"results_{scenario}_{model_name}_run{run_id}.csv"
-    metrics_df.to_csv(output_filename_csv, index=False)
-    
-    return True 
+    return True
 
 def generate_simulation_table(scenario, model_name):
     print(f"\nAggregating results across all runs for {scenario} - {model_name}...")
@@ -285,12 +322,32 @@ def generate_simulation_table(scenario, model_name):
     df_list = [pd.read_csv(f) for f in all_files]
     combined_df = pd.concat(df_list, ignore_index=True)
     
+    # Extract run-level HMC metrics before grouping by parameter
+    run_level_df = combined_df.groupby('Run_ID').agg(
+        Time=('Time_s', 'first'),
+        Divergences=('Divergences', 'first'),
+        Treedepths=('Max_Treedepths', 'first'),
+        E_BFMI=('E_BFMI', 'first')
+    )
+    
+    print("\n" + "="*50)
+    print(" 🛠️ RUN-LEVEL HMC DIAGNOSTICS (AVERAGE) 🛠️ ")
+    print("="*50)
+    print(f"Total Wall-Clock Time (s): {run_level_df['Time'].mean():.2f}")
+    print(f"Divergent Transitions:     {run_level_df['Divergences'].mean():.2f}")
+    print(f"Max Treedepth Hits:        {run_level_df['Treedepths'].mean():.2f}")
+    print(f"E-BFMI:                    {run_level_df['E_BFMI'].mean():.3f}")
+    print("="*50 + "\n")
+    
+    # Aggregate Parameter-level metrics
     table_df = combined_df.groupby('Parameter').agg(
         True_Value=('True_Value', 'first'),
         RB=('Rbias', 'mean'),             
         MSE=('MSE', 'mean'),              
         CP=('Coverage', lambda x: x.mean() * 100), 
-        ESS=('ESS', 'mean'),              
+        ESS=('ESS', 'mean'),
+        ESS_sec=('ESS_sec', 'mean'),
+        MCSE=('MCSE', 'mean'),
         Rhat=('R_hat', 'max')             
     ).reset_index()
     
@@ -298,11 +355,13 @@ def generate_simulation_table(scenario, model_name):
     table_df['MSE'] = table_df['MSE'].round(3)
     table_df['CP'] = table_df['CP'].round(1)
     table_df['ESS'] = table_df['ESS'].round(1)
+    table_df['ESS_sec'] = table_df['ESS_sec'].round(3)
+    table_df['MCSE'] = table_df['MCSE'].round(4)
     table_df['Rhat'] = table_df['Rhat'].round(3)
     
     final_filename = f"TABLE_{scenario}_{model_name}.csv"
     table_df.to_csv(final_filename, index=False)
-    print(f"Success! Final aggregate table saved to: {final_filename}")
+    print(f"Success! Final aggregate parameter table saved to: {final_filename}")
     
     return table_df
 
@@ -342,10 +401,10 @@ if __name__ == "__main__":
     parser.add_argument("--warmup", type=int, default=2500, help="Warmup iterations")
     parser.add_argument("--sampling", type=int, default=2500, help="Sampling iterations")
     
-    # NEW ARGUMENTS FOR MULTI-NODE CHUNKING
     parser.add_argument("--start_run", type=int, default=1, help="Starting run ID")
     parser.add_argument("--end_run", type=int, default=200, help="Ending run ID")
     parser.add_argument("--aggregate_only", action="store_true", help="Only run the table aggregation")
+    parser.add_argument("--compile_only", action="store_true", help="Only compile the model, do not run sims") 
     parser.add_argument("--workers", type=int, default=None, help="Manual override for parallel workers")
     
     args = parser.parse_args()
@@ -354,12 +413,16 @@ if __name__ == "__main__":
     stan_file = args.model
     model_name = os.path.splitext(os.path.basename(stan_file))[0]
     
-    # If this flag is passed, JUST aggregate and exit
+    if args.compile_only:
+        print(f"Pre-compiling Stan Model: {model_name}...")
+        _ = cmdstanpy.CmdStanModel(stan_file=stan_file)
+        print("Compilation successful. Exiting.")
+        exit(0)
+
     if args.aggregate_only:
         generate_simulation_table(scenario=scenario_to_run, model_name=model_name)
         exit(0)
 
-    # --- FIXED HPC Auto-Scaling Logic ---
     try:
         available_cores = int(os.environ.get('SLURM_CPUS_PER_TASK', os.cpu_count()))
     except TypeError:
@@ -369,18 +432,12 @@ if __name__ == "__main__":
         safe_cores = max(1, available_cores - 2)
         optimal_workers = safe_cores // args.chains
         args.workers = max(1, optimal_workers)
-    # ------------------------------------
     
     print(f"Starting HPC Monte Carlo Simulation: Scenario = {scenario_to_run}, Model = {model_name}")
     print(f"Running Sims {args.start_run} to {args.end_run} | Total Cores Detected: {available_cores}")
     print(f"Running with {args.workers} Parallel Workers ({args.chains} chains each)\n")
     
-    print("Compiling Stan Model...")
-    _ = cmdstanpy.CmdStanModel(stan_file=stan_file)
-    print("Compilation successful. Starting worker pool...\n")
-    
     tasks = []
-    # LOOP ONLY OVER THE SPECIFIED RANGE
     for run_id in range(args.start_run, args.end_run + 1):
         tasks.append({
             'run_id': run_id,
@@ -400,4 +457,3 @@ if __name__ == "__main__":
                 successful_runs += 1
 
     print(f"\nNode finished its chunk. ({successful_runs}/{(args.end_run - args.start_run) + 1} successful)")
-    # REMOVED auto-aggregation from here. We will do it in SLURM.

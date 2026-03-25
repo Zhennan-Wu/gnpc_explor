@@ -10,7 +10,6 @@ from scipy.special import expit
 import argparse
 import concurrent.futures
 import multiprocessing
-from functools import reduce
 
 # ==========================================
 # 1. Data Generation
@@ -231,8 +230,10 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
     # HPC BULLETPROOFING: Explicitly point to the pre-compiled executable
     exe_path = stan_file_path.replace('.stan', '')
     if os.path.exists(exe_path):
+        # If it's already compiled, explicitly load the exe to prevent HPC race conditions
         model = cmdstanpy.CmdStanModel(exe_file=exe_path)
     else:
+        # Fallback (should not happen if compile_only ran first)
         model = cmdstanpy.CmdStanModel(stan_file=stan_file_path)
     
     start_time = time.time()
@@ -247,7 +248,7 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
     try:
         divergences = int(fit.divergences.sum())
     except AttributeError:
-        divergences = 0 
+        divergences = 0 # Fallback if cmdstanpy version lacks this attribute
         
     try:
         treedepths = int(np.sum(fit.method_variables()['treedepth__'] >= 12))
@@ -263,6 +264,7 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
         treedepths = 0
         mean_ebfmi = np.nan
 
+    # Try to force percentiles, but gracefully accept whatever CmdStan returns
     try:
         summary_df = fit.summary(percentiles=[2.5, 97.5])
     except TypeError:
@@ -270,28 +272,17 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
         
     cols = summary_df.columns.tolist()
     
+    # Define dynamic column names to prevent KeyErrors
     lower_col = '2.5%' if '2.5%' in cols else ('5%' if '5%' in cols else None)
     upper_col = '97.5%' if '97.5%' in cols else ('95%' if '95%' in cols else None)
     rhat_col = 'R_hat' if 'R_hat' in cols else ('Rhat' if 'Rhat' in cols else None)
     mcse_col = 'MCSE' if 'MCSE' in cols else None
 
-    # Get the complete union of all parameters (shared, truth-only, model-only)
-    truth_params = set(ground_truths.keys())
-    model_params = set(summary_df.index)
-    all_params = truth_params.union(model_params)
-
-    # DROP STAN INTERNALS: Remove lp__ or any other parameter ending in a double underscore
-    all_params = {p for p in all_params if not p.endswith('__')}
-
     results = []
-    
-    for param_name in all_params:
-        # 1. Fetch ground truth if it exists, otherwise NA
-        true_val = ground_truths.get(param_name, np.nan)
-        
-        # 2. Fetch model estimates if they exist, otherwise NA
-        if param_name in model_params:
+    for param_name, true_val in ground_truths.items():
+        if param_name in summary_df.index:
             est_mean = summary_df.loc[param_name, 'Mean']
+            
             lower_ci = summary_df.loc[param_name, lower_col] if lower_col else np.nan
             upper_ci = summary_df.loc[param_name, upper_col] if upper_col else np.nan
             rhat = summary_df.loc[param_name, rhat_col] if rhat_col else np.nan
@@ -301,24 +292,17 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
             elif 'N_Eff' in cols: ess = summary_df.loc[param_name, 'N_Eff']
             else: ess = np.nan
                 
-            ess_sec = ess / run_time if run_time > 0 and pd.notna(ess) else np.nan
-        else:
-            est_mean = lower_ci = upper_ci = rhat = mcse = ess = ess_sec = np.nan
-        
-        # 3. Calculate comparative metrics ONLY if both truth and estimate exist
-        if pd.notna(true_val) and pd.notna(est_mean):
+            ess_sec = ess / run_time if run_time > 0 and not np.isnan(ess) else np.nan
             rbias = ((est_mean - true_val) / true_val) if true_val != 0 else np.nan
             mse = (est_mean - true_val) ** 2
             coverage = 1 if (lower_ci <= true_val <= upper_ci) else 0
-        else:
-            rbias = mse = coverage = np.nan
-        
-        results.append({
-            'Run_ID': run_id, 'Parameter': param_name, 'True_Value': true_val, 'Estimate': est_mean,
-            '2.5%': lower_ci, '97.5%': upper_ci, 'R_hat': rhat, 'ESS': ess,
-            'MCSE': mcse, 'ESS_sec': ess_sec, 'Rbias': rbias, 'MSE': mse, 'Coverage': coverage,
-            'Time_s': run_time, 'Divergences': divergences, 'Max_Treedepths': treedepths, 'E_BFMI': mean_ebfmi
-        })
+            
+            results.append({
+                'Run_ID': run_id, 'Parameter': param_name, 'True_Value': true_val, 'Estimate': est_mean,
+                '2.5%': lower_ci, '97.5%': upper_ci, 'R_hat': rhat, 'ESS': ess,
+                'MCSE': mcse, 'ESS_sec': ess_sec, 'Rbias': rbias, 'MSE': mse, 'Coverage': coverage,
+                'Time_s': run_time, 'Divergences': divergences, 'Max_Treedepths': treedepths, 'E_BFMI': mean_ebfmi
+            })
             
     metrics_df = pd.DataFrame(results)
     model_name = os.path.splitext(os.path.basename(stan_file_path))[0]
@@ -328,59 +312,17 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
 
 def generate_simulation_table(scenario, model_name):
     print(f"\nAggregating results across all runs for {scenario} - {model_name}...")
-    # 1. Define the target directory (parent folder -> corrected_results)
-    target_dir = os.path.join("..", "corrected_results")
-    
-    # 2. Update the glob pattern to search inside the target directory
-    file_pattern = os.path.join(target_dir, f"results_{scenario}_{model_name}_run*.csv")
+    file_pattern = f"results_{scenario}_{model_name}_run*.csv"
     all_files = glob.glob(file_pattern)
     
     if not all_files:
         print("No simulation files found to aggregate.")
         return None
         
-    df_list = []
-    total_considered = len(all_files)
-    total_aggregated = 0
-    total_discarded_errors = 0
-    
-    # 3. Iterate through files with error handling and R_hat filtering
-    for f in all_files:
-        try:
-            df = pd.read_csv(f)
-            
-            # Check if ALL R_hat values in the current table are < 1.05
-            if (df['R_hat'] < 1.05).all():
-                df_list.append(df)
-                total_aggregated += 1
-                
-        except KeyError as e:
-            print(f"  [Warning] Discarding {f}: Missing expected column {e}")
-            total_discarded_errors += 1
-        except pd.errors.EmptyDataError:
-            print(f"  [Warning] Discarding {f}: File is completely empty.")
-            total_discarded_errors += 1
-        except Exception as e:
-            print(f"  [Warning] Discarding {f}: Unexpected error -> {e}")
-            total_discarded_errors += 1
-            
-    # 4. Print Summary of filtering
-    print(f"\n--- Summary ---")
-    print(f"Total tables considered: {total_considered}")
-    if total_discarded_errors > 0:
-        print(f"Total tables discarded due to errors/missing data: {total_discarded_errors}")
-    print(f"Total tables aggregated (R_hat < 1.05): {total_aggregated}")
-    print(f"----------------\n")
-    
-    # Handle the case where files exist, but none passed the checks
-    if not df_list:
-        print("No tables met the criteria for aggregation. Aborting.")
-        return None
-
-    # Combine successful runs
+    df_list = [pd.read_csv(f) for f in all_files]
     combined_df = pd.concat(df_list, ignore_index=True)
     
-    # Extract run-level HMC metrics before grouping by parameter (averaging only valid runs)
+    # Extract run-level HMC metrics before grouping by parameter
     run_level_df = combined_df.groupby('Run_ID').agg(
         Time=('Time_s', 'first'),
         Divergences=('Divergences', 'first'),
@@ -409,7 +351,6 @@ def generate_simulation_table(scenario, model_name):
         Rhat=('R_hat', 'max')             
     ).reset_index()
     
-    # Round the final metrics
     table_df['RB'] = table_df['RB'].round(3)
     table_df['MSE'] = table_df['MSE'].round(3)
     table_df['CP'] = table_df['CP'].round(1)
@@ -423,72 +364,6 @@ def generate_simulation_table(scenario, model_name):
     print(f"Success! Final aggregate parameter table saved to: {final_filename}")
     
     return table_df
-
-def aggregate_cross_model_results(scenario, model_names):
-    """
-    Merges aggregated tables from multiple models for a specific scenario 
-    into a single wide-format CSV, reading from and saving to ../corrected_results.
-    """
-    print(f"\nMerging results across models for Scenario: {scenario}...")
-    
-    # 1. Define the target directory (parent folder -> corrected_results)
-    target_dir = os.path.join("..", "corrected_results")
-    
-    dataframes = []
-    
-    for model in model_names:
-        # 2. Target the specific file inside the target_dir
-        filename = f"TABLE_{scenario}_{model}_corrected.csv"
-        filepath = os.path.join(target_dir, filename)
-        
-        if not os.path.exists(filepath):
-            print(f"  [Warning] Missing file: {filename} in {target_dir}. Skipping this model.")
-            continue
-            
-        df = pd.read_csv(filepath)
-        
-        # Rename metric columns to append the model name (e.g., 'RB' -> 'RB_model1')
-        rename_map = {
-            col: f"{col}_{model}" 
-            for col in df.columns 
-            if col not in ['Parameter', 'True_Value']
-        }
-        df.rename(columns=rename_map, inplace=True)
-        
-        dataframes.append(df)
-        
-    if not dataframes:
-        print("No model tables found to merge.")
-        return None
-        
-    # Merge all dataframes on the common columns 'Parameter' and 'True_Value'
-    # Using 'outer' ensures parameters missing in one model but present in another aren't dropped
-    final_combined_df = reduce(
-        lambda left, right: pd.merge(left, right, on=['Parameter', 'True_Value'], how='outer'), 
-        dataframes
-    )
-    
-    # Optional: Reorder columns to group metrics together (e.g., all RBs, then all MSEs)
-    base_metrics = ['RB', 'MSE', 'CP', 'ESS', 'ESS_sec', 'MCSE','Rhat']
-    ordered_cols = ['Parameter', 'True_Value']
-    for metric in base_metrics:
-        for model in model_names:
-            col_name = f"{metric}_{model}"
-            if col_name in final_combined_df.columns:
-                ordered_cols.append(col_name)
-                
-    # Keep any extra columns that might not fit the standard sorting
-    remaining_cols = [c for c in final_combined_df.columns if c not in ordered_cols]
-    final_combined_df = final_combined_df[ordered_cols + remaining_cols]
-    
-    # 3. Save the final merged table directly into the corrected_results folder
-    output_filename = f"FINAL_COMPARISON_{scenario}_corrected.csv"
-    output_filepath = os.path.join(target_dir, output_filename)
-    
-    final_combined_df.to_csv(output_filepath, index=False)
-    
-    print(f"Success! Cross-model comparison saved to: {output_filepath}")
-    return final_combined_df
 
 # ==========================================
 # 4. Multiprocessing Wrapper & Main Execution
@@ -530,24 +405,14 @@ if __name__ == "__main__":
     parser.add_argument("--end_run", type=int, default=200, help="Ending run ID")
     parser.add_argument("--aggregate_only", action="store_true", help="Only run the table aggregation")
     parser.add_argument("--compile_only", action="store_true", help="Only compile the model, do not run sims") 
-    parser.add_argument("--cross_aggregate", action="store_true", help="Merge multiple model tables into one final comparison table")
     parser.add_argument("--workers", type=int, default=None, help="Manual override for parallel workers")
     
     args = parser.parse_args()
     
     scenario_to_run = args.scenario
-
-    # Extract clean model names (without paths or .stan extensions)
-    model_names = [os.path.splitext(os.path.basename(m))[0] for m in args.models]
-        
     stan_file = args.model
     model_name = os.path.splitext(os.path.basename(stan_file))[0]
     
-    # --- ROUTE 1: Cross-Model Aggregation ---
-    if args.cross_aggregate:
-        aggregate_cross_model_results(scenario=scenario_to_run, model_names=model_names)
-        exit(0)
-
     if args.compile_only:
         print(f"Pre-compiling Stan Model: {model_name}...")
         _ = cmdstanpy.CmdStanModel(stan_file=stan_file)

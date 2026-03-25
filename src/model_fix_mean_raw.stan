@@ -122,11 +122,10 @@ model {
             matrix[R, R] Phi = matrix_exp(-deltat[k] * Gamma);
             
             // Stable Covariance Matrix Calculation
-            matrix[R, R] Q = Omega - Phi * Omega * Phi';
-            matrix[R, R] Q_stable = 0.5 * (Q + Q'); // Ensure symmetry
+            matrix[R, R] Q = Omega - matrix_exp(-deltat[k] * Gamma) * Omega * matrix_exp(-deltat[k] * Gamma');
             
             // xi[k] ~ N(Phi * xi[k-1], Q)
-            xi[k] ~ multi_normal(Phi * xi[k-1], add_diag(Q_stable, 1e-6));
+            xi[k] ~ multi_normal(matrix_exp(-deltat[k] * Gamma) * xi[k-1], Q);
         }
     }
 
@@ -152,11 +151,11 @@ model {
 generated quantities {
     // Stability checks for different time intervals
     matrix[R, R] A05 = matrix_exp(-0.5 * Gamma);
-    matrix[R, R] Cova_trans05 = Omega - A05 * Omega * A05';
+    matrix[R, R] Cova_trans05 = Omega - matrix_exp(-0.5 * Gamma) * Omega * matrix_exp(-0.5 * Gamma');
 
     matrix[R, R] A10 = matrix_exp(-Gamma);
-    matrix[R, R] Cova_trans10 = Omega - A10 * Omega * A10';
+    matrix[R, R] Cova_trans10 = Omega - matrix_exp(-Gamma) * Omega * matrix_exp(-Gamma');
 
     matrix[R, R] A15 = matrix_exp(-1.5 * Gamma);
-    matrix[R, R] Cova_trans15 = Omega - A15 * Omega * A15';
+    matrix[R, R] Cova_trans15 = Omega - matrix_exp(-1.5 * Gamma) * Omega * matrix_exp(-1.5 * Gamma');
 }

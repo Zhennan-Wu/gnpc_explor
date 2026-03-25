@@ -1,0 +1,8 @@
+S2 model_shift_mean_paper.stan
+S2 model_shift_mean_full.stan
+S2 model_shift_mean_cov.stan
+S2 model_fix_mean.stan
+S2 model_fix_mean_lap.stan
+S2 model_shift_mean_cov_lap.stan
+S2 model_shift_mean_full_lap.stan
+S2 model_shift_mean_paper_lap.stan

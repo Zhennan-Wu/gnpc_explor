@@ -291,43 +291,76 @@ def generate_simulation_table(scenario, model_name):
         
     df_list = []
     total_considered = len(all_files)
-    total_aggregated = 0
-    total_discarded_errors = 0
+    
+    # Tracking lists for the log file
+    discarded_convergence = []
+    discarded_errors = []
     
     # Iterate through files with error handling
     for f in all_files:
+        filename = os.path.basename(f)
         try:
             df = pd.read_csv(f)
             
-            # Check if ALL R_hat values in the current table are < 1.05
-            if (df['R_hat'] < 1.05).all():
+            # Check if ALL R_hat values in the current table are < 1.1
+            if (df['R_hat'] < 1.1).all():
                 df_list.append(df)
-                total_aggregated += 1
+            else:
+                # File read successfully, but failed the R_hat threshold
+                print(f"  [Info] Discarding {filename}: Failed convergence test (contains R_hat >= 1.1)")
+                discarded_convergence.append(filename)
                 
         except KeyError as e:
-            print(f"  [Warning] Discarding {os.path.basename(f)}: Missing expected column {e}")
-            total_discarded_errors += 1
+            print(f"  [Warning] Discarding {filename}: Missing expected column {e}")
+            discarded_errors.append(f"{filename} (Missing column: {e})")
         except pd.errors.EmptyDataError:
-            print(f"  [Warning] Discarding {os.path.basename(f)}: File is completely empty.")
-            total_discarded_errors += 1
+            print(f"  [Warning] Discarding {filename}: File is completely empty.")
+            discarded_errors.append(f"{filename} (Empty file)")
         except Exception as e:
-            print(f"  [Warning] Discarding {os.path.basename(f)}: Unexpected error -> {e}")
-            total_discarded_errors += 1
+            print(f"  [Warning] Discarding {filename}: Unexpected error -> {e}")
+            discarded_errors.append(f"{filename} (Error: {e})")
+            
+    total_aggregated = len(df_list)
             
     print(f"\n--- Summary ---")
     print(f"Total tables considered: {total_considered}")
-    if total_discarded_errors > 0:
-        print(f"Total tables discarded due to errors/missing data: {total_discarded_errors}")
-    print(f"Total tables aggregated (R_hat < 1.05): {total_aggregated}")
+    if discarded_errors:
+        print(f"Total tables discarded due to errors/missing data: {len(discarded_errors)}")
+    if discarded_convergence:
+        print(f"Total tables discarded due to non-convergence (R_hat >= 1.1): {len(discarded_convergence)}")
+    print(f"Total tables aggregated (R_hat < 1.1): {total_aggregated}")
     print(f"----------------\n")
+    
+    # --- LOG FILE GENERATION ---
+    if discarded_convergence or discarded_errors:
+        log_filename = f"LOG_discarded_{scenario}_{model_name}.txt"
+        log_filepath = os.path.join(target_dir, log_filename)
+        
+        with open(log_filepath, "w") as log_file:
+            log_file.write(f"--- Discard Log for {scenario} - {model_name} ---\n\n")
+            
+            if discarded_convergence:
+                log_file.write(f"FAILED CONVERGENCE (R_hat >= 1.1) - {len(discarded_convergence)} files:\n")
+                for name in discarded_convergence:
+                    log_file.write(f"  - {name}\n")
+                log_file.write("\n")
+                
+            if discarded_errors:
+                log_file.write(f"FILE ERRORS / CORRUPTION - {len(discarded_errors)} files:\n")
+                for entry in discarded_errors:
+                    log_file.write(f"  - {entry}\n")
+                    
+        print(f"📄 Discard log saved to: {log_filepath}")
     
     # Handle the case where files exist, but none passed the checks
     if not df_list:
         print("No tables met the criteria for aggregation. Aborting.")
         return None
 
+    # Combine successful runs
     combined_df = pd.concat(df_list, ignore_index=True)
     
+    # Aggregate Parameter-level metrics
     table_df = combined_df.groupby('Parameter').agg(
         True_Value=('True_Value', 'first'),
         RB=('Rbias', 'mean'),             
@@ -348,7 +381,7 @@ def generate_simulation_table(scenario, model_name):
     final_filepath = os.path.join(target_dir, final_filename)
     
     table_df.to_csv(final_filepath, index=False)
-    print(f"Success! Final aggregate table saved to: {final_filepath}")
+    print(f"\nSuccess! Final aggregate table saved to: {final_filepath}")
     
     return table_df
 

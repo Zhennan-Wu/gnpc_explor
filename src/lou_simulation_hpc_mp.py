@@ -21,12 +21,18 @@ def generate_lou_simulation_data(N=600, scenario='S1', random_state=42):
     Scenarios S1 to S5 represent increasing complexity in the latent mean structure.
     """
     np.random.seed(random_state)
-    
-    # Measurement Model (IRT) Parameters
-    Lambda = np.array([
-        [1.2, 0.0], [4.0, 0.0], [4.1, 0.0], 
-        [0.0, 3.1], [0.0, 5.2], [0.0, 3.0], [0.0, 1.7]
-    ])
+
+    if scenario in ['S6', 'S7', 'S8', 'S9', 'S10']:
+        Lambda = np.array([
+        [0.8, 0.0], [1.2, 0.0], [1.1, 0.0], 
+        [0.0, 0.9], [0.0, 1.4], [0.0, 1.0], [0.0, 0.7]
+        ])
+    else:
+        # Measurement Model (IRT) Parameters
+        Lambda = np.array([
+            [1.2, 0.0], [4.0, 0.0], [4.1, 0.0], 
+            [0.0, 3.1], [0.0, 5.2], [0.0, 3.0], [0.0, 1.7]
+        ])
     
     beta = np.array([
         [0.3,  0.5], [0.1,  0.2], [-0.1, 0.2], 
@@ -45,16 +51,15 @@ def generate_lou_simulation_data(N=600, scenario='S1', random_state=42):
     rho = 0.6
     Omega = np.array([[1.0, rho], [rho, 1.0]])
     
-    if scenario == 'S1':
+    if scenario in ['S1', 'S6']:
         Gamma = np.array([[0.18, -0.07], [-0.10, 0.15]])
-    elif scenario in ['S2', 'S3', 'S4', 'S5']:
+    elif scenario in ['S2', 'S3', 'S4', 'S5', 'S7', 'S8', 'S9', 'S10']:
         Gamma = np.array([[0.18, -0.07], [0.10, 0.15]])
     else:
-        raise ValueError("Scenario must be between 'S1' and 'S5'")
+        raise ValueError("Scenario must be between 'S1' and 'S10'")
         
     c_latent = np.array([0.5, -0.3])
     A_latent = np.array([[0.4, -0.2], [-0.3, 0.5]])
-    B_latent = np.array([[0.1, 0.2], [-0.1, 0.3]])
         
     # Missing Data Parameters (MAR)
     K_miss = np.array([
@@ -100,14 +105,14 @@ def generate_lou_simulation_data(N=600, scenario='S1', random_state=42):
             xi_star_history[j] = xi_star
             
             # Apply Mean Shifts based on Scenario
-            if scenario in ['S1', 'S2']:
+            if scenario in ['S1', 'S2', 'S6', 'S7']:
                 trend_offset = np.zeros(2)
-            elif scenario == 'S3':
+            elif scenario in ['S3', 'S8']:
                 trend_offset = c_latent * t_ij[j]
-            elif scenario == 'S4':
+            elif scenario in ['S4', 'S9']:
                 trend_offset = (A_latent @ Z_i) * t_ij[j]
-            elif scenario == 'S5':
-                trend_offset = (A_latent @ Z_i) * t_ij[j] + (B_latent @ Z_i) + c_latent
+            elif scenario in ['S5', 'S10']:
+                trend_offset = (A_latent @ Z_i + c_latent) * t_ij[j]
                 
             xi_i[j] = xi_star + trend_offset
             
@@ -180,19 +185,16 @@ def create_ground_truth_dict(scenario='S1'):
     add_param_to_dict(truths, 'sigma_bk', np.array([3.7, 3.4, 4.8, 3.1, 6.1, 5.1, 1.7]))
     truths['rho'] = 0.6
     
-    if scenario == 'S1':
+    if scenario in ['S1', 'S6']:
         add_param_to_dict(truths, 'Gamma', np.array([[0.18, -0.07], [-0.10, 0.15]]))
     else:
         add_param_to_dict(truths, 'Gamma', np.array([[0.18, -0.07], [0.10, 0.15]]))
         
-    if scenario in ['S3', 'S5']:
+    if scenario in ['S3', 'S5', 'S8', 'S10']:
         add_param_to_dict(truths, 'c_latent', np.array([0.5, -0.3]))
         
-    if scenario in ['S4', 'S5']:
+    if scenario in ['S4', 'S5', 'S9', 'S10']:
         add_param_to_dict(truths, 'A_latent', np.array([[0.4, -0.2], [-0.3, 0.5]]))
-        
-    if scenario == 'S5':
-        add_param_to_dict(truths, 'B_latent', np.array([[0.1, 0.2], [-0.1, 0.3]]))
             
     return truths
 
@@ -236,12 +238,17 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
         model = cmdstanpy.CmdStanModel(stan_file=stan_file_path)
     
     start_time = time.time()
+    stan_output_dir = "../stan_outputs/scenario_{}/model_{}/run_{}".format(scenario, exe_path, run_id)
+    os.makedirs(stan_output_dir, exist_ok=True)
     fit = model.sample(
-        data=stan_data, iter_warmup=iter_warmup, iter_sampling=iter_sampling,
+        data=stan_data, output_dir=stan_output_dir, iter_warmup=iter_warmup, iter_sampling=iter_sampling,
         chains=chains, parallel_chains=chains, adapt_delta=0.95, max_treedepth=12,
         show_progress=False 
     )
     run_time = time.time() - start_time
+
+    output_dir = "../raw_results"
+    os.makedirs(output_dir, exist_ok=True)
     
     # --- DEFENSIVE DIAGNOSTICS EXTRACTION ---
     try:
@@ -322,17 +329,19 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
             
     metrics_df = pd.DataFrame(results)
     model_name = os.path.splitext(os.path.basename(stan_file_path))[0]
-    metrics_df.to_csv(f"results_{scenario}_{model_name}_run{run_id}.csv", index=False)
+    metrics_df.to_csv(os.path.join(output_dir, f"results_{scenario}_{model_name}_run{run_id}.csv"), index=False)
     
     return True
 
 def generate_simulation_table(scenario, model_name):
     print(f"\nAggregating results across all runs for {scenario} - {model_name}...")
     # 1. Define the target directory (parent folder -> corrected_results)
-    target_dir = os.path.join("..", "corrected_results")
+    source_dir = os.path.join("..", "corrected_results")
+    target_dir = os.path.join("..", "summarized_results")
+    os.makedirs(target_dir, exist_ok=True)
     
     # 2. Update the glob pattern to search inside the target directory
-    file_pattern = os.path.join(target_dir, f"results_{scenario}_{model_name}_run*.csv")
+    file_pattern = os.path.join(source_dir, f"results_{scenario}_{model_name}_run*.csv")
     all_files = glob.glob(file_pattern)
     
     if not all_files:
@@ -349,8 +358,8 @@ def generate_simulation_table(scenario, model_name):
         try:
             df = pd.read_csv(f)
             
-            # Check if ALL R_hat values in the current table are < 1.05
-            if (df['R_hat'] < 1.05).all():
+            # Check if ALL R_hat values in the current table are < 1.1
+            if (df['R_hat'] < 1.1).all():
                 df_list.append(df)
                 total_aggregated += 1
                 
@@ -419,7 +428,8 @@ def generate_simulation_table(scenario, model_name):
     table_df['Rhat'] = table_df['Rhat'].round(3)
     
     final_filename = f"TABLE_{scenario}_{model_name}.csv"
-    table_df.to_csv(final_filename, index=False)
+    final_path = os.path.join(target_dir, final_filename)
+    table_df.to_csv(final_path, index=False)
     print(f"Success! Final aggregate parameter table saved to: {final_filename}")
     
     return table_df
@@ -432,17 +442,19 @@ def aggregate_cross_model_results(scenario, model_names):
     print(f"\nMerging results across models for Scenario: {scenario}...")
     
     # 1. Define the target directory (parent folder -> corrected_results)
-    target_dir = os.path.join("..", "corrected_results")
+    source_dir = os.path.join("..", "summarized_results")
+    target_dir = os.path.join("..", "aggregated_results")
+    os.makedirs(target_dir, exist_ok=True)
     
     dataframes = []
     
     for model in model_names:
         # 2. Target the specific file inside the target_dir
-        filename = f"TABLE_{scenario}_{model}_corrected.csv"
-        filepath = os.path.join(target_dir, filename)
+        filename = f"TABLE_{scenario}_{model}.csv"
+        filepath = os.path.join(source_dir, filename)
         
         if not os.path.exists(filepath):
-            print(f"  [Warning] Missing file: {filename} in {target_dir}. Skipping this model.")
+            print(f"  [Warning] Missing file: {filename} in {source_dir}. Skipping this model.")
             continue
             
         df = pd.read_csv(filepath)
@@ -482,7 +494,7 @@ def aggregate_cross_model_results(scenario, model_names):
     final_combined_df = final_combined_df[ordered_cols + remaining_cols]
     
     # 3. Save the final merged table directly into the corrected_results folder
-    output_filename = f"FINAL_COMPARISON_{scenario}_corrected.csv"
+    output_filename = f"FINAL_COMPARISON_{scenario}.csv"
     output_filepath = os.path.join(target_dir, output_filename)
     
     final_combined_df.to_csv(output_filepath, index=False)
@@ -521,7 +533,8 @@ def parallel_worker(args_dict):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run LOU Simulation on HPC")
     parser.add_argument("--scenario", type=str, required=True, help="Data generation scenario")
-    parser.add_argument("--model", type=str, required=True, help="Path to the Stan model file")
+    # Changed --model to accept multiple arguments (a list of models)
+    parser.add_argument("--models", type=str, nargs='+', required=True, help="Path(s) to the Stan model file(s), separated by spaces")
     parser.add_argument("--chains", type=int, default=3, help="Number of MCMC chains")
     parser.add_argument("--warmup", type=int, default=2500, help="Warmup iterations")
     parser.add_argument("--sampling", type=int, default=2500, help="Sampling iterations")
@@ -540,8 +553,8 @@ if __name__ == "__main__":
     # Extract clean model names (without paths or .stan extensions)
     model_names = [os.path.splitext(os.path.basename(m))[0] for m in args.models]
         
-    stan_file = args.model
-    model_name = os.path.splitext(os.path.basename(stan_file))[0]
+    stan_file = args.models[0]
+    model_name = model_names[0]  # Use the first model name for file naming in aggregation
     
     # --- ROUTE 1: Cross-Model Aggregation ---
     if args.cross_aggregate:

@@ -1,0 +1,16 @@
+S2 model_shift_mean_full.stan
+S2 model_shift_mean_full_lap.stan
+S2 model_shift_mean_full_lap_jls.stan
+S2 model_shift_mean_full_jls.stan
+S3 model_shift_mean_full.stan
+S3 model_shift_mean_full_lap.stan
+S3 model_shift_mean_full_lap_jls.stan
+S3 model_shift_mean_full_jls.stan
+S4 model_shift_mean_full.stan
+S4 model_shift_mean_full_lap.stan
+S4 model_shift_mean_full_lap_jls.stan
+S4 model_shift_mean_full_jls.stan
+S5 model_shift_mean_full.stan
+S5 model_shift_mean_full_lap.stan
+S5 model_shift_mean_full_lap_jls.stan
+S5 model_shift_mean_full_jls.stan

@@ -52,7 +52,6 @@ parameters {
     matrix[K, p] beta;
 
     matrix[R, q] A_latent;     // slope on covariates * time
-    matrix[R, q] B_latent;     // covariate intercept
     vector[R] c_latent;        // global intercept
 
     matrix[Nsub, K] b_raw;
@@ -134,7 +133,7 @@ model {
         
         // Time = 1
         vector[q] z0 = Z[start_idx]';
-        vector[R] mu_start = (A_latent * z0) * time[start_idx] + (B_latent * z0) + c_latent;
+        vector[R] mu_start = (A_latent * z0 + c_latent) * time[start_idx];
 
         xi[start_idx] ~ multi_normal(mu_start, Omega);
 
@@ -154,14 +153,10 @@ model {
             vector[q] zk_prev = Z[k-1]';
 
             vector[R] target_k =
-                (A_latent * zk) * time[k]
-                + (B_latent * zk)
-                + c_latent;
+                (A_latent * zk + c_latent) * time[k];
 
             vector[R] target_prev =
-                (A_latent * zk_prev) * time[k-1]
-                + (B_latent * zk_prev)
-                + c_latent;
+                (A_latent * zk_prev + c_latent) * time[k-1];
                 
             vector[R] cond_mean = target_k + Phi * (xi[k-1] - target_prev);
             

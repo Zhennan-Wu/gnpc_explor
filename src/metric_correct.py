@@ -3,7 +3,7 @@ import glob
 import pandas as pd
 import numpy as np
 
-def batch_correct_simulations(directory="."):
+def batch_correct_simulations(directory="../raw_results"):
     """
     Scans a directory for simulation CSV files, corrects the parameter signs 
     for the specific variables affected by software parameterization, 

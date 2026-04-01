@@ -242,10 +242,8 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
         model = cmdstanpy.CmdStanModel(stan_file=stan_file_path)
     
     start_time = time.time()
-    stan_output_dir = "../stan_outputs/scenario_{}/model_{}/run_{}".format(scenario, exe_path, run_id)
-    os.makedirs(stan_output_dir, exist_ok=True)
     fit = model.sample(
-        data=stan_data, output_dir=stan_output_dir, iter_warmup=iter_warmup, iter_sampling=iter_sampling,
+        data=stan_data, iter_warmup=iter_warmup, iter_sampling=iter_sampling,
         chains=chains, parallel_chains=chains, adapt_delta=0.95, max_treedepth=12,
         show_progress=False 
     )

@@ -11,62 +11,165 @@ import argparse
 import concurrent.futures
 import multiprocessing
 from functools import reduce
+from scipy.linalg import solve_continuous_lyapunov
 
 # ==========================================
-# 1. Data Generation
+# 1. Data Generation (Updated to K=12, q=4)
 # ==========================================
-def generate_lou_simulation_data(N=600, scenario='S1', random_state=42):
+def generate_lou_simulation_data(N=600, scenario='L2G3C4', random_state=42):
     """
     Generates data for the Latent Ornstein-Uhlenbeck (LOU) simulation study.
-    Scenarios S1 to S5 represent increasing complexity in the latent mean structure.
     """
     np.random.seed(random_state)
 
-    if scenario in ['S6', 'S7', 'S8', 'S9', 'S10']:
+    # Measurement Model (IRT) Parameters
+    # 12 items (1-5 binary, 6-12 ordinal), 4 latent dimensions
+    # Structured to load primarily onto 1 specific factor for identification
+    if 'L1' in scenario:
         Lambda = np.array([
-        [0.8, 0.0], [1.2, 0.0], [1.1, 0.0], 
-        [0.0, 0.9], [0.0, 1.4], [0.0, 1.0], [0.0, 0.7]
+            [0.8, 0.0, 0.0, 0.0], [1.2, 0.0, 0.0, 0.0], [1.1, 0.0, 0.0, 0.0], # Latent 1
+            [0.0, 0.9, 0.0, 0.0], [0.0, 1.4, 0.0, 0.0], [0.0, 1.0, 0.0, 0.0], # Latent 2
+            [0.0, 0.0, 0.7, 0.0], [0.0, 0.0, 1.1, 0.0], [0.0, 0.0, 0.9, 0.0], # Latent 3
+            [0.0, 0.0, 0.0, 1.2], [0.0, 0.0, 0.0, 0.8], [0.0, 0.0, 0.0, 1.0]  # Latent 4
+        ])
+    elif 'L2' in scenario:
+        Lambda = np.array([
+            [1.2, 0.0, 0.0, 0.0], [4.0, 0.0, 0.0, 0.0], [4.1, 0.0, 0.0, 0.0], # Latent 1
+            [0.0, 3.1, 0.0, 0.0], [0.0, 5.2, 0.0, 0.0], [0.0, 3.0, 0.0, 0.0], # Latent 2
+            [0.0, 0.0, 1.7, 0.0], [0.0, 0.0, 2.4, 0.0], [0.0, 0.0, 1.5, 0.0], # Latent 3
+            [0.0, 0.0, 0.0, 4.8], [0.0, 0.0, 0.0, 2.7], [0.0, 0.0, 0.0, 1.4]  # Latent 4
         ])
     else:
-        # Measurement Model (IRT) Parameters
-        Lambda = np.array([
-            [1.2, 0.0], [4.0, 0.0], [4.1, 0.0], 
-            [0.0, 3.1], [0.0, 5.2], [0.0, 3.0], [0.0, 1.7]
-        ])
+        raise ValueError(f"Invalid scenario '{scenario}' for Lambda specification.")
     
+    # 12 items x 2 covariates
     beta = np.array([
-        [0.3,  0.5], [0.1,  0.2], [-0.1, 0.2], 
-        [-0.2, 0.4], [0.3, -0.3], [-0.1,-0.2], [-0.2,-0.1]
+        [0.3,  0.5], [0.1,  0.2], [-0.1, 0.2], [0.2, -0.1], [0.1,  0.3],  # Items 1-5
+        [-0.1,-0.2], [-0.2,-0.1], [0.4,  0.1], [0.2, -0.4], [-0.3, 0.2],  # Items 6-10
+        [0.1, -0.1], [0.2,  0.3]                                          # Items 11-12
     ])
     
+    # Thresholds: Items 1-5 are binary, Items 6-12 are ordinal (4 categories)
     theta = [
-        np.array([2.3]), np.array([2.6]), np.array([2.9]), 
-        np.array([-4.0, -1.0, 2.7]), np.array([-7.5, -2.5, 2.6]), 
-        np.array([-5.5, -2.7, 2.5]), np.array([-4.3, -1.0, 1.4])
+        np.array([2.3]), np.array([1.5]), np.array([0.8]), np.array([1.2]), np.array([2.1]), # 1-5 (Binary)
+        np.array([-4.0, -1.0, 2.7]), np.array([-5.5, -2.5, 2.6]), # 6-7 (Ordinal)
+        np.array([-4.5, -1.5, 2.0]), np.array([-3.0,  0.0, 3.0]), # 8-9 (Ordinal)
+        np.array([-6.0, -2.0, 1.5]), np.array([-5.0, -1.0, 2.5]), # 10-11 (Ordinal)
+        np.array([-4.0, -0.5, 2.0])                               # 12 (Ordinal)
     ]
     
-    sigma_b = np.array([3.7, 3.4, 4.8, 3.1, 6.1, 5.1, 1.7])
+    # Residual variances for 12 items
+    sigma_b = np.array([3.7, 3.4, 4.8, 3.1, 4.0, 6.1, 5.1, 1.7, 2.5, 3.3, 4.2, 2.8])
     
-    # Latent OU Process Parameters
-    rho = 0.6
-    Omega = np.array([[1.0, rho], [rho, 1.0]])
-    
-    if scenario in ['S1', 'S6']:
-        Gamma = np.array([[0.18, -0.07], [-0.10, 0.15]])
-    elif scenario in ['S2', 'S3', 'S4', 'S5', 'S7', 'S8', 'S9', 'S10']:
-        Gamma = np.array([[0.18, -0.07], [0.10, 0.15]])
+    # Latent OU Process Parameters (q=4)
+    if 'G1' in scenario or 'G2' in scenario:
+        # 1. Base Drift (Directly decomposable into SPD + Skew)
+        S_base = np.diag([0.2, 0.3, 0.2, 0.4])
+        A_base = np.array([
+            [ 0.0,  0.8,  0.0,  0.0],
+            [-0.8,  0.0,  0.0,  0.0],
+            [ 0.0,  0.0,  0.0,  0.6],
+            [ 0.0,  0.0, -0.6,  0.0]
+        ])
+        Gamma_base = S_base + A_base
+        
+        if 'G1' in scenario: 
+            # Scenario A: No transformation. Symmetric part is Positive Definite.
+            Gamma_raw = Gamma_base
+            
+        elif 'G2' in scenario: 
+            # Scenario B: Apply strong shear transformation. 
+            # Gamma remains stable, but its symmetric part is NO LONGER Positive Definite.
+            P = np.array([
+                [ 1.0,  2.5,  0.0, -1.5],
+                [ 0.0,  1.0,  0.0,  0.0],
+                [ 0.0,  0.0,  1.0,  2.0],
+                [ 0.0,  0.0,  0.0,  1.0]
+            ])
+            P_inv = np.linalg.inv(P)
+            Gamma_raw = P @ Gamma_base @ P_inv 
+
+        # 2. Generate physically consistent stationary covariance (Omega)
+        # We assume independent unit system noise (Q)
+        Q_raw = np.eye(4)
+        
+        # Solve the Lyapunov equation: Gamma * Omega + Omega * Gamma^T = Q
+        Omega_raw = solve_continuous_lyapunov(Gamma_raw, Q_raw)
+        
+        # 3. Standardize to a Correlation Matrix (1s on diagonal) for identifiability
+        std_devs = np.sqrt(np.diag(Omega_raw))
+        D_inv_sqrt = np.diag(1.0 / std_devs)
+        D_sqrt = np.diag(std_devs)
+        
+        # Scale Omega to have 1s on the diagonal
+        Omega = D_inv_sqrt @ Omega_raw @ D_inv_sqrt
+        
+        # Apply the matching similarity transformation to Gamma to preserve Lyapunov dynamics
+        Gamma = D_inv_sqrt @ Gamma_raw @ D_sqrt
+
+        # Extract the 6 upper-triangle correlations
+        rows, cols = np.triu_indices(4, k=1)
+        rho_vec = Omega[rows, cols]
+
+    elif 'G3' in scenario:
+        # [corr12, corr13, corr14, corr23, corr24, corr34]
+        rho_vec = np.array([0.6, 0.2, -0.7, 0.1, -0.5, -0.1])
+        
+        # 1. Initialize a 4x4 identity matrix (1s on the diagonal)
+        Omega = np.eye(4)
+        
+        # 2. Get the indices for the upper triangle (k=1 excludes the diagonal)
+        rows, cols = np.triu_indices(4, k=1)
+        
+        # 3. Assign the rho vector to the upper triangle
+        Omega[rows, cols] = rho_vec
+        
+        # 4. Mirror the upper triangle to the lower triangle to make it symmetric
+        Omega[cols, rows] = rho_vec
+        
+        # --- CRITICAL CHECK ---
+        # Not all combinations of correlations result in a valid correlation matrix.
+        # We must check if the matrix is positive-definite.
+        eigenvalues = np.linalg.eigvals(Omega)
+        if not np.all(eigenvalues > 0):
+            raise ValueError(
+                f"Invalid correlation matrix! The eigenvalues are {eigenvalues}. "
+                "The chosen rho_vec does not form a positive-definite matrix."
+            )
+        
+        # S: Controls the speed of mean-reversion (must be positive definite)
+        S = 0.2 * np.eye(4) 
+        
+        # A: Skew-symmetric matrix introducing rotations (complex eigenvalues)
+        # Here, we link latent factors 1 & 2 to rotate together, and 3 & 4 to rotate together
+        A = np.array([
+            [ 0.0,  0.6,  0.0,  0.0],
+            [-0.6,  0.0,  0.0,  0.0],
+            [ 0.0,  0.0,  0.0,  0.4],
+            [ 0.0,  0.0, -0.4,  0.0]
+        ])
+        
+        # Calculate Gamma: guaranteed to be positive stable and valid with Omega!
+        Gamma = (S + A) @ np.linalg.inv(Omega)
     else:
-        raise ValueError("Scenario must be between 'S1' and 'S10'")
+        raise ValueError(f"Invalid scenario '{scenario}' for Gamma/Omega specification.")
+    
+    c_latent = np.array([0.5, -0.3, 0.2, -0.4])
+    A_latent = np.array([
+        [ 0.4, -0.2],
+        [-0.3,  0.5],
+        [ 0.2,  0.1],
+        [-0.1, -0.3]
+    ])
         
-    c_latent = np.array([0.5, -0.3])
-    A_latent = np.array([[0.4, -0.2], [-0.3, 0.5]])
-        
-    # Missing Data Parameters (MAR)
+    # Missing Data Parameters (MAR) - extended for 12 items
     K_miss = np.array([
         [-0.25, -0.27, -0.6, -1.8], [-0.24,  0.12, -0.4, -1.8],
         [-0.27, -0.11, -0.7, -1.5], [-0.22, -0.20, -0.7, -1.7],
-        [ 0.25, -0.16, -0.7, -1.8], [ 0.20, -0.13, -0.8, -1.9],
-        [ 0.25,  0.06, -1.1, -1.5]
+        [ 0.10, -0.10, -0.5, -1.6], [ 0.25, -0.16, -0.7, -1.8], 
+        [ 0.20, -0.13, -0.8, -1.9], [ 0.25,  0.06, -1.1, -1.5],
+        [-0.15,  0.05, -0.6, -1.4], [ 0.18, -0.08, -0.9, -1.7], 
+        [-0.20,  0.15, -0.5, -1.5], [ 0.22, -0.11, -0.8, -1.8]  
     ])
     
     n_i_choices = np.arange(2, 13)
@@ -85,16 +188,16 @@ def generate_lou_simulation_data(N=600, scenario='S1', random_state=42):
         d_ij[0] = 0.0  
         t_ij = np.cumsum(d_ij)
         
-        xi_star_history = np.zeros((n_i, 2)) 
-        xi_i = np.zeros((n_i, 2))            
-        Y_i = np.zeros((n_i, 7))
-        Y_i_missing = np.zeros((n_i, 7))
+        xi_star_history = np.zeros((n_i, 4)) 
+        xi_i = np.zeros((n_i, 4))            
+        Y_i = np.zeros((n_i, 12))
+        Y_i_missing = np.zeros((n_i, 12))
         
         for j in range(n_i):
             x_ij = np.array([np.random.binomial(1, 0.5), np.random.normal(0, 1)])
             
             if j == 0:
-                xi_star = np.random.multivariate_normal([0, 0], Omega)
+                xi_star = np.random.multivariate_normal([0, 0, 0, 0], Omega)
             else:
                 delta_t = d_ij[j]
                 transition_mat = expm(-Gamma * delta_t)
@@ -105,18 +208,20 @@ def generate_lou_simulation_data(N=600, scenario='S1', random_state=42):
             xi_star_history[j] = xi_star
             
             # Apply Mean Shifts based on Scenario
-            if scenario in ['S1', 'S2', 'S6', 'S7']:
-                trend_offset = np.zeros(2)
-            elif scenario in ['S3', 'S8']:
+            if 'C1' in scenario:
+                trend_offset = np.zeros(4)
+            elif 'C2' in scenario:
                 trend_offset = c_latent * t_ij[j]
-            elif scenario in ['S4', 'S9']:
+            elif 'C3' in scenario:
                 trend_offset = (A_latent @ Z_i) * t_ij[j]
-            elif scenario in ['S5', 'S10']:
+            elif 'C4' in scenario:
                 trend_offset = (A_latent @ Z_i + c_latent) * t_ij[j]
+            else:
+                raise ValueError(f"Invalid scenario '{scenario}' for mean structure specification.")
                 
             xi_i[j] = xi_star + trend_offset
             
-            for k in range(7):
+            for k in range(12):
                 linear_predictor = np.dot(beta[k], x_ij) - np.dot(Lambda[k], xi_i[j]) + b_i[k]
                 probs_le_m = expit(theta[k] + linear_predictor)
                 
@@ -131,7 +236,7 @@ def generate_lou_simulation_data(N=600, scenario='S1', random_state=42):
                 Y_i[j, k] = np.random.choice(len(probs), p=probs)
                 
             if j > 0:
-                for k in range(7):
+                for k in range(12):
                     logit_p_miss = (K_miss[k, 0] + K_miss[k, 1] * x_ij[0] + 
                                     K_miss[k, 2] * x_ij[1] + K_miss[k, 3] * Y_i[j-1, k])
                     p_miss = expit(logit_p_miss)
@@ -143,10 +248,11 @@ def generate_lou_simulation_data(N=600, scenario='S1', random_state=42):
                 'id': i + 1, 'time': t_ij[j],
                 'x1': x_ij[0], 'x2': x_ij[1],
                 'Z1': Z_i[0], 'Z2': Z_i[1],
-                'xi1': xi_i[j, 0], 'xi2': xi_i[j, 1],
+                'xi1': xi_i[j, 0], 'xi2': xi_i[j, 1], 'xi3': xi_i[j, 2], 'xi4': xi_i[j, 3],
                 'Y1': Y_i_missing[j, 0], 'Y2': Y_i_missing[j, 1], 'Y3': Y_i_missing[j, 2],
                 'Y4': Y_i_missing[j, 3], 'Y5': Y_i_missing[j, 4], 'Y6': Y_i_missing[j, 5],
-                'Y7': Y_i_missing[j, 6]
+                'Y7': Y_i_missing[j, 6], 'Y8': Y_i_missing[j, 7], 'Y9': Y_i_missing[j, 8],
+                'Y10': Y_i_missing[j, 9], 'Y11': Y_i_missing[j, 10], 'Y12': Y_i_missing[j, 11]
             })
             
     return dataset
@@ -166,39 +272,110 @@ def add_param_to_dict(d, name, val):
     else:
         d[name] = float(val)
 
-def create_ground_truth_dict(scenario='S1'):
+def create_ground_truth_dict(scenario='L2G3C4'):
     truths = {}
     
+    # 5 Binary items
     truths['theta1'] = 2.3
-    truths['theta2'] = 2.6
-    truths['theta3'] = 2.9
-    add_param_to_dict(truths, 'theta4', np.array([-4.0, -1.0, 2.7]))
-    add_param_to_dict(truths, 'theta5', np.array([-7.5, -2.5, 2.6]))
-    add_param_to_dict(truths, 'theta6', np.array([-5.5, -2.7, 2.5]))
-    add_param_to_dict(truths, 'theta7', np.array([-4.3, -1.0, 1.4]))
+    truths['theta2'] = 1.5
+    truths['theta3'] = 0.8
+    truths['theta4'] = 1.2
+    truths['theta5'] = 2.1
     
-    if scenario in ['S6', 'S7', 'S8', 'S9', 'S10']:
-        add_param_to_dict(truths, 'lambda', np.array([0.8, 1.2, 1.1, 0.9, 1.4, 1.0, 0.7]))
+    # 7 Ordinal items
+    add_param_to_dict(truths, 'theta6', np.array([-4.0, -1.0, 2.7]))
+    add_param_to_dict(truths, 'theta7', np.array([-5.5, -2.5, 2.6]))
+    add_param_to_dict(truths, 'theta8', np.array([-4.5, -1.5, 2.0]))
+    add_param_to_dict(truths, 'theta9', np.array([-3.0,  0.0, 3.0]))
+    add_param_to_dict(truths, 'theta10', np.array([-6.0, -2.0, 1.5]))
+    add_param_to_dict(truths, 'theta11', np.array([-5.0, -1.0, 2.5]))
+    add_param_to_dict(truths, 'theta12', np.array([-4.0, -0.5, 2.0]))
+    
+    # Extract the primary (non-zero) loading for each item based on L condition
+    if 'L1' in scenario:
+        add_param_to_dict(truths, 'lambda', np.array([0.8, 1.2, 1.1, 0.9, 1.4, 1.0, 0.7, 1.1, 0.9, 1.2, 0.8, 1.0]))
+    elif 'L2' in scenario:
+        add_param_to_dict(truths, 'lambda', np.array([1.2, 4.0, 4.1, 3.1, 5.2, 3.0, 1.7, 2.4, 1.5, 4.8, 2.7, 1.4]))
     else:
-        add_param_to_dict(truths, 'lambda', np.array([1.2, 4.0, 4.1, 3.1, 5.2, 3.0, 1.7]))
-        
+        raise ValueError(f"Invalid scenario '{scenario}' for Lambda ground truth.")
+    
+    # Beta and Sigma_bk (Shared across all scenarios)
     add_param_to_dict(truths, 'beta', np.array([
-        [0.3, 0.5], [0.1, 0.2], [-0.1, 0.2], [-0.2, 0.4], 
-        [0.3, -0.3], [-0.1, -0.2], [-0.2, -0.1]
+        [0.3,  0.5], [0.1,  0.2], [-0.1, 0.2], [0.2, -0.1], [0.1,  0.3], 
+        [-0.1,-0.2], [-0.2,-0.1], [0.4,  0.1], [0.2, -0.4], [-0.3, 0.2], 
+        [0.1, -0.1], [0.2,  0.3]
     ]))
-    add_param_to_dict(truths, 'sigma_bk', np.array([3.7, 3.4, 4.8, 3.1, 6.1, 5.1, 1.7]))
-    truths['rho'] = 0.6
     
-    if scenario in ['S1', 'S6']:
-        add_param_to_dict(truths, 'Gamma', np.array([[0.18, -0.07], [-0.10, 0.15]]))
+    add_param_to_dict(truths, 'sigma_bk', np.array([3.7, 3.4, 4.8, 3.1, 4.0, 6.1, 5.1, 1.7, 2.5, 3.3, 4.2, 2.8]))
+    
+    # Latent OU Process Parameters (Gamma and Rho)
+    if 'G1' in scenario or 'G2' in scenario:
+        S_base = np.diag([0.2, 0.3, 0.2, 0.4])
+        A_base = np.array([
+            [ 0.0,  0.8,  0.0,  0.0],
+            [-0.8,  0.0,  0.0,  0.0],
+            [ 0.0,  0.0,  0.0,  0.6],
+            [ 0.0,  0.0, -0.6,  0.0]
+        ])
+        Gamma_base = S_base + A_base
+        
+        if 'G1' in scenario: 
+            Gamma_raw = Gamma_base
+        elif 'G2' in scenario: 
+            P = np.array([
+                [ 1.0,  2.5,  0.0, -1.5],
+                [ 0.0,  1.0,  0.0,  0.0],
+                [ 0.0,  0.0,  1.0,  2.0],
+                [ 0.0,  0.0,  0.0,  1.0]
+            ])
+            P_inv = np.linalg.inv(P)
+            Gamma_raw = P @ Gamma_base @ P_inv 
+
+        Q_raw = np.eye(4)
+        Omega_raw = solve_continuous_lyapunov(Gamma_raw, Q_raw)
+        
+        std_devs = np.sqrt(np.diag(Omega_raw))
+        D_inv_sqrt = np.diag(1.0 / std_devs)
+        D_sqrt = np.diag(std_devs)
+        
+        Omega = D_inv_sqrt @ Omega_raw @ D_inv_sqrt
+        Gamma = D_inv_sqrt @ Gamma_raw @ D_sqrt
+
+        rows, cols = np.triu_indices(4, k=1)
+        rho_vec = Omega[rows, cols]
+        
+    elif 'G3' in scenario:
+        rho_vec = np.array([0.6, 0.2, -0.7, 0.1, -0.5, -0.1])
+        Omega = np.eye(4)
+        rows, cols = np.triu_indices(4, k=1)
+        Omega[rows, cols] = rho_vec
+        Omega[cols, rows] = rho_vec
+        
+        S = 0.2 * np.eye(4) 
+        A = np.array([
+            [ 0.0,  0.6,  0.0,  0.0],
+            [-0.6,  0.0,  0.0,  0.0],
+            [ 0.0,  0.0,  0.0,  0.4],
+            [ 0.0,  0.0, -0.4,  0.0]
+        ])
+        Gamma = (S + A) @ np.linalg.inv(Omega)
     else:
-        add_param_to_dict(truths, 'Gamma', np.array([[0.18, -0.07], [0.10, 0.15]]))
+        raise ValueError(f"Invalid scenario '{scenario}' for Gamma/rho ground truth.")
         
-    if scenario in ['S3', 'S5', 'S8', 'S10']:
-        add_param_to_dict(truths, 'c_latent', np.array([0.5, -0.3]))
+    add_param_to_dict(truths, 'Gamma', Gamma)
+    add_param_to_dict(truths, 'rho', rho_vec)
         
-    if scenario in ['S4', 'S5', 'S9', 'S10']:
-        add_param_to_dict(truths, 'A_latent', np.array([[0.4, -0.2], [-0.3, 0.5]]))
+    # Latent Mean Shifts (c_latent and A_latent) based on C condition
+    if 'C2' in scenario or 'C4' in scenario:
+        add_param_to_dict(truths, 'c_latent', np.array([0.5, -0.3, 0.2, -0.4]))
+        
+    if 'C3' in scenario or 'C4' in scenario:
+        add_param_to_dict(truths, 'A_latent', np.array([
+            [ 0.4, -0.2],
+            [-0.3,  0.5],
+            [ 0.2,  0.1],
+            [-0.1, -0.3]
+        ]))
             
     return truths
 
@@ -208,29 +385,32 @@ def prepare_stan_data(dataset):
     repme = df.groupby('id').size().values
     cumu = np.cumsum(repme)
     
-    Y_raw = df[['Y1', 'Y2', 'Y3', 'Y4', 'Y5', 'Y6', 'Y7']].values
+    Y_raw = df[['Y1', 'Y2', 'Y3', 'Y4', 'Y5', 'Y6', 'Y7', 'Y8', 'Y9', 'Y10', 'Y11', 'Y12']].values
     missing_ID = np.isnan(Y_raw).astype(int)
     Y = np.nan_to_num(Y_raw, nan=-99).astype(int)
     
-    for col_idx in range(3, 7):
+    # Ordinal items are index 5 through 11 (items 6-12)
+    # Increment by 1 for 1-based indexing in Stan's ordered logistic
+    for col_idx in range(5, 12):
         valid_mask = (missing_ID[:, col_idx] == 0)
         Y[valid_mask, col_idx] += 1
         
     stan_data = {
-        'N': len(df), 'Nsub': df['id'].nunique(), 'K': 7, 'R': 2, 'p': 2, 'q': 2,
+        'N': len(df), 'Nsub': df['id'].nunique(), 'K': 12, 'R': 4, 'p': 2, 'q': 2,
         'ID': df['id'].values.astype(int), 'cumu': cumu.astype(int), 'repme': repme.astype(int),
         'Y': Y, 'missing_ID': missing_ID, 'deltat': df['deltat'].values, 
         'time': df['time'].values,
         'X': df[['x1', 'x2']].values,
         'Z': df[['Z1', 'Z2']].fillna(0.0).values, 
-        'ncate4': 4, 'ncate5': 4, 'ncate6': 4, 'ncate7': 4
+        'ncate6': 4, 'ncate7': 4, 'ncate8': 4, 'ncate9': 4, 
+        'ncate10': 4, 'ncate11': 4, 'ncate12': 4
     }
     return stan_data
 
 # ==========================================
 # 3. Execution & Aggregation Pipeline
 # ==========================================
-def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', iter_sampling=1000, iter_warmup=1000, chains=3):
+def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='L2G3C4', iter_sampling=1000, iter_warmup=1000, chains=3):
     stan_data = prepare_stan_data(dataset)
     ground_truths = create_ground_truth_dict(scenario)
     
@@ -339,12 +519,10 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
 
 def generate_simulation_table(scenario, model_name):
     print(f"\nAggregating results across all runs for {scenario} - {model_name}...")
-    # 1. Define the target directory (parent folder -> corrected_results)
     source_dir = os.path.join("..", "corrected_results")
     target_dir = os.path.join("..", "summarized_results")
     os.makedirs(target_dir, exist_ok=True)
     
-    # 2. Update the glob pattern to search inside the target directory
     file_pattern = os.path.join(source_dir, f"results_{scenario}_{model_name}_run*.csv")
     all_files = glob.glob(file_pattern)
     
@@ -357,12 +535,9 @@ def generate_simulation_table(scenario, model_name):
     total_aggregated = 0
     total_discarded_errors = 0
     
-    # 3. Iterate through files with error handling and R_hat filtering
     for f in all_files:
         try:
             df = pd.read_csv(f)
-            
-            # Check if ALL R_hat values in the current table are < 1.1
             if (df['R_hat'] < 1.1).all():
                 df_list.append(df)
                 total_aggregated += 1
@@ -377,7 +552,6 @@ def generate_simulation_table(scenario, model_name):
             print(f"  [Warning] Discarding {f}: Unexpected error -> {e}")
             total_discarded_errors += 1
             
-    # 4. Print Summary of filtering
     print(f"\n--- Summary ---")
     print(f"Total tables considered: {total_considered}")
     if total_discarded_errors > 0:
@@ -385,15 +559,12 @@ def generate_simulation_table(scenario, model_name):
     print(f"Total tables aggregated (R_hat < 1.05): {total_aggregated}")
     print(f"----------------\n")
     
-    # Handle the case where files exist, but none passed the checks
     if not df_list:
         print("No tables met the criteria for aggregation. Aborting.")
         return None
 
-    # Combine successful runs
     combined_df = pd.concat(df_list, ignore_index=True)
     
-    # Extract run-level HMC metrics before grouping by parameter (averaging only valid runs)
     run_level_df = combined_df.groupby('Run_ID').agg(
         Time=('Time_s', 'first'),
         Divergences=('Divergences', 'first'),
@@ -410,7 +581,6 @@ def generate_simulation_table(scenario, model_name):
     print(f"E-BFMI:                    {run_level_df['E_BFMI'].mean():.3f}")
     print("="*50 + "\n")
     
-    # Aggregate Parameter-level metrics
     table_df = combined_df.groupby('Parameter').agg(
         True_Value=('True_Value', 'first'),
         RB=('Rbias', 'mean'),             
@@ -422,7 +592,6 @@ def generate_simulation_table(scenario, model_name):
         Rhat=('R_hat', 'max')             
     ).reset_index()
     
-    # Round the final metrics
     table_df['RB'] = table_df['RB'].round(3)
     table_df['MSE'] = table_df['MSE'].round(3)
     table_df['CP'] = table_df['CP'].round(1)
@@ -439,21 +608,13 @@ def generate_simulation_table(scenario, model_name):
     return table_df
 
 def aggregate_cross_model_results(scenario, model_names):
-    """
-    Merges aggregated tables from multiple models for a specific scenario 
-    into a single wide-format CSV, reading from and saving to ../corrected_results.
-    """
     print(f"\nMerging results across models for Scenario: {scenario}...")
-    
-    # 1. Define the target directory (parent folder -> corrected_results)
     source_dir = os.path.join("..", "summarized_results")
     target_dir = os.path.join("..", "aggregated_results")
     os.makedirs(target_dir, exist_ok=True)
     
     dataframes = []
-    
     for model in model_names:
-        # 2. Target the specific file inside the target_dir
         filename = f"TABLE_{scenario}_{model}.csv"
         filepath = os.path.join(source_dir, filename)
         
@@ -462,29 +623,23 @@ def aggregate_cross_model_results(scenario, model_names):
             continue
             
         df = pd.read_csv(filepath)
-        
-        # Rename metric columns to append the model name (e.g., 'RB' -> 'RB_model1')
         rename_map = {
             col: f"{col}_{model}" 
             for col in df.columns 
             if col not in ['Parameter', 'True_Value']
         }
         df.rename(columns=rename_map, inplace=True)
-        
         dataframes.append(df)
         
     if not dataframes:
         print("No model tables found to merge.")
         return None
         
-    # Merge all dataframes on the common columns 'Parameter' and 'True_Value'
-    # Using 'outer' ensures parameters missing in one model but present in another aren't dropped
     final_combined_df = reduce(
         lambda left, right: pd.merge(left, right, on=['Parameter', 'True_Value'], how='outer'), 
         dataframes
     )
     
-    # Optional: Reorder columns to group metrics together (e.g., all RBs, then all MSEs)
     base_metrics = ['RB', 'MSE', 'CP', 'ESS', 'ESS_sec', 'MCSE','Rhat']
     ordered_cols = ['Parameter', 'True_Value']
     for metric in base_metrics:
@@ -493,14 +648,11 @@ def aggregate_cross_model_results(scenario, model_names):
             if col_name in final_combined_df.columns:
                 ordered_cols.append(col_name)
                 
-    # Keep any extra columns that might not fit the standard sorting
     remaining_cols = [c for c in final_combined_df.columns if c not in ordered_cols]
     final_combined_df = final_combined_df[ordered_cols + remaining_cols]
     
-    # 3. Save the final merged table directly into the corrected_results folder
     output_filename = f"FINAL_COMPARISON_{scenario}.csv"
     output_filepath = os.path.join(target_dir, output_filename)
-    
     final_combined_df.to_csv(output_filepath, index=False)
     
     print(f"Success! Cross-model comparison saved to: {output_filepath}")
@@ -537,7 +689,6 @@ def parallel_worker(args_dict):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run LOU Simulation on HPC")
     parser.add_argument("--scenario", type=str, required=True, help="Data generation scenario")
-    # Changed --model to accept multiple arguments (a list of models)
     parser.add_argument("--models", type=str, nargs='+', required=True, help="Path(s) to the Stan model file(s), separated by spaces")
     parser.add_argument("--chains", type=int, default=3, help="Number of MCMC chains")
     parser.add_argument("--warmup", type=int, default=2500, help="Warmup iterations")
@@ -551,16 +702,11 @@ if __name__ == "__main__":
     parser.add_argument("--workers", type=int, default=None, help="Manual override for parallel workers")
     
     args = parser.parse_args()
-    
     scenario_to_run = args.scenario
-
-    # Extract clean model names (without paths or .stan extensions)
     model_names = [os.path.splitext(os.path.basename(m))[0] for m in args.models]
-        
     stan_file = args.models[0]
-    model_name = model_names[0]  # Use the first model name for file naming in aggregation
+    model_name = model_names[0] 
     
-    # --- ROUTE 1: Cross-Model Aggregation ---
     if args.cross_aggregate:
         aggregate_cross_model_results(scenario=scenario_to_run, model_names=model_names)
         exit(0)

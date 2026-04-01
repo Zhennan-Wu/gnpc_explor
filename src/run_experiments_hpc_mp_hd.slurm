@@ -34,10 +34,10 @@ echo "Task ID: $SLURM_ARRAY_TASK_ID"
 echo "Running Scenario: $SCENARIO with Model: $MODEL using 5 Nodes"
 
 # FIX: Pre-compile the model sequentially to avoid race conditions!
-echo "Pre-compiling Stan Model..."
-python lou_simulation_hpc_mp_hd.py --scenario "$SCENARIO" --model "$MODEL" --compile_only
+# echo "Pre-compiling Stan Model..."
+# python lou_simulation_hpc_mp_hd.py --scenario "$SCENARIO" --model "$MODEL" --compile_only
 
-echo "Compilation step done. Starting parallel instances..."
+# echo "Compilation step done. Starting parallel instances..."
 
 # We split 200 simulations across 5 nodes (40 sims per node).
 # The '&' puts the process in the background. '--exclusive' ensures they don't fight for the same resources.

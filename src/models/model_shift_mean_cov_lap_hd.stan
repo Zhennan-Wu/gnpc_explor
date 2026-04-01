@@ -229,4 +229,5 @@ generated quantities {
     matrix[R, R] Cova_trans10 = Omega - A10 * Omega * A10';
 
     matrix[R, R] A15 = matrix_exp(-1.5 * Gamma);
-    matrix
+    matrix[R, R] Cova_trans15 = Omega - A15 * Omega * A15';
+}

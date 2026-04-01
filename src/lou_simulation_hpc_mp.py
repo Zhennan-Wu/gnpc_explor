@@ -236,10 +236,13 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
     
     # HPC BULLETPROOFING: Explicitly point to the pre-compiled executable
     exe_path = stan_file_path.replace('.stan', '')
+    model_dir = "./compiled_models"
+    os.makedirs(model_dir, exist_ok=True)
+    exe_path = os.path.join(model_dir, os.path.basename(exe_path))
     if os.path.exists(exe_path):
         model = cmdstanpy.CmdStanModel(exe_file=exe_path)
     else:
-        model = cmdstanpy.CmdStanModel(stan_file=stan_file_path)
+        raise FileNotFoundError(f"Compiled executable not found at {exe_path}. Please ensure the model is pre-compiled and the path is correct.")
     
     start_time = time.time()
     fit = model.sample(
@@ -565,7 +568,21 @@ if __name__ == "__main__":
 
     if args.compile_only:
         print(f"Pre-compiling Stan Model: {model_name}...")
-        _ = cmdstanpy.CmdStanModel(stan_file=stan_file)
+        model_dir = "./models"
+        compiled_dir = "./compiled_models"
+
+        os.makedirs(compiled_dir, exist_ok=True)
+        if not os.path.exists(model_dir):
+            print(f"Error: Models directory '{model_dir}' not found. Please ensure the path is correct.")
+            exit(1)
+        stan_file_path = os.path.join(model_dir, stan_file)
+        # name of compiled binary (no .stan extension)
+        exe_path = os.path.join(compiled_dir, model_name)
+
+        _ = cmdstanpy.CmdStanModel(
+            stan_file=stan_file_path,
+            exe_file=exe_path
+        )
         print("Compilation successful. Exiting.")
         exit(0)
 

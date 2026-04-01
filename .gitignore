@@ -21,3 +21,4 @@ data/
 viz_results/
 *results*/
 viz*/
+*compiled_models/

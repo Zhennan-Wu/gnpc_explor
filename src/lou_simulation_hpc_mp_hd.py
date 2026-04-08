@@ -423,11 +423,17 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='L2G3C4
         model = cmdstanpy.CmdStanModel(exe_file=exe_path)
     else:
         raise FileNotFoundError(f"Compiled executable not found at {exe_path}. Please ensure the model is pre-compiled and the path is correct.")
-    
+
+    stan_dir = "../stan_runs/"
+    # stan_dir = "/N/scratch/zwu1/stan_runs/"
+    os.makedirs(stan_dir, exist_ok=True)
+    model_name = os.path.splitext(os.path.basename(stan_file_path))[0]
+    run_dir = os.path.join(stan_dir, f"{scenario}/{model_name}/run_{run_id}")
+
     start_time = time.time()
     fit = model.sample(
         data=stan_data, iter_warmup=iter_warmup, iter_sampling=iter_sampling,
-        chains=chains, parallel_chains=chains, adapt_delta=0.95, max_treedepth=12,
+        chains=chains, parallel_chains=chains, output_dir=run_dir, save_csv_files=True, adapt_delta=0.95, max_treedepth=12,
         show_progress=False 
     )
     run_time = time.time() - start_time

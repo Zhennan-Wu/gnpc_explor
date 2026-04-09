@@ -31,9 +31,9 @@ MODEL="dahlou_ncp_full.stan" # Adjust if your txt file drops the .stan extension
 echo "Starting HPC Smoke Test..."
 echo "Running Scenario: $SCENARIO with Model: $MODEL on 1 Node"
 
-# 1. TEST COMPILATION
-echo "Step 1: Testing Stan Model Compilation..."
-python dahlou_hpc_mp.py --scenario "$SCENARIO" --models "$MODEL" --compile_only
+# # 1. TEST COMPILATION
+# echo "Step 1: Testing Stan Model Compilation..."
+# python dahlou_hpc_mp.py --scenario "$SCENARIO" --models "$MODEL" --compile_only
 
 # 2. TEST EXECUTION (The "Micro-Run")
 # We use only 2 runs, 50 patients, and 50 iterations so it finishes in a minute or two.

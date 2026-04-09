@@ -1,5 +1,6 @@
 import os
 import glob
+import shutil
 import cmdstanpy
 
 MODELS_DIR = "./models"
@@ -25,10 +26,20 @@ def main():
         print(f"Compiling: {model_name}")
 
         try:
-            model = cmdstanpy.CmdStanModel(
-                stan_file=stan_path,
-                exe_file=exe_path
-            )
+            # 1. Compile the model by providing ONLY the stan_file.
+            # cmdstanpy will compile it and drop the executable next to the .stan file.
+            model = cmdstanpy.CmdStanModel(stan_file=stan_path)
+            
+            # 2. Move the compiled executable to the target directory
+            # model.exe_file holds the path to the newly compiled executable
+            shutil.move(model.exe_file, exe_path)
+            
+            # 3. (Optional) Move or delete the generated C++ .hpp file 
+            # to keep your source directory clean.
+            hpp_file = os.path.splitext(stan_path)[0] + ".hpp"
+            if os.path.exists(hpp_file):
+                shutil.move(hpp_file, os.path.join(COMPILED_DIR, model_name + ".hpp"))
+
             print(f"  ✔ Success -> {exe_path}\n")
 
         except Exception as e:

@@ -24,6 +24,12 @@ conda activate ou
 export CXX=g++
 export CC=gcc
 
+export TMPDIR=/N/scratch/zwu1/tmp
+export TEMP=$TMPDIR
+export TMP=$TMPDIR
+mkdir -p $TMPDIR
+
+
 CHAINS=3
 
 CONFIG_LINE=$(sed -n "${SLURM_ARRAY_TASK_ID}p" als_exp.txt)

@@ -12,7 +12,7 @@ export CXX=g++
 export CC=gcc
 
 echo "Pre-compiling Stan Model..."
-python compile_stan_models.py
+# python compile_stan_models.py
 echo "Compilation step done. Starting parallel instances..."
 
 # 1. Submit the main job array and capture the output message

@@ -2,6 +2,7 @@ import os
 import json
 import glob
 import time
+from xml.parsers.expat import model
 import numpy as np
 import pandas as pd
 import cmdstanpy
@@ -175,14 +176,18 @@ def format_for_stan(df_complete, scenario="S1", data_size=None, random_state=42)
     cumu = np.cumsum(repme)
     
     # ==========================================
-    # 4. RESPONSE & COVARIATE MATRICES
+    # 4. RESPONSE & COVARIATE MATRICES (STAN SAFE)
     # ==========================================
     Y_raw = df_subset[ITEM_COLS].values.astype(int)
     Y = Y_raw + 1 
     
+    # --- DEFENSIVE FIX: Force values into Stan's rigid bounds ---
+    Y = np.clip(Y, 1, 5) 
+    
     # Construct X_meas and X_dyn based on the requested scenario
-    X_meas = df_subset[meas_cols].values
-    X_dyn = df_subset[dyn_cols].values
+    # Defensive Fix: Fill any residual NaNs with 0 to prevent C++ matrix crashes
+    X_meas = np.nan_to_num(df_subset[meas_cols].values, nan=0.0)
+    X_dyn = np.nan_to_num(df_subset[dyn_cols].values, nan=0.0)
     
     stan_data = {
         'N': N,
@@ -241,6 +246,7 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
     fit = model.sample(
         data=stan_data, iter_warmup=iter_warmup, iter_sampling=iter_sampling,
         chains=chains, parallel_chains=chains, adapt_delta=0.95, max_treedepth=12,
+        show_console=True, # <--- CHANGED: Expose C++ errors if they happen
         show_progress=False 
     )
     run_time = time.time() - start_time
@@ -310,7 +316,7 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
     model_params = set(summary_df.index)
 
     # DROP STAN INTERNALS: Remove lp__ or any other parameter ending in a double underscore
-    model_params = {p for p in all_params if not p.endswith('__')}
+    model_params = {p for p in model_params if not p.endswith('__')}
 
     results = []
     
@@ -490,7 +496,8 @@ def parallel_worker(args_dict):
             scenario=args_dict['scenario'],
             iter_warmup=args_dict['warmup'],
             iter_sampling=args_dict['sampling'],
-            chains=args_dict['chains']
+            chains=args_dict['chains'],
+            data_size=args_dict['data_size']
         )
         print(f"  ✅ Completed Run {run_id}")
         return run_id, True

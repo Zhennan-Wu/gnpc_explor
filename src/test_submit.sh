@@ -45,7 +45,7 @@ srun python dahlou_hpc_mp.py \
     --models "$MODEL" \
     --start_run 1 \
     --end_run 2 \
-    --sample_size 50 \
+    --data_size 50 \
     --warmup 50 \
     --sampling 50 \
     --chains 1 

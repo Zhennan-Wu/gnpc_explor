@@ -83,6 +83,7 @@ parameters {
 }
 
 transformed parameters {
+    matrix[Nsub, K] b;
     vector[K] lambda; 
     
     // Structural Matrices

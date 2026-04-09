@@ -23,6 +23,11 @@ conda activate emlou
 export CXX=g++
 export CC=gcc
 
+export TMPDIR=/N/scratch/zwu1/tmp
+export TEMP=$TMPDIR
+export TMP=$TMPDIR
+mkdir -p $TMPDIR
+
 
 # --- HARDCODE TEST VARIABLES ---
 # Instead of reading from als_exp.txt via an array, we test one known combination

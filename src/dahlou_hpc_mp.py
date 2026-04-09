@@ -275,6 +275,11 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
         mean_ebfmi = np.nan
 
     try:
+        summary_df = fit.summary(percentiles=[2.5, 97.5])
+                            
+    except Exception as e:
+        print(f"Error in fit.summary(): {e}. Attempting ArviZ fallback...")
+        
         # Convert CmdStanPy output directly to an ArviZ object in memory
         idata = az.from_cmdstanpy(fit)
         
@@ -296,14 +301,6 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
         summary_df.index = [re.sub(r'\[(\d+)\]', lambda m: f"[{int(m.group(1))+1}]", idx) 
                             if '[' in idx else idx 
                             for idx in summary_df.index]
-                            
-    except Exception as e:
-        print(f"Failed to generate summary via ArviZ: {e}")
-        
-        try:
-            summary_df = fit.summary(percentiles=[2.5, 97.5])
-        except TypeError:
-            summary_df = fit.summary() 
         
     cols = summary_df.columns.tolist()
     

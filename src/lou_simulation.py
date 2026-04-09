@@ -7,6 +7,8 @@ from scipy.linalg import expm
 from scipy.special import expit
 import os
 import argparse
+import arviz as az
+import re
 
 # os.environ["CC"] = "/usr/bin/gcc"
 # os.environ["CXX"] = "/usr/bin/g++"
@@ -242,7 +244,33 @@ def evaluate_model_performance(stan_file_path, dataset, scenario='S1', iter_samp
     )
     
     print("Calculating performance metrics for overlapping parameters...")
-    summary_df = fit.summary(percentiles=[2.5, 97.5]) 
+    try:
+        summary_df = fit.summary(percentiles=[2.5, 97.5])
+                            
+    except Exception as e:
+        print(f"Error in fit.summary(): {e}. Attempting ArviZ fallback...")
+        
+        # Convert CmdStanPy output directly to an ArviZ object in memory
+        idata = az.from_cmdstanpy(fit)
+        
+        # Generate summary in Python (bypassing the C++ stansummary binary)
+        summary_df = az.summary(idata, hdi_prob=0.95)
+        
+        # Rename columns to perfectly match your existing downstream logic
+        summary_df = summary_df.rename(columns={
+            'mean': 'Mean', 
+            'hdi_2.5%': '2.5%', 
+            'hdi_97.5%': '97.5%', 
+            'r_hat': 'R_hat',
+            'mcse_mean': 'MCSE',
+            'ess_bulk': 'ESS_bulk'
+        })
+        
+        # ArviZ outputs 0-based indices (e.g., theta[0]). 
+        # This shifts it back to 1-based indexing (theta[1]) to match your ground truths
+        summary_df.index = [re.sub(r'\[(\d+)\]', lambda m: f"[{int(m.group(1))+1}]", idx) 
+                            if '[' in idx else idx 
+                            for idx in summary_df.index]
     results = []
     
     for param_name, true_val in ground_truths.items():

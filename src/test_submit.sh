@@ -23,9 +23,6 @@ conda activate emlou
 export CXX=g++
 export CC=gcc
 
-# >>> FIX 1: Prioritize Conda's C++ libraries over the system's libraries
-export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
-# ------------------------
 
 # --- HARDCODE TEST VARIABLES ---
 # Instead of reading from als_exp.txt via an array, we test one known combination

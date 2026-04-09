@@ -131,7 +131,7 @@ def preprocess_proact_data(dfs, scenario="S1", output_filename="proact_preproces
     
     return df_complete
 
-def format_for_stan(df_complete, scenario="S1", sample_size=None, random_state=42):
+def format_for_stan(df_complete, scenario="S1", data_size=None, random_state=42):
     """
     Translates the complete DataFrame into the exact dictionary required by dahlou_ncp_full.stan.
     """
@@ -141,15 +141,15 @@ def format_for_stan(df_complete, scenario="S1", sample_size=None, random_state=4
     # ==========================================
     # 0. OPTIONAL SUBJECT-LEVEL SAMPLING
     # ==========================================
-    if sample_size is not None:
+    if data_size is not None:
         unique_subjects = df_subset['subject_id'].unique()
-        if sample_size < len(unique_subjects):
-            print(f"Subsampling data to {sample_size} random subjects...")
+        if data_size < len(unique_subjects):
+            print(f"Subsampling data to {data_size} random subjects...")
             np.random.seed(random_state)
-            sampled_subjects = np.random.choice(unique_subjects, size=sample_size, replace=False)
+            sampled_subjects = np.random.choice(unique_subjects, size=data_size, replace=False)
             df_subset = df_subset[df_subset['subject_id'].isin(sampled_subjects)].copy()
         else:
-            print(f"Warning: sample_size ({sample_size}) >= total unique subjects ({len(unique_subjects)}). Using all data.")
+            print(f"Warning: data_size ({data_size}) >= total unique subjects ({len(unique_subjects)}). Using all data.")
             
     # ==========================================
     # 1. ID MAPPING
@@ -224,8 +224,8 @@ def add_param_to_dict(d, name, val):
 # ==========================================
 # 3. Execution & Aggregation Pipeline
 # ==========================================
-def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', iter_sampling=1000, iter_warmup=1000, chains=3, sample_size=None):
-    stan_data = format_for_stan(dataset, scenario=scenario, sample_size=sample_size, random_state=42 + run_id)
+def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', iter_sampling=1000, iter_warmup=1000, chains=3, data_size=None):
+    stan_data = format_for_stan(dataset, scenario=scenario, data_size=data_size, random_state=42 + run_id)
     
     # HPC BULLETPROOFING: Explicitly point to the pre-compiled executable
     exe_path = stan_file_path.replace('.stan', '')
@@ -310,7 +310,7 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
     model_params = set(summary_df.index)
 
     # DROP STAN INTERNALS: Remove lp__ or any other parameter ending in a double underscore
-    all_params = {p for p in all_params if not p.endswith('__')}
+    model_params = {p for p in all_params if not p.endswith('__')}
 
     results = []
     
@@ -506,6 +506,7 @@ if __name__ == "__main__":
     parser.add_argument("--chains", type=int, default=3, help="Number of MCMC chains")
     parser.add_argument("--warmup", type=int, default=2500, help="Warmup iterations")
     parser.add_argument("--sampling", type=int, default=2500, help="Sampling iterations")
+    parser.add_argument("--data_size", type=int, default=None, help="Optional sample size for subsampling subjects")
     
     parser.add_argument("--start_run", type=int, default=1, help="Starting run ID")
     parser.add_argument("--end_run", type=int, default=200, help="Ending run ID")
@@ -570,7 +571,9 @@ if __name__ == "__main__":
             'stan_file': stan_file,
             'warmup': args.warmup,
             'sampling': args.sampling,
-            'chains': args.chains
+            'chains': args.chains,
+            'data_file': args.data_file,
+            'data_size': args.data_size
         })
 
     successful_runs = 0

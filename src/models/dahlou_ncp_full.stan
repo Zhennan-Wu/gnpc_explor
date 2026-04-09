@@ -37,47 +37,45 @@ functions {
 }
 
 data {
-    int<lower=1> N;         // Total number of observations
-    int<lower=1> Nsub;      // Number of individuals
-    int<lower=1> K;         // Number of items (12)
-    int<lower=1> R;         // Number of latent factors (4)
-    int<lower=1> p_dyn;     // Number of dynamic covariates (3)
-    int<lower=1> p_meas;    // Number of measurement covariates (1)
+    int<lower=1> N;
+    int<lower=1> Nsub;      
+    int<lower=1> K;
+    int<lower=1> R;
+    int<lower=1> p_dyn;
+    int<lower=1> p_meas;
 
     array[N] int<lower=1, upper=Nsub> ID;
     array[Nsub] int cumu;
     array[Nsub] int repme;
-    
-    // Y must be 1-5 (ALSFRS 0-4 + 1)
     array[N, K] int<lower=1, upper=5> Y;
 
     vector[N] deltat;
+    vector[N] t_abs;     // NEW: Absolute time elapsed since baseline
     matrix[N, p_dyn] X_dyn;
     matrix[N, p_meas] X_meas;
 }
 
 parameters {
     // --- IRT Measurement Parameters ---
-    // 12 items, 5 categories each -> 4 thresholds per item
-    array[K] ordered[4] theta; 
-
-    // 12 total loadings, 4 are anchored at 1.0, leaving 8 free
+    array[K] ordered[4] theta;
     vector<lower=1e-6>[K - R] lambda_free;
     real<lower=1e-6> sigma_lambda;
 
     // Covariate Effects
-    matrix[K, p_meas] beta;       // Uric acid acting on the items directly
-    matrix[R, p_dyn] alpha_dyn;   // Treatment/Delay acting on the latent disease state
+    matrix[K, p_meas] beta;
+    
+    // --- NEW: Constant term for latent state ---
+    vector[R] alpha_0; 
+    matrix[R, p_dyn] alpha_dyn;
 
     matrix[Nsub, K] b_raw;
     vector<lower=1e-6>[K] sigma_bk;
-
+    
     // --- Structural Parameters ---
     cholesky_factor_corr[R] L_S_corr;     
     vector<lower=0>[R] L_S_scale;         
     
     vector[R * (R - 1) / 2] a_low;
-    
     cholesky_factor_corr[R] L_Sigma_corr; 
     vector<lower=0>[R] L_Sigma_scale;     
     
@@ -100,27 +98,23 @@ transformed parameters {
     matrix[R, R] Omega;
     matrix[R, N] xi;
 
-    // 1. Construct Full Loadings Vector (Anchored per Domain)
-    // Bulbar
-    lambda[1] = 1.0;              
+    // 1. Construct Full Loadings Vector
+    lambda[1] = 1.0;
     lambda[2] = lambda_free[1];
     lambda[3] = lambda_free[2];
     
-    // Fine Motor
     lambda[4] = 1.0;              
     lambda[5] = lambda_free[3];
     lambda[6] = lambda_free[4];
     
-    // Gross Motor
     lambda[7] = 1.0;              
     lambda[8] = lambda_free[5];
     lambda[9] = lambda_free[6];
     
-    // Respiratory
     lambda[10] = 1.0;              
     lambda[11] = lambda_free[7];
     lambda[12] = lambda_free[8];
-
+    
     // 2. Calculate random effects
     for (i in 1:Nsub){
         for (k in 1:K){
@@ -144,23 +138,22 @@ transformed parameters {
       }
     }
     Gamma = S + A;
-
+    
     // 4. Construct diffusion matrix and solve Lyapunov for Omega
     L_Sigma = diag_pre_multiply(L_Sigma_scale, L_Sigma_corr);
     Sigma = multiply_lower_tri_self_transpose(L_Sigma);
-    
     Omega = solve_lyapunov(Gamma, Sigma, R);
     Omega = 0.5 * (Omega + Omega'); 
     Omega = add_diag(Omega, 1e-5);
-
-    // 5. Generate Latent Trajectories with Dynamic Covariates
+    
+    // 5. Generate Latent Trajectories with Constant + Dynamic Covariates
     {
         matrix[R, R] L_Omega = cholesky_decompose(Omega);
         for (i in 1:Nsub) {
             int start_idx = cumu[i] - repme[i] + 1;
             
-            // Time 1: Shifted by static baseline covariates
-            vector[R] mu_start = alpha_dyn * X_dyn[start_idx, ]';
+            // Time 1: Alpha_0 + Covariates, scaled by absolute time
+            vector[R] mu_start = (alpha_0 + alpha_dyn * X_dyn[start_idx, ]') * t_abs[start_idx];
             xi[:, start_idx] = mu_start + L_Omega * xi_raw[:, start_idx];
             
             for (j in 2:repme[i]) {
@@ -171,10 +164,10 @@ transformed parameters {
                 matrix[R, R] Q_sym = 0.5 * (Q + Q'); 
                 matrix[R, R] L_Q = cholesky_decompose(add_diag(Q_sym, 1e-6));
                 
-                vector[R] mu_k = alpha_dyn * X_dyn[k, ]';
-                vector[R] mu_prev = alpha_dyn * X_dyn[k-1, ]';
+                // Times k and k-1: Alpha_0 + Covariates, scaled by absolute time
+                vector[R] mu_k = (alpha_0 + alpha_dyn * X_dyn[k, ]') * t_abs[k];
+                vector[R] mu_prev = (alpha_0 + alpha_dyn * X_dyn[k-1, ]') * t_abs[k-1];
                 
-                // Deterministic mapping: reverts toward the dynamic moving average
                 xi[:, k] = mu_k + Phi * (xi[:, k-1] - mu_prev) + L_Q * xi_raw[:, k];
             }
         }
@@ -184,13 +177,14 @@ transformed parameters {
 model {
     // Priors (IRT Cutpoints)
     for (k in 1:K) {
-        theta[k] ~ normal(0, 5); 
+        theta[k] ~ normal(0, 5);
     }
     
     lambda_free ~ normal(1, sigma_lambda);
     sigma_lambda ~ cauchy(0, 5);
     
     // Priors for covariates
+    alpha_0 ~ normal(0, 5); // <-- NEW: Prior for the constant term
     to_vector(alpha_dyn) ~ normal(0, 5);
     to_vector(beta) ~ cauchy(0, 5);
     
@@ -199,15 +193,14 @@ model {
     
     // Priors (Structural & Latent)
     L_S_corr ~ lkj_corr_cholesky(2.0);
-    L_S_scale ~ lognormal(0, 0.5); 
-    
+    L_S_scale ~ lognormal(0, 0.5);
     a_low ~ normal(0, 0.5);
     
     L_Sigma_corr ~ lkj_corr_cholesky(2.0);
     L_Sigma_scale ~ lognormal(0, 0.5);
     
     to_vector(xi_raw) ~ std_normal();
-
+    
     // --- Likelihood (IRT) ---
     for (i in 1:N) {
         int sub = ID[i];

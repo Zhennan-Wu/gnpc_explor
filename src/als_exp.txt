@@ -1,0 +1,12 @@
+S1  dahlou_ncp_full.stan
+S1  dahlou_cp_full.stan
+S1  dahlou_ncp_cov.stan
+S1  dahlou_cp_cov.stan
+S2  dahlou_ncp_full.stan
+S2  dahlou_cp_full.stan
+S2  dahlou_ncp_cov.stan
+S2  dahlou_cp_cov.stan
+S3  dahlou_ncp_full.stan
+S3  dahlou_cp_full.stan
+S3  dahlou_ncp_cov.stan
+S3  dahlou_cp_cov.stan

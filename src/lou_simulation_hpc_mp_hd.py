@@ -12,6 +12,9 @@ import concurrent.futures
 import multiprocessing
 from functools import reduce
 from scipy.linalg import solve_continuous_lyapunov
+import arviz as az
+import re
+
 
 # ==========================================
 # 1. Data Generation (Updated to K=12, q=4)
@@ -424,16 +427,10 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='L2G3C4
     else:
         raise FileNotFoundError(f"Compiled executable not found at {exe_path}. Please ensure the model is pre-compiled and the path is correct.")
 
-    stan_dir = "../stan_runs/"
-    # stan_dir = "/N/scratch/zwu1/stan_runs/"
-    os.makedirs(stan_dir, exist_ok=True)
-    model_name = os.path.splitext(os.path.basename(stan_file_path))[0]
-    run_dir = os.path.join(stan_dir, f"{scenario}/{model_name}/run_{run_id}")
-
     start_time = time.time()
     fit = model.sample(
         data=stan_data, iter_warmup=iter_warmup, iter_sampling=iter_sampling,
-        chains=chains, parallel_chains=chains, output_dir=run_dir, adapt_delta=0.95, max_treedepth=12,
+        chains=chains, parallel_chains=chains, adapt_delta=0.95, max_treedepth=12,
         show_progress=False 
     )
     run_time = time.time() - start_time
@@ -463,9 +460,32 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='L2G3C4
 
     try:
         summary_df = fit.summary(percentiles=[2.5, 97.5])
-    except TypeError:
-        summary_df = fit.summary() 
+                            
+    except Exception as e:
+        print(f"Error in fit.summary(): {e}. Attempting ArviZ fallback...")
         
+        # Convert CmdStanPy output directly to an ArviZ object in memory
+        idata = az.from_cmdstanpy(fit)
+        
+        # Generate summary in Python (bypassing the C++ stansummary binary)
+        summary_df = az.summary(idata, hdi_prob=0.95)
+        
+        # Rename columns to perfectly match your existing downstream logic
+        summary_df = summary_df.rename(columns={
+            'mean': 'Mean', 
+            'hdi_2.5%': '2.5%', 
+            'hdi_97.5%': '97.5%', 
+            'r_hat': 'R_hat',
+            'mcse_mean': 'MCSE',
+            'ess_bulk': 'ESS_bulk'
+        })
+        
+        # ArviZ outputs 0-based indices (e.g., theta[0]). 
+        # This shifts it back to 1-based indexing (theta[1]) to match your ground truths
+        summary_df.index = [re.sub(r'\[(\d+)\]', lambda m: f"[{int(m.group(1))+1}]", idx) 
+                            if '[' in idx else idx 
+                            for idx in summary_df.index]
+            
     cols = summary_df.columns.tolist()
     
     lower_col = '2.5%' if '2.5%' in cols else ('5%' if '5%' in cols else None)

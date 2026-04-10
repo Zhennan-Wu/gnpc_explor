@@ -9,13 +9,10 @@ import cmdstanpy
 from scipy.linalg import expm
 from scipy.special import expit
 import argparse
-import concurrent.futures
-import multiprocessing
 from functools import reduce
 from scipy.linalg import solve_continuous_lyapunov
 import arviz as az
 import re
-
 
 # ==========================================
 # 1. Data Generation (Updated to K=12, q=4)
@@ -246,12 +243,12 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
     fit = model.sample(
         data=stan_data, iter_warmup=iter_warmup, iter_sampling=iter_sampling,
         chains=chains, parallel_chains=chains, adapt_delta=0.95, max_treedepth=12,
-        show_console=True, # <--- CHANGED: Expose C++ errors if they happen
+        show_console=True, 
         show_progress=False 
     )
     run_time = time.time() - start_time
 
-    output_dir = "../raw_results"
+    output_dir = "../raw_results" # FIXED directory path
     os.makedirs(output_dir, exist_ok=True)
     
     # --- DEFENSIVE DIAGNOSTICS EXTRACTION ---
@@ -279,14 +276,9 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
                             
     except Exception as e:
         print(f"Error in fit.summary(): {e}. Attempting ArviZ fallback...")
-        
-        # Convert CmdStanPy output directly to an ArviZ object in memory
         idata = az.from_cmdstanpy(fit)
-        
-        # Generate summary in Python (bypassing the C++ stansummary binary)
         summary_df = az.summary(idata, hdi_prob=0.95)
         
-        # Rename columns to perfectly match your existing downstream logic
         summary_df = summary_df.rename(columns={
             'mean': 'Mean', 
             'hdi_2.5%': '2.5%', 
@@ -296,8 +288,6 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
             'ess_bulk': 'ESS_bulk'
         })
         
-        # ArviZ outputs 0-based indices (e.g., theta[0]). 
-        # This shifts it back to 1-based indexing (theta[1]) to match your ground truths
         summary_df.index = [re.sub(r'\[(\d+)\]', lambda m: f"[{int(m.group(1))+1}]", idx) 
                             if '[' in idx else idx 
                             for idx in summary_df.index]
@@ -309,10 +299,7 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
     rhat_col = 'R_hat' if 'R_hat' in cols else ('Rhat' if 'Rhat' in cols else None)
     mcse_col = 'MCSE' if 'MCSE' in cols else None
 
-    # Get the complete union of all parameters (shared, truth-only, model-only)
     model_params = set(summary_df.index)
-
-    # DROP STAN INTERNALS: Remove lp__ or any other parameter ending in a double underscore
     model_params = {p for p in model_params if not p.endswith('__')}
 
     results = []
@@ -344,15 +331,15 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='S1', i
 
 def generate_simulation_table(scenario, model_name):
     print(f"\nAggregating results across all runs for {scenario} - {model_name}...")
-    source_dir = os.path.join("..", "corrected_results")
-    target_dir = os.path.join("..", "summarized_results")
+    source_dir = "../raw_results" # FIXED directory path
+    target_dir = "../summarized_results" # FIXED directory path
     os.makedirs(target_dir, exist_ok=True)
     
     file_pattern = os.path.join(source_dir, f"results_{scenario}_{model_name}_run*.csv")
     all_files = glob.glob(file_pattern)
     
     if not all_files:
-        print("No simulation files found to aggregate.")
+        print("No files found to aggregate.")
         return None
         
     df_list = []
@@ -427,8 +414,8 @@ def generate_simulation_table(scenario, model_name):
 
 def aggregate_cross_model_results(scenario, model_names):
     print(f"\nMerging results across models for Scenario: {scenario}...")
-    source_dir = os.path.join("..", "summarized_results")
-    target_dir = os.path.join("..", "aggregated_results")
+    source_dir = "../summarized_results" # FIXED directory path
+    target_dir = "../aggregated_results" # FIXED directory path
     os.makedirs(target_dir, exist_ok=True)
     
     dataframes = []
@@ -477,47 +464,20 @@ def aggregate_cross_model_results(scenario, model_names):
     return final_combined_df
 
 # ==========================================
-# 4. Multiprocessing Wrapper & Main Execution
+# 4. Main Execution (OPTIMIZED FOR SINGLE DATASET)
 # ==========================================
-def parallel_worker(args_dict):
-    run_id = args_dict['run_id']
-    datafile = args_dict['data_file'] + f"_{args_dict['scenario']}.csv"
-    print(f"  -> Starting Run {run_id}...")
-    try:
-        dataset = pd.read_csv(datafile)
-        
-        evaluate_model_performance(
-            stan_file_path=args_dict['stan_file'], 
-            dataset=dataset,
-            run_id=run_id,
-            scenario=args_dict['scenario'],
-            iter_warmup=args_dict['warmup'],
-            iter_sampling=args_dict['sampling'],
-            chains=args_dict['chains'],
-            data_size=args_dict['data_size']
-        )
-        print(f"  ✅ Completed Run {run_id}")
-        return run_id, True
-    except Exception as e:
-        print(f"  ❌ Failed Run {run_id}: {str(e)}")
-        return run_id, False
-
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run DAHLOU Simulation on HPC")
+    parser = argparse.ArgumentParser(description="Run DAHLOU Empirical Analysis on HPC")
     parser.add_argument("--scenario", type=str, required=True, help="Data generation scenario")
-    parser.add_argument("--models", type=str, nargs='+', required=True, help="Path(s) to the Stan model file(s), separated by spaces")
+    parser.add_argument("--models", type=str, nargs='+', required=True, help="Path(s) to the Stan model file(s)")
     parser.add_argument("--data_file", type=str, default="proact_preprocessed", help="Path to the preprocessed data file")
-    parser.add_argument("--chains", type=int, default=3, help="Number of MCMC chains")
+    parser.add_argument("--chains", type=int, default=4, help="Number of MCMC chains")
     parser.add_argument("--warmup", type=int, default=2500, help="Warmup iterations")
     parser.add_argument("--sampling", type=int, default=2500, help="Sampling iterations")
     parser.add_argument("--data_size", type=int, default=None, help="Optional sample size for subsampling subjects")
-    
-    parser.add_argument("--start_run", type=int, default=1, help="Starting run ID")
-    parser.add_argument("--end_run", type=int, default=200, help="Ending run ID")
-    parser.add_argument("--aggregate_only", action="store_true", help="Only run the table aggregation")
     parser.add_argument("--compile_only", action="store_true", help="Only compile the model, do not run sims") 
+    parser.add_argument("--aggregate_only", action="store_true", help="Only run the table aggregation")
     parser.add_argument("--cross_aggregate", action="store_true", help="Merge multiple model tables into one final comparison table")
-    parser.add_argument("--workers", type=int, default=None, help="Manual override for parallel workers")
     
     args = parser.parse_args()
     scenario_to_run = args.scenario
@@ -538,14 +498,11 @@ if __name__ == "__main__":
         if not os.path.exists(model_dir):
             print(f"Error: Models directory '{model_dir}' not found. Please ensure the path is correct.")
             exit(1)
+            
         stan_file_path = os.path.join(model_dir, stan_file)
-        # name of compiled binary (no .stan extension)
         exe_path = os.path.join(compiled_dir, model_name)
 
-        _ = cmdstanpy.CmdStanModel(
-            stan_file=stan_file_path,
-            exe_file=exe_path
-        )
+        _ = cmdstanpy.CmdStanModel(stan_file=stan_file_path, exe_file=exe_path)
         print("Compilation successful. Exiting.")
         exit(0)
 
@@ -553,39 +510,28 @@ if __name__ == "__main__":
         generate_simulation_table(scenario=scenario_to_run, model_name=model_name)
         exit(0)
 
+    print(f"Starting Empirical Analysis: Scenario = {scenario_to_run}, Model = {model_name}")
+    print(f"Running 1 Dataset with {args.chains} parallel chains ({args.warmup} warmup / {args.sampling} sampling)\n")
+    
+    datafile = args.data_file + f"_{args.scenario}.csv"
+    
     try:
-        available_cores = int(os.environ.get('SLURM_CPUS_PER_TASK', os.cpu_count()))
-    except TypeError:
-        available_cores = os.cpu_count()
+        dataset = pd.read_csv(datafile)
         
-    if args.workers is None:
-        safe_cores = max(1, available_cores - 2)
-        optimal_workers = safe_cores // args.chains
-        args.workers = max(1, optimal_workers)
-    
-    print(f"Starting HPC Monte Carlo Simulation: Scenario = {scenario_to_run}, Model = {model_name}")
-    print(f"Running Sims {args.start_run} to {args.end_run} | Total Cores Detected: {available_cores}")
-    print(f"Running with {args.workers} Parallel Workers ({args.chains} chains each)\n")
-    
-    tasks = []
-    for run_id in range(args.start_run, args.end_run + 1):
-        tasks.append({
-            'run_id': run_id,
-            'scenario': scenario_to_run,
-            'stan_file': stan_file,
-            'warmup': args.warmup,
-            'sampling': args.sampling,
-            'chains': args.chains,
-            'data_file': args.data_file,
-            'data_size': args.data_size
-        })
-
-    successful_runs = 0
-    with concurrent.futures.ProcessPoolExecutor(max_workers=args.workers) as executor:
-        futures = {executor.submit(parallel_worker, task): task for task in tasks}
-        for future in concurrent.futures.as_completed(futures):
-            run_id, success = future.result()
-            if success:
-                successful_runs += 1
-
-    print(f"\nNode finished its chunk. ({successful_runs}/{(args.end_run - args.start_run) + 1} successful)")
+        # We run the evaluation exactly once. 
+        # Run_ID is set to 1 because there are no longer 200 replications.
+        evaluate_model_performance(
+            stan_file_path=stan_file, 
+            dataset=dataset,
+            run_id=1, 
+            scenario=scenario_to_run,
+            iter_warmup=args.warmup,
+            iter_sampling=args.sampling,
+            chains=args.chains,
+            data_size=args.data_size
+        )
+        print(f"\n✅ Successfully completed empirical run for {model_name}.")
+        
+    except Exception as e:
+        print(f"\n❌ Failed Empirical Run: {str(e)}")
+        exit(1)

@@ -35,17 +35,17 @@ echo "Running Scenario: $SCENARIO with Model: $MODEL using 5 Nodes"
 
 # FIX: Pre-compile the model sequentially to avoid race conditions!
 # echo "Pre-compiling Stan Model..."
-# python lou_simulation_hpc_mp_hd.py --scenario "$SCENARIO" --model "$MODEL" --compile_only
+# python lou_simulation_hpc_mp_hd.py --scenario "$SCENARIO" --models "$MODEL" --compile_only
 
 # echo "Compilation step done. Starting parallel instances..."
 
 # We split 200 simulations across 5 nodes (40 sims per node).
 # The '&' puts the process in the background. '--exclusive' ensures they don't fight for the same resources.
-srun -N 1 -n 1 --exclusive python lou_simulation_hpc_mp_hd.py --scenario "$SCENARIO" --model "$MODEL" --start_run 1 --end_run 40 &
-srun -N 1 -n 1 --exclusive python lou_simulation_hpc_mp_hd.py --scenario "$SCENARIO" --model "$MODEL" --start_run 41 --end_run 80 &
-srun -N 1 -n 1 --exclusive python lou_simulation_hpc_mp_hd.py --scenario "$SCENARIO" --model "$MODEL" --start_run 81 --end_run 120 &
-srun -N 1 -n 1 --exclusive python lou_simulation_hpc_mp_hd.py --scenario "$SCENARIO" --model "$MODEL" --start_run 121 --end_run 160 &
-srun -N 1 -n 1 --exclusive python lou_simulation_hpc_mp_hd.py --scenario "$SCENARIO" --model "$MODEL" --start_run 161 --end_run 200 &
+srun -N 1 -n 1 --exclusive python lou_simulation_hpc_mp_hd.py --scenario "$SCENARIO" --models "$MODEL" --start_run 1 --end_run 40 &
+srun -N 1 -n 1 --exclusive python lou_simulation_hpc_mp_hd.py --scenario "$SCENARIO" --models "$MODEL" --start_run 41 --end_run 80 &
+srun -N 1 -n 1 --exclusive python lou_simulation_hpc_mp_hd.py --scenario "$SCENARIO" --models "$MODEL" --start_run 81 --end_run 120 &
+srun -N 1 -n 1 --exclusive python lou_simulation_hpc_mp_hd.py --scenario "$SCENARIO" --models "$MODEL" --start_run 121 --end_run 160 &
+srun -N 1 -n 1 --exclusive python lou_simulation_hpc_mp_hd.py --scenario "$SCENARIO" --models "$MODEL" --start_run 161 --end_run 200 &
 
 # Wait for all 5 background nodes to finish their chunks
 wait
@@ -53,6 +53,6 @@ wait
 echo "All nodes finished calculating. Aggregating results..."
 
 # Run the aggregation step on the primary node
-python lou_simulation_hpc_mp_hd.py --scenario "$SCENARIO" --model "$MODEL" --aggregate_only 
+python lou_simulation_hpc_mp_hd.py --scenario "$SCENARIO" --models "$MODEL" --aggregate_only 
 
 echo "Job complete."

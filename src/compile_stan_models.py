@@ -3,7 +3,7 @@ import glob
 import shutil
 import cmdstanpy
 
-MODELS_DIR = "./models"
+MODELS_DIR = "./dahlou_models"
 COMPILED_DIR = "./compiled_models"
 
 def main():

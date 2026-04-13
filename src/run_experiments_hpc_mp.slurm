@@ -24,6 +24,12 @@ conda activate ou
 export CXX=g++
 export CC=gcc
 
+# Create a unique temp dir for THIS specific array task
+export TMPDIR=/N/scratch/zwu1/tmp/job_${SLURM_JOB_ID}_task_${SLURM_ARRAY_TASK_ID}
+export TEMP=$TMPDIR
+export TMP=$TMPDIR
+mkdir -p $TMPDIR
+
 CHAINS=3
 
 CONFIG_LINE=$(sed -n "${SLURM_ARRAY_TASK_ID}p" experiments.txt)
@@ -38,6 +44,11 @@ echo "Running Scenario: $SCENARIO with Model: $MODEL using 5 Nodes"
 # python lou_simulation_hpc_mp.py --scenario "$SCENARIO" --models "$MODEL" --compile_only
 
 # echo "Compilation step done. Starting parallel instances..."
+# --- ARVIZ RACE CONDITION FIX ---
+# Pre-create the cache folder and stamp it with today's date 
+# so the parallel Python processes don't fight over file locks.
+mkdir -p /N/u/zwu1/BigRed200/.cache/arviz
+date +%Y-%m-%d > /N/u/zwu1/BigRed200/.cache/arviz/daily_warning
 
 # We split 200 simulations across 5 nodes (40 sims per node).
 # The '&' puts the process in the background. '--exclusive' ensures they don't fight for the same resources.

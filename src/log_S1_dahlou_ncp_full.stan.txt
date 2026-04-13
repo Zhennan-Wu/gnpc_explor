@@ -1,0 +1,4 @@
+16:23:46 - cmdstanpy - INFO - Chain [1] start processing
+16:23:46 - cmdstanpy - INFO - Chain [2] start processing
+16:23:46 - cmdstanpy - INFO - Chain [3] start processing
+16:23:46 - cmdstanpy - INFO - Chain [4] start processing

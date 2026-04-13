@@ -430,7 +430,8 @@ def evaluate_model_performance(stan_file_path, dataset, run_id, scenario='L2G3C4
     start_time = time.time()
     fit = model.sample(
         data=stan_data, iter_warmup=iter_warmup, iter_sampling=iter_sampling,
-        chains=chains, parallel_chains=chains, adapt_delta=0.95, max_treedepth=12,
+        chains=chains, parallel_chains=chains, adapt_delta=0.95, max_treedepth=12, inits=0.1, 
+        show_console=True,
         show_progress=False 
     )
     run_time = time.time() - start_time

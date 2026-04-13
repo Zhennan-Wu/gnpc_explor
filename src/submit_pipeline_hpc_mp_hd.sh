@@ -5,7 +5,7 @@ module load conda
 module load gcc
 
 eval "$(conda shell.bash hook)"
-conda activate ou
+conda activate emlou
 # ------------------------
 
 export CXX=g++

@@ -67,4 +67,7 @@ echo "All nodes finished calculating. Aggregating results..."
 # Run the aggregation step on the primary node
 python lou_simulation_hpc_mp_hd.py --scenario "$SCENARIO" --models "$MODEL" --aggregate_only 
 
+# Clean up the temp directory when the node finishes to save inodes
+rm -rf $TMPDIR
+
 echo "Job complete."

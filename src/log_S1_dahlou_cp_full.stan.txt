@@ -2,3 +2,669 @@
 16:23:46 - cmdstanpy - INFO - Chain [2] start processing
 16:23:46 - cmdstanpy - INFO - Chain [3] start processing
 16:23:46 - cmdstanpy - INFO - Chain [4] start processing
+19:20:21 - cmdstanpy - INFO - Chain [1] done processing
+19:20:21 - cmdstanpy - ERROR - Chain [1] error: code '-15' Unknown error -15
+19:20:25 - cmdstanpy - INFO - Chain [2] done processing
+19:20:25 - cmdstanpy - ERROR - Chain [2] error: code '-15' Unknown error -15
+19:20:30 - cmdstanpy - INFO - Chain [3] done processing
+19:20:30 - cmdstanpy - ERROR - Chain [3] error: code '-15' Unknown error -15
+19:20:33 - cmdstanpy - INFO - Chain [4] done processing
+19:20:33 - cmdstanpy - ERROR - Chain [4] error: code '-15' Unknown error -15
+Starting Empirical Analysis: Scenario = S1, Model = dahlou_cp_full
+Running 1 Dataset with 4 parallel chains (2500 warmup / 2500 sampling)
+
+Stan data prepared for S1: p_meas=3, p_dyn=3. N=4336 obs across Nsub=775 subjects.
+Chain [1] method = sample (Default)
+Chain [1] sample
+Chain [1] num_samples = 2500
+Chain [1] num_warmup = 2500
+Chain [1] save_warmup = false (Default)
+Chain [1] thin = 1 (Default)
+Chain [1] adapt
+Chain [1] engaged = true (Default)
+Chain [1] gamma = 0.05 (Default)
+Chain [1] delta = 0.95
+Chain [1] kappa = 0.75 (Default)
+Chain [1] t0 = 10 (Default)
+Chain [1] init_buffer = 75 (Default)
+Chain [1] term_buffer = 50 (Default)
+Chain [1] window = 25 (Default)
+Chain [1] save_metric = false (Default)
+Chain [1] algorithm = hmc (Default)
+Chain [1] hmc
+Chain [1] engine = nuts (Default)
+Chain [1] nuts
+Chain [1] max_depth = 12
+Chain [1] metric = diag_e (Default)
+Chain [1] metric_file =  (Default)
+Chain [1] stepsize = 1 (Default)
+Chain [1] stepsize_jitter = 0 (Default)
+Chain [1] num_chains = 1 (Default)
+Chain [1] id = 1 (Default)
+Chain [1] data
+Chain [1] file = /tmp/tmp3tb7_4dd/0o10yo6l.json
+Chain [1] init = 2 (Default)
+Chain [1] random
+Chain [1] seed = 28198
+Chain [1] output
+Chain [1] file = /tmp/tmp3tb7_4dd/dahlou_cp_full7w9774qt/dahlou_cp_full-20260410162346_1.csv
+Chain [1] diagnostic_file =  (Default)
+Chain [1] refresh = 100 (Default)
+Chain [1] sig_figs = 8 (Default)
+Chain [1] profile_file = profile.csv (Default)
+Chain [1] save_cmdstan_config = false (Default)
+Chain [1] num_threads = 1 (Default)
+Chain [1] 
+Chain [2] method = sample (Default)
+Chain [2] sample
+Chain [3] method = sample (Default)
+Chain [3] sample
+Chain [3] num_samples = 2500
+Chain [3] num_warmup = 2500
+Chain [3] save_warmup = false (Default)
+Chain [3] thin = 1 (Default)
+Chain [3] adapt
+Chain [3] engaged = true (Default)
+Chain [3] gamma = 0.05 (Default)
+Chain [3] delta = 0.95
+Chain [3] kappa = 0.75 (Default)
+Chain [2] num_samples = 2500
+Chain [2] num_warmup = 2500
+Chain [2] save_warmup = false (Default)
+Chain [2] thin = 1 (Default)
+Chain [2] adapt
+Chain [2] engaged = true (Default)
+Chain [2] gamma = 0.05 (Default)
+Chain [2] delta = 0.95
+Chain [2] kappa = 0.75 (Default)
+Chain [3] t0 = 10 (Default)
+Chain [3] init_buffer = 75 (Default)
+Chain [3] term_buffer = 50 (Default)
+Chain [3] window = 25 (Default)
+Chain [3] save_metric = false (Default)
+Chain [2] t0 = 10 (Default)
+Chain [3] algorithm = hmc (Default)
+Chain [3] hmc
+Chain [3] engine = nuts (Default)
+Chain [3] nuts
+Chain [3] max_depth = 12
+Chain [2] init_buffer = 75 (Default)
+Chain [2] term_buffer = 50 (Default)
+Chain [3] metric = diag_e (Default)
+Chain [3] metric_file =  (Default)
+Chain [3] stepsize = 1 (Default)
+Chain [3] stepsize_jitter = 0 (Default)
+Chain [3] num_chains = 1 (Default)
+Chain [2] window = 25 (Default)
+Chain [2] save_metric = false (Default)
+Chain [2] algorithm = hmc (Default)
+Chain [2] hmc
+Chain [2] engine = nuts (Default)
+Chain [3] id = 3
+Chain [3] data
+Chain [3] file = /tmp/tmp3tb7_4dd/0o10yo6l.json
+Chain [3] init = 2 (Default)
+Chain [3] random
+Chain [2] nuts
+Chain [2] max_depth = 12
+Chain [3] seed = 28198
+Chain [3] output
+Chain [3] file = /tmp/tmp3tb7_4dd/dahlou_cp_full7w9774qt/dahlou_cp_full-20260410162346_3.csv
+Chain [3] diagnostic_file =  (Default)
+Chain [3] refresh = 100 (Default)
+Chain [3] sig_figs = 8 (Default)
+Chain [2] metric = diag_e (Default)
+Chain [2] metric_file =  (Default)
+Chain [2] stepsize = 1 (Default)
+Chain [2] stepsize_jitter = 0 (Default)
+Chain [3] profile_file = profile.csv (Default)
+Chain [3] save_cmdstan_config = false (Default)
+Chain [3] num_threads = 1 (Default)
+Chain [3] 
+Chain [2] num_chains = 1 (Default)
+Chain [2] id = 2
+Chain [2] data
+Chain [2] file = /tmp/tmp3tb7_4dd/0o10yo6l.json
+Chain [2] init = 2 (Default)
+Chain [2] random
+Chain [2] seed = 28198
+Chain [2] output
+Chain [2] file = /tmp/tmp3tb7_4dd/dahlou_cp_full7w9774qt/dahlou_cp_full-20260410162346_2.csv
+Chain [2] diagnostic_file =  (Default)
+Chain [2] refresh = 100 (Default)
+Chain [2] sig_figs = 8 (Default)
+Chain [2] profile_file = profile.csv (Default)
+Chain [2] save_cmdstan_config = false (Default)
+Chain [2] num_threads = 1 (Default)
+Chain [2] 
+Chain [4] method = sample (Default)
+Chain [4] sample
+Chain [4] num_samples = 2500
+Chain [4] num_warmup = 2500
+Chain [4] save_warmup = false (Default)
+Chain [4] thin = 1 (Default)
+Chain [4] adapt
+Chain [4] engaged = true (Default)
+Chain [4] gamma = 0.05 (Default)
+Chain [4] delta = 0.95
+Chain [4] kappa = 0.75 (Default)
+Chain [4] t0 = 10 (Default)
+Chain [4] init_buffer = 75 (Default)
+Chain [4] term_buffer = 50 (Default)
+Chain [4] window = 25 (Default)
+Chain [4] save_metric = false (Default)
+Chain [4] algorithm = hmc (Default)
+Chain [4] hmc
+Chain [4] engine = nuts (Default)
+Chain [4] nuts
+Chain [4] max_depth = 12
+Chain [4] metric = diag_e (Default)
+Chain [4] metric_file =  (Default)
+Chain [4] stepsize = 1 (Default)
+Chain [4] stepsize_jitter = 0 (Default)
+Chain [4] num_chains = 1 (Default)
+Chain [4] id = 4
+Chain [4] data
+Chain [4] file = /tmp/tmp3tb7_4dd/0o10yo6l.json
+Chain [4] init = 2 (Default)
+Chain [4] random
+Chain [4] seed = 28198
+Chain [4] output
+Chain [4] file = /tmp/tmp3tb7_4dd/dahlou_cp_full7w9774qt/dahlou_cp_full-20260410162346_4.csv
+Chain [4] diagnostic_file =  (Default)
+Chain [4] refresh = 100 (Default)
+Chain [4] sig_figs = 8 (Default)
+Chain [4] profile_file = profile.csv (Default)
+Chain [4] save_cmdstan_config = false (Default)
+Chain [4] num_threads = 1 (Default)
+Chain [4] 
+Chain [4] 
+Chain [4] Gradient evaluation took 0.778059 seconds
+Chain [4] 1000 transitions using 10 leapfrog steps per transition would take 7780.59 seconds.
+Chain [4] Adjust your expectations accordingly!
+Chain [4] 
+Chain [4] 
+Chain [2] 
+Chain [2] Gradient evaluation took 0.914524 seconds
+Chain [2] 1000 transitions using 10 leapfrog steps per transition would take 9145.24 seconds.
+Chain [2] Adjust your expectations accordingly!
+Chain [2] 
+Chain [2] 
+Chain [3] 
+Chain [3] Gradient evaluation took 1.06323 seconds
+Chain [3] 1000 transitions using 10 leapfrog steps per transition would take 10632.3 seconds.
+Chain [3] Adjust your expectations accordingly!
+Chain [3] 
+Chain [3] 
+Chain [1] 
+Chain [1] Gradient evaluation took 1.09703 seconds
+Chain [1] 1000 transitions using 10 leapfrog steps per transition would take 10970.3 seconds.
+Chain [1] Adjust your expectations accordingly!
+Chain [1] 
+Chain [1] 
+Chain [4] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [4] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [4] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [4] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [4] 
+Chain [2] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [2] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [2] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [2] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [2] 
+Chain [4] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [4] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [4] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [4] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [4] 
+Chain [3] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [3] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [3] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [3] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [3] 
+Chain [1] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [1] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [1] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [1] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [1] 
+Chain [2] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [2] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [2] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [2] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [2] 
+Chain [4] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [4] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [4] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [4] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [4] 
+Chain [2] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [2] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [2] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [2] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [2] 
+Chain [1] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [1] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [1] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [1] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [1] 
+Chain [3] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [3] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [3] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [3] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [3] 
+Chain [4] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [4] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [4] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [4] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [4] 
+Chain [2] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [2] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [2] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [2] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [2] 
+Chain [1] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [1] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [1] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [1] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [1] 
+Chain [3] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [3] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [3] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [3] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [3] 
+Chain [4] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [4] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [4] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [4] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [4] 
+Chain [2] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [2] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [2] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [2] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [2] 
+Chain [1] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [1] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [1] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [1] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [1] 
+Chain [3] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [3] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [3] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [3] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [3] 
+Chain [4] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [4] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [4] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [4] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [4] 
+Chain [2] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [2] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [2] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [2] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [2] 
+Chain [3] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [3] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [3] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [3] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [3] 
+Chain [1] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [1] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [1] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [1] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [1] 
+Chain [4] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [4] Exception: lkj_corr_cholesky_lpdf: Random variable[3] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [4] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [4] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [4] 
+Chain [2] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [2] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [2] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [2] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [2] 
+Chain [3] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [3] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [3] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [3] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [3] 
+Chain [1] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [1] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [1] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [1] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [1] 
+Chain [4] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [4] Exception: lkj_corr_cholesky_lpdf: Random variable[3] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [4] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [4] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [4] 
+Chain [2] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [2] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [2] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [2] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [2] 
+Chain [3] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [3] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [3] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [3] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [3] 
+Chain [4] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [4] Exception: lkj_corr_cholesky_lpdf: Random variable[4] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [4] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [4] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [4] 
+Chain [1] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [1] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [1] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [1] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [1] 
+Chain [2] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [2] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [2] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [2] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [2] 
+Chain [4] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [4] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 173, column 4 to column 42)
+Chain [4] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [4] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [4] 
+Chain [1] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [1] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [1] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [1] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [1] 
+Chain [3] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [3] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [3] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [3] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [3] 
+Chain [4] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [4] Exception: lkj_corr_cholesky_lpdf: Random variable[4] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 173, column 4 to column 42)
+Chain [4] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [4] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [4] 
+Chain [2] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [2] Exception: lkj_corr_cholesky_lpdf: Random variable[3] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [2] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [2] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [2] 
+Chain [3] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [3] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [3] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [3] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [3] 
+Chain [1] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [1] Exception: lkj_corr_cholesky_lpdf: Random variable[3] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [1] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [1] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [1] 
+Chain [2] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [2] Exception: lkj_corr_cholesky_lpdf: Random variable[3] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [2] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [2] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [2] 
+Chain [3] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [3] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 173, column 4 to column 42)
+Chain [3] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [3] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [3] 
+Chain [1] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [1] Exception: lkj_corr_cholesky_lpdf: Random variable[3] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [1] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [1] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [1] 
+Chain [3] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [3] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 173, column 4 to column 42)
+Chain [3] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [3] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [3] 
+Chain [1] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [1] Exception: lkj_corr_cholesky_lpdf: Random variable[3] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [1] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [1] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [1] 
+Chain [4] Iteration:    1 / 5000 [  0%]  (Warmup)
+Chain [1] Iteration:    1 / 5000 [  0%]  (Warmup)
+Chain [3] Iteration:    1 / 5000 [  0%]  (Warmup)
+Chain [2] Iteration:    1 / 5000 [  0%]  (Warmup)
+Chain [3] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [3] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [3] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [3] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [3] 
+Chain [3] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [3] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [3] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [3] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [3] 
+Chain [3] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [3] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [3] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [3] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [3] 
+Chain [2] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [2] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [2] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [2] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [2] 
+Chain [2] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [2] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [2] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [2] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [2] 
+Chain [1] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [1] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [1] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [1] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [1] 
+Chain [2] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [2] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [2] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [2] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [2] 
+Chain [1] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [1] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [1] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [1] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [1] 
+Chain [1] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [1] Exception: lkj_corr_cholesky_lpdf: Random variable[3] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [1] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [1] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [1] 
+Chain [2] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [2] Exception: lkj_corr_cholesky_lpdf: Random variable[3] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 173, column 4 to column 42)
+Chain [2] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [2] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [2] 
+Chain [4] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [4] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [4] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [4] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [4] 
+Chain [4] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [4] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [4] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [4] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [4] 
+Chain [4] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [4] Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Chain [4] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [4] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [4] 
+Chain [4] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [4] Exception: lkj_corr_cholesky_lpdf: Random variable[4] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 173, column 4 to column 42)
+Chain [4] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [4] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [4] 
+Chain [4] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [4] Exception: lkj_corr_cholesky_lpdf: Random variable[4] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 173, column 4 to column 42)
+Chain [4] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [4] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [4] 
+Chain [1] Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Chain [1] Exception: cholesky_decompose: Matrix m is not positive definite (in 'dahlou_cp_full.stan', line 192, column 16 to column 77)
+Chain [1] If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+Chain [1] but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+Chain [1] 
+Chain [3] Iteration:  100 / 5000 [  2%]  (Warmup)
+Chain [4] Iteration:  100 / 5000 [  2%]  (Warmup)
+Chain [2] Iteration:  100 / 5000 [  2%]  (Warmup)
+Chain [3] Iteration:  200 / 5000 [  4%]  (Warmup)
+Chain [4] Iteration:  200 / 5000 [  4%]  (Warmup)
+Chain [2] Iteration:  200 / 5000 [  4%]  (Warmup)
+Chain [3] Iteration:  300 / 5000 [  6%]  (Warmup)
+Chain [4] Iteration:  300 / 5000 [  6%]  (Warmup)
+Chain [2] Iteration:  300 / 5000 [  6%]  (Warmup)
+Chain [1] Iteration:  100 / 5000 [  2%]  (Warmup)
+Chain [3] Iteration:  400 / 5000 [  8%]  (Warmup)
+Chain [4] Iteration:  400 / 5000 [  8%]  (Warmup)
+Chain [2] Iteration:  400 / 5000 [  8%]  (Warmup)
+Chain [3] Iteration:  500 / 5000 [ 10%]  (Warmup)
+Chain [4] Iteration:  500 / 5000 [ 10%]  (Warmup)
+Chain [2] Iteration:  500 / 5000 [ 10%]  (Warmup)
+Chain [3] Iteration:  600 / 5000 [ 12%]  (Warmup)
+Chain [4] Iteration:  600 / 5000 [ 12%]  (Warmup)
+Chain [2] Iteration:  600 / 5000 [ 12%]  (Warmup)
+Chain [3] Iteration:  700 / 5000 [ 14%]  (Warmup)
+Chain [4] Iteration:  700 / 5000 [ 14%]  (Warmup)
+Chain [1] Iteration:  200 / 5000 [  4%]  (Warmup)
+Chain [2] Iteration:  700 / 5000 [ 14%]  (Warmup)
+Chain [3] Iteration:  800 / 5000 [ 16%]  (Warmup)
+Chain [4] Iteration:  800 / 5000 [ 16%]  (Warmup)
+Chain [2] Iteration:  800 / 5000 [ 16%]  (Warmup)
+Chain [3] Iteration:  900 / 5000 [ 18%]  (Warmup)
+Chain [4] Iteration:  900 / 5000 [ 18%]  (Warmup)
+Chain [2] Iteration:  900 / 5000 [ 18%]  (Warmup)
+Chain [3] Iteration: 1000 / 5000 [ 20%]  (Warmup)
+Chain [4] Iteration: 1000 / 5000 [ 20%]  (Warmup)
+Chain [2] Iteration: 1000 / 5000 [ 20%]  (Warmup)
+Chain [1] Iteration:  300 / 5000 [  6%]  (Warmup)
+Chain [3] Iteration: 1100 / 5000 [ 22%]  (Warmup)
+Chain [4] Iteration: 1100 / 5000 [ 22%]  (Warmup)
+Chain [2] Iteration: 1100 / 5000 [ 22%]  (Warmup)
+Chain [3] Iteration: 1200 / 5000 [ 24%]  (Warmup)
+Chain [4] Iteration: 1200 / 5000 [ 24%]  (Warmup)
+Chain [2] Iteration: 1200 / 5000 [ 24%]  (Warmup)
+Chain [3] Iteration: 1300 / 5000 [ 26%]  (Warmup)
+Chain [2] Iteration: 1300 / 5000 [ 26%]  (Warmup)
+Chain [4] Iteration: 1300 / 5000 [ 26%]  (Warmup)
+Chain [3] Iteration: 1400 / 5000 [ 28%]  (Warmup)
+Chain [1] Iteration:  400 / 5000 [  8%]  (Warmup)
+Chain [2] Iteration: 1400 / 5000 [ 28%]  (Warmup)
+Chain [4] Iteration: 1400 / 5000 [ 28%]  (Warmup)
+Chain [3] Iteration: 1500 / 5000 [ 30%]  (Warmup)
+Chain [2] Iteration: 1500 / 5000 [ 30%]  (Warmup)
+Chain [4] Iteration: 1500 / 5000 [ 30%]  (Warmup)
+Chain [3] Iteration: 1600 / 5000 [ 32%]  (Warmup)
+Chain [2] Iteration: 1600 / 5000 [ 32%]  (Warmup)
+Chain [4] Iteration: 1600 / 5000 [ 32%]  (Warmup)
+Chain [3] Iteration: 1700 / 5000 [ 34%]  (Warmup)
+Chain [2] Iteration: 1700 / 5000 [ 34%]  (Warmup)
+Chain [4] Iteration: 1700 / 5000 [ 34%]  (Warmup)
+Chain [1] Iteration:  500 / 5000 [ 10%]  (Warmup)
+Chain [3] Iteration: 1800 / 5000 [ 36%]  (Warmup)
+Chain [2] Iteration: 1800 / 5000 [ 36%]  (Warmup)
+Chain [4] Iteration: 1800 / 5000 [ 36%]  (Warmup)
+Chain [3] Iteration: 1900 / 5000 [ 38%]  (Warmup)
+Chain [2] Iteration: 1900 / 5000 [ 38%]  (Warmup)
+Chain [4] Iteration: 1900 / 5000 [ 38%]  (Warmup)
+Chain [3] Iteration: 2000 / 5000 [ 40%]  (Warmup)
+Chain [2] Iteration: 2000 / 5000 [ 40%]  (Warmup)
+Chain [4] Iteration: 2000 / 5000 [ 40%]  (Warmup)
+Chain [1] 
+Chain [1] 
+Chain [1] 
+Chain [1] 
+Chain [1] 
+Chain [1] 
+Chain [1] 
+Chain [1] 
+Chain [1] 
+Chain [1] 
+Chain [1] 
+Chain [1] 
+Chain [2] 
+Chain [3] 
+Chain [3] 
+Chain [3] 
+Chain [3] 
+Chain [3] 
+Chain [3] 
+Chain [3] 
+Chain [3] 
+Chain [3] 
+Chain [4] 
+Chain [4] 
+Chain [4] 
+
+❌ Failed Empirical Run: Error during sampling:
+Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[3] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[3] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[3] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[3] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: cholesky_decompose: Matrix m is not positive definite (in 'dahlou_cp_full.stan', line 192, column 16 to column 77)
+Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[3] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[3] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[3] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 173, column 4 to column 42)
+Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 173, column 4 to column 42)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 173, column 4 to column 42)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[3] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[3] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[4] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 173, column 4 to column 42)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[4] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 173, column 4 to column 42)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 168, column 4 to column 38)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[4] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 173, column 4 to column 42)
+	Exception: lkj_corr_cholesky_lpdf: Random variable[4] is 0, but must be positive! (in 'dahlou_cp_full.stan', line 173, column 4 to column 42)
+Command and output files:
+RunSet: chains=4, chain_ids=[1, 2, 3, 4], num_processes=4
+ cmd (chain 1):
+	['/nfs/nfs9/home/nobackup/zwu1/gnpc_explor/src/compiled_models/dahlou_cp_full', 'id=1', 'random', 'seed=28198', 'data', 'file=/tmp/tmp3tb7_4dd/0o10yo6l.json', 'output', 'file=/tmp/tmp3tb7_4dd/dahlou_cp_full7w9774qt/dahlou_cp_full-20260410162346_1.csv', 'method=sample', 'num_samples=2500', 'num_warmup=2500', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[-15, -15, -15, -15]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmp3tb7_4dd/dahlou_cp_full7w9774qt/dahlou_cp_full-20260410162346_1.csv
+ console_msgs (if any):
+	/tmp/tmp3tb7_4dd/dahlou_cp_full7w9774qt/dahlou_cp_full-20260410162346_0-stdout.txt

@@ -235,3 +235,58 @@ model {
         Y[i, 12] ~ ordered_logistic(Xi_m * beta[12, ]' + lambda[12] * xi[4, i] + b[sub, 12], theta[12]);
     }
 }
+
+
+generated quantities {
+    array[N, K] int<lower=1, upper=5> Y_rep;
+    
+    // These will output as 1s and 0s per draw. 
+    // The mean of these in your final summary table is your actual PPP-value.
+    vector[K] ppp_item;
+    real ppp_total;
+
+    {
+        // Local variables to hold test statistics (e.g., sum of scores)
+        vector[K] sum_Y = rep_vector(0.0, K);
+        vector[K] sum_Y_rep = rep_vector(0.0, K);
+        real sum_total = 0.0;
+        real sum_total_rep = 0.0;
+
+        for (i in 1:N) {
+            int sub = ID[i];
+            row_vector[p_meas] Xi_m = X_meas[i, ];
+            int domain;
+            
+            for (k in 1:K) {
+                // Map the item to its respective latent domain (1 to 4)
+                if (k <= 3) {
+                    domain = 1; // Bulbar
+                } else if (k <= 6) {
+                    domain = 2; // Fine Motor
+                } else if (k <= 9) {
+                    domain = 3; // Gross Motor
+                } else {
+                    domain = 4; // Respiratory
+                }
+
+                // Calculate the linear predictor (eta)
+                real eta = Xi_m * beta[k, ]' + lambda[k] * xi[domain, i] + b[sub, k];
+                
+                // Generate replicated data using the RNG equivalent of your likelihood
+                Y_rep[i, k] = ordered_logistic_rng(eta, theta[k]);
+                
+                // Accumulate sums for test statistics
+                sum_Y[k] += Y[i, k];
+                sum_Y_rep[k] += Y_rep[i, k];
+                sum_total += Y[i, k];
+                sum_total_rep += Y_rep[i, k];
+            }
+        }
+
+        // Calculate indicator function: 1 if Replicated Stat >= Observed Stat, else 0
+        for (k in 1:K) {
+            ppp_item[k] = (sum_Y_rep[k] >= sum_Y[k]) ? 1.0 : 0.0;
+        }
+        ppp_total = (sum_total_rep >= sum_total) ? 1.0 : 0.0;
+    }
+}

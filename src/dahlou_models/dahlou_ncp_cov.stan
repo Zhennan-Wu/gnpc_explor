@@ -236,17 +236,33 @@ model {
     }
 }
 
-
 generated quantities {
-    array[N, K] int<lower=1, upper=5> Y_rep;
+    // Structural Matrices Reporting
+    matrix[R, R] Sigma;
+    matrix[R, R] L_Sigma;
     
-    // These will output as 1s and 0s per draw. 
-    // The mean of these in your final summary table is your actual PPP-value.
+    // Posterior Predictive Checks & LOO
+    array[N, K] int<lower=1, upper=5> Y_rep;
+    vector[N] log_lik;     // NEW: Pointwise log-likelihood for LOO/WAIC
     vector[K] ppp_item;
     real ppp_total;
-
+    
     {
-        // Local variables to hold test statistics (e.g., sum of scores)
+        // --- Re-calculate identified Sigma ---
+        vector[R] D_vec;
+        matrix[R, R] Gamma_raw = S + A;
+        matrix[R, R] Sigma_raw = multiply_lower_tri_self_transpose(L_Sigma_corr);
+        matrix[R, R] Omega_raw = solve_lyapunov(Gamma_raw, Sigma_raw, R);
+        
+        for (r in 1:R) {
+            D_vec[r] = 1.0 / sqrt(fmax(Omega_raw[r, r], 1e-8)); 
+        }
+        matrix[R, R] D = diag_matrix(D_vec);
+        
+        Sigma = D * Sigma_raw * D;
+        L_Sigma = D * L_Sigma_corr;
+
+        // --- Calculate PPCs and Log-Likelihood ---
         vector[K] sum_Y = rep_vector(0.0, K);
         vector[K] sum_Y_rep = rep_vector(0.0, K);
         real sum_total = 0.0;
@@ -257,8 +273,9 @@ generated quantities {
             row_vector[p_meas] Xi_m = X_meas[i, ];
             int domain;
             
+            log_lik[i] = 0.0; // Initialize log-likelihood for visit i
+            
             for (k in 1:K) {
-                // Map the item to its respective latent domain (1 to 4)
                 if (k <= 3) {
                     domain = 1; // Bulbar
                 } else if (k <= 6) {
@@ -269,13 +286,14 @@ generated quantities {
                     domain = 4; // Respiratory
                 }
 
-                // Calculate the linear predictor (eta)
                 real eta = Xi_m * beta[k, ]' + lambda[k] * xi[domain, i] + b[sub, k];
                 
-                // Generate replicated data using the RNG equivalent of your likelihood
+                // 1. Generate Replicated Data (PPCs / PIT)
                 Y_rep[i, k] = ordered_logistic_rng(eta, theta[k]);
                 
-                // Accumulate sums for test statistics
+                // 2. Calculate Pointwise Log-Likelihood (LOO / WAIC)
+                log_lik[i] += ordered_logistic_lpmf(Y[i, k] | eta, theta[k]);
+                
                 sum_Y[k] += Y[i, k];
                 sum_Y_rep[k] += Y_rep[i, k];
                 sum_total += Y[i, k];
@@ -283,7 +301,6 @@ generated quantities {
             }
         }
 
-        // Calculate indicator function: 1 if Replicated Stat >= Observed Stat, else 0
         for (k in 1:K) {
             ppp_item[k] = (sum_Y_rep[k] >= sum_Y[k]) ? 1.0 : 0.0;
         }

@@ -1,0 +1,14 @@
+Item,Status,Optimizer,Converged,N_Fit
+Q1_Speech,fit,lbfgs,True,4336.0
+Q2_Salivation,fit,lbfgs,True,4336.0
+Q3_Swallowing,fit,lbfgs,True,4336.0
+Q4_Handwriting,fit,lbfgs,True,4336.0
+Q5_Cutting,fit,lbfgs,True,4336.0
+Q6_Dressing_and_Hygiene,fit,lbfgs,True,4336.0
+Q7_Turning_in_Bed,fit,lbfgs,True,4336.0
+Q8_Walking,fit,lbfgs,True,4336.0
+Q9_Climbing_Stairs,fit,lbfgs,True,4336.0
+R_1_Dyspnea,fit,lbfgs,True,4336.0
+R_2_Orthopnea,fit,lbfgs,True,4336.0
+R_3_Respiratory_Insufficiency,fit,lbfgs,True,4336.0
+R_3_Respiratory_Insufficiency,failed: Cannot predict random effects from singular covariance structure.,,,

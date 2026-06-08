@@ -1,0 +1,73 @@
+Model,Domain,Covariate,Est,SE,Z_Score,Source,Domain_Label
+1. LMM,Bulbar,BMI_Base,-0.0002836187765322606,0.00022491156282694702,-1.2610235461770567,direct_domain_lmm,Bulbar
+1. LMM,Fine_Motor,BMI_Base,0.0001631605472534037,0.00026311717260892015,0.620106037304964,direct_domain_lmm,"Fine Motor 
+(upper limbs)"
+1. LMM,Gross_Motor,BMI_Base,-0.0006566462205176329,0.0002607765101041957,-2.518042059291551,direct_domain_lmm,"Gross Motor 
+(lower limbs)"
+1. LMM,Respiratory,BMI_Base,-0.0005438573879224387,0.00024815901683877237,-2.191568111650684,direct_domain_lmm,Respiratory
+2. MLLMM,Bulbar,BMI_Base,-9.737429555005908e-05,0.00010150445189877801,-0.9593105891272868,direct_mdlt_latent_domain,Bulbar
+2. MLLMM,Fine_Motor,BMI_Base,5.0360323462890484e-05,0.0001014151350552547,0.4965760133874724,direct_mdlt_latent_domain,"Fine Motor 
+(upper limbs)"
+2. MLLMM,Gross_Motor,BMI_Base,-0.00020186573307159642,0.00010140158707685828,-1.9907551636109049,direct_mdlt_latent_domain,"Gross Motor 
+(lower limbs)"
+2. MLLMM,Respiratory,BMI_Base,-0.00025008446677014573,0.00010042940718125765,-2.4901517771461767,direct_mdlt_latent_domain,Respiratory
+3. DiagOU,Bulbar,BMI_Base,-0.0693453,0.050957015306122455,-1.3608587469931388,direct_3. DiagOU_alpha_dyn,Bulbar
+3. DiagOU,Fine_Motor,BMI_Base,0.0190523,0.04810354591836735,0.3960685150390394,direct_3. DiagOU_alpha_dyn,"Fine Motor 
+(upper limbs)"
+3. DiagOU,Gross_Motor,BMI_Base,-0.0639349,0.04567594387755102,-1.399749946523228,direct_3. DiagOU_alpha_dyn,"Gross Motor 
+(lower limbs)"
+3. DiagOU,Respiratory,BMI_Base,-0.136241,0.08083772959183673,-1.685364008711077,direct_3. DiagOU_alpha_dyn,Respiratory
+4. CLOUD,Bulbar,BMI_Base,-0.0684964,0.04837408163265306,-1.4159731345424476,direct_4. CLOUD_alpha_dyn,Bulbar
+4. CLOUD,Fine_Motor,BMI_Base,0.0257054,0.046854591836734696,0.5486207219469701,direct_4. CLOUD_alpha_dyn,"Fine Motor 
+(upper limbs)"
+4. CLOUD,Gross_Motor,BMI_Base,-0.0599734,0.04338178571428571,-1.3824557706081388,direct_4. CLOUD_alpha_dyn,"Gross Motor 
+(lower limbs)"
+4. CLOUD,Respiratory,BMI_Base,-0.118228,0.0782416836734694,-1.511061552476399,direct_4. CLOUD_alpha_dyn,Respiratory
+1. LMM,Bulbar,Bulbar_Onset,-0.007382811681507478,0.00043996599607930655,-16.780414275872086,direct_domain_lmm,Bulbar
+1. LMM,Fine_Motor,Bulbar_Onset,0.0006690931471000606,0.0005114323880929375,1.3082729265446384,direct_domain_lmm,"Fine Motor 
+(upper limbs)"
+1. LMM,Gross_Motor,Bulbar_Onset,3.3995720674261176e-05,0.0005081173881609619,0.06690524958671948,direct_domain_lmm,"Gross Motor 
+(lower limbs)"
+1. LMM,Respiratory,Bulbar_Onset,0.0009824402239206268,0.00046678937267424683,2.1046756448035753,direct_domain_lmm,Respiratory
+2. MLLMM,Bulbar,Bulbar_Onset,-0.003028008058519208,0.0001991758497138435,-15.202686785920863,direct_mdlt_latent_domain,Bulbar
+2. MLLMM,Fine_Motor,Bulbar_Onset,0.00023628267369048023,0.0001975263920628676,1.1962081179272361,direct_mdlt_latent_domain,"Fine Motor 
+(upper limbs)"
+2. MLLMM,Gross_Motor,Bulbar_Onset,1.0031093337649703e-06,0.0001975708111370569,0.0050772142301379886,direct_mdlt_latent_domain,"Gross Motor 
+(lower limbs)"
+2. MLLMM,Respiratory,Bulbar_Onset,0.0006336345618676901,0.0001950146496592848,3.2491639114021926,direct_mdlt_latent_domain,Respiratory
+3. DiagOU,Bulbar,Bulbar_Onset,-0.501881,0.09573622448979593,-5.242331235377818,direct_3. DiagOU_alpha_dyn,Bulbar
+3. DiagOU,Fine_Motor,Bulbar_Onset,0.0229703,0.10622831632653061,0.2162351884538261,direct_3. DiagOU_alpha_dyn,"Fine Motor 
+(upper limbs)"
+3. DiagOU,Gross_Motor,Bulbar_Onset,0.177487,0.09789142857142857,1.8131005195260055,direct_3. DiagOU_alpha_dyn,"Gross Motor 
+(lower limbs)"
+3. DiagOU,Respiratory,Bulbar_Onset,0.126682,0.15109744897959185,0.8384125665623279,direct_3. DiagOU_alpha_dyn,Respiratory
+4. CLOUD,Bulbar,Bulbar_Onset,-0.373575,0.09898520408163267,-3.774048894134868,direct_4. CLOUD_alpha_dyn,Bulbar
+4. CLOUD,Fine_Motor,Bulbar_Onset,0.0370136,0.11458061224489796,0.3230354531610398,direct_4. CLOUD_alpha_dyn,"Fine Motor 
+(upper limbs)"
+4. CLOUD,Gross_Motor,Bulbar_Onset,0.12864,0.10625698979591837,1.2106497675783154,direct_4. CLOUD_alpha_dyn,"Gross Motor 
+(lower limbs)"
+4. CLOUD,Respiratory,Bulbar_Onset,0.252512,0.16178512755102042,1.5607862343240917,direct_4. CLOUD_alpha_dyn,Respiratory
+1. LMM,Bulbar,FVC_Base,0.0009700644008890386,0.00017671337630651454,5.489479184679452,direct_domain_lmm,Bulbar
+1. LMM,Fine_Motor,FVC_Base,0.0011287514051965823,0.00020697307339135462,5.4536147466017715,direct_domain_lmm,"Fine Motor 
+(upper limbs)"
+1. LMM,Gross_Motor,FVC_Base,0.0011521467611188105,0.00020516572970365985,5.615688169671243,direct_domain_lmm,"Gross Motor 
+(lower limbs)"
+1. LMM,Respiratory,FVC_Base,0.0022182593861198156,0.000191208535060014,11.601257158440012,direct_domain_lmm,Respiratory
+2. MLLMM,Bulbar,FVC_Base,0.00038247217146140244,7.94416590111988e-05,4.814503828620771,direct_mdlt_latent_domain,Bulbar
+2. MLLMM,Fine_Motor,FVC_Base,0.00034828953394380724,7.932650718444056e-05,4.390581992145524,direct_mdlt_latent_domain,"Fine Motor 
+(upper limbs)"
+2. MLLMM,Gross_Motor,FVC_Base,0.0003669130928763636,7.932438329398978e-05,4.625476778262753,direct_mdlt_latent_domain,"Gross Motor 
+(lower limbs)"
+2. MLLMM,Respiratory,FVC_Base,0.0011185320138405231,7.830066546008059e-05,14.285089497876305,direct_mdlt_latent_domain,Respiratory
+3. DiagOU,Bulbar,FVC_Base,0.108738,0.04043936224489796,2.6889148088313126,direct_3. DiagOU_alpha_dyn,Bulbar
+3. DiagOU,Fine_Motor,FVC_Base,0.14331,0.04111012755102041,3.4860023195535628,direct_3. DiagOU_alpha_dyn,"Fine Motor 
+(upper limbs)"
+3. DiagOU,Gross_Motor,FVC_Base,0.167309,0.03785147959183674,4.420144253385614,direct_3. DiagOU_alpha_dyn,"Gross Motor 
+(lower limbs)"
+3. DiagOU,Respiratory,FVC_Base,0.367602,0.06785994897959184,5.417068617463187,direct_3. DiagOU_alpha_dyn,Respiratory
+4. CLOUD,Bulbar,FVC_Base,0.120455,0.037837270408163266,3.1835013123465754,direct_4. CLOUD_alpha_dyn,Bulbar
+4. CLOUD,Fine_Motor,FVC_Base,0.14048,0.03900058673469387,3.6019970918804862,direct_4. CLOUD_alpha_dyn,"Fine Motor 
+(upper limbs)"
+4. CLOUD,Gross_Motor,FVC_Base,0.174952,0.03872806122448979,4.5174479297034535,direct_4. CLOUD_alpha_dyn,"Gross Motor 
+(lower limbs)"
+4. CLOUD,Respiratory,FVC_Base,0.32863,0.06449030612244898,5.0958046217988775,direct_4. CLOUD_alpha_dyn,Respiratory

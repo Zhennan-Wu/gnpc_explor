@@ -14,13 +14,11 @@ import sys
 import traceback
 
 # 2. Optimize CPU core usage for small matrix math (Prevents thread thrashing)
-# If your server has massive core counts, setting this between 4 and 8 is usually the fastest.
 torch.set_num_threads(8)
 
 # ---------------------------------------------------------
 # 0. Server Logging Configuration
 # ---------------------------------------------------------
-# Logs will be printed to the console AND saved to this file
 LOG_FILENAME = "clouds_simulation.log"
 logging.basicConfig(
     level=logging.INFO,
@@ -46,16 +44,21 @@ def batched_newton_schulz_inverse(A, num_iters=6):
     return X
 
 # ---------------------------------------------------------
-# 2. CLOUDS Model (Woodbury Optimized & Loss Normalized)
+# 2. CLOUDS Model (Woodbury Optimized & Anchor Orientation)
 # ---------------------------------------------------------
 class CLOUDS(nn.Module):
-    def __init__(self, obs_dim, latent_dim, covar_dim, delta=1e-4, theta_mode="exact"):
+    def __init__(self, obs_dim, latent_dim, covar_dim, delta=1e-4, theta_mode="exact", anchor_items=None):
         super().__init__()
         self.D = obs_dim
         self.K = latent_dim
         self.C_dim = covar_dim
         self.delta = delta
         self.theta_mode = theta_mode
+        
+        # Default to the first K items as anchors if not provided
+        if anchor_items is None:
+            anchor_items = list(range(self.K))
+        assert len(anchor_items) == self.K, f"Must provide exactly R={self.K} anchor items."
         
         if self.theta_mode == "exact":
             self.L_G = nn.Parameter(torch.tril(torch.eye(self.K) + 0.1 * torch.randn(self.K, self.K)))
@@ -68,12 +71,34 @@ class CLOUDS(nn.Module):
         self.Phi_int = nn.Parameter(torch.randn(self.K, self.C_dim) * 0.1)
         self.alpha_bias = nn.Parameter(torch.randn(self.K) * 0.1)
         
-        self.Z = nn.Parameter(torch.randn(self.D, self.K) - 0.5) 
-        self.register_buffer('tril_mask', torch.tril(torch.ones(self.D, self.K)))
+        # 3. Factor Loadings (Anchor Orientation)
+        self.Lambda_raw = nn.Parameter(torch.randn(self.D, self.K) * 0.1)
+        
+        self.register_buffer('anchor_idx', torch.tensor(anchor_items, dtype=torch.long))
+        self.register_buffer('anchor_cols', torch.arange(self.K, dtype=torch.long))
+        
+        # struct_mask: 0 at off-diagonals of anchor rows, 1 everywhere else
+        struct_mask = torch.ones(self.D, self.K)
+        struct_mask[self.anchor_idx, :] = 0.0
+        struct_mask[self.anchor_idx, self.anchor_cols] = 1.0
+        self.register_buffer('struct_mask', struct_mask)
+        
+        # positivity_mask: True only at the diagonal of the anchor block
+        positivity_mask = torch.zeros(self.D, self.K, dtype=torch.bool)
+        positivity_mask[self.anchor_idx, self.anchor_cols] = True
+        self.register_buffer('positivity_mask', positivity_mask)
+        
         self.log_psi = nn.Parameter(torch.zeros(self.D)) 
 
+    @property
+    def Lambda(self):
+        """Constructs Lambda enforcing structural zeroes and strict positivity on anchor diagonals."""
+        return torch.where(self.positivity_mask, 
+                           torch.exp(self.Lambda_raw), 
+                           self.Lambda_raw * self.struct_mask)
+
     def get_dynamics(self):
-        device = self.Z.device
+        device = self.Lambda_raw.device
         if self.theta_mode == "exact":
             L_unc_tril = torch.tril(self.L_Omega_unc)
             Omega = L_unc_tril @ L_unc_tril.T + self.delta * torch.eye(self.K, device=device)
@@ -94,7 +119,7 @@ class CLOUDS(nn.Module):
     @torch.no_grad()
     def get_identifiable_parameters(self):
         Gamma_est, Omega_est, _ = self.get_dynamics()
-        Lambda_est = self.tril_mask * torch.exp(self.Z)
+        Lambda_est = self.Lambda
         
         stds = torch.sqrt(torch.diag(Omega_est))
         D = torch.diag(stds)
@@ -116,7 +141,7 @@ class CLOUDS(nn.Module):
 
     def get_subject_matrices(self, Gamma, Omega, u, times):
         dt = times[1:] - times[:-1]
-        device = self.Z.device
+        device = self.Lambda_raw.device
         
         Gamma_batch = Gamma.unsqueeze(0).expand(dt.shape[0], self.K, self.K)
         A_trans = torch.linalg.matrix_exp(-Gamma_batch * dt.view(-1, 1, 1))
@@ -132,7 +157,7 @@ class CLOUDS(nn.Module):
         Q = Omega_batch - torch.bmm(A_trans, torch.bmm(Omega_batch, A_trans_T))
         Q = 0.5 * (Q + Q.transpose(1, 2)) 
             
-        Lambda = self.tril_mask * torch.exp(self.Z)
+        Lambda = self.Lambda
         return A_trans, b_shift, dt, Lambda, Q
 
     def kalman_smoother(self, x_obs, A_trans, b_shift, dt, Lambda, Q):
@@ -240,12 +265,14 @@ class CLOUDS(nn.Module):
         else:
             log_prior_dyn -= 0.5 * torch.sum(self.log_rho**2) + 0.5 * torch.sum(self.log_omega**2)
 
-        active_Z = self.Z[self.tril_mask == 1]
-        log_prior_Z = -0.5 * torch.sum(active_Z ** 2)
+        # Apply prior only to active structural parameters
+        active_Lambda_raw = self.Lambda_raw[self.struct_mask == 1]
+        log_prior_Lambda = -0.5 * torch.sum(active_Lambda_raw ** 2)
+        
         log_prior_lin = -0.5 * (torch.sum(self.Phi_int**2) + torch.sum(self.alpha_bias**2))
         log_prior_psi = -0.5 * torch.sum(self.log_psi ** 2)
         
-        return ll_obs + ll_lat + log_prior_dyn + log_prior_Z + log_prior_lin + log_prior_psi
+        return ll_obs + ll_lat + log_prior_dyn + log_prior_Lambda + log_prior_lin + log_prior_psi
 
     def pca_warm_start(self, subjects_data):
         with torch.no_grad():
@@ -254,32 +281,39 @@ class CLOUDS(nn.Module):
             U, S_vals, Vh = torch.linalg.svd(x_valid - x_valid.mean(dim=0), full_matrices=False)
             
             Lambda_pca = Vh[:self.K, :].T * torch.sqrt(S_vals[:self.K] / x_valid.shape[0])
-            q, r = torch.linalg.qr(Lambda_pca.T)
-            Lambda_tril = r.T * torch.sign(torch.diag(r.T)).unsqueeze(0)
             
-            mask = self.tril_mask == 1
-            self.Z.data[mask] = torch.log(torch.abs(Lambda_tril[mask]) + 1e-4)
+            # Targeted rotation: Align PCA loadings to the Anchor space
+            A_pca = Lambda_pca[self.anchor_idx, :]
+            W = torch.linalg.pinv(A_pca) @ torch.diag(torch.norm(A_pca, dim=1))
+            
+            Lambda_rotated = Lambda_pca @ W
+            
+            self.Lambda_raw.data = Lambda_rotated
+            # Initialize log-space anchor parameters
+            self.Lambda_raw.data[self.anchor_idx, self.anchor_cols] = torch.log(
+                torch.abs(Lambda_rotated[self.anchor_idx, self.anchor_cols]) + 1e-4
+            )
+            
             self.Phi_int.data.fill_(0.0); self.alpha_bias.data.fill_(0.0); self.log_psi.data.fill_(0.0)
 
     def fit_em_multistart(self, subjects_data, num_em_epochs=40, warmup_epochs=15, m_step_iters=20, lr=0.01, n_starts=5, burn_in_epochs=10):
         best_loss = float('inf')
         best_state_dict = None
         
-        spatial_names = ['Z', 'log_psi']
+        spatial_names = ['Lambda_raw', 'log_psi']
         temporal_params = [p for n, p in self.named_parameters() if n not in spatial_names]
         spatial_params = [p for n, p in self.named_parameters() if n in spatial_names]
         
         total_obs = sum([subj['x'].shape[0] for subj in subjects_data])
         
-        # Disable logging per start if n_starts is small to avoid console clutter
         for start in range(n_starts):
             with torch.no_grad():
                 if self.theta_mode == "exact":
                     nn.init.normal_(self.L_G, mean=0.0, std=0.1)
-                    self.L_G.data += torch.eye(self.K, device=self.Z.device)
+                    self.L_G.data += torch.eye(self.K, device=self.Lambda_raw.device)
                     nn.init.normal_(self.gamma_skew, mean=0.0, std=0.1)
                     nn.init.normal_(self.L_Omega_unc, mean=0.0, std=0.1)
-                    self.L_Omega_unc.data += torch.eye(self.K, device=self.Z.device)
+                    self.L_Omega_unc.data += torch.eye(self.K, device=self.Lambda_raw.device)
                 else:
                     nn.init.normal_(self.log_rho, mean=-2.0, std=0.1)
                     nn.init.normal_(self.log_omega, mean=0.0, std=0.1)
@@ -294,7 +328,7 @@ class CLOUDS(nn.Module):
             
             for epoch in range(burn_in_epochs):
                 Gamma, Omega, _ = self.get_dynamics()
-                Lambda = self.tril_mask * torch.exp(self.Z)
+                Lambda = self.Lambda
                 
                 smoothed_stats = []
                 with torch.no_grad():
@@ -306,7 +340,7 @@ class CLOUDS(nn.Module):
                 for m in range(m_step_iters):
                     opt_burn.zero_grad()
                     Gamma_m, Omega_m, _ = self.get_dynamics()
-                    Lambda_detached = (self.tril_mask * torch.exp(self.Z)).detach()
+                    Lambda_detached = self.Lambda.detach()
                     
                     loss = -self.expected_complete_log_posterior_vectorized(subjects_data, smoothed_stats, Gamma_m, Omega_m, Lambda_detached) / (total_obs * self.D)
                     loss.backward()
@@ -330,7 +364,7 @@ class CLOUDS(nn.Module):
         
         for epoch in range(num_em_epochs - burn_in_epochs):
             Gamma, Omega, _ = self.get_dynamics()
-            Lambda = self.tril_mask * torch.exp(self.Z)
+            Lambda = self.Lambda
             
             smoothed_stats = []
             with torch.no_grad():
@@ -343,7 +377,7 @@ class CLOUDS(nn.Module):
             for m in range(m_step_iters):
                 active_opt.zero_grad()
                 Gamma_m, Omega_m, _ = self.get_dynamics()
-                Lambda_m = self.tril_mask * torch.exp(self.Z)
+                Lambda_m = self.Lambda
                 
                 if epoch < warmup_epochs:
                     Lambda_m = Lambda_m.detach()
@@ -359,9 +393,12 @@ class CLOUDS(nn.Module):
 # ---------------------------------------------------------
 # 3. Data Simulation Wrappers
 # ---------------------------------------------------------
-def simulate_ad_cohort_stress(N, D, K, C_dim, theta_mode="exact", seed=42, missing_visit_rate=0.0, noise_scale=1.0):
+def simulate_ad_cohort_stress(N, D, K, C_dim, theta_mode="exact", seed=42, missing_visit_rate=0.0, noise_scale=1.0, anchor_items=None):
     torch.manual_seed(seed)
     
+    if anchor_items is None:
+        anchor_items = list(range(K))
+        
     if theta_mode == "diagonal":
         rho_true = torch.linspace(0.02, 0.15, K)
         omega_true = torch.ones(K)
@@ -380,8 +417,13 @@ def simulate_ad_cohort_stress(N, D, K, C_dim, theta_mode="exact", seed=42, missi
         Gamma_true = (S_true + A_true) @ torch.linalg.inv(Omega_true)
         
     Phi_true, alpha_true = torch.randn(K, C_dim)*0.5, torch.randn(K)*0.5
-    Z_true = torch.randn(D, K) - 1.0 
-    Lambda_true = torch.tril(torch.ones(D, K)) * torch.exp(Z_true)
+    
+    # Ground truth Lambda generation with anchor constraints
+    Z_true = torch.randn(D, K) * 0.5 
+    Lambda_true = Z_true.clone()
+    for r, idx in enumerate(anchor_items):
+        Lambda_true[idx, :] = 0.0
+        Lambda_true[idx, r] = torch.exp(torch.randn(1) * 0.5) # Force strict positivity
     
     subjects_data = []
     for _ in range(N):
@@ -430,11 +472,12 @@ def run_smoke_test():
     try:
         start_time = time.time()
         # Micro-dataset
+        anchor_items = list(range(3))
         subjects_data, _ = simulate_ad_cohort_stress(
-            N=5, D=15, K=3, C_dim=2, theta_mode="exact", seed=99
+            N=5, D=15, K=3, C_dim=2, theta_mode="exact", seed=99, anchor_items=anchor_items
         )
         
-        model = CLOUDS(obs_dim=15, latent_dim=3, covar_dim=2, theta_mode="exact")
+        model = CLOUDS(obs_dim=15, latent_dim=3, covar_dim=2, theta_mode="exact", anchor_items=anchor_items)
         model.pca_warm_start(subjects_data)
         
         # Micro-epochs
@@ -468,17 +511,19 @@ def run_single_simulation(task_id, scenario, mode, run_idx, seed):
     start_time = time.time()
     
     try:
+        anchor_items = list(range(scenario["K"]))
         subjects_data, true_params = simulate_ad_cohort_stress(
             scenario["N"], scenario["D"], scenario["K"], scenario["C"], 
             theta_mode=mode, 
             seed=seed,
             missing_visit_rate=scenario["miss"], 
-            noise_scale=scenario["noise"]
+            noise_scale=scenario["noise"],
+            anchor_items=anchor_items
         )
         
         model = CLOUDS(
             obs_dim=scenario["D"], latent_dim=scenario["K"], 
-            covar_dim=scenario["C"], theta_mode=mode
+            covar_dim=scenario["C"], theta_mode=mode, anchor_items=anchor_items
         )
         model.pca_warm_start(subjects_data)
         
@@ -496,13 +541,13 @@ def run_single_simulation(task_id, scenario, mode, run_idx, seed):
             identifiable = model.get_identifiable_parameters()
             Lambda_est = identifiable["Lambda"]
             Gamma_est = identifiable["Gamma"]
-            mask = model.tril_mask == 1
+            mask = model.struct_mask == 1
             
             f_true_flat = torch.cat([subj['F_true'] for subj in subjects_data], dim=0).numpy().flatten()
             f_est_flat = torch.cat([stat[0] for stat in smoothed_stats], dim=0).numpy().flatten()
             
             f_corr = np.corrcoef(f_true_flat, f_est_flat)[0, 1]
-            l_corr = np.corrcoef(true_params['Lambda'][mask].numpy(), Lambda_est[mask].numpy())[0, 1]
+            l_corr = np.corrcoef(true_params['Lambda'][mask].cpu().numpy(), Lambda_est[mask].cpu().numpy())[0, 1]
             
             if mode == "diagonal":
                 g_true = torch.diag(true_params['Gamma']).numpy()

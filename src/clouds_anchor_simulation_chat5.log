@@ -1,0 +1,224 @@
+2026-06-09 07:59:36,770 [INFO] --- STARTING SMOKE TEST ---
+2026-06-09 07:59:37,605 [INFO] Smoke Test Passed in 0.84s. Architecture and memory bounds verified.
+2026-06-09 07:59:37,606 [INFO] --- LAUNCHING latent-dimension K-scaling stress test ---
+2026-06-09 07:59:37,606 [INFO] Total isolated tasks queued: 100
+2026-06-09 07:59:37,606 [INFO] Active Python processes: 4; PyTorch threads per worker: 8
+2026-06-09 07:59:37,606 [INFO] ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2026-06-09 07:59:37,608 [INFO] Worker recycling enabled: max_tasks_per_child=1
+2026-06-09 07:59:38,711 [INFO] [Worker 0] Spawned: Latent K=3 (D=512, N=90, J=5-7) | exact
+2026-06-09 07:59:38,714 [INFO] [Worker 1] Spawned: Latent K=3 (D=512, N=90, J=5-7) | exact
+2026-06-09 07:59:38,714 [INFO] [Worker 2] Spawned: Latent K=3 (D=512, N=90, J=5-7) | exact
+2026-06-09 07:59:38,720 [INFO] [Worker 3] Spawned: Latent K=3 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:04:20,699 [INFO] [Progress 1/100] Finished Latent K=3 (D=512, N=90, J=5-7) | Exact in 281.9s
+2026-06-09 08:04:21,155 [INFO] [Progress 2/100] Finished Latent K=3 (D=512, N=90, J=5-7) | Exact in 282.1s
+2026-06-09 08:04:22,324 [INFO] [Worker 4] Spawned: Latent K=3 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:04:22,527 [INFO] [Progress 3/100] Finished Latent K=3 (D=512, N=90, J=5-7) | Exact in 283.7s
+2026-06-09 08:04:22,528 [INFO] [Worker 5] Spawned: Latent K=3 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:04:24,149 [INFO] [Worker 6] Spawned: Latent K=3 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:04:26,201 [INFO] [Progress 4/100] Finished Latent K=3 (D=512, N=90, J=5-7) | Exact in 287.4s
+2026-06-09 08:04:27,840 [INFO] [Worker 7] Spawned: Latent K=3 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:09:09,076 [INFO] [Progress 5/100] Finished Latent K=3 (D=512, N=90, J=5-7) | Exact in 286.7s
+2026-06-09 08:09:10,717 [INFO] [Worker 8] Spawned: Latent K=3 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:09:16,002 [INFO] [Progress 6/100] Finished Latent K=3 (D=512, N=90, J=5-7) | Exact in 288.1s
+2026-06-09 08:09:17,644 [INFO] [Worker 9] Spawned: Latent K=3 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:09:19,134 [INFO] [Progress 7/100] Finished Latent K=3 (D=512, N=90, J=5-7) | Exact in 294.9s
+2026-06-09 08:09:20,804 [INFO] [Worker 10] Spawned: Latent K=3 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:09:21,673 [INFO] [Progress 8/100] Finished Latent K=3 (D=512, N=90, J=5-7) | Exact in 299.1s
+2026-06-09 08:09:23,303 [INFO] [Worker 11] Spawned: Latent K=3 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:13:29,779 [INFO] [Progress 9/100] Finished Latent K=3 (D=512, N=90, J=5-7) | Diagonal in 246.4s
+2026-06-09 08:13:30,408 [INFO] [Progress 10/100] Finished Latent K=3 (D=512, N=90, J=5-7) | Diagonal in 249.5s
+2026-06-09 08:13:31,403 [INFO] [Worker 12] Spawned: Latent K=3 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:13:32,041 [INFO] [Worker 13] Spawned: Latent K=3 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:13:55,153 [INFO] [Progress 11/100] Finished Latent K=3 (D=512, N=90, J=5-7) | Exact in 284.4s
+2026-06-09 08:13:56,806 [INFO] [Worker 14] Spawned: Latent K=3 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:14:05,963 [INFO] [Progress 12/100] Finished Latent K=3 (D=512, N=90, J=5-7) | Exact in 288.2s
+2026-06-09 08:14:07,603 [INFO] [Worker 15] Spawned: Latent K=3 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:17:37,114 [INFO] [Progress 13/100] Finished Latent K=3 (D=512, N=90, J=5-7) | Diagonal in 245.6s
+2026-06-09 08:17:38,756 [INFO] [Worker 16] Spawned: Latent K=3 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:17:42,398 [INFO] [Progress 14/100] Finished Latent K=3 (D=512, N=90, J=5-7) | Diagonal in 250.3s
+2026-06-09 08:17:44,038 [INFO] [Worker 17] Spawned: Latent K=3 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:18:02,248 [INFO] [Progress 15/100] Finished Latent K=3 (D=512, N=90, J=5-7) | Diagonal in 245.4s
+2026-06-09 08:18:03,892 [INFO] [Worker 18] Spawned: Latent K=3 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:18:12,173 [INFO] [Progress 16/100] Finished Latent K=3 (D=512, N=90, J=5-7) | Diagonal in 244.5s
+2026-06-09 08:18:13,828 [INFO] [Worker 19] Spawned: Latent K=3 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:21:45,764 [INFO] [Progress 17/100] Finished Latent K=3 (D=512, N=90, J=5-7) | Diagonal in 246.9s
+2026-06-09 08:21:47,404 [INFO] [Worker 20] Spawned: Latent K=4 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:21:53,071 [INFO] [Progress 18/100] Finished Latent K=3 (D=512, N=90, J=5-7) | Diagonal in 249.0s
+2026-06-09 08:21:54,700 [INFO] [Worker 21] Spawned: Latent K=4 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:22:08,895 [INFO] [Progress 19/100] Finished Latent K=3 (D=512, N=90, J=5-7) | Diagonal in 244.9s
+2026-06-09 08:22:10,540 [INFO] [Worker 22] Spawned: Latent K=4 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:22:19,726 [INFO] [Progress 20/100] Finished Latent K=3 (D=512, N=90, J=5-7) | Diagonal in 245.8s
+2026-06-09 08:22:21,356 [INFO] [Worker 23] Spawned: Latent K=4 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:26:38,768 [INFO] [Progress 21/100] Finished Latent K=4 (D=512, N=90, J=5-7) | Exact in 291.3s
+2026-06-09 08:26:40,418 [INFO] [Worker 24] Spawned: Latent K=4 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:26:48,655 [INFO] [Progress 22/100] Finished Latent K=4 (D=512, N=90, J=5-7) | Exact in 293.9s
+2026-06-09 08:26:50,300 [INFO] [Worker 25] Spawned: Latent K=4 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:27:01,853 [INFO] [Progress 23/100] Finished Latent K=4 (D=512, N=90, J=5-7) | Exact in 291.2s
+2026-06-09 08:27:03,489 [INFO] [Worker 26] Spawned: Latent K=4 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:27:08,830 [INFO] [Progress 24/100] Finished Latent K=4 (D=512, N=90, J=5-7) | Exact in 287.4s
+2026-06-09 08:27:10,473 [INFO] [Worker 27] Spawned: Latent K=4 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:31:29,806 [INFO] [Progress 25/100] Finished Latent K=4 (D=512, N=90, J=5-7) | Exact in 289.3s
+2026-06-09 08:31:31,442 [INFO] [Worker 28] Spawned: Latent K=4 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:31:39,499 [INFO] [Progress 26/100] Finished Latent K=4 (D=512, N=90, J=5-7) | Exact in 289.1s
+2026-06-09 08:31:41,133 [INFO] [Worker 29] Spawned: Latent K=4 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:31:53,778 [INFO] [Progress 27/100] Finished Latent K=4 (D=512, N=90, J=5-7) | Exact in 290.2s
+2026-06-09 08:31:55,413 [INFO] [Worker 30] Spawned: Latent K=4 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:31:58,156 [INFO] [Progress 28/100] Finished Latent K=4 (D=512, N=90, J=5-7) | Exact in 287.6s
+2026-06-09 08:31:59,815 [INFO] [Worker 31] Spawned: Latent K=4 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:36:04,062 [INFO] [Progress 29/100] Finished Latent K=4 (D=512, N=90, J=5-7) | Diagonal in 248.6s
+2026-06-09 08:36:05,698 [INFO] [Worker 32] Spawned: Latent K=4 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:36:07,243 [INFO] [Progress 30/100] Finished Latent K=4 (D=512, N=90, J=5-7) | Diagonal in 247.4s
+2026-06-09 08:36:08,882 [INFO] [Worker 33] Spawned: Latent K=4 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:36:20,418 [INFO] [Progress 31/100] Finished Latent K=4 (D=512, N=90, J=5-7) | Exact in 288.9s
+2026-06-09 08:36:22,084 [INFO] [Worker 34] Spawned: Latent K=4 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:36:30,840 [INFO] [Progress 32/100] Finished Latent K=4 (D=512, N=90, J=5-7) | Exact in 289.6s
+2026-06-09 08:36:32,472 [INFO] [Worker 35] Spawned: Latent K=4 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:40:14,078 [INFO] [Progress 33/100] Finished Latent K=4 (D=512, N=90, J=5-7) | Diagonal in 248.3s
+2026-06-09 08:40:15,636 [INFO] [Progress 34/100] Finished Latent K=4 (D=512, N=90, J=5-7) | Diagonal in 246.7s
+2026-06-09 08:40:15,718 [INFO] [Worker 36] Spawned: Latent K=4 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:40:17,266 [INFO] [Worker 37] Spawned: Latent K=4 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:40:32,941 [INFO] [Progress 35/100] Finished Latent K=4 (D=512, N=90, J=5-7) | Diagonal in 250.8s
+2026-06-09 08:40:34,583 [INFO] [Worker 38] Spawned: Latent K=4 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:40:39,513 [INFO] [Progress 36/100] Finished Latent K=4 (D=512, N=90, J=5-7) | Diagonal in 247.0s
+2026-06-09 08:40:41,164 [INFO] [Worker 39] Spawned: Latent K=4 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:44:29,247 [INFO] [Progress 37/100] Finished Latent K=4 (D=512, N=90, J=5-7) | Diagonal in 253.5s
+2026-06-09 08:44:30,366 [INFO] [Progress 38/100] Finished Latent K=4 (D=512, N=90, J=5-7) | Diagonal in 253.0s
+2026-06-09 08:44:30,951 [INFO] [Worker 40] Spawned: Latent K=8 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:44:32,010 [INFO] [Worker 41] Spawned: Latent K=8 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:44:44,691 [INFO] [Progress 39/100] Finished Latent K=4 (D=512, N=90, J=5-7) | Diagonal in 250.0s
+2026-06-09 08:44:46,330 [INFO] [Worker 42] Spawned: Latent K=8 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:44:49,886 [INFO] [Progress 40/100] Finished Latent K=4 (D=512, N=90, J=5-7) | Diagonal in 248.6s
+2026-06-09 08:44:51,529 [INFO] [Worker 43] Spawned: Latent K=8 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:47:36,139 [INFO] [Progress 41/100] Finished Latent K=8 (D=512, N=90, J=5-7) | Exact in 184.1s
+2026-06-09 08:47:37,374 [INFO] [Progress 42/100] Finished Latent K=8 (D=512, N=90, J=5-7) | Exact in 186.3s
+2026-06-09 08:47:37,781 [INFO] [Worker 44] Spawned: Latent K=8 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:47:39,019 [INFO] [Worker 45] Spawned: Latent K=8 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:47:53,818 [INFO] [Progress 43/100] Finished Latent K=8 (D=512, N=90, J=5-7) | Exact in 187.4s
+2026-06-09 08:47:55,480 [INFO] [Worker 46] Spawned: Latent K=8 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:47:58,661 [INFO] [Progress 44/100] Finished Latent K=8 (D=512, N=90, J=5-7) | Exact in 187.1s
+2026-06-09 08:48:00,315 [INFO] [Worker 47] Spawned: Latent K=8 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:50:45,362 [INFO] [Progress 45/100] Finished Latent K=8 (D=512, N=90, J=5-7) | Exact in 186.3s
+2026-06-09 08:50:47,004 [INFO] [Worker 48] Spawned: Latent K=8 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:50:48,674 [INFO] [Progress 46/100] Finished Latent K=8 (D=512, N=90, J=5-7) | Exact in 190.8s
+2026-06-09 08:50:50,326 [INFO] [Worker 49] Spawned: Latent K=8 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:51:00,705 [INFO] [Progress 47/100] Finished Latent K=8 (D=512, N=90, J=5-7) | Exact in 185.2s
+2026-06-09 08:51:02,344 [INFO] [Worker 50] Spawned: Latent K=8 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:51:10,511 [INFO] [Progress 48/100] Finished Latent K=8 (D=512, N=90, J=5-7) | Exact in 190.1s
+2026-06-09 08:51:12,167 [INFO] [Worker 51] Spawned: Latent K=8 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:53:16,149 [INFO] [Progress 49/100] Finished Latent K=8 (D=512, N=90, J=5-7) | Diagonal in 133.7s
+2026-06-09 08:53:17,779 [INFO] [Worker 52] Spawned: Latent K=8 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:53:26,241 [INFO] [Progress 50/100] Finished Latent K=8 (D=512, N=90, J=5-7) | Diagonal in 134.0s
+2026-06-09 08:53:27,881 [INFO] [Worker 53] Spawned: Latent K=8 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:53:55,608 [INFO] [Progress 51/100] Finished Latent K=8 (D=512, N=90, J=5-7) | Exact in 188.5s
+2026-06-09 08:53:57,255 [INFO] [Worker 54] Spawned: Latent K=8 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:54:00,884 [INFO] [Progress 52/100] Finished Latent K=8 (D=512, N=90, J=5-7) | Exact in 190.5s
+2026-06-09 08:54:02,533 [INFO] [Worker 55] Spawned: Latent K=8 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:55:31,157 [INFO] [Progress 53/100] Finished Latent K=8 (D=512, N=90, J=5-7) | Diagonal in 133.3s
+2026-06-09 08:55:32,813 [INFO] [Worker 56] Spawned: Latent K=8 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:55:42,115 [INFO] [Progress 54/100] Finished Latent K=8 (D=512, N=90, J=5-7) | Diagonal in 134.2s
+2026-06-09 08:55:43,770 [INFO] [Worker 57] Spawned: Latent K=8 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:56:11,867 [INFO] [Progress 55/100] Finished Latent K=8 (D=512, N=90, J=5-7) | Diagonal in 134.5s
+2026-06-09 08:56:13,521 [INFO] [Worker 58] Spawned: Latent K=8 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:56:18,512 [INFO] [Progress 56/100] Finished Latent K=8 (D=512, N=90, J=5-7) | Diagonal in 135.9s
+2026-06-09 08:56:20,170 [INFO] [Worker 59] Spawned: Latent K=8 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 08:57:46,515 [INFO] [Progress 57/100] Finished Latent K=8 (D=512, N=90, J=5-7) | Diagonal in 133.6s
+2026-06-09 08:57:48,164 [INFO] [Worker 60] Spawned: Latent K=16 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:57:58,896 [INFO] [Progress 58/100] Finished Latent K=8 (D=512, N=90, J=5-7) | Diagonal in 135.1s
+2026-06-09 08:58:00,536 [INFO] [Worker 61] Spawned: Latent K=16 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:58:28,640 [INFO] [Progress 59/100] Finished Latent K=8 (D=512, N=90, J=5-7) | Diagonal in 135.0s
+2026-06-09 08:58:30,286 [INFO] [Worker 62] Spawned: Latent K=16 (D=512, N=90, J=5-7) | exact
+2026-06-09 08:58:34,554 [INFO] [Progress 60/100] Finished Latent K=8 (D=512, N=90, J=5-7) | Diagonal in 134.3s
+2026-06-09 08:58:36,193 [INFO] [Worker 63] Spawned: Latent K=16 (D=512, N=90, J=5-7) | exact
+2026-06-09 09:00:10,902 [INFO] [Progress 61/100] Finished Latent K=16 (D=512, N=90, J=5-7) | Exact in 142.7s
+2026-06-09 09:00:12,542 [INFO] [Worker 64] Spawned: Latent K=16 (D=512, N=90, J=5-7) | exact
+2026-06-09 09:00:23,140 [INFO] [Progress 62/100] Finished Latent K=16 (D=512, N=90, J=5-7) | Exact in 142.5s
+2026-06-09 09:00:24,774 [INFO] [Worker 65] Spawned: Latent K=16 (D=512, N=90, J=5-7) | exact
+2026-06-09 09:00:51,136 [INFO] [Progress 63/100] Finished Latent K=16 (D=512, N=90, J=5-7) | Exact in 140.8s
+2026-06-09 09:00:52,800 [INFO] [Worker 66] Spawned: Latent K=16 (D=512, N=90, J=5-7) | exact
+2026-06-09 09:00:57,968 [INFO] [Progress 64/100] Finished Latent K=16 (D=512, N=90, J=5-7) | Exact in 141.7s
+2026-06-09 09:00:59,607 [INFO] [Worker 67] Spawned: Latent K=16 (D=512, N=90, J=5-7) | exact
+2026-06-09 09:02:33,847 [INFO] [Progress 65/100] Finished Latent K=16 (D=512, N=90, J=5-7) | Exact in 141.2s
+2026-06-09 09:02:35,479 [INFO] [Worker 68] Spawned: Latent K=16 (D=512, N=90, J=5-7) | exact
+2026-06-09 09:02:46,961 [INFO] [Progress 66/100] Finished Latent K=16 (D=512, N=90, J=5-7) | Exact in 142.1s
+2026-06-09 09:02:48,592 [INFO] [Worker 69] Spawned: Latent K=16 (D=512, N=90, J=5-7) | exact
+2026-06-09 09:03:15,317 [INFO] [Progress 67/100] Finished Latent K=16 (D=512, N=90, J=5-7) | Exact in 142.4s
+2026-06-09 09:03:16,976 [INFO] [Worker 70] Spawned: Latent K=16 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 09:03:23,228 [INFO] [Progress 68/100] Finished Latent K=16 (D=512, N=90, J=5-7) | Exact in 143.5s
+2026-06-09 09:03:24,871 [INFO] [Worker 71] Spawned: Latent K=16 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 09:04:43,967 [INFO] [Progress 69/100] Finished Latent K=16 (D=512, N=90, J=5-7) | Diagonal in 86.9s
+2026-06-09 09:04:45,615 [INFO] [Worker 72] Spawned: Latent K=16 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 09:04:51,309 [INFO] [Progress 70/100] Finished Latent K=16 (D=512, N=90, J=5-7) | Diagonal in 86.4s
+2026-06-09 09:04:52,949 [INFO] [Worker 73] Spawned: Latent K=16 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 09:04:55,374 [INFO] [Progress 71/100] Finished Latent K=16 (D=512, N=90, J=5-7) | Exact in 139.8s
+2026-06-09 09:04:57,018 [INFO] [Worker 74] Spawned: Latent K=16 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 09:05:10,567 [INFO] [Progress 72/100] Finished Latent K=16 (D=512, N=90, J=5-7) | Exact in 141.9s
+2026-06-09 09:05:12,212 [INFO] [Worker 75] Spawned: Latent K=16 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 09:06:12,574 [INFO] [Progress 73/100] Finished Latent K=16 (D=512, N=90, J=5-7) | Diagonal in 86.9s
+2026-06-09 09:06:14,240 [INFO] [Worker 76] Spawned: Latent K=16 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 09:06:19,814 [INFO] [Progress 74/100] Finished Latent K=16 (D=512, N=90, J=5-7) | Diagonal in 86.8s
+2026-06-09 09:06:21,463 [INFO] [Worker 77] Spawned: Latent K=16 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 09:06:25,490 [INFO] [Progress 75/100] Finished Latent K=16 (D=512, N=90, J=5-7) | Diagonal in 88.4s
+2026-06-09 09:06:27,135 [INFO] [Worker 78] Spawned: Latent K=16 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 09:06:39,101 [INFO] [Progress 76/100] Finished Latent K=16 (D=512, N=90, J=5-7) | Diagonal in 86.8s
+2026-06-09 09:06:40,749 [INFO] [Worker 79] Spawned: Latent K=16 (D=512, N=90, J=5-7) | diagonal
+2026-06-09 09:07:43,454 [INFO] [Progress 77/100] Finished Latent K=16 (D=512, N=90, J=5-7) | Diagonal in 89.1s
+2026-06-09 09:07:45,124 [INFO] [Worker 80] Spawned: Latent K=32 (D=640, N=90, J=6-9) | exact
+2026-06-09 09:07:49,865 [INFO] [Progress 78/100] Finished Latent K=16 (D=512, N=90, J=5-7) | Diagonal in 88.3s
+2026-06-09 09:07:51,517 [INFO] [Worker 81] Spawned: Latent K=32 (D=640, N=90, J=6-9) | exact
+2026-06-09 09:07:53,879 [INFO] [Progress 79/100] Finished Latent K=16 (D=512, N=90, J=5-7) | Diagonal in 86.7s
+2026-06-09 09:07:55,530 [INFO] [Worker 82] Spawned: Latent K=32 (D=640, N=90, J=6-9) | exact
+2026-06-09 09:08:14,533 [INFO] [Progress 80/100] Finished Latent K=16 (D=512, N=90, J=5-7) | Diagonal in 93.6s
+2026-06-09 09:08:16,792 [INFO] [Worker 83] Spawned: Latent K=32 (D=640, N=90, J=6-9) | exact
+2026-06-09 09:21:07,537 [INFO] [Progress 81/100] Finished Latent K=32 (D=640, N=90, J=6-9) | Exact in 802.3s
+2026-06-09 09:21:09,786 [INFO] [Worker 84] Spawned: Latent K=32 (D=640, N=90, J=6-9) | exact
+2026-06-09 09:21:33,966 [INFO] [Progress 82/100] Finished Latent K=32 (D=640, N=90, J=6-9) | Exact in 822.4s
+2026-06-09 09:21:36,122 [INFO] [Worker 85] Spawned: Latent K=32 (D=640, N=90, J=6-9) | exact
+2026-06-09 09:21:53,829 [INFO] [Progress 83/100] Finished Latent K=32 (D=640, N=90, J=6-9) | Exact in 838.2s
+2026-06-09 09:21:55,908 [INFO] [Worker 86] Spawned: Latent K=32 (D=640, N=90, J=6-9) | exact
+2026-06-09 09:22:05,048 [INFO] [Progress 84/100] Finished Latent K=32 (D=640, N=90, J=6-9) | Exact in 828.2s
+2026-06-09 09:22:07,078 [INFO] [Worker 87] Spawned: Latent K=32 (D=640, N=90, J=6-9) | exact
+2026-06-09 09:24:05,976 [INFO] [Progress 85/100] Finished Latent K=32 (D=640, N=90, J=6-9) | Exact in 176.1s
+2026-06-09 09:24:07,674 [INFO] [Worker 88] Spawned: Latent K=32 (D=640, N=90, J=6-9) | exact
+2026-06-09 09:24:09,061 [INFO] [Progress 86/100] Finished Latent K=32 (D=640, N=90, J=6-9) | Exact in 152.9s
+2026-06-09 09:24:10,719 [INFO] [Worker 89] Spawned: Latent K=32 (D=640, N=90, J=6-9) | exact
+2026-06-09 09:24:27,254 [INFO] [Progress 87/100] Finished Latent K=32 (D=640, N=90, J=6-9) | Exact in 151.3s
+2026-06-09 09:24:28,900 [INFO] [Worker 90] Spawned: Latent K=32 (D=640, N=90, J=6-9) | diagonal
+2026-06-09 09:24:35,308 [INFO] [Progress 88/100] Finished Latent K=32 (D=640, N=90, J=6-9) | Exact in 148.2s
+2026-06-09 09:24:36,953 [INFO] [Worker 91] Spawned: Latent K=32 (D=640, N=90, J=6-9) | diagonal
+2026-06-09 09:25:53,714 [INFO] [Progress 89/100] Finished Latent K=32 (D=640, N=90, J=6-9) | Diagonal in 84.7s
+2026-06-09 09:25:55,368 [INFO] [Worker 92] Spawned: Latent K=32 (D=640, N=90, J=6-9) | diagonal
+2026-06-09 09:26:00,473 [INFO] [Progress 90/100] Finished Latent K=32 (D=640, N=90, J=6-9) | Diagonal in 83.4s
+2026-06-09 09:26:02,122 [INFO] [Worker 93] Spawned: Latent K=32 (D=640, N=90, J=6-9) | diagonal
+2026-06-09 09:26:27,353 [INFO] [Progress 91/100] Finished Latent K=32 (D=640, N=90, J=6-9) | Exact in 139.6s
+2026-06-09 09:26:29,014 [INFO] [Worker 94] Spawned: Latent K=32 (D=640, N=90, J=6-9) | diagonal
+2026-06-09 09:26:29,721 [INFO] [Progress 92/100] Finished Latent K=32 (D=640, N=90, J=6-9) | Exact in 138.9s
+2026-06-09 09:26:31,380 [INFO] [Worker 95] Spawned: Latent K=32 (D=640, N=90, J=6-9) | diagonal
+2026-06-09 09:27:20,155 [INFO] [Progress 93/100] Finished Latent K=32 (D=640, N=90, J=6-9) | Diagonal in 84.7s
+2026-06-09 09:27:21,818 [INFO] [Worker 96] Spawned: Latent K=32 (D=640, N=90, J=6-9) | diagonal
+2026-06-09 09:27:27,015 [INFO] [Progress 94/100] Finished Latent K=32 (D=640, N=90, J=6-9) | Diagonal in 84.8s
+2026-06-09 09:27:28,677 [INFO] [Worker 97] Spawned: Latent K=32 (D=640, N=90, J=6-9) | diagonal
+2026-06-09 09:27:54,332 [INFO] [Progress 95/100] Finished Latent K=32 (D=640, N=90, J=6-9) | Diagonal in 85.2s
+2026-06-09 09:27:55,984 [INFO] [Worker 98] Spawned: Latent K=32 (D=640, N=90, J=6-9) | diagonal
+2026-06-09 09:27:56,504 [INFO] [Progress 96/100] Finished Latent K=32 (D=640, N=90, J=6-9) | Diagonal in 85.0s
+2026-06-09 09:27:58,177 [INFO] [Worker 99] Spawned: Latent K=32 (D=640, N=90, J=6-9) | diagonal
+2026-06-09 09:28:46,051 [INFO] [Progress 97/100] Finished Latent K=32 (D=640, N=90, J=6-9) | Diagonal in 84.2s
+2026-06-09 09:28:53,532 [INFO] [Progress 98/100] Finished Latent K=32 (D=640, N=90, J=6-9) | Diagonal in 84.8s
+2026-06-09 09:29:21,317 [INFO] [Progress 99/100] Finished Latent K=32 (D=640, N=90, J=6-9) | Diagonal in 85.3s
+2026-06-09 09:29:22,580 [INFO] [Progress 100/100] Finished Latent K=32 (D=640, N=90, J=6-9) | Diagonal in 84.3s
+2026-06-09 09:29:24,456 [INFO] 
+============================================================================================================================================================================
+2026-06-09 09:29:24,456 [INFO] FINAL AGGREGATED RESULTS: latent-dimension K-scaling stress test
+2026-06-09 09:29:24,456 [INFO] ============================================================================================================================================================================
+2026-06-09 09:29:24,456 [INFO] Scenario                                   | Mode      |    K |      D |    N | J     | Lambda          | F               | Gamma           | G slope         | G off           | A               | A relRMSE       | Omega           |  Time(s)
+2026-06-09 09:29:24,456 [INFO] ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2026-06-09 09:29:24,457 [INFO] Latent K=3 (D=512, N=90, J=5-7)            | Exact     |    3 |    512 |   90 | 5-7   | 0.988 +/- 0.004 | 0.990 +/- 0.003 | 0.958 +/- 0.031 | 1.432 +/- 0.213 | 0.947 +/- 0.046 | 0.985 +/- 0.007 | 0.243 +/- 0.054 | 0.980 +/- 0.018 |    287.7
+2026-06-09 09:29:24,457 [INFO] Latent K=3 (D=512, N=90, J=5-7)            | Diagonal  |    3 |    512 |   90 | 5-7   | 0.995 +/- 0.003 | 0.995 +/- 0.001 | 0.996 +/- 0.007 | 1.044 +/- 0.128 | nan +/- nan     | 0.997 +/- 0.005 | 0.030 +/- 0.013 | 1.000 +/- 0.000 |    246.8
+2026-06-09 09:29:24,457 [INFO] Latent K=4 (D=512, N=90, J=5-7)            | Exact     |    4 |    512 |   90 | 5-7   | 0.988 +/- 0.003 | 0.989 +/- 0.002 | 0.961 +/- 0.021 | 1.279 +/- 0.166 | 0.951 +/- 0.026 | 0.983 +/- 0.005 | 0.230 +/- 0.026 | 0.974 +/- 0.012 |    289.9
+2026-06-09 09:29:24,458 [INFO] Latent K=4 (D=512, N=90, J=5-7)            | Diagonal  |    4 |    512 |   90 | 5-7   | 0.994 +/- 0.001 | 0.994 +/- 0.001 | 0.990 +/- 0.011 | 0.954 +/- 0.094 | nan +/- nan     | 0.993 +/- 0.006 | 0.028 +/- 0.007 | 1.000 +/- 0.000 |    249.4
+2026-06-09 09:29:24,458 [INFO] Latent K=8 (D=512, N=90, J=5-7)            | Exact     |    8 |    512 |   90 | 5-7   | 0.970 +/- 0.004 | 0.969 +/- 0.004 | 0.935 +/- 0.022 | 0.912 +/- 0.147 | 0.913 +/- 0.041 | 0.976 +/- 0.009 | 0.219 +/- 0.039 | 0.955 +/- 0.011 |    187.6
+2026-06-09 09:29:24,459 [INFO] Latent K=8 (D=512, N=90, J=5-7)            | Diagonal  |    8 |    512 |   90 | 5-7   | 0.987 +/- 0.003 | 0.988 +/- 0.002 | 0.968 +/- 0.017 | 1.573 +/- 0.108 | nan +/- nan     | 0.976 +/- 0.011 | 0.155 +/- 0.015 | 1.000 +/- 0.000 |    134.4
+2026-06-09 09:29:24,459 [INFO] Latent K=16 (D=512, N=90, J=5-7)           | Exact     |   16 |    512 |   90 | 5-7   | 0.938 +/- 0.010 | 0.928 +/- 0.009 | 0.446 +/- 0.147 | 0.249 +/- 0.155 | 0.405 +/- 0.156 | 0.781 +/- 0.046 | 0.814 +/- 0.095 | 0.951 +/- 0.008 |    141.9
+2026-06-09 09:29:24,460 [INFO] Latent K=16 (D=512, N=90, J=5-7)           | Diagonal  |   16 |    512 |   90 | 5-7   | 0.966 +/- 0.005 | 0.945 +/- 0.003 | 0.795 +/- 0.094 | 0.491 +/- 0.113 | nan +/- nan     | 0.841 +/- 0.070 | 0.173 +/- 0.020 | 1.000 +/- 0.000 |     88.0
+2026-06-09 09:29:24,460 [INFO] Latent K=32 (D=640, N=90, J=6-9)           | Exact     |   32 |    640 |   90 | 6-9   | 0.800 +/- 0.071 | 0.898 +/- 0.007 | 0.164 +/- 0.056 | 0.016 +/- 0.013 | 0.112 +/- 0.058 | 0.703 +/- 0.027 | 0.821 +/- 0.044 | 0.886 +/- 0.012 |    419.8
+2026-06-09 09:29:24,461 [INFO] Latent K=32 (D=640, N=90, J=6-9)           | Diagonal  |   32 |    640 |   90 | 6-9   | 0.933 +/- 0.006 | 0.891 +/- 0.006 | 0.726 +/- 0.058 | 0.091 +/- 0.018 | nan +/- nan     | 0.784 +/- 0.034 | 0.292 +/- 0.035 | 1.000 +/- 0.000 |     84.7
+2026-06-09 09:29:24,461 [INFO] ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------

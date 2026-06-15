@@ -1,0 +1,64 @@
+2026-06-09 11:47:49,418 [INFO] =========================================================================================================
+2026-06-09 11:47:49,418 [INFO]   CLOUD FRAMEWORK: COMPREHENSIVE AUTOMATED DISCOVERY & SCALING STRESS TEST
+2026-06-09 11:47:49,418 [INFO] =========================================================================================================
+2026-06-09 11:47:51,069 [INFO] [Worker 0] Processing 1a. Low D, Low K (D=500, K=4) | True K: 4
+2026-06-09 11:47:51,072 [INFO] [Worker 1] Processing 1a. Low D, Low K (D=500, K=4) | True K: 4
+2026-06-09 11:47:51,141 [INFO] [Worker 2] Processing 1a. Low D, Low K (D=500, K=4) | True K: 4
+2026-06-09 11:47:51,153 [INFO] [Worker 3] Processing 1a. Low D, Low K (D=500, K=4) | True K: 4
+2026-06-09 11:47:51,177 [INFO] [Worker 4] Processing 1a. Low D, Low K (D=500, K=4) | True K: 4
+2026-06-09 11:47:51,177 [INFO] [Worker 5] Processing 1b. Low D, Mid K (D=500, K=8) | True K: 8
+2026-06-09 11:47:51,206 [INFO] [Worker 6] Processing 1b. Low D, Mid K (D=500, K=8) | True K: 8
+2026-06-09 11:47:51,218 [INFO] [Worker 7] Processing 1b. Low D, Mid K (D=500, K=8) | True K: 8
+2026-06-09 11:47:51,221 [INFO] [Worker 8] Processing 1b. Low D, Mid K (D=500, K=8) | True K: 8
+2026-06-09 11:47:51,235 [INFO] [Worker 9] Processing 1b. Low D, Mid K (D=500, K=8) | True K: 8
+2026-06-09 11:47:51,250 [INFO] [Worker 10] Processing 2a. Std D, Low K (D=2000, K=4) | True K: 4
+2026-06-09 11:47:51,293 [INFO] [Worker 11] Processing 2a. Std D, Low K (D=2000, K=4) | True K: 4
+2026-06-09 11:47:51,294 [INFO] [Worker 12] Processing 2a. Std D, Low K (D=2000, K=4) | True K: 4
+2026-06-09 11:47:51,294 [INFO] [Worker 13] Processing 2a. Std D, Low K (D=2000, K=4) | True K: 4
+2026-06-09 11:47:51,313 [INFO] [Worker 14] Processing 2a. Std D, Low K (D=2000, K=4) | True K: 4
+2026-06-09 11:47:51,317 [INFO] [Worker 15] Processing 2b. Std D, Mid K (D=2000, K=8) | True K: 8
+2026-06-09 11:54:22,424 [INFO] [Worker 16] Processing 2b. Std D, Mid K (D=2000, K=8) | True K: 8
+2026-06-09 11:54:22,428 [INFO] [Worker 17] Processing 2b. Std D, Mid K (D=2000, K=8) | True K: 8
+2026-06-09 11:54:22,821 [INFO] [Worker 18] Processing 2b. Std D, Mid K (D=2000, K=8) | True K: 8
+2026-06-09 11:54:23,754 [INFO] [Worker 19] Processing 2b. Std D, Mid K (D=2000, K=8) | True K: 8
+2026-06-09 11:54:30,459 [INFO] [Worker 20] Processing 2c. Std D, High K (D=2000, K=12) | True K: 12
+2026-06-09 11:55:03,829 [INFO] [Worker 21] Processing 2c. Std D, High K (D=2000, K=12) | True K: 12
+2026-06-09 11:55:09,104 [INFO] [Worker 22] Processing 2c. Std D, High K (D=2000, K=12) | True K: 12
+2026-06-09 11:55:11,792 [INFO] [Worker 23] Processing 2c. Std D, High K (D=2000, K=12) | True K: 12
+2026-06-09 11:55:12,026 [INFO] [Worker 24] Processing 2c. Std D, High K (D=2000, K=12) | True K: 12
+2026-06-09 11:55:13,638 [INFO] [Worker 25] Processing 3a. High D, Low K (D=5000, K=4) | True K: 4
+2026-06-09 11:57:46,873 [INFO] [Worker 26] Processing 3a. High D, Low K (D=5000, K=4) | True K: 4
+2026-06-09 11:57:47,803 [INFO] [Worker 27] Processing 3a. High D, Low K (D=5000, K=4) | True K: 4
+2026-06-09 11:57:49,729 [INFO] [Worker 28] Processing 3a. High D, Low K (D=5000, K=4) | True K: 4
+2026-06-09 11:57:52,727 [INFO] [Worker 29] Processing 3a. High D, Low K (D=5000, K=4) | True K: 4
+2026-06-09 11:57:56,709 [INFO] [Worker 30] Processing 3b. High D, High K (D=5000, K=12) | True K: 12
+2026-06-09 11:59:03,380 [INFO] [Worker 31] Processing 3b. High D, High K (D=5000, K=12) | True K: 12
+2026-06-09 12:03:57,980 [INFO] [Worker 32] Processing 3b. High D, High K (D=5000, K=12) | True K: 12
+2026-06-09 12:05:50,084 [INFO] [Worker 33] Processing 3b. High D, High K (D=5000, K=12) | True K: 12
+2026-06-09 12:06:02,964 [INFO] [Worker 34] Processing 3b. High D, High K (D=5000, K=12) | True K: 12
+2026-06-09 12:16:27,858 [INFO] 
+=============================================================================================================================
+2026-06-09 12:16:27,858 [INFO] Scenario                           | True K | Cand K | Select % | Λ Corr          | F Corr          | Γ Corr          | Avg BIC      | Avg Time
+2026-06-09 12:16:27,858 [INFO] -----------------------------------------------------------------------------------------------------------------------------
+2026-06-09 12:16:27,858 [INFO] 1a. Low D, Low K (D=500, K=4)      | 4      | 3      |   0%    | N/A (Mismatch)  | N/A (Mismatch)  | N/A (Mismatch)  | 339107       |    125.6
+2026-06-09 12:16:27,858 [INFO] 1a. Low D, Low K (D=500, K=4)      | 4      | 4      |  80%    | 0.759 ± 0.066   | 0.810 ± 0.037   | 0.648 ± 0.129   | 323401       |    131.8
+2026-06-09 12:16:27,858 [INFO] 1a. Low D, Low K (D=500, K=4)      | 4      | 5      |  20%    | N/A (Mismatch)  | N/A (Mismatch)  | N/A (Mismatch)  | 326091       |    135.6
+2026-06-09 12:16:27,859 [INFO] 1b. Low D, Mid K (D=500, K=8)      | 8      | 7      |   0%    | N/A (Mismatch)  | N/A (Mismatch)  | N/A (Mismatch)  | 501865       |    181.3
+2026-06-09 12:16:27,859 [INFO] 1b. Low D, Mid K (D=500, K=8)      | 8      | 8      |  20%    | 0.553 ± 0.057   | 0.720 ± 0.029   | 0.061 ± 0.184   | 490423       |    202.1
+2026-06-09 12:16:27,859 [INFO] 1b. Low D, Mid K (D=500, K=8)      | 8      | 9      |  80%    | N/A (Mismatch)  | N/A (Mismatch)  | N/A (Mismatch)  | 486220       |    215.8
+2026-06-09 12:16:27,859 [INFO] 2a. Std D, Low K (D=2000, K=4)     | 4      | 3      |   0%    | N/A (Mismatch)  | N/A (Mismatch)  | N/A (Mismatch)  | 1342407      |    139.8
+2026-06-09 12:16:27,859 [INFO] 2a. Std D, Low K (D=2000, K=4)     | 4      | 4      | 100%    | 0.830 ± 0.061   | 0.847 ± 0.058   | 0.602 ± 0.164   | 1272632      |    146.0
+2026-06-09 12:16:27,859 [INFO] 2a. Std D, Low K (D=2000, K=4)     | 4      | 5      |   0%    | N/A (Mismatch)  | N/A (Mismatch)  | N/A (Mismatch)  | 1291653      |    152.7
+2026-06-09 12:16:27,859 [INFO] 2b. Std D, Mid K (D=2000, K=8)     | 8      | 7      |   0%    | N/A (Mismatch)  | N/A (Mismatch)  | N/A (Mismatch)  | 1853817      |    212.3
+2026-06-09 12:16:27,859 [INFO] 2b. Std D, Mid K (D=2000, K=8)     | 8      | 8      | 100%    | 0.645 ± 0.114   | 0.698 ± 0.014   | 0.145 ± 0.153   | 1809369      |    236.4
+2026-06-09 12:16:27,859 [INFO] 2b. Std D, Mid K (D=2000, K=8)     | 8      | 9      |   0%    | N/A (Mismatch)  | N/A (Mismatch)  | N/A (Mismatch)  | 1821091      |    243.9
+2026-06-09 12:16:27,859 [INFO] 2c. Std D, High K (D=2000, K=12)   | 12     | 10     |   0%    | N/A (Mismatch)  | N/A (Mismatch)  | N/A (Mismatch)  | 2489461      |    306.1
+2026-06-09 12:16:27,859 [INFO] 2c. Std D, High K (D=2000, K=12)   | 12     | 12     | 100%    | 0.427 ± 0.049   | 0.643 ± 0.020   | 0.115 ± 0.104   | 2411741      |    316.0
+2026-06-09 12:16:27,860 [INFO] 2c. Std D, High K (D=2000, K=12)   | 12     | 14     |   0%    | N/A (Mismatch)  | N/A (Mismatch)  | N/A (Mismatch)  | 2431904      |    228.7
+2026-06-09 12:16:27,860 [INFO] 3a. High D, Low K (D=5000, K=4)    | 4      | 3      |   0%    | N/A (Mismatch)  | N/A (Mismatch)  | N/A (Mismatch)  | 3291194      |    164.5
+2026-06-09 12:16:27,860 [INFO] 3a. High D, Low K (D=5000, K=4)    | 4      | 4      | 100%    | 0.810 ± 0.053   | 0.805 ± 0.054   | 0.687 ± 0.031   | 3105307      |    173.8
+2026-06-09 12:16:27,860 [INFO] 3a. High D, Low K (D=5000, K=4)    | 4      | 5      |   0%    | N/A (Mismatch)  | N/A (Mismatch)  | N/A (Mismatch)  | 3163448      |    177.6
+2026-06-09 12:16:27,860 [INFO] 3b. High D, High K (D=5000, K=12)  | 12     | 10     |   0%    | N/A (Mismatch)  | N/A (Mismatch)  | N/A (Mismatch)  | 5988014      |    288.6
+2026-06-09 12:16:27,860 [INFO] 3b. High D, High K (D=5000, K=12)  | 12     | 12     | 100%    | 0.399 ± 0.021   | 0.644 ± 0.027   | 0.039 ± 0.129   | 5834652      |    227.4
+2026-06-09 12:16:27,860 [INFO] 3b. High D, High K (D=5000, K=12)  | 12     | 14     |   0%    | N/A (Mismatch)  | N/A (Mismatch)  | N/A (Mismatch)  | 5906762      |    205.2
+2026-06-09 12:16:27,860 [INFO] =============================================================================================================================
